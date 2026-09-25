@@ -16,7 +16,9 @@ Vor jeder Bearbeitung:
 12. Repository-Stand prüfen.
 13. Änderungen anderer Agenten prüfen.
 14. offene Entscheidungen und Blocker prüfen.
-15. Erst danach mit der Arbeit beginnen.
+15. Für dieses Projekt gilt der GitHub-Connector als READ-ONLY: keine create-, update-, delete-, branch-, PR-, commit- oder sonstigen Schreiboperationen darüber ausführen oder versuchen.
+16. Remote-Schreibvorgänge ausschließlich über den lokalen Git-Workspace und GitHub Desktop durchführen, sofern lokaler Schreibzugriff verfügbar ist. Bei fehlendem lokalem Schreibzugriff nicht erneut versuchen; Blocker melden und fertige Änderungen als Copy-Paste-Artefakt für den Benutzer liefern.
+17. Erst danach mit der Arbeit beginnen.
 
 ## Checkpoint-Regel
 

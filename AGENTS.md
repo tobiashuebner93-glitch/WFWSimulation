@@ -25,6 +25,12 @@ Bei Entscheidungen, Architekturänderungen, wesentlichen Erkenntnissen, Blockern
 
 Der Master Orchestrator unterliegt denselben Regeln wie alle anderen Agenten.
 
+## GitHub-Connector und Schreibzugriffe
+
+Der GitHub-Connector ist für dieses Projekt ausschließlich READ-ONLY. Über ihn dürfen keine create-, update-, delete-, branch-, PR-, commit- oder sonstigen Schreiboperationen ausgeführt oder versucht werden.
+
+Remote-Schreibvorgänge dürfen ausschließlich über den lokalen Git-Workspace und GitHub Desktop erfolgen, sofern der lokale Schreibzugriff verfügbar ist. Fehlt lokaler Schreibzugriff, sind weitere Schreibversuche zu unterlassen. Den Blocker melden und die fertigen Änderungen als Copy-Paste-Artefakt für den Benutzer bereitstellen.
+
 ## Kommunikationsformat
 
 STATUS:

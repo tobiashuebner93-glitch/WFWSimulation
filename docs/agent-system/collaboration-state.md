@@ -52,4 +52,8 @@ Kritische Erkenntnisse, Entscheidungen und Blocker sofort dokumentieren.
 
 Architekturstatus bleibt PROPOSED. D-0001 bis D-0009 bleiben PROPOSED; Nutzerfreigabe und offene Architekturentscheidungen stehen weiterhin aus.
 
-Der frühere GitHub-Connector-403 ist kein aktueller Blocker für die lokale Governance-Arbeit. Ein lokaler Arbeitsbaum von A11 wurde nicht geprüft.
+Der frühere GitHub-Connector-403 blockiert lokale Governance-Arbeit nicht; der Connector ist projektweit READ-ONLY. Ein lokaler Arbeitsbaum von A11 wurde nicht geprüft.
+
+## Schreibzugriffsregel
+
+Der GitHub-Connector ist für dieses Projekt READ-ONLY; Schreiboperationen darüber dürfen nicht ausgeführt oder versucht werden. Remote-Schreibvorgänge erfolgen ausschließlich über den lokalen Git-Workspace und GitHub Desktop, sofern lokaler Schreibzugriff besteht. Bei fehlendem lokalem Schreibzugriff Arbeit nicht wiederholen, sondern den Blocker melden und ein Copy-Paste-Artefakt für den Benutzer bereitstellen. Siehe [CP-0004](checkpoints/CP-0004.md).
