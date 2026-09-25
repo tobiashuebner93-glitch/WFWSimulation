@@ -43,12 +43,10 @@ Alle ADRs sind PROPOSED.
 
 ### SLG-000.3 – Repository-Bestand aufnehmen
 
-Status: PENDING
+Status: COMPLETED
 Master Goal: MG-000
 
-Ziel:
-
-Den tatsächlichen Repository-Zustand mit dem Architekturentwurf abgleichen.
+Abschlussnachweis: Checkpoint [CP-0002](checkpoints/CP-0002.md).
 
 ## Goal-Regeln
 

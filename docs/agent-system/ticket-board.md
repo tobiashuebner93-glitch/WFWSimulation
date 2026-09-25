@@ -50,9 +50,11 @@ Akzeptanzkriterien:
 
 ---
 
+## Abgeschlossene Tickets
+
 ### T-0003 – Repository-Bestand read-only aufnehmen
 
-Status: PENDING
+Status: COMPLETED
 Master Goal: MG-000
 Second-Level Goal: SLG-000.3
 Owner: A11 TECHNICAL_ARCHITECT
@@ -60,3 +62,5 @@ Owner: A11 TECHNICAL_ARCHITECT
 Aufgabe:
 
 Tatsächlichen Repository-Zustand gegen den Architekturentwurf prüfen.
+
+Abschlussnachweis: [Checkpoint CP-0002](checkpoints/CP-0002.md).
