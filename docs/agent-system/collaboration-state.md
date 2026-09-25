@@ -15,17 +15,20 @@ Second-Level Goals:
 Aktive Tickets:
 
 - T-0001
-- T-0002
 
 Abgeschlossene Second-Level Goals und Tickets bleiben historisch dokumentiert und sind nicht Teil des aktiven Kontexts.
 
 ## Letzte gesicherte Arbeit
 
-A11 TECHNICAL_ARCHITECT hat die Repository-Bestandsaufnahme auf `main` read-only durchgeführt und den tatsächlichen Bestand gegen den Architekturentwurf abgeglichen. A01 hat den Bericht gegen die Governance-Dateien geprüft. T-0003 und SLG-000.3 sind fachlich abgeschlossen.
+T-0002 – Architektur V0.2 als vorgeschlagenen Arbeitsstand sichern – ist abgeschlossen. A11 hat die Architekturdatei und acht ADR-Artefakte erstellt; A09 hat die Artefakte geprüft und QA BESTANDEN gemeldet. CP-0005 dokumentiert die QA und den Stand vor Übernahme. Commit/Push auf `main` wurde unter Commit `56bea77ae63f273e4c025433ab5c7fbcbb1e8a40` erfolgreich abgeschlossen.
 
-Letzter Checkpoint: [CP-0002](checkpoints/CP-0002.md).
+Letzter Checkpoint: [CP-0006](checkpoints/CP-0006.md).
 
-A11 bestätigt keine Datei-, Commit-, Dependency- oder Supabase-Änderungen. Der lokale Arbeitsbaum von A11 wurde nicht geprüft.
+SLG-000.2 bleibt ACTIVE / PROPOSED. Die Architektur ist nicht freigegeben; alle ADRs bleiben PROPOSED. ADR-004 Mapping bleibt OPEN. D-0001 und D-0002 sind Governance-Einträge.
+
+## Zuvor gesicherte Arbeit
+
+A11 TECHNICAL_ARCHITECT hat die Repository-Bestandsaufnahme auf `main` read-only durchgeführt. A01 prüfte den Bericht gegen die Governance-Dateien. T-0003 und SLG-000.3 sind abgeschlossen; siehe [CP-0002](checkpoints/CP-0002.md).
 
 ## Gesicherte Architekturhypothesen
 
@@ -50,10 +53,6 @@ Kritische Erkenntnisse, Entscheidungen und Blocker sofort dokumentieren.
 
 ## Offene Entscheidungen und Blocker
 
-Architekturstatus bleibt PROPOSED. D-0001 bis D-0009 bleiben PROPOSED; Nutzerfreigabe und offene Architekturentscheidungen stehen weiterhin aus.
+D-0001 bis D-0009 bleiben PROPOSED; Nutzerfreigabe und offene Architekturfragen stehen weiterhin aus. Das Ticket T-0002 ist abgeschlossen; die verbleibende Arbeit zur weiteren Bearbeitung von SLG-000.2 ist noch zu bestimmen.
 
-Der frühere GitHub-Connector-403 blockiert lokale Governance-Arbeit nicht; der Connector ist projektweit READ-ONLY. Ein lokaler Arbeitsbaum von A11 wurde nicht geprüft.
-
-## Schreibzugriffsregel
-
-Der GitHub-Connector ist für dieses Projekt READ-ONLY; Schreiboperationen darüber dürfen nicht ausgeführt oder versucht werden. Remote-Schreibvorgänge erfolgen ausschließlich über den lokalen Git-Workspace und GitHub Desktop, sofern lokaler Schreibzugriff besteht. Bei fehlendem lokalem Schreibzugriff Arbeit nicht wiederholen, sondern den Blocker melden und ein Copy-Paste-Artefakt für den Benutzer bereitstellen. Siehe [CP-0004](checkpoints/CP-0004.md).
+Der GitHub-Connector ist projektweit READ-ONLY. Lokale Governance-Arbeit wurde über den lokalen Git-Workspace durchgeführt; Remote-Übernahmen erfolgen über den vorgesehenen GitHub-Desktop-Prozess.

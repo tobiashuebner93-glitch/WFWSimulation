@@ -29,9 +29,11 @@ Akzeptanzkriterien:
 
 ---
 
+## Abgeschlossene Tickets
+
 ### T-0002 – Architektur V0.2 als Arbeitsgrundlage sichern
 
-Status: IN_PROGRESS
+Status: COMPLETED
 Master Goal: MG-000
 Second-Level Goal: SLG-000.2
 Owner: A11 TECHNICAL_ARCHITECT
@@ -48,9 +50,9 @@ Akzeptanzkriterien:
 - nichts als freigegeben dargestellt
 - OpenTycoonOS bleibt zunächst Referenz
 
----
+Abschlussgrund: Neun Architekturartefakte erstellt, A09-QA bestanden und Commit/Push auf `main` erfolgreich. Abschlussnachweis: Checkpoint [CP-0006](checkpoints/CP-0006.md).
 
-## Abgeschlossene Tickets
+---
 
 ### T-0003 – Repository-Bestand read-only aufnehmen
 
