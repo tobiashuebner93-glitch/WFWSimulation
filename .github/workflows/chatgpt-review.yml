@@ -1,0 +1,49 @@
+name: ChatGPT Code Review for WFWSimulation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  chatgpt-review:
+    name: Run ChatGPT Review
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Collect PR diff
+        id: diff
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD)
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Ask ChatGPT for review
+        id: chatgpt
+        run: |
+          RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
+            -d "{
+              \"model\": \"gpt-4o-mini\",
+              \"messages\": [
+                {\"role\": \"system\", \"content\": \"Du bist ein präziser, technischer Code-Reviewer. Fasse dich klar, strukturiert und hilfreich.\"},
+                {\"role\": \"user\", \"content\": \"Analysiere den folgenden Code-Diff aus dem WFWSimulation-Repo und gib konkrete Verbesserungsvorschläge, potentielle Fehler, Sicherheitsrisiken und Optimierungen:\n\n${{ steps.diff.outputs.diff }}\"}
+              ]
+            }" | jq -r '.choices[0].message.content')
+
+          echo "response<<EOF" >> $GITHUB_OUTPUT
+          echo "$RESPONSE" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Post ChatGPT review as PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: chatgpt-review
+          message: |
+            🤖 **ChatGPT Review für WFWSimulation**
+            ${{ steps.chatgpt.outputs.response }}
