@@ -197,7 +197,9 @@ HireEmployee
 
 ## 8. Simulation und Monatsablauf
 
-**PROPOSED:** Ein Monatslauf wird von der Application Layer angestoßen und durch Simulation geordnet. Accounting bleibt für Verbuchung und Finanzsichten autoritativ.
+**PROPOSED:** Die Application Layer stößt Zeitfortschreibung und Periodenorchestrierung an; Accounting bleibt für Verbuchung und Finanzsichten autoritativ. Das Wochenraster ist Anzeige- und Fortschreibungsraster, kein unteilbarer Simulationsschritt. Bei einem Sprung über mehrere Tage verarbeitet die Simulation jeden dazwischenliegenden Kalendertag einzeln. Jedes operative Ereignis erhält seinen tatsächlichen Simulations-Kalendertag; ein Wochen- oder Monatswert ersetzt dieses Ereignisdatum nicht.
+
+Innerhalb jedes Kalendertags gilt die bestätigte A02-Tagesreihenfolge: (1) Spielerentscheidungen, (2) Wareneingänge/Fremdleistungen, (3) Produktion und Materialverbrauch, (4) Produktionsfertigstellung, (5) Lieferung, (6) Abnahme, (7) Rechnungsstellung, (8) fällige Zahlungen, (9) Tagesabschluss. Abhängige Folgeereignisse dürfen am selben Tag in einer späteren Phase stattfinden; eine bereits abgeschlossene frühere Phase wird nicht erneut geöffnet. Diese Tagesauflösung und Reihenfolge sind der operative Ablauf; die nachfolgenden Schritte beschreiben die übergeordnete Periodenorchestrierung.
 
 Vorgeschlagene Phasen:
 
@@ -214,7 +216,9 @@ Vorgeschlagene Phasen:
 11. Abschlussinvarianten und Finanzsichten berechnen.
 12. Periodenereignisse, Ergebnis und Snapshot speichern und den Abschluss kennzeichnen.
 
-**OPEN:** Exakte Phasenreihenfolge, Markt-/Ereigniszeitpunkt, Abschlussregeln und Behandlung später Korrekturen.
+Am Monatsende werden zunächst die Tagesphasen 1–9 des letzten Kalendertags vollständig abgeschlossen. Danach werden periodische Kosten/BAB-Ereignisse ausgelöst und der Monats-/Periodenabschluss mit Ergebnis und Snapshot gekennzeichnet. Verschobene Ereignisse behalten ihr tatsächliches Wirksamkeitsdatum; die Zuordnung eines auf den Folgemonat verschobenen Ereignisses zur Periodenauswertung bleibt fachlich offen. Der Periodenabschluss schreibt Ereignisse nicht rückwirkend um.
+
+**OPEN:** Markt-/Ereigniszeitpunkte außerhalb der bestätigten Tagesreihenfolge, weitere Abschlussregeln und die Behandlung später Korrekturen.
 
 ## 9. Simulation und Accounting
 

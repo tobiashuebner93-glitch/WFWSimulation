@@ -77,3 +77,23 @@ Learning und Exam werden als getrennte Domänen geführt.
 Status: PROPOSED
 
 Simulationen sollen durch Seed, Commands, Regelversionen und Modulversionen reproduzierbar sein.
+
+---
+
+## D-0010 – Verbindliche Produktentscheidungen Maschinenbau-MVP
+
+Status: APPROVED (Nutzerentscheidung; keine Architekturfreigabe)
+Quelle: Nutzerauftrag vom 2026-09-26, nach A11-Konsolidierung
+Bezug: MG-000 / SLG-000.2
+
+Für die erste Fassung des operativen Maschinenbau-MVP gilt:
+
+- Auftragsabwicklung erfolgt vollständig. Teilfertigung, Teillieferung, Teilrechnung und Teilzahlung sind nicht Teil von V1; spätere Erweiterung bleibt vorgesehen.
+- Ein Betriebsabrechnungsbogen (BAB) gehört zu V1. Statische Werte und vereinfachte Kostenverteilung sind zulässig. Spätere Versionen können Kosten genauer berechnen und Kosten, Gewinn, Provision sowie weitere unternehmenssteuerungs- und IHK-relevante Größen ergänzen.
+- Rechnungen und Buchhaltung stellen Beträge differenziert dar; ein einziger Gesamtbetrag genügt nicht.
+- Forderungen und Verbindlichkeiten entstehen gemäß vertraglicher Vereinbarung. Kaufverträge können mehrere Zahlungsoptionen unterstützen. Zahlungsziele, Vorschüsse und Nachzahlungen sind langfristig vorgesehen; V1 darf die für den MVP erforderlichen Vertragsvarianten begrenzen, muss Erweiterbarkeit ermöglichen.
+- Das Startunternehmen hat gemieteten Raum, eine Maschine, drei Mitarbeiter und 50.000 Euro Startbudget. Weitere notwendige Startparameter bestimmen A02 und A03 fachlich.
+- Das langfristige Ziel umfasst prüfungsrelevante Bereiche für Wirtschaftsfachwirt IHK und später Betriebswirt IHK. IHK-Lernmodule und Prüfungssimulation gehören nicht zum operativen Maschinenbau-MVP, sollen architektonisch später integrierbar bleiben.
+- A04 darf das fachliche und technische Datenmodell einschließlich Entitäten, Beziehungen, Status, Feldern, Constraints und Persistenzmodell konkretisieren. Dabei müssen die fachlichen Vorgaben von A02 (Simulation), A03 (Accounting/Finance) und A11 (Architektur/Systemgrenzen) berücksichtigt werden. Offene Produktentscheidungen dürfen nicht stillschweigend verändert werden.
+
+Diese Nutzerentscheidung legt Produktumfang und fachliche Leitplanken fest. Sie genehmigt weder Architektur V0.2 noch ADR-001 bis ADR-008 und entscheidet keine weiterhin offenen Finanz-, Steuer-, Zeit- oder Prozessdetails.

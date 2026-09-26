@@ -41,7 +41,7 @@ Priorität: HIGH
 
 Aufgabe und Mindestumfang gemäß D-0010, A02-Simulationsspezifikation und A03-Finanzspezifikation: fachliches/logisches Datenmodell mit vollständiger operativer V1-Abwicklung, differenzierten Finanzbeträgen, statischem/vereinfachtem BAB, festgelegtem Startprofil, offenen Fachentscheidungen und Erweiterungspfaden.
 
-Abschlussnachweis: [Datenmodell](../database/maschinenbau-mvp-datenmodell.md), [CP-0010](checkpoints/CP-0010.md), QA-Erstreview [CP-0011](checkpoints/CP-0011.md), A04-Nachbesserung [CP-0012](checkpoints/CP-0012.md) und bestandenes QA-Rereview [CP-0013](checkpoints/CP-0013.md). Offene Fachregeln und die MINOR-Dokumentationsabweichung zu älteren A02-/A03-Scope-Aussagen bleiben Folgearbeit; sie sind keine Implementierungs- oder Architekturfreigabe.
+Abschlussnachweis: [Datenmodell](../database/maschinenbau-mvp-datenmodell.md), [CP-0010](checkpoints/CP-0010.md), QA-Erstreview [CP-0011](checkpoints/CP-0011.md), A04-Nachbesserung [CP-0012](checkpoints/CP-0012.md), bestandenes QA-Rereview [CP-0013](checkpoints/CP-0013.md) und finale P0-Gesamtsicherung [CP-0031](checkpoints/CP-0031.md). Die dokumentarische MINOR-Abweichung wurde durch T-0007 bereinigt. Offene Fachparameter bleiben ausdrücklich offen; QA und P0-Validierung sind keine Implementierungs- oder Architekturfreigabe.
 
 ---
 
@@ -121,3 +121,18 @@ Aufgabe:
 Die read-only fachliche Spezifikation und Gap-Analyse des Maschinenbau-MVP erstellen. Während der A02-Arbeit war dafür kein aktives Ticket eingetragen; dieses Ticket dokumentiert die bereits abgeschlossene Arbeit rückblickend und weist sie dem aktiven SLG-000.2 zu.
 
 Abschlussgrund: A02-Arbeitsergebnis durch A01 geprüft und unverändert im Repository gesichert. Keine Code-, Datenbank-, Dependency- oder Architekturänderung. Abschlussnachweis: [Checkpoint CP-0007](checkpoints/CP-0007.md) und [A02-Bericht](../simulation/maschinenbau-mvp-spezifikation-und-gap-analyse.md).
+
+---
+
+### T-0007 – D-0010-Scope in A02-/A03-Spezifikationen angleichen
+
+Status: COMPLETED
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Owner: A02 SIMULATION / A03 ACCOUNTING_FINANCE
+
+Aufgabe:
+
+Die dokumentarische MINOR-Abweichung aus CP-0013 in den Fachspezifikationen von A02 und A03 bereinigen. D-0010 bleibt maßgeblich und unverändert; Teilfertigung, Teillieferung, Teilrechnung und Teilzahlung sind aus V1 ausgeschlossen. Keine Erweiterung des MVP und keine neuen Fachregeln.
+
+Abschlussgrund: A02 und A03 haben ihre jeweiligen Scope-Texte an D-0010 angeglichen. Konkrete Zahlungs-/Finanzregeln bleiben offen. Nachweis: [CP-0014](checkpoints/CP-0014.md).
