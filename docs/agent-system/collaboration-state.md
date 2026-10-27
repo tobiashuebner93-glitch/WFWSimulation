@@ -1,6 +1,6 @@
 # Collaboration State – WFWSimulation
 
-Stand: 2026-09-26
+Stand: 2026-10-27
 
 ## Aktiver Kontext
 
@@ -14,11 +14,119 @@ Second-Level Goals:
 
 Aktive Tickets:
 
+- T-0009 – COMPLETED; A02 hat D-0011 übernommen (CP-0150).
+- T-0011 – PENDING; A08 recherchiert belegte Markt-/Referenzwerte für die ausgewählten Warengruppen; Ergebnisse bleiben Vorschläge zur Nutzerbestätigung.
+- T-0010 – PENDING; A02 überarbeitet die Spezifikation zur ersten spielbaren Version nach T-0008, T-0011 und A03-Fachprüfung; Norm-/Zukaufteile müssen artikelbezogen statt als Durchschnittspreis-Sammelposten beschrieben werden.
+- T-0008 – IN_PROGRESS; A01 koordiniert nur tatsächlich offene Entscheidungen und Fachabstimmungen. Die outcome-kritische Frage zur Verfügbarkeit gleichentägiger Kundeneingänge vor eigenen Auszahlungen wird bis nach der Sicherung zurückgestellt.
 - T-0001
+
+Aktueller Stand: CP-0156 ist der neueste A01-Checkpoint; CP-0155 ist der neueste fachliche Abgleich. T-0009 ist abgeschlossen. A02 hat D-0011 sowie CNC-Buchwert 0 € und die Stahlwert-Übergabe aus dem Vorjahresschluss im Startprofil berücksichtigt. A03 bestätigt 12.800 € Gesamtvorräte, aber keine Einzelgruppenbewertungen; kein Differenzwert wurde angesetzt. A04 hat das Datenmodell abgeglichen. A02/A03 ordnen Finanzereignisse Phase 8 zu; weitere Reihenfolge- und Periodendetails bleiben offen. Bestätigte Kalender-, Zahlungsziel-, Dunning-, Darlehensgrund-, SimTAX- und BAB-Regeln sind keine offenen Nutzerentscheidungen. Details und nächste Schritte stehen in der P0-Koordinierung und CP-0155.
+
+## Historische Entscheidungs- und Checkpointnotizen
+
+Die folgenden datierten Notizen dokumentieren jeweils den damaligen Wissensstand. Für den aktuellen Stand sind die Abschnitte CP-0148 bis CP-0156 am Dateiende und die P0-Koordinierung maßgeblich.
+
+Nutzerentscheidung D-0037: Monatliche Darlehenszinsen werden kaufmännisch auf Cent gerundet. Nachweis: [CP-0061](checkpoints/CP-0061.md).
+
+Nutzerentscheidung D-0038: Ein aus der kaufmännischen Cent-Rundung verbleibender Darlehensrest wird in der letzten Rate bezahlt. Nachweis: [CP-0062](checkpoints/CP-0062.md).
+
+Nutzerentscheidung D-0039: Der nominale Darlehenszinssatz von 5 % p.a. gilt während der siebenjährigen Restlaufzeit fest. Nachweis: [CP-0063](checkpoints/CP-0063.md).
+
+Nutzerentscheidung D-0040: Darlehenszinsen werden zusammen mit der monatlichen Annuitätenrate gezahlt. Nachweis: [CP-0064](checkpoints/CP-0064.md).
+
+Nutzerentscheidung D-0041: Für die Zinsperiode gilt der Kalendertag vor der nächsten Rate als Stichtag des maßgeblichen Restschuldsaldos. Nachweis: [CP-0065](checkpoints/CP-0065.md).
+
+Nutzerentscheidung D-0042: Eine am Fälligkeitstag nicht gezahlte Maschinenrate ist sofort im Verzug; die Bedienung wird wöchentlich erneut versucht. Bei insgesamt drei nicht gezahlten Raten wird die Maschine gepfändet, zum aktuellen Marktwert liquidiert und der Erlös zur Darlehenstilgung verwendet; ein Überschuss geht auf das Geschäftskonto. Was bei einem Erlösdefizit geschieht, bleibt offen. Diese Regel betrifft nur das Maschinendarlehen und ändert D-0029 nicht. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0066](checkpoints/CP-0066.md).
+
+Nutzerentscheidung D-0043: Eine nach der Maschinenverwertung verbleibende Restschuld erlischt, da die Maschine als Pfand für den Kredit akzeptiert wurde. Damit ist das Erlösdefizit aus D-0042 geklärt. Nächste Einzelfrage: wie der zum Verwertungszeitpunkt aktuelle Marktwert ermittelt wird. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0067](checkpoints/CP-0067.md).
+
+Nutzerentscheidung D-0044: V1 umfasst ein Hintergrund-Wirtschaftssystem, das relevante Ressourcen und Produkte nachverfolgt. Rohstoffpreise beruhen grundsätzlich auf geeigneten Quellen, werden in V1 aber als statische Zahlen mit linearer jährlicher Preissteigerung von 2 % geführt. Produkte werden linear 2 % je Jahr teurer; Maschinen und andere Güter verlieren gemäß fester Nutzungsdauer anteilig an Wert. Der Maschinenmarktwert bei Verwertung basiert auf einem jährlich um 2 % angepassten Neupreis abzüglich des Wertverlusts aus bisheriger Nutzung. Konkrete Formel, Basispreise und Nutzungsdauern bleiben offen; keine Live-Marktdatenintegration. Nächste Einzelfrage: feste Gesamtnutzungsdauer der vorhandenen CNC-Maschine. Nachweis: [CP-0068](checkpoints/CP-0068.md).
+
+Nutzerentscheidung D-0045: Die geplante Gesamtnutzungsdauer der vorhandenen, bei Spielstart acht Jahre alten CNC-Fräsmaschine beträgt 16 Jahre; daraus verbleiben rechnerisch acht Jahre. Der Eröffnungsbuchwert von 40.000 € bleibt unberührt; die genaue Marktwert-/Abschreibungsberechnung ist offen. Nachweis: [CP-0069](checkpoints/CP-0069.md).
+
+Nutzerentscheidungen D-0046 bis D-0052: Der ursprüngliche CNC-Anschaffungspreis beträgt 120.000 €; Restwert = Anschaffungspreis × `max(0, (16 − genutzte Dauer) / 16)`. Die jährliche Neupreisfortschreibung gemäß D-0047 fließt nicht in diesen Restwert ein. Bei acht genutzten Jahren ergibt sich zum Simulationsstart ein Faktor von 0,5. Bilanzbuchwert 40.000 € bleibt getrennt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0076](checkpoints/CP-0076.md).
+
+Nutzerentscheidung D-0053: SimTAX-Bemessungsbasis je Rechnungsposition ist der bestätigte Positionswert vor SimTAX. 19 % und positionsweise Rundung mit anschließender Summierung bleiben bestehen. Nächste Einzelfrage: Regel für exakt halbe Centbeträge. Nachweis: [CP-0077](checkpoints/CP-0077.md).
+
+Nutzerentscheidung D-0054: SimTAX wird bei exakt halben Centbeträgen kaufmännisch gerundet; die Rundung bleibt je Rechnungsposition, danach werden die gerundeten Beträge summiert. Nächste Einzelfrage: Bemessung auf den erweiterten Positionsbetrag oder einzelne Einheiten. Nachweis: [CP-0078](checkpoints/CP-0078.md).
+
+Nutzerentscheidung D-0055: SimTAX wird je Rechnungsposition auf den Positionsgesamtbetrag angewendet und kaufmännisch gerundet; Einzelmengen werden nicht separat besteuert/gerundet. Nächste Einzelfrage: Geltungsbereich von SimTAX (z. B. Kundenrechnungen, Lieferantenrechnungen, Kategorien). Nachweis: [CP-0079](checkpoints/CP-0079.md).
+
+Nutzerentscheidung D-0056: SimTAX wird bei jeder externen Rechnungsstellung verwendet; bei Steuerzahlungen und innerbetrieblichen Ausgleichen wird keine Steuer berechnet. Daraus wird keine Behandlung eingehender externer Rechnungen abgeleitet. Nächste Einzelfrage: Behandlung von Rechnungskorrekturen. Nachweis: [CP-0080](checkpoints/CP-0080.md).
+
+Nutzerentscheidung D-0057: Bei Rechnungskorrekturen wird der ursprüngliche gerundete SimTAX-Betrag referenziert umgekehrt und die Korrektur separat ausgewiesen. Nächste Einzelfrage: SimTAX als getrennte Rechnungskomponente mit eigener Simulationssaldo-Sicht oder bloßer Rechnungsausweis bei bis auf weiteres offener Verrechnung. Nachweis: [CP-0081](checkpoints/CP-0081.md).
+
+Nutzerentscheidung D-0058: SimTAX ist eine getrennte Rechnungskomponente mit eigener Simulationssaldo-Sicht zur Gegenrechnung von Vorsteuer und Umsatzsteuer. Die Zahlung richtet sich nach den Grundsätzen von UStG und AO; Abrechnungszeitraum und konkrete Zahlungsmechanik sind offen. Nachweis: [CP-0082](checkpoints/CP-0082.md).
+
+Nutzerentscheidung D-0059: Der Abrechnungszeitraum des SimTAX-Saldos richtet sich nach dem UStG; A01 legt keinen festen Zeitraum fest. Der relevante Vorjahresparameter und konkrete Zahlungstermine/-ablauf sind noch offen. Nachweis: [CP-0083](checkpoints/CP-0083.md).
+
+Nutzerentscheidung D-0060: Für 2026 wird fiktiv ein Umsatz von 5.000 € je Woche angenommen. Dieser Umsatzwert wird nicht zur Ableitung des Vorjahressteuerbetrags verwendet. Nachweis: [CP-0084](checkpoints/CP-0084.md).
+
+Nutzerentscheidung D-0061: Für das Kalenderjahr 2026 wird ein fiktiver maßgeblicher Umsatzsteuerbetrag von 49.400 € als Vorjahresparameter für den SimTAX-Abrechnungszeitraum gemäß UStG angesetzt. Der Betrag ist ein vorgegebener Szenariowert und wird nicht aus D-0060 abgeleitet. Die konkrete Zahlungsmechanik bleibt offen. Nachweis: [CP-0085](checkpoints/CP-0085.md).
+
+Nutzerentscheidung D-0062: Im V1-BAB beträgt der MGK-Zuschlag 15 % der MEK. Der Satz stammt aus dem A03-Arbeitsvorschlag und wurde vom Nutzer übernommen; weitere BAB-Sätze und konkrete Kostenwerte bleiben offen. Nachweis: [CP-0086](checkpoints/CP-0086.md).
+
+Nutzerentscheidung D-0063: Im V1-BAB beträgt der FGK-Zuschlag 100 % der Fertigungslöhne. Der Satz stammt aus dem A03-Arbeitsvorschlag und wurde vom Nutzer übernommen; weitere BAB-Sätze und konkrete Kostenwerte bleiben offen. Nachweis: [CP-0087](checkpoints/CP-0087.md).
+
+Nutzerentscheidung D-0064: Im V1-BAB beträgt der Vw/Vt-GK-Zuschlag 10 % der Herstellkosten. Der Satz stammt aus dem A03-Arbeitsvorschlag und wurde vom Nutzer übernommen; weitere Zuordnungen und konkrete Kostenwerte bleiben offen. Nachweis: [CP-0088](checkpoints/CP-0088.md).
+
+Nutzerentscheidung D-0065: Die monatliche Bruttolohnsumme im V1-Startprofil beträgt insgesamt 10.400 €. Rollenaufteilung, Arbeitgebergesamtkosten und Definition der Fertigungslöhne als FGK-Basis bleiben offen. Nachweis: [CP-0089](checkpoints/CP-0089.md).
+
+Nutzerentscheidung D-0066: Als Fertigungslöhne für den 100-%-FGK-Zuschlag gelten MA-CNC (3.800 €) und MA-PROD (3.100 €), zusammen 6.900 € Bruttolohn pro Monat; MA-AV ist ausgeschlossen. Arbeitgebergesamtkosten bleiben offen. Nachweis: [CP-0090](checkpoints/CP-0090.md).
+
+Nutzerentscheidung D-0067: Arbeitgebergesamtkosten sollen im V1-Personalaufwand zusätzlich zu den Bruttolöhnen berücksichtigt werden. Betrag und Berechnungsregel bleiben offen. Nachweis: [CP-0091](checkpoints/CP-0091.md).
+
+Nutzerentscheidung D-0068: Arbeitgebergesamtkosten betragen zusätzlich 21 % der monatlichen Bruttolohnsumme von 10.400 €, rechnerisch 2.184 € monatlich; der Personalaufwand einschließlich Bruttolöhnen beträgt damit 12.584 € monatlich. Nachweis: [CP-0092](checkpoints/CP-0092.md).
+
+Nutzerentscheidung D-0069: Die 21 % Arbeitgeberkosten für MA-CNC/MA-PROD werden in die FGK-Basis einbezogen. Die Basis beträgt damit 8.349 € monatlich; bei 100 % FGK-Zuschlag ergibt sich derselbe monatliche FGK-Betrag. Arbeitgeberkosten von MA-AV sind ausgenommen. Nachweis: [CP-0093](checkpoints/CP-0093.md).
+
+Nutzerentscheidung D-0070: Der MA-AV-Personalaufwand (3.500 € Bruttolohn plus 21 % Arbeitgeberkosten = 4.235 € monatlich) gehört in den Vw/Vt-GK-Pool und wird nicht als separate zusätzliche Kostenposition neben diesem Pool angesetzt. Der 10-%-Zuschlag auf HK bleibt bestehen. Nachweis: [CP-0094](checkpoints/CP-0094.md).
+
+Nutzerentscheidung D-0071: Die CNC-Abschreibung wird als Fertigungsgemeinkosten im V1-BAB berücksichtigt; Abschreibungsbasis, Methode, Zeitraum und Betrag bleiben offen. Die Restwert-/Verwertungsregel bestimmt diese Abschreibung nicht automatisch. Nachweis: [CP-0095](checkpoints/CP-0095.md).
+
+Nutzerentscheidung D-0072: Für die BAB-Kalkulation der CNC sollen Wiederbeschaffungskosten einschließlich der 2-%-Inflation im maßgeblichen Betrachtungszeitraum berücksichtigt werden. Der Betrachtungszeitraum und die Umlegung auf Periodenkosten bleiben offen. Nachweis: [CP-0096](checkpoints/CP-0096.md).
+
+Letzter Checkpoint: [CP-0096](checkpoints/CP-0096.md).
+
+Nutzerentscheidung D-0036: Zinsbasis ist das Restschuldsaldo des Maschinendarlehens. Rundung der periodischen Zinsbeträge bleibt offen; nächste Frage betrifft die Cent-Rundung. Nachweis: [CP-0060](checkpoints/CP-0060.md).
+
+Nutzerentscheidung D-0035 konkretisiert D-0034 auf die deutsche Zinsmethode 30E/360. Die Zinsbezugsbasis innerhalb der Monatsperiode bleibt offen; nächste Frage betrifft den verwendeten Restschuldsaldo. Nachweis: [CP-0059](checkpoints/CP-0059.md).
+
+Nutzerentscheidung D-0034: Der Darlehenszins wird nach 30/360 berechnet. Die konkrete Monatsend-Variante bleibt offen. Nächste Frage: genaue 30/360-Konvention. Nachweis: [CP-0058](checkpoints/CP-0058.md).
+
+Nutzerentscheidung D-0033: Monatsraten des Maschinendarlehens sind am letzten Geschäftstag fällig. Für Januar 2027 ergibt sich nach D-0011 der 29.01.2027. Zinsberechnung und Rate bleiben offen. Nachweis: [CP-0057](checkpoints/CP-0057.md).
+
+Nutzerentscheidung D-0032: Das Annuitätendarlehen wird monatlich bedient. Datum der ersten Rate und konkreter monatlicher Zahlungstag bleiben offen. Nächste Frage: erste Rate im Simulationszeitraum. Nachweis: [CP-0056](checkpoints/CP-0056.md).
+
+Nutzerentscheidung D-0031: Das Maschinendarlehen hat zum Simulationsstart am 01.01.2027 sieben Jahre Restlaufzeit. Ratenfrequenz und konkrete Zahlungstermine bleiben offen. Nächste Frage: Zahlungsrhythmus. Nachweis: [CP-0055](checkpoints/CP-0055.md).
+
+Nutzerentscheidung D-0030: Das Maschinendarlehen ist ein gleichbleibendes Annuitätendarlehen; Restlaufzeit, Rate und Zahlungsplanparameter bleiben offen. Nächste Frage: Restlaufzeit am Simulationsstart. Nachweis: [CP-0054](checkpoints/CP-0054.md).
+
+Aktueller Mahnfluss: Erste Zahlungserinnerung zehn Kalendertage nach erstem fehlgeschlagenem Zahlversuch (D-0027), formelle Mahnung 14 Kalendertage danach (D-0028); danach keine Eskalation bis Pfändung/Liquidation in V1. Diese Ereignisse sind späteren Versionen vorbehalten (D-0029). Nachweis: [CP-0053](checkpoints/CP-0053.md).
+
+Aktueller Dunning-Stand: Erste Zahlungserinnerung zehn Kalendertage nach erstem fehlgeschlagenem Zahlversuch (D-0027); formelle Mahnung 14 Kalendertage danach (D-0028). Der BGB-Abgleich ergab keinen gesetzlich vorgeschriebenen 14-Tage-Abstand; dies bleibt eine Spielregel. Weitere Eskalationsfristen und Wirkungen sind offen. Nachweis: [CP-0052](checkpoints/CP-0052.md).
+
+Aktueller Dunning-Stand: Die erste Zahlungserinnerung erfolgt zehn Kalendertage nach dem ersten fehlgeschlagenen Zahlversuch (D-0027). Weitere Mahnfristen und Schwellen bleiben offen. Nachweis: [CP-0051](checkpoints/CP-0051.md).
+
+Aktueller Retry-Stand: D-0024 legt eine Woche Abstand fest; D-0025/D-0026 legen fest, dass nach acht fehlgeschlagenen Wiederholungsversuchen nach dem ersten Fehlversuch das Spiel verloren ist. Der erste Fälligkeitsfehlversuch zählt nicht zu den acht Retries. Nachweis: [CP-0050](checkpoints/CP-0050.md).
+
+Aktueller T-0008-Stand: Der Nutzer hat den Niederlagenstatus nach acht fehlgeschlagenen Zahlversuchen festgelegt (D-0025). Ob der erste fehlgeschlagene Fälligkeitsversuch mitzählt, wird noch einzeln geklärt. D-0024 legt wöchentliche Retries fest; Kredit-/Maximalverschuldungs-/Insolvenzregeln bleiben separat zu prüfen. Nachweis: [CP-0049](checkpoints/CP-0049.md).
+
+Aktueller T-0008-Stand: jährlicher individueller Unternehmenszinssatz und Dispozins gemäß D-0022/D-0023 dokumentiert; D-0023 ersetzt die ursprüngliche 8-Basispunkte-Angabe in D-0021 durch 8 % über dem individuell vereinbarten Zinssatz. D-0024 legt wöchentliche Wiederholungsversuche nach fehlgeschlagener eigener Zahlung fest. EZB-Referenzsatz, Bewertungsformel, Anzahl/Ende der Retries sowie Kredit-/Maximalverschuldungs-/Insolvenzregeln bleiben offen. Nachweis: [CP-0047](checkpoints/CP-0047.md), [CP-0048](checkpoints/CP-0048.md).
 
 Abgeschlossene Second-Level Goals und Tickets bleiben historisch dokumentiert und sind nicht Teil des aktiven Kontexts.
 
 ## Letzte gesicherte Arbeit
+
+Nutzerentscheidung D-0022/D-0023: Der individuelle Bankzinssatz wird zu Spielbeginn und jährlich auf Basis EZB-Zinssatz plus Unternehmensaufschlag vereinbart; Mittelwert +3 Prozentpunkte, Spanne +0,5 bis +5,5 Prozentpunkte. Der Dispositionskreditzins liegt 8 % über dem individuell vereinbarten Unternehmenszinssatz. EZB-Referenzsatz und Bewertungsformel bleiben offen; Kredit-, Maximalverschuldungs- und Insolvenzregeln sind separat zu prüfen. Nachweis: [CP-0047](checkpoints/CP-0047.md).
+
+Am 2026-10-25 hat der Nutzer D-0018 bestätigt: Kundenforderungen haben in V1 gemäß AGB ein Zahlungsziel von 14 Kalendertagen; individuelle Vereinbarungen sind möglich und können bei Sonderwünschen höhere Margen ermöglichen. Der konkrete abweichende Zeitraum und die Margenformel bleiben offen. T-0008 bleibt IN_PROGRESS; die nächste Einzelfrage klärt den konkreten Zeitraum für Einzelvereinbarungen. Nachweis: [CP-0043](checkpoints/CP-0043.md).
+
+Der Nutzer hat anschließend D-0019 bestätigt: 30 Kalendertage sind die konkrete V1-Alternative bei individueller Kundenvereinbarung. Eine Margenformel ist nicht festgelegt. Die nächste Einzelfrage betrifft das Zahlungsziel für Lieferantenverbindlichkeiten. Nachweis: [CP-0044](checkpoints/CP-0044.md).
+
+Der Nutzer hat D-0020 bestätigt: Für Lieferantenverbindlichkeiten gelten standardmäßig 30 Kalendertage; Abweichungen sind in Ereignissen oder Dauerverträgen möglich. Konkrete Sonderkonditionen bleiben offen. Die nächste Einzelfrage betrifft die Priorität gleichzeitig fälliger eigener Verbindlichkeiten. Nachweis: [CP-0045](checkpoints/CP-0045.md).
+
+Der Nutzer hat D-0021 festgelegt: Der Spieler wählt, welche fälligen eigenen Rechnungen zuerst bezahlt werden; die Nutzung eines Dispositionskredits wird als zusätzliche Option angeboten. Dessen Zinssatz liegt 8 Basispunkte über dem durchschnittlichen Zinssatz. Bezugsgröße dieses Durchschnitts sowie Kreditregeln, Maximalverschuldung und Insolvenz bleiben offen und separat zu prüfen. Nachweis: [CP-0046](checkpoints/CP-0046.md). Die nächste Einzelfrage klärt die Bezugsgröße des Durchschnittszinssatzes.
 
 A02s Maschinenbau-MVP-Spezifikation und Gap-Analyse sind unter `docs/simulation/maschinenbau-mvp-spezifikation-und-gap-analyse.md` gesichert; der nachträgliche Nachweis steht in [CP-0007](checkpoints/CP-0007.md). A03 hat T-0005 abgeschlossen; Finanzspezifikation und Abschlussnachweis stehen in `docs/accounting/maschinenbau-mvp-finanzspezifikation.md` und [CP-0008](checkpoints/CP-0008.md). Beide Arbeitsergebnisse und Ticketabschlüsse bleiben unverändert.
 
@@ -140,3 +248,443 @@ Der konsolidierte und referenzierbare Stand aus CP-0021 bis CP-0030 ist in [CP-0
 **Provenienz:** CP-0020 fehlt weiterhin im Checkout. Er wurde nicht rekonstruiert und nicht durch Annahmen ersetzt. Der aktuelle P0-Inhalt ist über die vorhandenen CP-0021 bis CP-0030 und die verlinkten aktuellen Spezifikationen nachvollziehbar; die historische Nachweislücke von CP-0020 bleibt bestehen.
 
 Letzter Checkpoint: [CP-0031](checkpoints/CP-0031.md).
+
+## P0-Parameterkoordination (T-0008)
+
+A01 hat die in CP-0031 und den aktuellen A02-/A03-/A04-Unterlagen offenen P0-Parameter in [P0-Koordinierung offener Fachparameter](p0-offene-parameter-koordinierung.md) zusammengeführt. T-0008 ist ein aktives Koordinationsticket unter MG-000 / SLG-000.2. A02 (Simulation) und A03 (Accounting/Finance) bleiben fachlich autoritativ; vorgeschlagene Folgeaufträge an sie sind noch nicht begonnen und nicht als abgeschlossene Arbeit zu verstehen. A04 wird erst nach bestätigten Fachregeln und separatem Auftrag für eine Modellfolgenprüfung benötigt.
+
+Die Entscheidungsvorlage hält gesicherte Regeln und offene Nutzer-/Fachfragen getrennt. Insbesondere bleiben Tilgungsart, Restlaufzeit, Rate, Zahlungstermine und Zinsbehandlung des Darlehens offen; es wurden weder Optionen gewählt noch Defaultwerte ergänzt. Kundenzahlungseingänge ohne eigenes Cash-Gate und eigene Auszahlungen mit Liquiditätsprüfung bleiben getrennte Zahlungsrichtungen. D-0010 und der Status von Architektur V0.2 / ADR-001 bis ADR-008 wurden nicht geändert; keine Produkt- oder Architekturentscheidung wurde getroffen.
+
+**Nächster Übergabepunkt:** Die Kalenderentscheidung ist in D-0011 festgehalten. A02 soll sie in die Simulationsspezifikation übernehmen; A02/A03 stimmen die verbleibenden 14-/30-Tage-Fälligkeitsregeln ab. Weitere offene Nutzerentscheidungen werden im Rahmen von T-0008 eingeholt. Siehe [CP-0032](checkpoints/CP-0032.md) und [CP-0033](checkpoints/CP-0033.md). CP-0020 fehlt weiterhin und wurde nicht rekonstruiert.
+
+
+**Nutzerentscheidung 2026-10-25 (D-0011):** Der V1-Arbeitskalender ist bestätigt: Montag bis Freitag Arbeitstage, je Beschäftigtem 8 Stunden pro Arbeitstag zur Auflösung der 40-h-Woche, CNC 8 operative Stunden pro Arbeitstag zur Auflösung von 40 h/Woche, Wochenenden arbeitsfrei, Feiertage in V1 unberücksichtigt. Wochenendtermine werden auf den nächsten Arbeitstag verschoben; F3 zählt fünf Arbeitstage ab dem Folgetag der vollständigen Lieferung. A02 muss die Regel noch in der Simulationsspezifikation übernehmen. Die Fristanker und Zählung für 14-/30-Tage-Zahlungsziele bleiben offen. Nachweis: [CP-0033](checkpoints/CP-0033.md).
+
+Letzter Checkpoint: [CP-0033](checkpoints/CP-0033.md).
+
+## A02-Folgeauftrag zum V1-Arbeitskalender (T-0009)
+
+Nach der Nutzerentscheidung D-0011 ist T-0009 als separates A02-Fachticket unter MG-000 / SLG-000.2 angelegt. A02 soll den bestätigten Arbeitskalender in die Simulationsspezifikation übernehmen und überholte offene Aussagen zu Tageskapazität und Feiertagen bereinigen. T-0009 ist PENDING; es wird keine bereits begonnene oder abgeschlossene A02-Arbeit behauptet.
+
+Der Fristanker und die Tageszählung vertraglicher 14-/30-Tage-Zahlungsziele bleiben ausdrücklich außerhalb der Entscheidung D-0011 und müssen mit A03 abgestimmt werden. T-0008 bleibt als separates A01-Koordinationsticket aktiv. Übergabenachweis: [CP-0034](checkpoints/CP-0034.md).
+
+
+## Kommunikationsrouting (D-0012)
+
+Ab CP-0035 gilt verbindlich: Agentenantworten und Rückfragen gehen an A01. A01 bündelt erforderliche Nutzerfragen. Antworten ohne weiteren Nutzerklärungsbedarf werden von A01 in den nächsten nötigen Auftrag mit benanntem Adressaten überführt; wenn kein weiterer Schritt nötig ist, dokumentiert A01 den Abschluss. Abhängige Folgeaufträge warten auf erforderliche Nutzerantworten. Grundlage: Nutzerauftrag vom 2026-10-25 und [D-0012](decision-log.md#d-0012--verbindliches-kommunikationsrouting).
+
+Letzter Checkpoint: [CP-0036](checkpoints/CP-0036.md).
+
+
+
+## A03-Finanzparameter für T-0008
+
+A03 hat im Koordinierungskontext T-0008 eine Entscheidungsvorlage einschließlich Änderungsbericht erstellt; ein separates A03-Ticket wurde nicht angelegt. Die [A03-Entscheidungsvorlage](../accounting/a03-p0-finanzparameter-entscheidungsvorlage.md) bündelt Fristanker/Zählung, eigene Auszahlungspriorität, Retry/Dunning, Darlehensplan, SimTAX und BAB-/Kostenparameter. Die Arbeit ist durch [CP-0035](checkpoints/CP-0035.md) nachgewiesen.
+
+Als bestätigt dokumentiert sind D-0011, Darlehensrestschuld 24.000 €, nominal 5 % p.a. bei ursprünglich zehn Jahren Finanzierung, SimTAX 19 % mit Cent-Rundung je Position und Summierung sowie der statische BAB-Umfang in V1. Die konkreten Darlehensplanparameter, Fälligkeitsformel, Auszahlungspriorität, Retry-/Mahnparameter, SimTAX-Basis und konkrete BAB-/Kostenwerte bleiben offen. Frühere BAB-Sätze 15 % / 100 % / 10 % sind unbestätigte Vorschläge.
+
+A01 bündelt die offenen Nutzerfragen unter T-0008. Die abhängige A02/A03-Abstimmung zu Fristanker, Zähltagen und Ereignis-/Phasenbezug wird bis zur A02-Übernahme von D-0011 unter T-0009 und erforderlichen Nutzerantworten zurückgestellt. Kundeneingänge ohne eigenes Cash-Gate und eigene Auszahlungen mit Liquiditätsprüfung bleiben getrennte Flüsse. Keine Regel wurde durch A01 beschlossen; D-0010/D-0011, Architektur und ADR-Status bleiben unverändert. Siehe [CP-0037](checkpoints/CP-0037.md).
+
+Letzter Checkpoint: [CP-0037](checkpoints/CP-0037.md).
+
+## Nutzerentscheidung zu Kundenforderungen (D-0013)
+
+Der Nutzer hat festgelegt, dass für Kundenforderungen der spätere Zeitpunkt aus Rechnungsdatum und tatsächlichem Leistungsereignis den Fristanker bildet. Wenn die Leistung nur aus Lieferung besteht, ist das Lieferdatum maßgeblich. Die Nutzerantwort zur Abnahme als Bedingung des Wirksamwerdens und deren Berücksichtigung nur bei Geltendmachung eines rechtlichen Anspruchs (Ereignis/Lernkarte) ist wörtlich in D-0013 festgehalten; sie wird nicht auf Lieferantenforderungen übertragen. Fristanker/Zähltage für Lieferantenverbindlichkeiten sowie 14-/30-Tage-Auswahl bleiben offen.
+
+T-0008 bleibt IN_PROGRESS. A02-Übernahme von D-0011 unter T-0009 und anschließende A02/A03-Abstimmung sind weiterhin erforderlich. Nachweis: [CP-0038](checkpoints/CP-0038.md).
+
+Letzter Checkpoint: [CP-0038](checkpoints/CP-0038.md).
+
+## Nutzerentscheidung zu Lieferantenverbindlichkeiten (D-0014)
+
+Für V1 ist bei pünktlicher Lieferung das Rechnungsdatum der Fristanker. Für spätere Vertragsausgestaltungen kann je Vereinbarung ein anderer Anker gelten, darunter Wareneingang. Offen bleiben Zahlungsziel 14/30 Tage, Kalender-/Arbeitstagszählung und Ankertagszählung. Nachweis: [CP-0039](checkpoints/CP-0039.md).
+
+T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING bis A02 die beauftragte Übernahme von D-0011 beginnt. Die A02/A03-Abstimmung zur Fälligkeits-/Ereignisumsetzung wird entsprechend der Abhängigkeit zurückgestellt.
+
+Letzter Checkpoint: [CP-0039](checkpoints/CP-0039.md).
+
+## Zähltage für Kundenforderungen (D-0015)
+
+Der Nutzer hat festgelegt, dass die vereinbarten 14-/30-Tage-Ziele für Kundenforderungen in V1 Kalendertage zählen. Wochenendtermine werden gemäß D-0011 auf den nächsten Arbeitstag verschoben. Die Ankertagszählung bleibt offen; D-0015 gilt nicht für Lieferantenverbindlichkeiten. Nachweis: [CP-0040](checkpoints/CP-0040.md).
+
+Letzter Checkpoint: [CP-0040](checkpoints/CP-0040.md).
+
+## Zähltage für Lieferantenverbindlichkeiten (D-0016)
+
+Der Nutzer hat festgelegt, dass die vereinbarten 14-/30-Tage-Ziele für Lieferantenverbindlichkeiten in V1 Kalendertage zählen. Wochenendtermine werden gemäß D-0011 auf den nächsten Arbeitstag verschoben. Die Ankertagszählung bleibt offen. Nachweis: [CP-0041](checkpoints/CP-0041.md).
+
+Letzter Checkpoint: [CP-0041](checkpoints/CP-0041.md).
+
+## Ankertagzählung für Zahlungsziele (D-0017)
+
+Der Nutzer hat festgelegt, dass bei Kundenforderungen und Lieferantenverbindlichkeiten der Ankertag als Tag 1 zählt. Zusammen mit der Kalenderzählung D-0015/D-0016 ergibt sich vor Wochenendverschiebung das Ankerdatum plus (N−1) Kalendertage. Wochenendverschiebung erfolgt gemäß D-0011. Nachweis: [CP-0042](checkpoints/CP-0042.md).
+
+Letzter Checkpoint: [CP-0042](checkpoints/CP-0042.md).
+
+A03 hat im T-0008-Koordinierungskontext eine Entscheidungsvorlage für offene P0-Finanzparameter erstellt; dies ist keine Ticketvergabe für einen separaten A03-Auftrag. Die Vorlage behandelt 14-/30-Tage-Fristanker und Zählung, eigene Auszahlungspriorität/Retry/Dunning, Darlehen, SimTAX sowie D3-BAB-/Kosteninputs. D-0011 ist bestätigt, aber A02s Übernahme unter T-0009 bleibt PENDING; konkrete Zahlungszielzählung und Ereignisbezug sind bis zur Nutzerentscheidung und A02-Abstimmung offen. Frühere D3-Satzwerte wurden als unbestätigte Arbeitsvorschläge gekennzeichnet. Keine Werte oder Defaults neu entschieden. D-0010 und Architektur-/ADR-Status unverändert. Bericht: [A03-P0-Finanzparameter](../accounting/a03-p0-finanzparameter-aenderungsbericht.md); Nachweis: [CP-0035](checkpoints/CP-0035.md).
+
+Letzter Checkpoint: [CP-0036](checkpoints/CP-0036.md).
+## Aktueller Entscheidungsstand: CNC-Wiederbeschaffungsbasis im BAB (D-0073)
+
+Für den Inflationszeitraum des CNC-Wiederbeschaffungswerts im BAB soll die gesamte CNC-Nutzungsdauer angesetzt werden. D-0045 legt diese auf 16 Jahre fest; die acht verbleibenden Nutzungsjahre sind nicht der maßgebliche Inflationszeitraum. Die Preisbezugsformel lautet 120.000 € × 1,02^16 gemäß D-0046/D-0047. Die Umlegung auf BAB-Periodenkosten und die konkrete Buchabschreibung bleiben offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0097](checkpoints/CP-0097.md).
+
+Letzter Checkpoint: [CP-0097](checkpoints/CP-0097.md).
+## Aktueller Entscheidungsstand: monatliche CNC-Wiederbeschaffungsbasis im BAB (D-0074)
+
+Der inflationsangepasste CNC-Wiederbeschaffungswert wird anteilig auf einen Monat der 16-jährigen Gesamtnutzungsdauer verteilt, also auf 192 Monate. Der monatliche BAB-Bezugsbetrag lautet `(120.000 € × 1,02^16) / 192`. Die Rundungsregel für den Monatsbetrag und die vollständige Buchabschreibungsbehandlung bleiben offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0098](checkpoints/CP-0098.md).
+
+Letzter Checkpoint: [CP-0098](checkpoints/CP-0098.md).
+## Aktueller Entscheidungsstand: Aufrunden des monatlichen CNC-BAB-Bezugsbetrags (D-0075)
+
+Der monatliche CNC-BAB-Bezugsbetrag gemäß D-0074 wird für die Kalkulation immer aufgerundet. Die Rundungsgenauigkeit bzw. Einheit ist noch offen; ebenso die vollständige Buchabschreibungsbehandlung. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0099](checkpoints/CP-0099.md).
+
+Letzter Checkpoint: [CP-0099](checkpoints/CP-0099.md).
+## Aktueller Entscheidungsstand: volle-Euro-Aufrundung des CNC-BAB-Betrags (D-0076)
+
+Der monatliche CNC-BAB-Bezugsbetrag aus D-0074 wird gemäß D-0075 stets auf den nächsten vollen Euro aufgerundet. Die bilanzielle Buchabschreibungsbehandlung bleibt davon getrennt offen. A03 soll die bestätigte kalkulatorische BAB-Regel in die Finanzspezifikation übernehmen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0100](checkpoints/CP-0100.md).
+
+Letzter Checkpoint: [CP-0100](checkpoints/CP-0100.md).
+## Aktueller Entscheidungsstand: separate bilanzielle CNC-Buchabschreibung (D-0077)
+
+V1 führt zusätzlich zur kalkulatorischen BAB-Kostenbasis eine separate bilanzielle Buchabschreibung der CNC. Methode, Abschreibungsbasis, Beginn, Restlaufzeit, Restwert und Periodenbetrag bleiben offen. Der Eröffnungsbuchwert von 40.000 € bleibt unverändert, bis eine Fortschreibungsregel geklärt ist. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0101](checkpoints/CP-0101.md).
+
+Letzter Checkpoint: [CP-0101](checkpoints/CP-0101.md).
+## Aktueller Entscheidungsstand: bilanzielle Abschreibung laufender und neuer Anschaffungen (D-0078)
+
+Für laufende Anschaffungen gilt die lineare Abschreibung nach der AfA-Tabelle des Bundesfinanzministeriums. Die Abschreibungsmethode für Neuanschaffungen wird einmal jährlich festgelegt. Für die vorhandene CNC bleiben AfA-Tabellenposition, Nutzungsdauer, Abschreibungsbasis, Beginn und Periodenbetrag offen. Die Bilanzabschreibung ist von der kalkulatorischen BAB-Kostenbasis getrennt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0102](checkpoints/CP-0102.md).
+
+Letzter Checkpoint: [CP-0102](checkpoints/CP-0102.md).
+## Aktueller Entscheidungsstand: jährliche Spielerwahl für Neuanschaffungen (D-0079)
+
+Die jährliche Festlegung der Abschreibungsmethode für Neuanschaffungen ist eine Spielerentscheidung. Die auswählbaren Methoden bleiben offen. Für laufende Anschaffungen gilt weiterhin die lineare AfA-Tabellenmethode gemäß D-0078. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0103](checkpoints/CP-0103.md).
+
+Letzter Checkpoint: [CP-0103](checkpoints/CP-0103.md).
+## Aktueller Entscheidungsstand: Abschreibungsmethoden für Neuanschaffungen (D-0080)
+
+Die Nutzerkorrektur ersetzt die jährliche Abfrage: Sie erfolgt zu Spielbeginn; danach kann die Methode im Menü für zukünftige Neuanschaffungen geändert werden. Verfügbare Methoden sollen linear, degressiv, GWG-Sofortabzug und GWG-Sammelposten sein. Für laufende Anschaffungen gilt weiterhin lineare AfA nach BMF-Tabelle. Offen sind die Auswahlregel im GwG-Überschneidungsbereich über 250 € bis 800 € und die zeitliche Verfügbarkeit der degressiven AfA in späteren Spieljahren. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0104](checkpoints/CP-0104.md).
+
+Letzter Checkpoint: [CP-0104](checkpoints/CP-0104.md).
+## Aktueller Entscheidungsstand: GWG-Auswahl je Wirtschaftsjahr (D-0081)
+
+Für den Überschneidungsbereich über 250 € bis einschließlich 800 € wird einheitlich je Wirtschaftsjahr zwischen Sofortabzug und Sammelposten gewählt; die Wahl unterscheidet sich nicht je einzelner Anschaffung innerhalb desselben Jahrs. Die Methode bleibt nach D-0080 im Menü für künftige Anschaffungen änderbar; ab wann die Änderung wirksam wird, bleibt offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0105](checkpoints/CP-0105.md).
+
+Letzter Checkpoint: [CP-0105](checkpoints/CP-0105.md).
+## Aktueller Entscheidungsstand: Wirksamkeit einer GWG-Menüänderung (D-0082)
+
+Eine im Menü geänderte GWG-Methode wird ab dem nächsten Wirtschaftsjahr wirksam. Zusammen mit D-0081 bleibt die GWG-Auswahl innerhalb jedes Wirtschaftsjahrs einheitlich. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0106](checkpoints/CP-0106.md).
+
+Letzter Checkpoint: [CP-0106](checkpoints/CP-0106.md).
+## Aktueller Entscheidungsstand: degressive AfA als spätere Spielregel (D-0083)
+
+Die degressive AfA soll auch nach dem derzeit dokumentierten gesetzlichen Zeitraum als vereinfachte Spielregel angeboten werden. Dies ist keine Aussage zur steuerrechtlichen Zulässigkeit außerhalb dieses Zeitraums. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0107](checkpoints/CP-0107.md).
+
+Letzter Checkpoint: [CP-0107](checkpoints/CP-0107.md).
+## Aktueller Entscheidungsstand: Berechnungssatz der degressiven AfA (D-0084)
+
+Der degressive Satz ist der niedrigere Wert aus 30 % und dem Dreifachen des linearen AfA-Satzes für das Wirtschaftsgut; er wird auf den jeweiligen Restbuchwert angewendet. Nach D-0083 wird diese Begrenzung auch nach dem dokumentierten gesetzlichen Zeitraum als Spielregel fortgeführt, ohne Aussage zur steuerrechtlichen Zulässigkeit. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0108](checkpoints/CP-0108.md).
+
+Letzter Checkpoint: [CP-0108](checkpoints/CP-0108.md).
+## Aktueller Entscheidungsstand: CNC-Buchabschreibung nach BMF-AfA-Tabelle (D-0085)
+
+Für die separate lineare bilanzielle Buchabschreibung der bestehenden CNC ist die einschlägige Nutzungsdauer gemäß BMF-AfA-Tabelle maßgeblich; D-0045s 16-jährige betriebliche Gesamtnutzungsdauer ersetzt diese nicht automatisch. Tabellenposition, Restnutzungsdauer und Berechnungsbasis bleiben offen und brauchen fachlichen Abgleich. BAB-Kostenbasis bleibt getrennt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0109](checkpoints/CP-0109.md).
+
+Letzter Checkpoint: [CP-0109](checkpoints/CP-0109.md).
+## Aktueller Entscheidungsstand: Bemessungsbasis der CNC-Buchabschreibung (D-0086)
+
+Die Bemessungsbasis der weiteren CNC-Buchabschreibung sind die ursprünglichen Anschaffungskosten von 120.000 € abzüglich bereits erfolgter AfA. Der Eröffnungsbuchwert von 40.000 € bleibt als Buchstand zum Simulationsstart bestehen. Konkreter bisheriger AfA-Verlauf und Restnutzungsdauer nach der BMF-Tabelle sind fachlich abzugleichen; es wird keine AfA-Historie abgeleitet. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0110](checkpoints/CP-0110.md).
+
+Letzter Checkpoint: [CP-0110](checkpoints/CP-0110.md).
+## Aktueller Entscheidungsstand: Abschreibungstermin im Startbestand (D-0087)
+
+Für alle bei Spielstart bereits im Unternehmen befindlichen AfA-Gegenstände ist der erste Arbeitstag des zweiten Quartals Abschreibungstermin. Bei Neuanschaffungen richtet sich der Abschreibungszeitpunkt nach den jeweils geltenden gesetzlichen Regelungen. Der konkrete AfA-Tabelleneintrag und Periodenbeträge bleiben fachlich zu bestimmen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0111](checkpoints/CP-0111.md).
+
+Letzter Checkpoint: [CP-0111](checkpoints/CP-0111.md).
+## Aktueller Entscheidungsstand: Zuordnung der AfA im Startbestand (D-0088)
+
+Der jährliche Abschreibungstermin am ersten Arbeitstag des zweiten Quartals erfasst die AfA des laufenden Wirtschaftsjahrs für die AfA-Gegenstände im Startbestand. Der Betrag für die CNC und der historische AfA-Verlauf bleiben gemäß BMF-AfA-Tabelle fachlich abzugleichen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0112](checkpoints/CP-0112.md).
+
+Letzter Checkpoint: [CP-0112](checkpoints/CP-0112.md).
+## Offener Abgleich: CNC-Anschaffungsmonat und bisherige Altersregel
+
+Der Nutzer nennt April 2019 als Anschaffungsmonat der bestehenden CNC. Bezogen auf den Simulationsstart 01.01.2027 sind knapp acht Jahre (sieben volle Jahre; der genaue Tag im April ist nicht angegeben) verstrichen; D-0045/D-0048 verwenden acht Jahre und einen Nutzungswertverlust von 50 %. D-0045/D-0048 bleiben unverändert, bis der Nutzer die zeitliche Auslegung klärt. Die Angabe April 2019 ist noch nicht als neue D-ID im Decision Log geführt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [CP-0113](checkpoints/CP-0113.md).
+
+Letzter Checkpoint: [CP-0113](checkpoints/CP-0113.md).
+## Auflösung des CNC-Altersabgleichs (D-0089)
+
+Der Nutzer hat den CNC-Anschaffungszeitpunkt auf 01.01.2019 angepasst. Zum Simulationsstart 01.01.2027 beträgt die Nutzungszeit genau acht Jahre; D-0045 und D-0048 bleiben unverändert und konsistent. CP-0113s Aussage „sieben Jahre und neun Monate“ war aus der bloßen Monatsangabe April 2019 nicht hinreichend ableitbar und wird durch diese Festlegung überholt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0089](decision-log.md#d-0089--cnc-anschaffungsdatum-auf-01012019-angepasst), [CP-0114](checkpoints/CP-0114.md).
+
+Letzter Checkpoint: [CP-0114](checkpoints/CP-0114.md).
+
+## Nutzerentscheidung: Stahl-Anfangsmenge (D-0090)
+
+Für das V1-Startprofil am 01.01.2027 wurde eine Anfangsmenge von 2.000 kg Stahl bestätigt. Damit ist nur die Menge festgelegt; der Eröffnungswert bzw. die E3-Start-WAP-Basis von 6.400 € / 3,20 € je kg bleibt separat offen, ebenso Preisbasis, Bezugskosten/SimTAX und Rundungsregeln. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0090](decision-log.md#d-0090--stahl-anfangsmenge-im-v1-startprofil), [CP-0115](checkpoints/CP-0115.md).
+
+Letzter Checkpoint: [CP-0115](checkpoints/CP-0115.md).
+
+## Nutzerentscheidungen: Stahl-Eröffnungswert und Produktumfang (D-0091/D-0092)
+
+Für die bestätigten 2.000 kg Stahl wird der Eröffnungswert aus dem Schlusswert des Vorjahres übernommen, der im Wirtschaftssimulationstool berechnet wird. Der A02-Vorschlag von 6.400 € / 3,20 € je kg ist nicht als Wert bestätigt. Erzeugung/Übergabe des Vorjahresschlusses und Bewertungsbestandteile einschließlich Bezugskosten/SimTAX bleiben offen. Für V1 wird nur eine zur Simulationserprobung erforderliche Produktauswahl vorgesehen; eine spätere Erweiterung auf weitere Branchen soll möglich sein. Konkrete Produktliste und Auswahlkriterium bleiben offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0091](decision-log.md#d-0091--stahl-eroeffnungswert-aus-vorjahresschluss), [D-0092](decision-log.md#d-0092--begrenzter-v1-produktumfang-mit-spaeterer-branchenerweiterung), [CP-0116](checkpoints/CP-0116.md).
+
+Letzter Checkpoint: [CP-0116](checkpoints/CP-0116.md).
+
+## Nutzerentscheidung: bereitgestellter Vorjahresschluss (D-0093)
+
+Der Vorjahresschluss wird nicht durch eine vorgeschaltete Simulation im Spiel erzeugt, sondern als Startwert bereitgestellt. Ein geeigneter Agent soll realistische Werte recherchieren oder aus aktuellen Marktdaten ableiten; die gewählten Werte werden anschließend festgeschrieben. Konkrete Datenquelle, Bezugsstichtag, Erhebungsumfang und V1-Testproduktliste bleiben offen. A08 RESEARCH ist eine passende Rolle für die Quellen-/Marktdatenermittlung; die Fachzuordnung und konkrete Beauftragung sind noch nicht erfolgt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0093](decision-log.md#d-0093--vorjahresschluss-als-bereitgestellter-startwert), [CP-0117](checkpoints/CP-0117.md).
+
+Letzter Checkpoint: [CP-0117](checkpoints/CP-0117.md).
+
+## Nutzerentscheidung: A02-Auswahl als V1-Basis (D-0094)
+
+Die bestehende A02-Auswahl aus Stahl, Aluminium und Norm-/Zukaufteilen wird als V1-Basis übernommen. Weitere Warengruppen sollen geprüft und vom Nutzer anhand einer nummerierten Vorschlagsliste ausgewählt werden. Ausdrücklich vom Nutzer genannt: Schmierstoffe, Transportleistung, Strom, Wasser, Energieträger, Kunststoffe und Telekommunikation. Die übrigen vorgeschlagenen Kategorien sind noch nicht freigegeben. Preise, Mengen und Bewertungsregeln bleiben offen. Markt-/Quellenrecherche durch A08 RESEARCH ist erst nach Festlegung des Auswahlumfangs konkret abzugrenzen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0094](decision-log.md#d-0094--a02-materialauswahl-als-v1-basis), [CP-0118](checkpoints/CP-0118.md).
+
+Letzter Checkpoint: [CP-0118](checkpoints/CP-0118.md).
+
+## Nutzerentscheidung: V1-Warengruppen (D-0095)
+
+Bestätigt sind die A02-Basisgruppen Stahl, Aluminium und Norm-/Zukaufteile sowie alle Kandidaten 4–25 der Liste in CP-0118. Die aktuellen A02-Unterlagen schlüsseln Norm-/Zukaufteile (1.000 Stück Startbestand, 56 Stück Bedarf für die drei Aufträge) nicht in Einzelteile auf. Mögliche zusätzliche Bestandteile dieser Sammelgruppe werden separat zur Auswahl gestellt. Mengen, Werte, Datenquellen und Accounting-/Lagerbehandlung bleiben offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0095](decision-log.md#d-0095--auswahl-der-v1-warengruppen), [CP-0119](checkpoints/CP-0119.md).
+
+Letzter Checkpoint: [CP-0119](checkpoints/CP-0119.md).
+
+## Nutzerentscheidung: Artikelbezug der Norm-/Zukaufteile (D-0096)
+
+Norm-/Zukaufteile sollen unter anderem Schrauben, Muttern und Teile anderer Hersteller enthalten. Ein einzelner Sammelposten mit Durchschnittspreis ist für die erste spielbare Version nicht ausreichend. A02 soll die bestehende Spezifikation vor der ersten spielbaren Version erneut prüfen und sinnvoll überarbeiten. Artikelkatalog, Artikelmengen und Preise bleiben offen. Folgeaufträge: T-0011 an A08 für belegte Markt-/Referenzwerte als Vorschläge; T-0010 an A02 zur späteren Überarbeitung nach T-0008, T-0011 und A03-Fachprüfung. Beide PENDING. Nachweis: [D-0096](decision-log.md#d-0096--norm-zukaufteile-einzeln-statt-als-durchschnittspreis-sammelposten), [CP-0120](checkpoints/CP-0120.md).
+
+Letzter Checkpoint: [CP-0120](checkpoints/CP-0120.md).
+
+## Nutzerbestätigung: SimTAX-Abrechnungszeitraum und Fälligkeit (D-0097)
+
+Für den V1-SimTAX-Saldo gilt bei 49.400 € fiktiver Vorjahressteuer monatliche Voranmeldung; Vorauszahlung/Voranmeldung sind grundsätzlich am 10. Tag nach Monatsende fällig, mit gesetzlicher Verschiebung bei Samstag, Sonntag oder Feiertag. Eine Dauerfristverlängerung wird nicht unterstellt. Dies ist eine Simulation nach dem Rechtsstand 2026-10-26, keine echte Steuerabrechnung. Nachweis: [D-0097](decision-log.md#d-0097--simtax-voranmeldungszeitraum-und-faelligkeit-nach-gesetzlicher-regel), [CP-0121](checkpoints/CP-0121.md).
+
+Letzter Checkpoint: [CP-0121](checkpoints/CP-0121.md).
+
+## Nutzerentscheidung: BMF-AfA-Tabelle Maschinenbau für bestehende CNC (D-0098)
+
+Für die CNC wird die BMF-Tabelle Maschinenbau (sieben Jahre für CNC-/NC-Fräsmaschinen) als Referenz verwendet. Damit ist weder die AfA-Historie noch der Eröffnungsbuchwert neu bestimmt. Der Abgleich mit Anschaffungsdatum 01.01.2019 und bestätigtem Eröffnungsbuchwert 40.000 € bleibt offen; BAB-Kalkulationskosten bleiben getrennt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0098](decision-log.md#d-0098--bmf-afa-branchentabelle-fuer-die-bestehende-cnc), [CP-0122](checkpoints/CP-0122.md).
+
+Letzter Checkpoint: [CP-0122](checkpoints/CP-0122.md).
+
+## Nutzerentscheidung: CNC-Eröffnungsbuchwert aus siebenjähriger AfA (D-0099)
+
+Der CNC-Eröffnungsbuchwert zum 01.01.2027 wird aus 120.000 € Anschaffungskosten und sieben Jahren linearer AfA abgeleitet. Bei Anschaffung am 01.01.2019 ergibt sich 0 €; der zuvor dokumentierte Szenariowert 40.000 € ist für diese Maschine ersetzt. Die kalkulatorische BAB-Wiederbeschaffungsbasis und Marktwertregel bleiben getrennt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0099](decision-log.md#d-0099--eroeffnungsbuchwert-der-cnc-aus-sieben-jahres-afa-abgeleitet), [CP-0123](checkpoints/CP-0123.md).
+
+Letzter Checkpoint: [CP-0123](checkpoints/CP-0123.md).
+
+## Nutzerentscheidung: Hauptrefinanzierungssatz als EZB-Referenz (D-0100)
+
+Für den individuellen Unternehmenszinssatz gilt als EZB-Basis der Hauptrefinanzierungssatz (MRO). Aufschlagsmittelwert +3 Prozentpunkte und Spanne +0,5 bis +5,5 Prozentpunkte bleiben gemäß D-0022; die Dispozinsregel aus D-0023 bleibt unverändert. Noch offen: Zeitpunkt des jährlich verwendeten MRO-Werts sowie Bewertungsformel für den individuellen Aufschlag. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0100](decision-log.md#d-0100--hauptrefinanzierungssatz-als-ezb-basis-fuer-unternehmenszinsen), [CP-0124](checkpoints/CP-0124.md).
+
+Letzter Checkpoint: [CP-0124](checkpoints/CP-0124.md).
+
+## Nutzerentscheidung: MRO-Stichtag und Zukunftswerte (D-0101)
+
+Für die jährliche Zinsvereinbarung gilt der MRO am 1. Januar des jeweiligen Spieljahrs. Wenn das Spiel die verfügbaren realen EZB-Werte überholt, wird der Satz simuliert; der Simulationspfad ist offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0101](decision-log.md#d-0101--mro-stichtag-am-1-januar-des-spieljahrs), [CP-0125](checkpoints/CP-0125.md).
+
+Letzter Checkpoint: [CP-0125](checkpoints/CP-0125.md).
+
+## Nutzerentscheidung: Künftiger MRO an Inflationsrate orientiert (D-0102)
+
+Wenn reale EZB-Daten enden, soll sich der simulierte MRO an der Inflationsrate orientieren. Inflationspfad und genaue Überführungsregel sind V2-Arbeit; keine Werte/Formel für V1 ergänzt. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0102](decision-log.md#d-0102--kuenftiger-mro-pfad-orientiert-sich-an-inflationsrate), [CP-0126](checkpoints/CP-0126.md).
+
+Letzter Checkpoint: [CP-0126](checkpoints/CP-0126.md).
+
+## Nutzerentscheidung: Fremdkapitalquote als V1-Zinsfaktor (D-0103)
+
+Bei FK-Quote unter 15 % gilt der untere Aufschlag (+0,5 Prozentpunkte); bei 90 % gilt das obere Ende (+5,5 Prozentpunkte). Weitere Faktoren werden in V2 erarbeitet. Zuordnung zwischen den Grenzen und Verwendung des D-0022-Mittelwerts +3 Prozentpunkte bleiben offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0103](decision-log.md#d-0103--fremdkapitalquote-als-v1-faktor-des-individuellen-zinsaufschlags), [CP-0127](checkpoints/CP-0127.md).
+
+Letzter Checkpoint: [CP-0127](checkpoints/CP-0127.md).
+
+## Nutzerentscheidung: Exponentielle Zinszuordnung aus Fremdkapitalquote (D-0104)
+
+Der individuelle Aufschlag soll exponentiell mit der Fremdkapitalquote steigen: unter 15 % = +0,5 Prozentpunkte, bei 40 % = +3, bei 90 % = +5,5. Weitere Faktoren bleiben V2. Konkrete Exponentialfunktion/Kurvenform ist offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0104](decision-log.md#d-0104--exponentielle-fremdkapitalquote-zinszuordnung-mit-40-anker), [CP-0128](checkpoints/CP-0128.md).
+
+Letzter Checkpoint: [CP-0128](checkpoints/CP-0128.md).
+
+## Nutzerbestätigung: beschränkt-abflachende Exponentialkurve (D-0105)
+
+Der Nutzer bestätigt die beschränkt-abflachende Exponentialkurvenart für den V1-Zinsaufschlag. Anker gemäß D-0103/D-0104: unter 15 % FKQ = +0,5 Prozentpunkte, 40 % = +3, 90 % = +5,5. Die konkrete Formel und Verhalten über 90 % bleiben offen; weitere Faktoren in V2. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0105](decision-log.md#d-0105--beschraenkt-abflachende-exponentialkurve-fuer-zinsaufschlag-bestaetigt), [CP-0129](checkpoints/CP-0129.md).
+
+Letzter Checkpoint: [CP-0129](checkpoints/CP-0129.md).
+
+## Nutzerbestätigung: Definition der Fremdkapitalquote (D-0106)
+
+Für die Zinsberechnung gilt Fremdkapitalquote = Fremdkapital / Gesamtkapital × 100, Gesamtkapital = Bilanzsumme. Dies ist die gängige betriebswirtschaftliche Kennzahlendefinition. Die konkrete Exponentialformel bleibt zur Bestätigung offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0106](decision-log.md#d-0106--fremdkapitalquote-als-fremdkapital-zu-gesamtkapital), [CP-0130](checkpoints/CP-0130.md).
+
+Letzter Checkpoint: [CP-0130](checkpoints/CP-0130.md).
+
+## Nutzerentscheidung: V1-Exponentialformel für individuellen Zinsaufschlag (D-0107)
+
+Für Fremdkapitalquote q in Prozent, φ=(1+√5)/2 und k=ln(φ)/25 gilt bei 15≤q≤90: `Z(q)=0,5+5×(1−exp(−k×(q−15)))/(1−exp(−75k))` Prozentpunkte; unter 15 % gilt +0,5. Die Formel trifft +3 bei 40 % und +5,5 bei 90 %. Quote über 90 % bleibt offen; Bilanzsumme und Zahlungsmoral sind V2-Arbeit. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0107](decision-log.md#d-0107--normierte-exponentialformel-fuer-v1-zinsaufschlag), [CP-0131](checkpoints/CP-0131.md).
+
+Letzter Checkpoint: [CP-0131](checkpoints/CP-0131.md).
+
+## Klärungspunkt: Zinsziel bei 100 % Fremdkapitalquote (CP-0132)
+
+Der Nutzer hat vorgegeben, dass der Zinssatz bei Neuverschuldung zwischen 90 % und 100 % FKQ bis zum Disponiveau steigt. D-0023 definiert den Dispozins als 8 % über dem individuell vereinbarten Unternehmenszinssatz. Die genaue Bezugsgröße des Dispoziels bei 100 % FKQ und die Übergangsfunktion sind noch nicht geklärt; keine Berechnung wird angenommen. T-0008 bleibt IN_PROGRESS. Nachweis: [CP-0132](checkpoints/CP-0132.md).
+
+Letzter Checkpoint: [CP-0132](checkpoints/CP-0132.md).
+
+## Klärungspunkt: Verhältnis von 100-%-FKQ-Zielzins zu Dispozins (CP-0133)
+
+Der Nutzer präzisiert den Zielzins bei 100 % FKQ als EZB-Referenzsatz +8 Prozentpunkte. Dies unterscheidet sich von D-0023, wonach der Dispozins 8 % über dem individuell vereinbarten Unternehmenszinssatz liegt. Noch ist offen, ob die neue Angabe D-0023 ersetzen oder nur den 100-%-FKQ-Zielwert festlegen soll. D-0023 bleibt bis zur Klärung unverändert. T-0008 bleibt IN_PROGRESS. Nachweis: [CP-0133](checkpoints/CP-0133.md).
+
+Letzter Checkpoint: [CP-0133](checkpoints/CP-0133.md).
+
+## Nutzerentscheidung: 100-%-FKQ-Zielzins getrennt vom Dispozins (D-0108)
+
+Bei 100 % FKQ beträgt der Zielzins der FKQ-Kurve MRO +8 Prozentpunkte. D-0023 bleibt separat bestehen: Dispozins = 8 % über dem individuell vereinbarten Unternehmenszinssatz. Bei 90 % gilt weiter MRO +5,5 Prozentpunkte; Übergang 90–100 % bleibt offen. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0108](decision-log.md#d-0108--separater-100-fkq-zielzins-d-0023-bleibt-unveraendert), [CP-0134](checkpoints/CP-0134.md).
+
+Letzter Checkpoint: [CP-0134](checkpoints/CP-0134.md).
+
+## Formelprüfung: FKQ-Zinskurve bis 100 % (CP-0135)
+
+D-0107 unverändert über 90 % hinaus ausgewertet ergibt bei q=100 rund +5,7705 Prozentpunkte statt D-0108s Ziel +8. Eine mögliche stückweise normierte Exponentialkurve ist in [CP-0135](checkpoints/CP-0135.md) dokumentiert; sie erhält den Verlauf bis 90 % und erfüllt 90→+5,5 sowie 100→+8 mit demselben k, hat aber einen Steigungsknick bei 90 %. Dies ist ein unbestätigter Vorschlag, keine Regel. T-0008 bleibt IN_PROGRESS.
+
+Letzter Checkpoint: [CP-0135](checkpoints/CP-0135.md).
+
+## Nutzerentscheidung: FKQ-Exponentialkurve bis 100 % (D-0109)
+
+Die in CP-0135 vorgeschlagene Erweiterung ist bestätigt; der Steigungsknick bei 90 % ist akzeptiert. Die stückweise Exponentialformel liefert +3 Prozentpunkte bei 40 %, +5,5 bei 90 %, +8 bei 100 %, auf den MRO-Satz addiert. D-0023 bleibt separat für den Dispozins; weitere Faktoren in V2. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0109](decision-log.md#d-0109--stueckweise-exponentialkurve-bis-100-fremdkapitalquote), [CP-0136](checkpoints/CP-0136.md).
+
+Letzter Checkpoint: [CP-0136](checkpoints/CP-0136.md).
+
+## Rechtsprüfung: tatsächliches Kunden-Zahlungsverhalten (CP-0137)
+
+§§ 271 und 286 BGB regeln Fälligkeit/Verzug, aber weder tatsächliches Kunden-Zahlungsverhalten noch eine allgemeine Verspätungswahrscheinlichkeit für die Simulation. Keine allgemeine betriebswirtschaftliche Produktregel gefunden; V1-Ableitung des Zahlungseingangs aus Fälligkeit bleibt Nutzerfrage. Keine neue D-ID. T-0008 IN_PROGRESS. Nachweis: [CP-0137](checkpoints/CP-0137.md).
+
+Letzter Checkpoint: [CP-0137](checkpoints/CP-0137.md).
+
+## Nutzerentscheidung: V1-Kundenzahlung am Fälligkeitstag (D-0110)
+
+Der tatsächliche vollständige Kunden-Zahlungseingang erfolgt V1 am vertraglichen Fälligkeitstag, außer ein ausdrücklich festgelegtes Verspätungsereignis greift. Kein eigenes Cash-Gate; spätere Ereignisse können Verhalten ändern. §§ 271/286 BGB bestimmen keine Zahlungseingangsverteilung. T-0008 IN_PROGRESS; T-0009 PENDING. Nachweis: [D-0110](decision-log.md#d-0110--kunden-zahlungseingang-zum-vertraglichen-faelligkeitstag), [CP-0138](checkpoints/CP-0138.md).
+
+Letzter Checkpoint: [CP-0138](checkpoints/CP-0138.md).
+
+## Nutzerentscheidung: Verbindlichkeitserfassung bei Leistungseingang (D-0111)
+
+Für V1 entsteht eine Lieferantenverbindlichkeit bei akzeptiertem Wareneingang bzw. bestätigter Fremdleistung; die Rechnung bestätigt danach Betrag und Fälligkeit. Die A03-Finanzspezifikation wurde entsprechend aktualisiert. Die Regel legt keine allgemeine Rechtsauslegung für abweichende Vertrags-/Leistungsfälle fest. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0111](decision-log.md#d-0111--entstehung-eigener-lieferantenverbindlichkeiten-bei-leistungseingang), [CP-0139](checkpoints/CP-0139.md).
+
+Rechtsgrundlagen zur Abgrenzung: [§ 433 BGB](https://www.gesetze-im-internet.de/bgb/__433.html), [§ 246 HGB](https://www.gesetze-im-internet.de/hgb/__246.html). Diese Normen bestimmen keine universelle Simulationsregel für den Buchungszeitpunkt.
+
+Letzter Checkpoint: [CP-0139](checkpoints/CP-0139.md).
+
+## Nutzerentscheidung: Kundenforderung und Auftragserlös bei Rechnung (D-0112)
+
+Der Nutzer bestätigt die A03-Arbeitsregel: In V1 entstehen Kundenforderung und vereinfachter Auftragserlös bei Ausstellung/Freigabe der Rechnung für erbrachte bzw. abrechenbare Leistung; die Rechnung referenziert die zugrunde liegende Leistung/Lieferung. Dies ist eine Produktregel, keine allgemeine handels- oder steuerrechtliche Umsatzrealisierung. Die A03-Finanzspezifikation wurde angepasst. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0112](decision-log.md#d-0112--kundenforderung-und-vereinfachter-auftragserloes-bei-rechnung), [CP-0140](checkpoints/CP-0140.md).
+
+Rechtsquellen zur Abgrenzung: [§ 252 HGB](https://www.gesetze-im-internet.de/hgb/__252.html), [§ 433 BGB](https://www.gesetze-im-internet.de/bgb/__433.html), [§ 641 BGB](https://www.gesetze-im-internet.de/bgb/__641.html).
+
+Letzter Checkpoint: [CP-0140](checkpoints/CP-0140.md).
+
+## Nutzerentscheidung: SimTAX-Vorsteuer nur bei bestätigten Voraussetzungen (D-0113)
+
+SimTAX wird V1 auch auf eingehenden externen Lieferantenrechnungen als Vorsteuer-Simulationssaldo berücksichtigt, sofern die Lieferung/Leistung für das Unternehmen durch einen anderen Unternehmer ausgeführt wurde, eine ordnungsgemäße Rechnung vorliegt und die Steuer nach der V1-Abbildung abzugsfähig ist. Vorsteuer- und Umsatzsteuer-Simulationssaldo werden verrechnet. Sonderfallgruppen und Ausschlüsse sind nicht vollständig modelliert. Rechtsgrundlage zur Abgrenzung: [§ 15 UStG](https://www.gesetze-im-internet.de/ustg_1980/__15.html). T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0113](decision-log.md#d-0113--simtax-vorsteuer-auf-qualifizierte-lieferantenrechnungen), [CP-0141](checkpoints/CP-0141.md).
+
+Letzter Checkpoint: [CP-0141](checkpoints/CP-0141.md).
+
+## Nutzerentscheidung: Vorsteuer-Ausnahmen außerhalb V1 (D-0114)
+
+V1 bildet weder Vorsteuer-Sonderfälle noch Ausschlüsse oder anteilige Abzüge ab. D-0113s Voraussetzungen bilden den vereinfachten Simulationsfilter; besondere reale Einschränkungen nach § 15 UStG werden dadurch nicht bestritten. Die Accounting-Spezifikation wurde aktualisiert. T-0008 bleibt IN_PROGRESS; T-0009 bleibt PENDING. Nachweis: [D-0114](decision-log.md#d-0114--keine-vorsteuer-ausnahmen-oder-anteiligen-abzuege-in-v1), [CP-0142](checkpoints/CP-0142.md).
+
+Letzter Checkpoint: [CP-0142](checkpoints/CP-0142.md).
+
+## Nutzerentscheidung: SimTAX-Berichtigung gemäß § 153 AO (D-0115)
+
+Die Simulation muss die Voraussetzungen aus § 153 AO abbilden: Wird nachträglich eine unrichtige/unvollständige abgegebene Erklärung erkannt, durch die eine Steuerverkürzung möglich ist oder eingetreten ist, sind Anzeige und erforderliche Berichtigung unverzüglich vorzusehen. Eine feste Tagesfrist wird nicht erfunden. Das beantwortet nicht die allgemeine interne Periodenschließung; der Auslöser der Fehlererkennung im Spiel bleibt offen. Nachweis: [D-0115](decision-log.md#d-0115--simtax-erklaerungsberichtigung-nach-153-ao), [CP-0143](checkpoints/CP-0143.md).
+
+Quelle: [§ 153 AO](https://www.gesetze-im-internet.de/ao_1977/__153.html).
+
+Letzter Checkpoint: [CP-0143](checkpoints/CP-0143.md).
+
+## Nutzerentscheidung: Fehlererkennung in SimTAX-Erklärungen nur durch Ereignisse (D-0116)
+
+Fehler bereits abgegebener SimTAX-Erklärungen werden in V1 ausschließlich durch Ereignisse erkannt. Wird dadurch ein relevanter Fehler erkannt, gilt D-0115 mit Anzeige und erforderlicher Berichtigung unverzüglich. Konkrete Ereignisse und Fehler bleiben noch zu spezifizieren. Nachweis: [D-0116](decision-log.md#d-0116--erkennung-fehlerhafter-simtax-erklaerungen-nur-durch-ereignisse), [CP-0144](checkpoints/CP-0144.md).
+
+Letzter Checkpoint: [CP-0144](checkpoints/CP-0144.md).
+
+## Nutzerentscheidung: Allgemeiner Buchungsperiodenabschluss in V1 (D-0117)
+
+V1 enthält einen allgemeinen Buchungsperiodenabschluss. Das Intervall wurde durch D-0118 auf zwölf Monate zum Kalenderjahresende festgelegt; die Folgejahresbehandlung nichtsteuerlicher Fehler ist D-0119. Fehler abgegebener SimTAX-Erklärungen folgen separat D-0115/D-0116. Nachweis: [D-0117](decision-log.md#d-0117--allgemeiner-buchungsperiodenabschluss-in-v1), [CP-0145](checkpoints/CP-0145.md).
+
+Rechtsrahmen für nachvollziehbare Buchungen: [§ 146 AO](https://www.gesetze-im-internet.de/ao_1977/__146.html).
+
+Letzter Checkpoint: [CP-0145](checkpoints/CP-0145.md).
+
+## Nutzerentscheidung: Geschäftsjahr V1 zwölf Monate bis Kalenderjahresende (D-0118)
+
+V1 verwendet ein zwölfmonatiges Geschäftsjahr mit Abschluss zum Kalenderjahresende. Ein alternatives Wirtschaftsjahr wird nur in V2 geprüft. Die Wahl des Kalenderjahres ist die Produktregel; das HGB begrenzt die Geschäftsjahresdauer auf zwölf Monate und sieht Jahresabschluss-/Inventarzeitpunkte vor, schreibt aber nicht für alle Unternehmen zwingend das Kalenderjahr vor. Nachweis: [D-0118](decision-log.md#d-0118--zwoelfmonatiges-v1-geschaeftsjahr-mit-kalenderjahresende), [CP-0146](checkpoints/CP-0146.md).
+
+Quellen: [§ 240 HGB](https://www.gesetze-im-internet.de/hgb/__240.html), [§ 242 HGB](https://www.gesetze-im-internet.de/hgb/__242.html).
+
+Letzter Checkpoint: [CP-0146](checkpoints/CP-0146.md).
+
+## Nutzerentscheidung: Nichtsteuerliche Korrektur nach Jahresabschluss im Folgejahr (D-0119)
+
+Wird ein nichtsteuerlicher Buchungsfehler erst nach Jahresabschluss erkannt, wird er in V1 im neuen Steuerjahr gebucht: Vorsteuer-Simulationssaldo gutschreiben und Umsatzsteuer-Simulationssaldo neu belasten. Diese Korrektur ändert die abgeschlossene Vorjahresperiode nicht und wird in V2 neu bewertet. Erkannte Fehler bereits abgegebener SimTAX-Erklärungen bleiben davon getrennt und sind nach D-0115/D-0116 bzw. § 153 AO unverzüglich zu berichtigen. Nachweis: [D-0119](decision-log.md#d-0119--nichtsteuerliche-korrekturen-nach-abschluss-im-folgejahr), [CP-0147](checkpoints/CP-0147.md).
+
+Letzter Checkpoint: [CP-0147](checkpoints/CP-0147.md).
+
+## Historische Koordinierungs- und Checkpointnotizen (CP-0148 bis CP-0154)
+
+Die folgenden Abschnitte sind chronologische Zwischenstände. Spätere Korrekturen und der aktuelle Status stehen in den jeweils neueren Abschnitten; maßgeblich ist der letzte A01-Stand.
+
+## A03-Abgleich mit bestätigten Finanzentscheidungen (CP-0148)
+
+A03 hat die Finanzspezifikation und P0-Finanzkonsistenzprüfung gegen D-0013 bis D-0119 abgeglichen. Aktualisiert wurden Zahlungsziele/-anker, Kunden- und Lieferantenfluss, Retry-/Dunning, Darlehen D-0030–43, SimTAX, D3-BAB/Personal/CNC-Kosten, E3-Stahl-Eröffnungswert sowie CNC-Buchwert D-0099. Eröffnungsbilanz zum 01.01.2027: 55.300 € Aktiva/Passiva, Eigenkapital-Rest 23.800 €. CP-0147 unverändert. Kein Code/Schema/DB/Architektur, Commit oder Push. Übergabebericht: [A03-Abgleichbericht](../accounting/a03-decision-log-abgleich-bericht.md); Checkpoint [CP-0148](checkpoints/CP-0148.md). T-0008 IN_PROGRESS, T-0009 PENDING.
+
+Letzter Checkpoint: [CP-0148](checkpoints/CP-0148.md).
+
+## A01-Koordinierungsabgleich nach CP-0148 (CP-0149)
+
+A01 übernimmt A03s Abgleich aus CP-0148. Dokumentierte Nutzerentscheidungen D-0013 bis D-0119 gelten als entschieden und werden nicht weiter als offene Nutzerfragen geführt. Beim Maschinendarlehen bleiben konkrete Rate und erster tatsächlicher Zahlungstermin offen. Weitere aktuell ausgewiesene Fachlücken sind Dispositionskredit-Limit/Verfügbarkeit/Draw/Rückzahlung, A02-Ereigniszeitpunkte und Reihenfolge, Vorjahresschluss-Erzeugung und Stahlwertübergabe sowie nicht festgelegte laufende Kosten und weitere Kostenstellenzuordnungen.
+
+T-0008 bleibt IN_PROGRESS. T-0009 bleibt PENDING, bis A02 die Arbeit tatsächlich beginnt; danach sind verbleibende Ereignis-/Periodenabstimmungen zwischen A02 und A03 zu dokumentieren. Im aktuellen Checkout liegt kein A02-Abschlussbericht zur Übernahme von D-0011 unter T-0009 und kein A04-Abschlussabgleich gegen CP-0148 vor. Die Gesamtvalidierung der aktiven Steuerungs- und Fachunterlagen ist daher noch nicht abgeschlossen; kein Sicherungs-Commit/Push. Nachweise: [CP-0148](checkpoints/CP-0148.md), [CP-0149](checkpoints/CP-0149.md).
+
+Letzter Checkpoint: [CP-0149](checkpoints/CP-0149.md).
+
+## A02-Übernahme D-0011 und Finanzereignisabgleich (CP-0150)
+
+A02 hat unter T-0009 D-0011 in die Simulationsspezifikation übernommen und Tageskapazität/F3-Zählung aktualisiert. Bestätigte A03-Regeln zu Kunden- und eigenen Zahlungen, Retry/Dunning und dem getrennten Maschinenkreditfluss sind eingearbeitet. Offen bleibt die konkrete Phasenverarbeitung gleichzeitiger Finanzereignisse, Spielerwahl/Dispositionskredit, Retry-/Mahn-/Darlehensereignisse, Wochenendverschiebungen und Periodenzuordnung. D-0033 ergibt den 29.01.2027 als Januarfälligkeit; A03/CP-0149 führt den ersten tatsächlichen Zahlungstermin als offen. Bericht: [A02 T-0009 Änderungsbericht](../simulation/a02-t0009-d0011-aenderungsbericht.md); Checkpoint [CP-0150](checkpoints/CP-0150.md). Übergabe an A01 zur Abnahme und Zuweisung der A02/A03-Abstimmung.
+
+Letzter Checkpoint: [CP-0150](checkpoints/CP-0150.md).
+
+## A04-Datenmodellabgleich gegen bestätigten Finanz- und Simulationsstand (CP-0151)
+
+A04 hat die Datenmodellspezifikation dokumentarisch gegen D-0011 bis D-0119, CP-0148, den aktuellen A03-Finanzstand sowie A02s CP-0150 abgeglichen. Die alte Bilanzangabe 95.300 € mit CNC-Buchwert 40.000 € und Eigenkapital 63.800 € ist als überholt gekennzeichnet. Aktuell gelten Aktiva/Passiva je 55.300 €, CNC-Buchwert 0 € und Eigenkapital-Restposition 23.800 €. Der Finanzierungs-/Budgetrahmen 50.000 € bleibt vom Bankbestand 30.000 € und ungezogenen Rest 20.000 € getrennt.
+
+Bestätigte Regeln zu Kalender/Fristen, Zahlungszielen, Zahlungseingängen/-ausgängen, Retry/Dunning, Darlehensgrundlogik, SimTAX, BAB, Materialbewertung und AfA wurden aus den offenen Markierungen entfernt. Arbeitskalender/Vertragsfristen ignorieren Feiertage; SimTAX-Fälligkeiten folgen separat D-0097. CP-0150s offene A02/A03-Ereignisabstimmung wurde ergänzt, einschließlich Gleichzeitigkeit/knappem Cash, Spielerwahl/Dispositionskredit, Phasen, Retry-/Mahn-/Darlehensereignissen, Wochenendverschiebung und Periodenzuordnung. D-0033 setzt 29.01.2027 als Januarfälligkeit; erster tatsächlicher Darlehenstermin und Rate bleiben offen.
+
+Weitere echte offene Punkte: Dispositionskredit-Limit und Ziehungs-/Rückzahlungsregeln, Kundenverhaltensparameter, künftige MRO-/Inflationsüberführung, Kosten-/Kostenstellen-/Periodendetails, Vorjahresschlussübergabe und SimTAX-Fehlererkennungsereignisse. Logische Modellfelder und Übergaben sind keine physische Schemafreigabe. CP-0020 liegt weiterhin nicht als Datei im Checkout vor und wurde nicht rekonstruiert.
+
+Bericht: [A04-Abgleichbericht](../database/a04-cp-0148-decision-log-abgleich-bericht.md); Checkpoint: [CP-0151](checkpoints/CP-0151.md). Keine Implementierung, Migration, Datenbankänderung, Architekturfreigabe, Commit oder Push. Vorhandene Änderungen anderer Agenten blieben bestehen.
+
+Letzter Checkpoint: [CP-0151](checkpoints/CP-0151.md).
+
+## A01-Übernahme A02-/A04-Abgleichen (CP-0152)
+
+A02 hat D-0011 in die Simulationsspezifikation übernommen und T-0009 mit CP-0150 abgeschlossen. A04 hat den Datenmodellabgleich gegen Decision Log, CP-0148 und CP-0150 in CP-0151 abgeschlossen. T-0008 bleibt IN_PROGRESS; die noch offenen A02/A03-Ereignis- und Periodenabstimmungen bleiben Koordinierungsarbeit. T-0009 ist abgeschlossen.
+
+Die Gesamtvalidierung ist noch nicht bestanden: In der A02-Spezifikation sind im Startprofil weiterhin ein CNC-Buchwert von 40.000 € (D-0099/CP-0148: 0 €) und 3,20 €/kg Stahl ausgewiesen (D-0091: Wert aus bereitgestelltem Vorjahresschluss; 3,20 € nicht bestätigt). A02 muss diese überholten/unbestätigten Werte fachlich bereinigen oder klar als historische Vorschläge kennzeichnen; A01 verändert den A02-Fachstand nicht. Danach ist erneut gegen Decision Log und CP-0148 bis CP-0151 zu validieren. Bis dahin kein Sicherungs-Commit/Push. Offene Punkte bleiben gemäß [P0-Koordinierung](p0-offene-parameter-koordinierung.md); Nachweise: [CP-0150](checkpoints/CP-0150.md), [CP-0151](checkpoints/CP-0151.md), [CP-0152](checkpoints/CP-0152.md).
+
+Letzter Checkpoint: [CP-0152](checkpoints/CP-0152.md).
+
+## A02-Startprofilabgleich D-0091/D-0099 (CP-0153)
+
+A02 hat im aktiven Startprofil den CNC-Buchwert auf 0 € gemäß D-0099 korrigiert und 3,20 €/kg Stahl entfernt. A02 führt Stahl mit 2.000 kg und übergibt den Eröffnungswert aus dem bereitgestellten Vorjahresschluss gemäß D-0091/93; keine Bewertungsmethode oder fehlende Geldsumme wurde festgelegt. A03 weist insgesamt 12.800 € Vorräte aus CP-0148 aus; die wertmäßige Aufteilung muss A03/A01 noch mit D-0091 und der Vorjahresschluss-Übergabe abstimmen. Bericht: [A02 Startprofilbericht](../simulation/a02-startprofil-d0091-d0099-aenderungsbericht.md); Checkpoint [CP-0153](checkpoints/CP-0153.md).
+
+Letzter fachlicher Checkpoint: [CP-0155](checkpoints/CP-0155.md).
+## A01-Koordinierungsstand nach A02/A03-Ereignis- und Periodenabgleich (CP-0155)
+
+Die bestätigten Finanz-/Simulationsregeln sind in [gemeinsamem A02/A03-Abgleichbericht](../simulation/a02-a03-ereignis-perioden-abgleich.md) konsolidiert. A02 hat Phase 8 und wirksame Wochenendverschiebung in der Spezifikation präzisiert; A03-Spezifikation bedarf keiner Änderung. Über A01 an den Nutzer zu richten ist die outcome-kritische Frage, ob ein gleichentägiger Kundeneingang vor den vom Spieler priorisierten eigenen Vollzahlungsversuchen bei knappem Cash verfügbar ist. Noch offen bleiben außerdem Intraday-Reihenfolge zeitgleicher Retry-/Mahnereignisse, Monatsperiodenzuordnung wirksam verschobener Ereignisse, Darlehens-Verwertungszählung, erster tatsächlicher Darlehenstermin/Rate sowie der Vorjahresschluss und die Einzelgruppenwerte der Vorräte. CP-0154s bedingte Nutzerfrage zur 12.800-€-Gesamtsumme bleibt zurückgestellt, bis belegte Einzelwerte tatsächlich abweichen.
+
+Checkpoint: [CP-0155](checkpoints/CP-0155.md).
+
+Letzter fachlicher Checkpoint: [CP-0155](checkpoints/CP-0155.md).
+
+
+## A01-Gesamtvalidierung und Sicherungsstand (CP-0156)
+
+Die aktive Dokumentationsvalidierung gegen AGENTS.md, Agentenstruktur, Goals, Ticket Board, Decision Log und P0-Fachunterlagen ist bestanden. CP-0155 ist in der Koordinierung übernommen; T-0009 bleibt abgeschlossen, T-0008 IN_PROGRESS. Die historischen Koordinierungsnotizen sind ausdrücklich als Verlauf markiert. Die outcome-kritische Frage zur Reihenfolge gleichentägiger Kundeneingänge und eigener Zahlungen bleibt bis nach der Sicherung zurückgestellt. Keine Implementierung, Schema- oder Architekturänderung.
+
+Checkpoint: [CP-0156](checkpoints/CP-0156.md).
+
+Letzter Checkpoint: [CP-0156](checkpoints/CP-0156.md).

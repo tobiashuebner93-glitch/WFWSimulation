@@ -11,7 +11,8 @@ Jeder Agent und der Master Orchestrator müssen VOR jeder Bearbeitung:
 5. `docs/agent-system/collaboration-state.md` lesen,
 6. relevante Architektur-/Fachdokumente prüfen,
 7. Repository-Stand und Änderungen anderer Agenten prüfen,
-8. offene Entscheidungen und Blocker prüfen.
+8. offene Entscheidungen und Blocker prüfen,
+9. Kommunikationsrouting beachten: jede Antwort an A01 adressieren; Rückfragen aus Fachagenten an den Nutzer über A01 bündeln; Antworten ohne Rückfragen in den nächsten nötigen Auftrag mit benanntem Adressaten überführen.
 
 Abgeschlossene Second-Level-Goals und deren Tickets bleiben historisch erhalten, gehören aber NICHT zum aktiven Arbeitskontext.
 
@@ -34,6 +35,7 @@ Remote-Schreibvorgänge dürfen ausschließlich über den lokalen Git-Workspace 
 ## Kommunikationsformat
 
 STATUS:
+ADRESSAT: A01 – MASTER_ORCHESTRATOR
 AGENT:
 MASTER GOAL:
 SECOND-LEVEL GOAL:
@@ -45,8 +47,16 @@ DATEIEN:
 ENTSCHEIDUNGEN:
 TESTS:
 OFFENE PUNKTE:
+RÜCKFRAGEN AN A01:
 BLOCKER:
 NÄCHSTER SCHRITT:
+
+## Verbindliches Kommunikationsrouting
+
+- Jeder Fachagent adressiert Status, Ergebnisse, offene Punkte und Rückfragen an A01 – MASTER_ORCHESTRATOR. Agenten richten Rückfragen nicht direkt an den Nutzer.
+- A01 bündelt notwendige Nutzerfragen, prüft sie auf Abhängigkeiten und adressiert sie gesammelt an den Nutzer.
+- Ergibt eine Agentenantwort keine notwendige Rückfrage, erstellt A01 aus dem Ergebnis den nächsten erforderlichen Auftrag mit ausdrücklich benanntem Adressaten, Goal-/Ticketbezug, Aufgabe und Ergebnis. Ist kein weiterer Arbeitsschritt erforderlich, dokumentiert A01 den Abschluss statt einen künstlichen Auftrag anzulegen.
+- A01 hält abhängige Folgeaufträge zurück, bis notwendige Nutzerantworten vorliegen; unabhängige Arbeit kann weiterlaufen.
 
 ## Autorität
 

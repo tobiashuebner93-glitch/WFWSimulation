@@ -1,199 +1,95 @@
 # A03 – P0-Finanzkonsistenzprüfung Maschinenbau-MVP
 
-**Stand:** 2026-09-26  
-**Rolle:** A03 – ACCOUNTING_FINANCE  
-**Bezug:** MG-000 / SLG-000.2 / CP-0014 / CP-0016 / D-0010  
-**Status:** Prüfung des vom Nutzer vorgegebenen P0-Produktstands. Keine neuen Produktentscheidungen, keine Implementierungsfreigabe.
+**Stand:** 2026-10-26
+**Rolle:** A03 – ACCOUNTING_FINANCE
+**Bezug:** MG-000 / SLG-000.2 / CP-0147 / D-0010 / bestätigte Finanzentscheidungen im Decision Log
+**Status:** Abgleich der P0-Finanzregeln mit dem aktuellen Decision Log. Keine neue Produktentscheidung und keine Implementierungsfreigabe.
 
-**Nachtrag nach Nutzerentscheidung zur Eröffnungsbilanz:** Der Abschnitt mit dem alten 47.800-€-Rechenstand ist durch die bestätigten Maschinen-/Darlehenswerte und das ausgewiesene Eigenkapital aktualisiert. Maßgeblich ist der unten aktualisierte Eröffnungsabgleich und die Darlehenskonkretisierung in der Finanzspezifikation.
+## 1. Ergebnis
 
-## 1. Ergebnis in Kürze
+Die frühere Fassung enthielt veraltete Vorschläge zu Fälligkeiten, Zahlungszielen, Mahnlogik, Darlehen, BAB-Sätzen und CNC-Eröffnungsbuchwert. Maßgeblich ist jeweils die jüngste einschlägige bestätigte Entscheidung. Diese Prüfung korrigiert die Sachlage; CP-0147 bleibt unverändert als Validierungsnachweis.
 
-Der Startzustand ist liquiditätsmäßig eindeutig, bilanziell aber noch nicht vollständig abstimmbar:
+## 2. Eröffnungsbilanz und Liquidität
 
-- Zahlungsmittel am Start: 30.000 €. Der ungenutzte 20.000-€-Rahmen ist kein Zahlungsmittel.
-- Aktiva einschließlich Maschine: 30.000 € Liquidität + 12.800 € Material + 12.500 € Forderungen + 40.000 € Maschine = **95.300 €**.
-- Verbindlichkeiten: 7.500 € Lieferanten-OP + 24.000 € Maschinendarlehen = **31.500 €**.
-- Eigenkapital als bestätigte Restposition: **63.800 €**. Summe Passiva = 31.500 € + 63.800 € = **95.300 €**; Bilanzdifferenz **0 €**.
-- Die Aufteilung 50.000 € Rahmen = 30.000 € Liquidität + 20.000 € Rest-Rahmen ist konsistent, wenn der Rest-Rahmen getrennt von Zahlungsmitteln und Vermögen geführt wird. Material und Forderungen dürfen nicht ein zweites Mal aus dem Rahmen abgezogen werden, ohne ihre Eröffnungsquelle/Gegenposition zu erfassen.
+Zum 01.01.2027 gilt der durch D-0099 aktualisierte CNC-Buchwert von 0 €; er ersetzt den früheren Szenarioansatz von 40.000 €.
 
-Die Zahlungs-, BAB-, Material- und SimTAX-Regeln sind mit dem Modell grundsätzlich darstellbar. Vor Umsetzung fehlen insbesondere Gegenposition/Stichtag, rechtlicher oder interner Charakter des Rest-Rahmens, Ausfall-/Retry-Regeln, Datumsarithmetik, Mahnfolgen, Rundung und BAB-Periode. A02s Startvorschlag enthält Materialmengen/-werte und Monatsbruttolöhne von 10.400 €; daraus folgen noch keine vollständigen Arbeitgeberkosten, Kostensätze, BAB-Zuordnung oder Kapazitäten. Laufende Kostenbeträge sind nicht aufgeführt.
+| Aktiva | Betrag |
+|---|---:|
+| Bank | 30.000 € |
+| Forderungen | 12.500 € |
+| Vorräte gesamt (Einzelaufteilung noch nicht bestätigt) | 12.800 € |
+| CNC-Buchwert | 0 € |
+| **Summe Aktiva** | **55.300 €** |
 
-## 2. Eröffnungszustand: Konsistenz
+| Passiva | Betrag |
+|---|---:|
+| Lieferantenverbindlichkeiten | 7.500 € |
+| Maschinendarlehen | 24.000 € |
+| Eigenkapital (Restposition) | 23.800 € |
+| **Summe Passiva** | **55.300 €** |
 
-| Position | Vorgabe | Behandlung |
-|---|---:|---|
-| Gesamtfinanzierungs-/Budgetrahmen | 50.000 € | Rahmen/Limit; nicht automatisch Cash oder Vermögenswert |
-| Anfangsliquidität | 30.000 € | Zahlungsmittelbestand am gemeinsamen Startstichtag |
-| Rest-Rahmen | 20.000 € | nicht gezogene Finanzierungskapazität oder interner Budgetrest; genaue Art offen |
-| Materialbestand | 12.800 € | Bestand/Eröffnungswert; je Material aufzuteilen |
-| Forderungen | 12.500 € | Eröffnungs-OP mit Kunde, Beleg, Restbetrag und Fälligkeit zu erfassen |
-| Verbindlichkeiten | 7.500 € | Eröffnungs-OP mit Lieferant, Ursprung, Beleg, Restbetrag und Fälligkeit |
+Bilanzdifferenz: 0 €. Eigenkapital = 55.300 € Vermögen − 31.500 € Verbindlichkeiten = 23.800 €. Historische Untergliederung des Eigenkapitals ist nicht festgelegt. Der Gesamtfinanzierungs-/Budgetrahmen von 50.000 € ist separat; davon sind 30.000 € Anfangsliquidität und 20.000 € Rest-Rahmen. Die 20.000 € sind weder Cash noch zusätzliche Passivposition. Eine Ziehung ist nicht automatisch beschlossen.
 
-A02s Startvorschlag zerlegt den Materialwert in Stahl (2.000 kg × 3,20 € = 6.400 €), Aluminium (800 kg × 5,50 € = 4.400 €) und Norm-/Zukaufteile (1.000 × 2,00 € = 2.000 €). Summe: 12.800 €. E3 benötigt Bestätigung, dass diese Preise die Eröffnungs-WAP-Basis sind. Monatsbruttolöhne von 10.400 € (124.800 € jährlich) sind benannt, aber weder Arbeitgeber-Gesamtkosten noch BAB-Verteilung oder Personalkostensatz je Rolle sind damit festgelegt.
+## 3. Zahlungsziele, Entstehung und Fälligkeit
 
-Der 20.000-€-Rest darf nur dann als Finanzierungskapazität gelten, wenn Herkunft, Verfügbarkeit und Ziehungsereignis feststehen. Ist es bloß ein internes Ausgabenlimit, ist es kein bilanzwirksamer Finanzierungsposten. Falls es eine zugesagte Kreditlinie ist, ist die ungezogene Linie ebenfalls nicht Cash; eine Ziehung ist ein eigener Vorgang mit Zeitpunkt und Betrag. Automatische Zahlung berechtigt nicht automatisch zur Ziehung.
+Die offenen Formeln aus früheren Fassungen sind erledigt:
 
-Diese Bilanz gleicht rechnerisch aus. Die Herkunft des Eigenkapitals ist die vom Nutzer bestätigte Eröffnungs-Restposition: 95.300 € Vermögen minus 31.500 € Verbindlichkeiten. Eine historische Untergliederung in Einlagen, Ergebnisvorträge oder andere Eigenkapitalbestandteile ist nicht vorgegeben. Der CNC-Buchwert von 40.000 € und das zugehörige Darlehen von 24.000 € sind nun als getrennte Eröffnungspositionen erfasst. Gemieteter Raum bleibt ohne zusätzlichen Vermögenswertansatz.
+- **Kundenforderung:** spätere tatsächliche Leistung und Rechnungsdatum als Fristanker; reine Lieferung verwendet das Lieferdatum (D-0013). Abnahme wirkt als Bedingung gemäß der dokumentierten Nutzerregel, wird aber nicht als zusätzlicher Fristanker eingesetzt.
+- **Lieferantenverbindlichkeit:** bei pünktlicher Lieferung Rechnungsdatum (D-0014); Materialverbindlichkeit entsteht bei akzeptiertem Wareneingang, Fremdleistung bei bestätigter Leistung; Lieferantenrechnung bestätigt Betrag und Fälligkeit (D-0111).
+- **Ziele:** Kundenstandard 14 Kalendertage; individuelle Kundenvereinbarung 30 Kalendertage (D-0018/19). Lieferantenstandard 30 Kalendertage (D-0020). Abweichende Konditionen können explizit vereinbart werden.
+- **Rechnung/Anspruch:** Kundenforderung und vereinfachter Auftragserlös entstehen bei Ausstellung/Freigabe der Rechnung für erbrachte bzw. abrechenbare Leistung (D-0112); Vertrag, Lieferung allein und Zahlung sind getrennte Vorgänge.
+- **Zählung:** Ankertag ist Tag 1; unverschobene Fälligkeit = Ankerdatum + (N−1) Kalendertage. Wochenendtermin wird auf den nächsten Arbeitstag geschoben; V1 berücksichtigt keine Feiertage (D-0011, D-0015–17). T-0009 betrifft A02s Spezifikationsübernahme, nicht den offenen Status der Nutzerregel.
+- **Kundeneingang:** vollständiger Eingang am vertraglichen Fälligkeitstag, außer ausdrücklich festgelegtes Verspätungsereignis (D-0110). Er ist unabhängig vom eigenen Bankbestand und reduziert Forderung/erhöht Liquidität.
 
-**Liquiditätsrechnung am Start:** 30.000 €. Forderungseingänge erhöhen Cash erst am tatsächlichen Zahlungstag. Material und Forderungen sind Vermögen, keine Liquidität. Verbindlichkeiten reduzieren Cash erst mit tatsächlicher Zahlung. Der 20.000-€-Rahmen beeinflusst Cash erst nach bestätigter Ziehung.
+Vertrag, Leistung/Empfang, Rechnung, Forderung/Verbindlichkeit, Fälligkeit, Zahlungsversuch und tatsächliche Zahlung bleiben getrennte Sachverhalte. D-0010s V1-Vollständigkeit schließt Teilrechnung und Teilzahlung aus.
 
-## 3. Vertrag, Forderung/Verbindlichkeit, Rechnung, Fälligkeit, Zahlung
+## 4. Eigene Zahlungen und Dunning
 
-Die festgelegte Fälligkeit wird fachlich so lesbar: maßgeblicher Zeitpunkt ist der spätere aus vollständiger Lieferung/Leistung und Rechnungsdatum; danach beginnt das vereinbarte Zahlungsziel. Vorschlagsformel: **Fälligkeit = max(Leistungszeitpunkt, Rechnungsdatum) + 14 oder 30 Tage**. Die „14 oder 30 Tage“ werden hier als Kalendertage verstanden; genaue Tageszählung und Kalenderregeln bleiben offen.
+Bei eigener Fälligkeit erfolgt ein automatischer Vollzahlungsversuch. Bei ausreichendem Cash: vollständige Zahlung, voller OP-Abbau und Liquiditätsabfluss. Bei unzureichendem Cash: keine Teilzahlung, kein negativer Bestand, kein Cash-Abfluss, voller OP bleibt offen, Fehlschlag wird dokumentiert.
 
-1. Vertrag fixiert vollständige Menge, Preis, Kund-/Lieferanten-Zahlungsziel und Trigger. Vertrag allein bewegt keine Liquidität.
-2. Vollständige Leistung/Lieferung und F3-Abnahme sind A02-Tatsachen. F3-Automatik braucht Fristbeginn, Fristdauer, wirksames Ablaufdatum und Ablehnungsevent.
-3. Automatische Rechnung erfolgt genau einmal für die vollständige V1-Menge nach erfülltem F3-/Rechnungsfähigkeitskriterium. Rechnung ist ein eigener Beleg.
-4. Kundenforderung entsteht bei vollständiger Rechnung für abrechenbare erbrachte Leistung. Sie ist nicht Vertrag, Lieferung, Rechnungsfähigkeit oder Zahlung.
-5. Verbindlichkeit entsteht gemäß Vertragsvereinbarung. A03 schlägt als praktikablen Ansatz vollständigen akzeptierten Wareneingang bzw. bestätigte Fremdleistung vor; Lieferantenrechnung kann Betrag und Zahlungsziel später belegen/abgleichen. Nutzertext lässt den genauen Trigger weiterhin konkretisierungsbedürftig.
-6. Zahlung ist nur bei tatsächlichem vollständigem Transfer eine Liquiditätsbewegung und gleicht den jeweiligen vollen OP aus. Fälligkeit allein bewegt kein Geld.
-7. Vorauszahlungen sind ab Rechnungsstellung zulässig. Produktstand legt nicht fest, ob dies V1 nur auf Kunden-, nur Lieferantenseite oder beidseitig gilt. Keine Zahlung vor Rechnungsstellung annehmen, bis Richtung und Auslöser bestätigt sind. V1 bleibt ohne Teilzahlung.
+Die aktuelle V1-Folge ist:
 
-Für max() fehlt die Definition von Leistungszeitpunkt: Versand, bestätigte Lieferung, erbrachte Fremdleistung oder wirksame F3-Abnahme. Kundenziel und Lieferantenziel sind je Vertrag/Seite 14 oder 30 Tage; Standardwert und Spielerwahl fehlen. Muss A02 bei selben Simulationsdatum Abnahme, Rechnung und Zahlung innerhalb eines Tages weiterverarbeiten dürfen? Dies ist ein Reihenfolgeparameter.
+- Spieler wählt bei konkurrierenden fälligen eigenen Rechnungen, welche zuerst bezahlt werden (D-0021).
+- Fehlgeschlagene Zahlungen werden eine Woche später erneut versucht; auf den ersten Fehlversuch folgen acht wöchentliche Retry-Versuche. Nach dem achten fehlgeschlagenen Retry gilt das Spiel als verloren (D-0024–26).
+- Zahlungserinnerung: zehn Kalendertage nach dem ersten Fehlversuch (D-0027).
+- Formelle Mahnung: vierzehn Kalendertage nach der Erinnerung, wenn weiterhin unbezahlt (D-0028).
+- Nach formeller Mahnung keine Pfändungs-/Liquidationseskalation in V1 (D-0029); keine Gebühren oder sonstigen Rechts-/Finanzfolgen daraus ableiten.
+- Dispositionskredit ist eine angebotene Option. Sein Satz beträgt 8 % über dem individuell vereinbarten Unternehmenszinssatz (D-0023); automatische Ziehung, Limit, Verfügbarkeit und Rückzahlung bleiben offen.
 
-Die Bedingung „bei ausreichender Liquidität“ ist sinnvoll für die **eigene Auszahlung** an Lieferanten. Ein Kundenzahlungseingang hängt nicht von der Liquidität des simulierten Unternehmens ab; er folgt dem Kundenverhalten und dem vereinbarten Termin. Falls V1 Kundenzahlung am Fälligkeitstag garantiert, ist das eine separate Kundenverhaltensregel, keine Kassenprüfung des eigenen Unternehmens. A02-Bericht markiert diese Trennung ebenfalls als Konkretisierungsbedarf.
+Retry- und Mahnzeitachsen sind getrennte Simulationsereignisse. Ihr Verhältnis bei gleichzeitigem Eintritt, genaue Tagesphase und Auswahl-/Tie-Break-Mechanik sind mit A02 noch operativ abzustimmen; daraus folgt keine neue Fristentscheidung.
 
-## 4. Automatische Zahlung bei unzureichender Liquidität
+## 5. Maschinendarlehen
 
-Sicher aus dem Produktstand folgt: Am Fälligkeitstag wird nur eine **volle** Zahlung versucht, wenn genügend verfügbare Liquidität vorhanden ist. Bei unzureichender Liquidität: kein Teilbetrag, kein Zahlungsevent, keine Liquiditätsbewegung, OP bleibt offen und überfällig.
+Bestätigt sind: Startschuld 24.000 €, nominal 5 % p.a. fest, sieben Jahre Restlaufzeit, gleichbleibende monatliche Annuitäten, Fälligkeit am letzten Geschäftstag des Monats, deutsche 30E/360-Methode auf laufender Restschuld, Stichtag am Tag vor der nächsten Rate, monatliche kaufmännische Cent-Rundung und Ausgleich des Rundungsrests in der Schlussrate; Zins wird mit der Rate gezahlt (D-0030–41).
 
-**A03-Fachregelvorschlag:** Zahlungsversuch prüft verfügbaren Cash gegen den vollen fälligen Betrag. Fehlbetrag erzeugt ein nachvollziehbares „nicht ausgeführt – unzureichende Liquidität“-Ereignis. Keine negative Kasse und keine automatische Kreditziehung, solange nicht gesondert beschlossen.
+Zinsaufwand belastet Ergebnis; Tilgung reduziert Hauptschuld und Cash, ist kein Aufwand; der Zahlungsabfluss ist die gesamte Rate. Bei Ausbleiben der Rate tritt sofort Verzug ein, wöchentlicher Retry. Bei drei insgesamt nicht gezahlten Raten wird die CNC zum aktuellen Marktwert liquidiert; Erlös tilgt Darlehen, Überschuss fließt aufs Geschäftskonto; bei Defizit erlischt Restschuld (D-0042/43). Diese Spezialregel bleibt von D-0029 getrennt.
 
-Vor Implementierung fehlen Produktregeln für:
+Offen bleiben konkrete Annuitäten-/Anfangsrate und erster tatsächlicher Zahlungstermin. A02 muss Ereignisfolge und die Zählung der drei nicht gezahlten Raten deterministisch abbilden. Die fünf Prozent allein wären nicht ausreichend; die genannten D-0034–41-Regeln ergänzen die Berechnung.
 
-- Wiederholversuch nach späterem Zahlungseingang (sofort, nächster Tag/Periode oder manueller Auftrag);
-- Priorität, wenn mehrere Zahlungen fällig sind, aber Cash nur für einige reicht;
-- Ereignisreihenfolge, falls Kundeneingang und Lieferantenauszahlung am selben Tag anfallen;
-- ob 20.000 € Rest-Rahmen automatisch gezogen werden dürfen;
-- ob eine gescheiterte Zahlung unmittelbar Zahlungserinnerung/Mahnung startet.
+## 6. SimTAX
 
-Das sind Simulationsregeln für A02, mit Finanzzustand/OP-Prüfung durch A03; A04 braucht Ergebnis, Zeitpunkt und Grund jedes Versuchs. Keine Teilzahlung als Fallback.
+Bestätigt: 19 %; Bemessungsbasis ist bestätigter Positionswert vor SimTAX; Berechnung je Rechnungsposition auf deren Gesamtwert, kaufmännische Rundung auf Cent, anschließend Summe der gerundeten Positionssteuer (D-0053–55). Korrekturen kehren den ursprünglich gerundeten Steuerbetrag referenziert um (D-0057). Externe Kundenrechnungen und qualifizierte Lieferantenrechnungen sind getrennt geregelt; Lieferanten-Vorsteuer unterliegt D-0113 und V1 bildet keine Sonderfälle, Ausschlüsse oder anteilige Abzüge ab (D-0114). Vorsteuer- und Umsatzsteuer-Simulationssaldo werden verrechnet (D-0058).
 
-## 5. Mahnung, Pfändung, Liquidation
+Der SimTAX-Zeitraum folgt der bestätigten UStG-Referenz (D-0059); monatliche Abgabe-/Fälligkeit gemäß D-0097. Das ist keine Behauptung realer Steuerkonformität. Fehlererkennung abgegebener Erklärungen bleibt ereignisgesteuert und die konkreten Erkennungsereignisse sind offen (D-0115/16). Nichtsteuerliche Fehler nach Jahresabschluss werden nach D-0119 im Folgejahr erfasst und ändern die geschlossene Vorperiode nicht; CP-0147 dokumentiert diese Entscheidung.
 
-Der Produktstand nennt Zahlungserinnerung → Mahnung → Pfändung bzw. Liquidation, definiert aber weder Fristen noch Beträge und Wirkungen. A03 kann Forderung, Verbindlichkeit, Fälligkeit, Überfälligkeit und offenen Betrag abbilden. Daraus folgt keine rechtliche Automatik oder verbindliche Rechtsbehauptung.
+## 7. D3-BAB, Personal und Maschinenkosten
 
-Für eine MVP-Mechanik fehlen: Karenz-/Stufenfristen; Stufenereignisse und Rücksetzung nach Zahlung; Gebühren/Zinsen oder deren Ausschluss; Bedingungen für Pfändungs-/Liquidationsereignis; welche Forderungen, Assets oder Zahlungsmittel betroffen sind; Priorisierung konkurrierender Gläubiger; Verteilung eines Restvermögens und endgültiger Simulationsstatus. Rechtliche Realitätsnähe würde separate Fachprüfung erfordern.
+Der statische BAB gehört zu V1. Bestätigte Zuschläge (D-0062–64): MGK 15 % der MEK, FGK 100 % der Fertigungslöhne, Vw/Vt-GK 10 % der Herstellkosten.
 
-**A03 empfiehlt für den Finanzkern:** Überfälligkeit und Erinnerungs-/Mahnstufe zunächst getrennt als Status/Ereignis führen; keine Gebühr/Zinsen oder Cash-/Assetwirkung ohne bestätigte Regeln. Pfändung/Liquidation nicht allein aus einem überfälligen OP automatisch auslösen. Dies ist ein Umsetzungshinweis, keine Änderung der benannten Produktfolge; der Nutzer muss Schwellen und Konsequenzen konkretisieren.
+Bestätigte Personalwerte (D-0065–70): Bruttolöhne 10.400 €/Monat; CNC 3.800 € und PROD 3.100 € Fertigungslöhne (6.900 €); MA-AV 3.500 € gehört nicht zu Fertigungslöhnen. Arbeitgeberkosten betragen 21 % (2.184 €), gesamter Personalaufwand 12.584 €/Monat. CNC/PROD-Arbeitgeberkosten sind Teil der FGK-Basis: 8.349 €/Monat; MA-AV-Gesamtkosten 4.235 €/Monat gehören zum Vw/Vt-GK-Pool.
 
-## 6. E3 – gleitender Durchschnittspreis
+Kalkulatorische CNC-Kosten gehören zu FGK; monatliche Basis ist `(120.000 € × 1,02^16) / 192`, auf volle Euro aufgerundet (D-0071–76). Separat davon: Buchabschreibung und Eröffnungsbuchwert 0 € (D-0077–99). Die Einzelwerte sind bestätigte Sätze, keine offenen Nutzeroptionen.
 
-Pro Material und Bewertungsbereich (Lager/Standort noch offen):
+Weiterhin nicht belegt sind konkrete übrige laufende Kosten, die genaue Perioden-/Ereigniszuordnung weiterer Kostenstellen, Betriebsstunden-/Zuordnungsdaten und nicht festgelegte BAB-Ausführungsdetails. Sie dürfen nicht aus fehlenden Angaben abgeleitet werden.
 
-- Eröffnungswert und Eröffnungsmenge bilden den Start-WAP.
-- Nach akzeptiertem Zugang mit Menge q und bewertbarem Preis p: neuer WAP = (alter Bestandswert + q × p) / (alte Menge + q).
-- Verbrauch c wird zum aktuell gültigen WAP bewertet und als auftragsbezogene Materialeinzelkosten angesetzt; Bestandsmenge und -wert sinken entsprechend. Ein Verbrauch allein ändert den Durchschnitt nicht.
-- Nullbestand, Fehlbestand oder negative Menge muss A02 verhindern, solange kein expliziter Pfad beschlossen ist.
-- Ereignisreihenfolge und wirksame Zeit müssen reproduzierbar sein. Rückdatierter Eingang/Korrektur erfordert Umkehr und Neuberechnung oder eigene Korrekturregel.
+## 8. Materialbewertung
 
-A02s Startvorschlag liefert Mengen und Einzelwerte je Material: Stahl 2.000 kg / 6.400 €, Aluminium 800 kg / 4.400 €, Norm-/Zukaufteile 1.000 Einheiten / 2.000 €. Daraus folgen rechnerisch Startpreise von 3,20 €/kg, 5,50 €/kg und 2,00 €/Einheit, falls diese Werte als maßgebliche Eröffnungs-WAP-Basis bestätigt sind. Offen bleiben Preisbasis einschließlich Bezugskosten/SimTAX, WAP-Präzision, Rundung des Verbrauchs-/Bestandswerts, Rundungszeitpunkt, Lagerortaggregation sowie Rücksendungs-/Korrekturregel. WAP sollte intern mit ausreichender Dezimalpräzision laufen; welche Präzision, muss festgelegt werden.
+E3 gleitender Durchschnitt ist bestätigt. 12.800 € sind der bestätigte Gesamtwert der Vorräte, während die bestätigte Einzelmenge Stahl 2.000 kg beträgt (D-0090); dessen Wert ist gemäß D-0091 aus dem bereitgestellten Vorjahresschluss zu übernehmen. 6.400 € und 3,20 €/kg sind keine bestätigten Stahlwerte. Die bisherigen A02-Profilwerte für Aluminium (800 kg / 4.400 €) und Norm-/Zukaufteile (1.000 Einheiten / 2.000 €) sind nicht als Eröffnungswerte bestätigt; D-0094–96 bestätigen Gruppen/Scope, keine Einzelmengen oder Bewertungen. Damit ist die Bilanzsumme als Aggregat rechnerisch konsistent, aber ihre Vorratsaufteilung mangels bestätigter Komponentenwerte noch nicht nachgerechnet. Erforderlich ist die bereitgestellte Eröffnungsbewertung je Vorratsgruppe einschließlich Stahl-Vorjahresschlusswert. Der Abgleich lautet dann: Gesamtwert = Stahl-Vorjahresschluss + Werte der übrigen Vorräte. Kein Stahlwert wird als Restbetrag abgeleitet. Falls belegte Einzelwerte nicht 12.800 € ergeben, muss A01 die Klärung der Vorrats-Gesamtsumme mit dem Nutzer herbeiführen.
 
-## 7. D3 – BAB und Auftragsergebnis
+## 9. A02/A04 Schnittstellen und verbleibende Punkte
 
-Die angegebenen Werte definieren drei statische Gemeinkostenpools/Kostenstellen:
+A02 muss mindestens liefern: wirksame Leistungs-/Liefer-/Rechnungsdaten für Fristanker; Simulationstag, Kalender und Ereignisreihenfolge; vollständige Kundeneingänge bzw. explizite Verspätungsereignisse; fällige eigene OP und Zahlungsversuche samt Resultat; separate wöchentliche Retry-/Erinnerungs-/Mahnungsevents; Darlehensraten, Zinsperioden und Fehlzahlungs-/Verwertungsereignisse; Materialmengen und Vorjahresschlusswert; Arbeitsstunden und Ressourcen-/Kostenstellenbezüge. A03 bleibt autoritativ für OP, Zins-/Kosten-/Erlöswirkungen und Liquidität.
 
-| Kostenstelle/-pool | Rechenbasis |
-|---|---|
-| Materialgemeinkosten (MGK) | 15 % × Materialeinzelkosten (MEK) |
-| Fertigungsgemeinkosten (FGK) | 100 % × Fertigungslöhne |
-| Verwaltung/Vertrieb (Vw/Vt-GK) | 10 % × Herstellkosten (HK) |
+A04 muss diese Trennung abbilden können, ohne Accounting-Doppelwahrheit zu schaffen: Vertrag/Kondition, Leistung/Wareneingang, Rechnung, offene Position, Fälligkeit, Zahlungsversuch, Zahlung, Mahnstatus, Darlehenshauptschuld, Zinsaufwand, Bestand/WAP, BAB-Basis und Kostenereignisse bleiben unterscheidbar. Keine Schemaänderung oder Architekturfreigabe folgt daraus.
 
-Vorgeschlagene Berechnungsfolge ohne Zirkel:
-
-- MEK = Materialverbrauch × gleitender Durchschnittspreis.
-- MGK = 0,15 × MEK.
-- Fertigungslöhne = auftragsbezogene Fertigungsstunden × bestätigter Kostensatz.
-- FGK = 1,00 × Fertigungslöhne.
-- HK = MEK + MGK + Fertigungslöhne + FGK + bestätigte sonstige direkte Fertigungskosten.
-- Vw/Vt-GK = 0,10 × HK.
-- Auftragsergebnis = Auftragserlös − HK − Vw/Vt-GK − separat ausgewiesene bestätigte direkte Auftragskosten außerhalb HK.
-
-Das ist ein statischer BAB, keine dynamische Vollkostenrechnung. MGK/FGK/VwVt-GK getrennt von verursachenden Einzelkosten ausweisen und nicht doppelt ansetzen. Die angegebenen Prozentsätze sind Nutzerwerte, aber die Kostenstellen-/Basenzuordnung muss als Regelversion festgehalten werden.
-
-Noch offen: Personalkostensatz und welche Personalanteile „Fertigungslöhne“ sind; ob Maschinen-/Energiekosten Teil sonstiger Fertigungskosten oder der FGK sind; ob Transport direkt und außerhalb HK hinzukommt; ob 10 % auf HK vor oder nach einer dieser direkten Positionen gerechnet werden; Zuordnung Miete; Rundung je BAB-Zeile oder nur am Ende; BAB-Periode/Gültigkeit. Der Verweis auf Personal und laufende Kosten „gemäß aktuellem Startvorschlag“ ist im aktuellen Repository nicht mit Beträgen/Sätzen belegt. D3 ist somit strukturell konsistent, aber ohne diese Werte noch nicht vollständig berechenbar.
-
-## 8. SimTAX B2
-
-Vorgegebene Kernregel je Rechnungsposition:
-
-1. Bemessungsbetrag der Position bestimmen (naheliegend: Menge × vereinbarter Einzelpreis; verbindlich zu bestätigen).
-2. SimTAX der Position = Bemessungsbetrag × 19 %, auf Cent runden.
-3. Steuerbetrag der Rechnung = Summe der bereits je Position gerundeten Steuerbeträge.
-4. Rechnungssumme = Summe Positionsbeträge + Summe gerundete SimTAX-Beträge.
-
-Damit wird nicht erst auf der Gesamtrechnung gerundet. Es fehlen noch Rundungsmodus für exakt halbe Cent, Behandlung negativer Korrekturpositionen und Bestätigung, dass „je Position“ den erweiterten Zeilenbetrag und nicht jede einzelne Einheit meint.
-
-19 % ist SimTAX-Produktparameter, keine Aussage zur realen Rechtslage. Noch festzulegen: gilt B2 für Kunden- und Lieferantenrechnungen; welche Kosten-/Materialkategorien tragen SimTAX; wird der SimTAX-Betrag als separate simulierte Steuerposition geführt; wie werden Kunden-/Lieferantensteuerkomponenten verrechnet oder abgeführt. Bis dahin Gesamtzahlung inklusive ausgewiesener Position konsistent halten und Steueranteile getrennt vom Auftragserlös und den Kosten zeigen. Keine Saldierung oder Abführung erfinden.
-
-## 9. F3, automatische Rechnung und G3
-
-F3 erfordert A02-Ereignisse für Voll-Lieferung, Fristbeginn, Fristdauer/-ende, rechtzeitige Ablehnung oder automatische Abnahme mit wirksamem Zeitpunkt. Automatische Abnahme macht Leistung abrechnungsfähig, erzeugt aber weder Rechnung noch Forderung/Zahlung.
-
-Automatische Rechnung ist genau ein vollständiger Rechnungsbeleg für die ganze Auftragsmenge. A02 muss Rechnungsdatum, Leistungs-/Abnahmereferenz, volle Menge und Preisversion bereitstellen. A03 verarbeitet das Ereignis idempotent und erzeugt Forderung/Erlös; Rechnungsstellung ist von Zahlungsziel und Zahlung getrennt.
-
-G3 bedeutet Auftrag erst nach vollständiger Zahlung abgeschlossen. A02 braucht von A03 den Status aller vollständigen Kundenforderungen dieses Auftrags. Noch offen: ob zusätzlich Lieferantenverbindlichkeiten bezahlt sein müssen. Bei späterer Korrektur/Rückerstattung nach G3 fehlt eine Regel zur Wiederöffnung/Revisionsversion.
-
-## 10. Ereignisübergaben von A02 an A03
-
-Jede Übergabe braucht mindestens stabile Ereignis-ID/-art/-version, Simulations-Wirksamkeitszeit plus Erfassungszeit, Sequenz/Abhängigkeit, Vertrag/Auftrag/Position, Partei, volle Menge/Einheit, Geldbetrag/Währung, Belegquelle und Korrektur-/Umkehrbezug. A02 meldet operative Fakten; A03 allein leitet Salden, WAP, OP, Liquidität und Ergebnis ab.
-
-| A02-Ereignis | Notwendige zusätzliche Informationen | A03-Finanzwirkung |
-|---|---|---|
-| Opening-State geladen | Stichtag; 30.000 € Cash; 20.000 € Rest-Rahmen als getrenntes Limit; je Material Menge/Wert; OP-IDs, Partei, Ursprung, Betrag, Rechnung, Leistungs-/Fälligkeitsdatum; 50.000 € Rahmenreferenz | Liquidität 30.000 €; Materialwert/Start-WAP; eröffnete Forderungen/Verbindlichkeiten, keine doppelte Rahmenverbuchung |
-| Vertrag bestätigt | Vollmenge, Preisbasis, Kund-/Lieferantenseite, 14/30-Tage-Bedingung, Trigger, Zielbezug, SimTAX-Kontext/Version | Kondition speichern; kein Zahlungsevent allein durch Vertrag |
-| Vollständiger Wareneingang/Fremdleistung akzeptiert | volle bestellte/akzeptierte Menge, Einheit, Preis, Zeitpunkt, SupplierInvoice falls vorhanden, PO-/Auftragsbezug, Steuerposition | Payable-Trigger gemäß bestätigter Regel; Zugang aktualisiert WAP |
-| Materialverbrauch | Material-ID, Menge/Einheit, Vertrag-/Laufposition, Zeit/Sequenz, Bewertungsregelversion | Bestand und MEK zum gültigen WAP |
-| Arbeits-/Maschinen-/Energieverbrauch | Ressource, Stunden/Menge, Auftrag, Zeitpunkt, Kosten-/Satzreferenz, direkte/Gemeinkostenklasse | Istkosten und D3-BAB-Bezugsgrößen |
-| Vollständige Lieferung/Leistung | Gesamtmenge, Delivery-ID, Versand-/Leistungs-/Abnahmedatum, F3-Friststart/-ende, Nachweis, Transportkosten | Leistungs-/Abrechnungsreferenz, ggf. direkte Kosten |
-| F3-Ablehnung oder Fristablauf | Delivery-Bezug, Ereigniszeit, Ablehnungsgrund/-zeitpunkt oder Fristablauf, Regelversion | Abrechnungsfähigkeit blockieren oder automatische Abnahme mit Zeitpunkt erfassen |
-| Automatische Kundenrechnung | genau ein Beleg, Positionen/Menge/Preis, Datum, Leistungs-/Acceptance-Bezug, SimTAX-Basis/19-%-Version, je Position gerundete Steuer, Gesamtbetrag, 14/30 Tage | Forderung/Erlös; DueAt aus bestätigter Regel |
-| Lieferantenrechnung | Beleg, Supplier, PO/Receipt/Service-Bezug, Betrag/Steuer je Position, Datum/Ziel, Abweichung, Payable-Ursprung | Payable abgleichen; nicht doppelt erzeugen |
-| Fälligkeit und Zahlungsversuch | Datum, voller Betrag, Cash vor Zahlung, Ereignissequenz/Priorität, Ausführungsresultat/Fehlbetrag | Bei genügend Cash volle Zahlung und Liquiditätsbewegung; sonst kein Payment und OP offen |
-| Erinnerung/Mahnung/Eskalation | OP, Stufe, Frist, Ursache, Regelversion; gesonderter Betrag/Asset-Folge nur bei bestätigter Regel | Status/Ereignis; keine unbestätigte Gebühr, Steuer-, Cash- oder Pfändungswirkung |
-| Auftragsschluss G3 | Vertrag, alle Kunden-Receivables, Zahlungsreferenzen, Restbetrag null, Zeitpunkt | A03 meldet finanziell vollständig bezahlt; keine erneute Ergebniswirkung |
-
-## 11. A04-Fachanforderungen und vorhandene Modellstellen
-
-Das Modell enthält bereits konzeptionelle Stellen für OpeningBalance, differenzierte InvoiceLines, PaymentTerm/PaymentTermPayment, ObligationSource/Payable/SupplierInvoice, InventoryMovement, ResourceConsumption, CostEntry, OrderResult, BabVersion/BabLine und LiquidityMovement. Das reicht als Strukturvorschlag, entscheidet aber keine Semantik und ist keine Persistenzfreigabe.
-
-A04 soll diese Stellen gegen bestätigte Regeln konkret abgleichen:
-
-- 30.000 € Anfangsliquidität, 20.000 € ungezogener Rest-Rahmen und 50.000 € Gesamtrahmen getrennt;
-- Startmaterial laut A02-Vorschlag mit IDs/Einheiten verknüpfen und bestätigen, ob 3,20 €/kg Stahl, 5,50 €/kg Aluminium und 2,00 €/Einheit Norm-/Zukaufteile die E3-Start-WAP-Basis sind;
-- 12.500 €/7.500 € OP mit Eröffnungsquelle, Partei, Ursprungsbeleg, Vollrest, Ziel/Fälligkeit und ggf. Auftrag;
-- ein vollständiger V1-Term je Richtung bei Erweiterbarkeit für spätere Mehrtermine/Anzahlungen;
-- F3-Frist, automatische Rechnung, DueAt und Zahlungsversuch als getrennte Fakten;
-- je Position SimTAX-Satz/-Version, Basis, gerundete Steuer und Summe;
-- E3-Bewegungsfolge/WAP sowie D3-Kostenstelle, Kostenbasis, Rate, Periode und Ergebnis;
-- A03-Alleinautorität für OP-/Cash-/WAP-/SimTAX-/Kosten-/Erlössalden und Auftragsergebnis.
-
-## 12. Fehlende Parameter
-
-### Eröffnung und Betrieb
-
-- gemeinsamer Startstichtag und Simulationskalender;
-- Art und Ziehung/Rückzahlung des 20.000-€-Rest-Rahmens;
-- CNC-Darlehen: Tilgungsart, Restlaufzeit, Fälligkeit, Zinsperiodik/-berechnung und Zahlungstermine; die 24.000 € Restschuld und 5 % nominal p.a. sind nun vorgegeben;
-- Maschine: außer dem Buchwert von 40.000 € noch Anschaffungs-/Nutzungsbeginn, Restnutzungsdauer, Abschreibungsregel und Einbeziehung der Abschreibung in D3-BAB/Kosten;
-- Material-IDs, Anfangsmengen/Einheiten laut A02-Vorschlag (Stahl 2.000 kg, Aluminium 800 kg, Norm-/Zukaufteile 1.000 Einheiten), Bestätigung der Einzelwerte (6.400 €/4.400 €/2.000 €) als E3-Start-WAP und SimTAX-/Bezugskostenbasis;
-- je Anfangs-OP: Partei, Ursprungsbeleg, Rechnung, Auftrag, Leistungsdatum, Rechnungsdatum, 14/30 Tage, Fälligkeit und vollständiger Restbetrag;
-- Personal: Monatsbruttolohnsumme 10.400 € laut A02-Startvorschlag; weiterhin fehlen Aufteilung je Person/Rolle, produktive Stunden, Fälligkeit/Zahlung, BAB-Zuordnung und ob zusätzliche Personalnebenkosten V1-relevant sind;
-- laufende Kosten: Miete, Energie, Versicherung etc. mit Betrag, Ansatzzeitraum, Fälligkeit, Zahlungsdatum und Kostenstellenzuordnung. Konkrete Beträge sind in den gelesenen Dateien nicht enthalten.
-
-### Regeln und Berechnungen
-
-- Zielauswahl 14/30 Tage pro Kund-/Lieferantenseite, Standard, max()-Leistungsdatum, Zählweise, Wochenenden/Feiertage und Same-day-Reihenfolge;
-- fehlende Liquidität: Wiederholversuch, Frequenz, Priorität, Ereignisreihenfolge und Rahmenziehung;
-- Erinnerung/Mahnung: Fristen, Gebühren/Zinsen oder keine, Eskalationsfolge, Pfändungs-/Liquidationskriterien und Folgen;
-- SimTAX-Geltung auf Kunden-/Lieferantenpositionen/Kategorien, Basis, halber Cent, negative Korrekturen und spätere Steuerkonten-/Abführungslogik;
-- E3: Bewertung von Zugang, Transport-/Bezugskosten, WAP-Präzision und Rundung, Standortgrenze, Rücksendung/Korrektur;
-- D3: Bestätigung der Kostenstellen, Fertigungslohn-Basis, Maschinen-/Energiekosten, Transport, Miete, Gültigkeit/Periode und BAB-Rundung;
-- G3: ob Lieferantenverbindlichkeiten ebenfalls Abschluss blockieren; Wiederöffnung bei Rückerstattung/Korrektur.
-
-## 13. Finanzspezifikation – Konkretisierung zum aktuellen Stand
-
-Die frühere P0-Optionsdatei empfahl B1/D1/E1 als noch offene Varianten. Die nun vorgegebenen Werte ersetzen diese Vorschläge: SimTAX B2 19 %, D3 mit drei Pools und angegebenen Sätzen, E3 gleitender Durchschnitt sowie 30.000 € Anfangsliquidität/20.000 € Rest-Rahmen. Ebenso sind F3, automatische Vollrechnung/-zahlung bei ausreichendem Cash und G3 die aktuelle Produktvorgabe. D-0010 wird dadurch nicht editiert. Die separate P0-Optionsdatei bleibt als historischer Vorschlag erhalten.
-
-Der obige E3-, D3-, SimTAX-, Opening-State-, OP-, Zahlungs- und Eventabschnitt konkretisiert die Finanzspezifikation. Offen gebliebene Werte sind keine stillschweigend getroffenen Entscheidungen. Architektur V0.2/ADRs bleiben PROPOSED. Keine Buchungssätze, Rechts-/Steuerbehauptung oder Implementierung wurden eingeführt.
+Noch offen bleiben insbesondere Darlehensrate und erster Termin, Dispositionskredit-Limit/Draw/Rückzahlung, A02-Ereignisreihenfolge, konkrete Vorjahresschluss-Übergabe für Stahl, sowie einzelne Kosten- und Zuordnungsdaten, die der Decision Log nicht festlegt. Keine neue Produkt-, Rechts- oder Steuerregel wird hieraus abgeleitet.
