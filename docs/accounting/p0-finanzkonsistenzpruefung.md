@@ -3,7 +3,11 @@
 **Stand:** 2026-10-26
 **Rolle:** A03 – ACCOUNTING_FINANCE
 **Bezug:** MG-000 / SLG-000.2 / CP-0147 / D-0010 / bestätigte Finanzentscheidungen im Decision Log
-**Status:** Abgleich der P0-Finanzregeln mit dem aktuellen Decision Log. Keine neue Produktentscheidung und keine Implementierungsfreigabe.
+**Status:** Historischer Fachabgleich zum Stand 2026-10-26. Er trifft keine neue Produktentscheidung und gibt keine Implementierung frei.
+
+**Aktualität:** Nutzerentscheidungen D-0120 bis D-0127 sowie spätere V1-Arbeiten CP-0160 bis CP-0180 sind nach diesem Snapshot erfolgt. Ältere Aussagen in den Abschnitten 4, 5 und 9, die Zahlungsreihenfolge, Dispo- oder Darlehensrate/-termin als offen bezeichnen, sind historische Zwischenstände. Maßgeblich für den heutigen Umsetzungs- und Konfliktstatus sind [die aktuelle Koordinierung](../agent-system/p0-offene-parameter-koordinierung.md), [die Finanzspezifikation](maschinenbau-mvp-finanzspezifikation.md) und [CP-0180](../agent-system/checkpoints/CP-0180.md).
+
+**Nachtrag:** D-0128/CP-0181 setzen für den V1-Szenariostart den Vorratswert zu 4.214,20 € und ersetzen den folgenden historischen Bilanzsnapshot mit 12.800 € Vorräten. Aktueller Einstieg: [Finanzspezifikation Abschnitt S](maschinenbau-mvp-finanzspezifikation.md#s-eroeffnungsbilanz-und-maschinendarlehen-nutzerentscheidung-01012027) und [Preis-Basisstand](../market-data/material-price-baseline-2026-10-27.md). Der Preisstand ist nicht als HGB-Nachweis zu behandeln.
 
 ## 1. Ergebnis
 

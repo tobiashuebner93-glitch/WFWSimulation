@@ -4,12 +4,14 @@
 
 ### MG-000 – Agenten-Governance und technische Grundlage etablieren
 
-Status: ACTIVE
+Status: COMPLETED
 Priorität: HIGH
 
 Ziel:
 
 Eine belastbare und nachvollziehbare Control Plane für Agenten, Goals, Tickets, Arbeitsstände, Checkpoints und Architekturentscheidungen etablieren.
+
+Abschlussnachweis: SLG-000.1, SLG-000.2 und SLG-000.3 sind anhand ihrer dokumentierten Ergebnisse abgeschlossen. Die Architekturprüfung ist abgeschlossen, ohne Architektur V0.2 oder eine ADR freizugeben. Konsolidierung und Belege: [CP-0188](checkpoints/CP-0188.md).
 
 ---
 
@@ -17,18 +19,20 @@ Eine belastbare und nachvollziehbare Control Plane für Agenten, Goals, Tickets,
 
 ### SLG-000.1 – Agent Control Plane implementieren
 
-Status: ACTIVE
+Status: COMPLETED
 Master Goal: MG-000
 
 Ziel:
 
 Verbindliche Agentenstruktur, Preflight, Goal-/Ticket-Filterung und Arbeitsstands-Dokumentation im Repository verankern.
 
+Abschlussnachweis: T-0001 wurde anhand der Control-Plane-Kriterien geprüft und in [CP-0182](checkpoints/CP-0182.md) abgeschlossen; die dauerhaften Governance-Artefakte sind dokumentiert. Goal-Abgleich: [CP-0188](checkpoints/CP-0188.md).
+
 ---
 
 ### SLG-000.2 – Technische Architektur V0.2 prüfen
 
-Status: ACTIVE / PROPOSED
+Status: COMPLETED / ARCHITEKTURVORSCHLAG WEITERHIN PROPOSED
 Master Goal: MG-000
 
 Grundlage:
@@ -38,6 +42,8 @@ A11 hat einen technischen Architekturentwurf V0.2 erstellt.
 Der Entwurf ist nicht freigegeben.
 
 Alle ADRs sind PROPOSED.
+
+Abschlussnachweis: T-0002 sichert den Architekturentwurf als Vorschlag (CP-0006); die fachliche Gegenprüfung ist in [CP-0029](checkpoints/CP-0029.md) dokumentiert, und der aktuelle Kopplungsreview steht in [CP-0187](checkpoints/CP-0187.md). Das Prüfziel ist erfüllt; Architektur V0.2 und ADR-001 bis ADR-008 bleiben PROPOSED und nicht freigegeben. Nicht blockierende technische Schulden und UI-Verifikationspunkte sind in CP-0187 benannt. Gesamtbewertung: [CP-0188](checkpoints/CP-0188.md).
 
 ---
 

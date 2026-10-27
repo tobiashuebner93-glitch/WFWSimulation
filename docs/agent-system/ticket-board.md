@@ -2,9 +2,223 @@
 
 ## Aktive Tickets
 
+Keine aktiven Tickets unter MG-000. Der Goal-/Ticketabgleich T-0021 wurde im Rahmen dieses Auftrags abgeschlossen; Nachweis: [CP-0188](checkpoints/CP-0188.md).
+
+## Abgeschlossene Tickets
+
+
+### T-0021 – Goal- und Ticketstatus gegen Checkpoints abgleichen
+
+Status: COMPLETED (2026-10-27; CP-0188)
+Master Goal: MG-000
+Second-Level Goals: SLG-000.1 / SLG-000.2
+Owner: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: Goal-Abnahmekriterien und den aktuellen Ticketstatus anhand der maßgeblichen Checkpoints und des Repository-Stands abgleichen. Historische Angaben erhalten und überholte Zustände kenntlich machen. Keine Produkt-, Schema-, Implementierungs- oder Architekturänderung.
+
+Abschlussnachweis: SLG-000.1 anhand T-0001/CP-0182, SLG-000.2 anhand T-0002/CP-0006, CP-0029 und T-0020/CP-0187 bewertet. Goal-/Ticketstatus und Collaboration State konsolidiert; Architektur V0.2 und ADR-001 bis ADR-008 bleiben PROPOSED. Details: [CP-0188](checkpoints/CP-0188.md).
+
+---
+
+### T-0020 – Validierungsbefunde für V1-Finanz- und Auftragsablauf abschließen
+
+Status: COMPLETED (2026-10-27; CP-0187)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A02 SIMULATION, A03 ACCOUNTING_FINANCE, A04 DATABASE, A05 FRONTEND, A08 RESEARCH, A09 QA, A10 DEVOPS_INFRASTRUCTURE, A11 TECHNICAL_ARCHITECT
+Priorität: HIGH
+
+**Ausgangslage:** Review nach CP-0185 fand Umsetzungslücken trotz COMPLETED-Markierung T-0015–T-0019. T-0020 konsolidiert diese Befunde und ist die maßgebliche Nacharbeit.
+
+**Aufgabe:** V1-Simulations- und Finanzverhalten mit Spezifikation und bestätigten Regeln abstimmen, ohne eine unfreigegebene Zielarchitektur oder ein Datenbankschema einzuführen.
+
+**Abnahmekriterien:**
+
+- Abhängige Planungs-/Fertigungsoperationen können am selben Simulationstag weiterlaufen, sofern Fähigkeiten und Tageskapazitäten reichen; falls die vorhandene Tagesphasenarchitektur das verhindert, Spezifikation und Testverhalten explizit aufeinander abstimmen.
+- SimTAX bildet für qualifizierte externe Lieferantenbelege eine getrennte Vorsteuerkomponente ab und verrechnet sie nachvollziehbar mit Ausgangs-SimTAX; Perioden-/Kreditüberträge bleiben reproduzierbar und als Modellregel dokumentiert.
+- Offene eigene Verbindlichkeiten protokollieren wöchentliche Fehlversuche bis acht, Zahlungserinnerung zehn Kalendertage nach Fälligkeit und formelle Mahnung 14 Kalendertage später; bezahlte Posten lösen keine späteren Mahnungen aus. Maschinenkredit bleibt separat.
+- Beschädigte lokale Spielstände werden vor möglichem Überschreiben geschützt. Wiederherstellung des letzten gültigen Spielstands und bewusster Neustart sind für Nutzer nachvollziehbar.
+- Regressionen prüfen die obigen Regeln, Monats-/Steuerabstimmung und Jahreslauf. Mobile UI statisch prüfen; eine nicht ausführbare manuelle Browserprüfung als nicht verifiziert kennzeichnen.
+- Research-/Spezifikationsstatus und logisches Datenmodell gegen aktuelle V1-Entscheidungen synchronisieren. Architekturkopplungen dokumentieren, aber keine ADR-/Architekturfreigabe oder Schemaänderung vornehmen.
+- Änderungsbericht, QA-Ergebnis und CP; `git diff --check` sauber. Vorhandene Änderungen erhalten; kein Commit/Push ohne gesonderten Auftrag.
+
+**Ergebnis:** Same-Day-Planungs-/Fertigungsketten, getrennte SimTAX-Ausgangs-/Vorsteuerkomponenten mit Guthabenübertrag, allgemeines Dunning, Save-Recovery, mobile UI-Hinweise und Datenmodell-/Spezifikationsabgleich sind umgesetzt und gezielt regressionsgeprüft. Der 365-Tage-Lauf endet am 01.01.2028 ohne Cash-Reconciliation-Fehler. Architekturkopplung ist dokumentiert; keine Schema- oder Architekturfreigabe. `git status` geprüft; `git diff --check` bestanden (nur konfigurierte LF/CRLF-Hinweise). Branch `main`, HEAD `62dbc71`; vorhandene lokale Änderungen und ungetrackte Dateien blieben erhalten. Kein Commit/Push. Ergebnisdetails: [A01-Abschlussbericht](a01-t0020-abschlussbericht.md), [A09-QA-Bericht](a09-t0020-qa-bericht.md), [CP-0187](checkpoints/CP-0187.md).
+
+---
+
+### T-0019 – Auftragspriorisierung, Abnahme und wirtschaftlicher Abschluss
+
+Status: COMPLETED (2026-10-27; CP-0185)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A02 SIMULATION, A03 ACCOUNTING_FINANCE, A05 FRONTEND, A09 QA
+Priorität: MEDIUM
+
+Aufgabe: Priorisierung bei konkurrierenden Aufträgen sowie Folgen von Verspätung, Abnahmeablehnung, Nacharbeit und Abschluss prüfen. Im UI Fälligkeit, Vertragswirkung, Machbarkeit, Engpass und Deckungsbeitrag als nachvollziehbare Kriterien sichtbar machen. Bestehende Regeln bleiben führend; neue Regeln bei fehlender Grundlage an A01 zur Entscheidung geben.
+
+Ergebnis: Arbeitspriorität ist auswählbar und wirkt deterministisch; Liefertermine und Wirtschaftlichkeitskennzahlen sind in der Auftragsansicht sichtbar. Verspätungen senken Ruf und Kundenbindung nach einer begrenzten V1-Formel. Nach Ablehnung kann einmal nachgearbeitet oder storniert werden; Kosten bereits ausgeführter Arbeit bleiben bestehen. Jahreslauf und Regressionen: [CP-0185](checkpoints/CP-0185.md).
+
+### T-0018 – Monatsabschluss und Finanz-/Steuer-Reconciliation
+
+Status: COMPLETED (2026-10-27; CP-0185)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A03 ACCOUNTING_FINANCE, A02 SIMULATION, A09 QA
+Priorität: HIGH
+
+Aufgabe: Periodenübersichten und Cashflow mit Forderungen, Verbindlichkeiten, Personal, Miete, Energie, Wartung, Material, Zeitarbeit, Finanzierung und SimTAX abstimmen. SimTAX bleibt als Spielmodell gekennzeichnet. Lieferanten-Zahlungsziele und Startposten nicht ohne dokumentierte Fälligkeit/Belege bewegen. Keine steuerrechtliche Vollberechnung oder Bilanzierungsbehauptung ergänzen.
+
+Ergebnis: Monatsabschlüsse stimmen Cashflow, Kosten, Forderungen, offene Kosten, SimTAX, Darlehen und Zinsen ab; ein Jahreslauf meldet keine Cash-Reconciliation-Fehler. V1-SimTAX bleibt Simulation. Nachweis: [CP-0185](checkpoints/CP-0185.md).
+
+### T-0017 – Markt- und Materialpreis-Szenariopfade
+
+Status: COMPLETED (2026-10-27; CP-0185)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A08 RESEARCH, A02 SIMULATION, A03 ACCOUNTING_FINANCE, A09 QA
+Priorität: HIGH
+
+Aufgabe: Reproduzierbare Basis-, Aufwärts- und Abwärtsszenarien für Nachfrage, Stahl, Aluminium, Normteile und Energie definieren. Händlerreferenzpreis, Beobachtungsdatum, Einheit und Marktindex getrennt führen. Makroindex darf nicht direkt als konkreter Einkaufspreis ausgegeben werden. Mit offiziellen Primärdaten und Stressfällen dokumentieren.
+
+Ergebnis: Drei deterministische Szenariopfade ergänzt; der datierte Händlerpreis-Basisstand bleibt getrennt von Preisindizes. Keine Live-Preisbehauptung; der Stresspfad ist ausdrücklich eine Szenarioannahme. Quellen-/Grenzenhinweis und Jahreslauf: [CP-0185](checkpoints/CP-0185.md).
+
+### T-0016 – Angebots-, Preisverhandlungs- und Auftragswirtschaft
+
+Status: COMPLETED (2026-10-27; CP-0185)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A02 SIMULATION, A03 ACCOUNTING_FINANCE, A05 FRONTEND, A08 RESEARCH, A09 QA
+Priorität: HIGH
+
+Aufgabe: Preisangebot vor Auftragsannahme ermöglichen. Zahlungsziel, Liefertermin, Materialkosten, Arbeits-/Maschinenstunden, Szenario-Gemeinkosten, SimTAX separat, Deckungsbeitrag und Liquiditätswirkung transparent machen. Spieler kann verhandeln, annehmen oder ablehnen, bevor Ressourcen gebunden werden. Ein angenommenes Angebot bleibt Grundlage für Planung, Rechnung und Zahlung. Kosten- und Margenformeln reproduzierbar dokumentieren und mit adversen Aufträgen prüfen.
+
+Ergebnis: Angebotsannahme/-ablehnung, Zahlungsziel und verhandelbarer Nettoerlös sind im UI; angenommene Preise bleiben für Rechnung und Zahlung gespeichert. Deckungsbeitrag, Szenario-Gemeinkosten und SimTAX werden getrennt angezeigt. Reproduzierbare V1-Formeln und Grenzen: [CP-0185](checkpoints/CP-0185.md).
+### A01 – V1-Materialpreis-Basis und bedarfsgerechter Anfangsbestand (D-0128 / CP-0181)
+
+Status: ABGESCHLOSSEN; V1-Szenariobasis festgelegt
+Adressat: A01 – MASTER_ORCHESTRATOR
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0090–D-0096 / D-0123/24
+
+Der Anfangsbestand deckt die drei bestätigten Aufträge ab: 2.000 kg Stahl, 100 kg Aluminium, 60 Referenzschrauben; Bedarf 172 kg / 90 kg / 56 Stück. Aktuelle Händlerreferenzpreise vom 27.10.2026 ergeben 4.214,20 € Vorratswert. Die Eröffnungsbilanz wurde auf 46.714,20 € und das Dispo-Startlimit auf 4.671,42 € aktualisiert; Eigenkapital als Restposition 15.214,20 €. Die frühere 12.800-€-Vorratsannahme bleibt nur als historischer Entscheidungsstand dokumentiert. Der Preisstand beansprucht keine historische Kostenprovenienz oder HGB-Abschlussqualität. Quellen und Modellgrenzen: [Preis-Basisstand](../market-data/material-price-baseline-2026-10-27.md), [CP-0181](checkpoints/CP-0181.md).
+
+### Historischer A01-Rollenreview und Commit-Kandidatenabgleich (CP-0180; Vorratswerte durch CP-0181 ersetzt)
+
+Status: REVIEW ABGESCHLOSSEN; damaliger Vorratsdatenstand historisch
+Adressat: A01 – MASTER_ORCHESTRATOR
+Bezug: MG-000 / SLG-000.2 / T-0008 / T-0012–T-0014 / CP-0178/0179
+
+A01 hat die Fachstände der Rollen A01–A11 anhand der jeweils zuständigen Unterlagen und V1-Umsetzung geprüft. Behoben wurden die abweichende Dispozinsformel D-0023, nicht normalisierte Partnerabhängigkeiten und eine unklare Abgrenzung der Feiertagserweiterung. Die Darlehensausfall-/Verwertung nach D-0042/43 wurde ergänzt und getestet. Als fachübergreifender Folgepunkt bleiben fehlende Vorjahresschluss-Komponenten für die Vorratsbewertung. Details und Validierung: [CP-0180](checkpoints/CP-0180.md).
+
+Die Review-Unterlagen sind commitbereit als Szenario-Prototyp mit dieser dokumentierten Bewertungsgrenze; sie beanspruchen keine vollständige Bestandsbuchführung. Es wurde nicht committet oder gepusht.
+
+### T-0015 – V1-Zahlungsereignisse an D-0129 angleichen
+
+Status: COMPLETED (2026-10-27; CP-0185)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+Owner: A02 SIMULATION (Ausführung durch A01 gemäß Nutzerauftrag)
+Fachreview: A03 ACCOUNTING_FINANCE
+UI-Review: A05 FRONTEND
+QA: A09 QA
+Priorität: HIGH
+
+**Aufgabe**
+
+Den Browser-Prototyp und seine Tests an die bereits festgelegte V1-Ereignisreihenfolge aus D-0120, D-0126 und D-0129 anpassen. Es werden keine neuen Zahlungs-, Steuer- oder Darlehensregeln entschieden.
+
+**Befund im Checkout**
+
+Der aktuelle Ablauf in prototype/app.js ruft nach dem Tagesfortschritt Kundeneingänge, offene Kosten-Retries, Dispozinsberechnung, SimTAX-Zahlung und danach Maschinenkreditraten auf. Das weicht von D-0129 ab, das die Maschinenrate vor den übrigen eigenen Zahlungen vorsieht. Die Spielerreihenfolge eigener Zahlungen muss im UI sichtbar und tatsächlich wirksam sein.
+
+**Zielreihenfolge gemäß Decision Log**
+
+1. Fällige Kundeneingänge ohne eigenes Cash-Gate buchen; daraus Disposchuld zuerst gemäß D-0126 reduzieren.
+2. Fällige Maschinenrate und Maschinenkredit-Retries als eigenen Kreditfluss vollständig versuchen.
+3. Übrige fällige eigene Rechnungen/Verbindlichkeiten in der vom Spieler festgelegten Reihenfolge voll bezahlen; bei Unterdeckung nur den manuellen Fehlbetragsabruf gemäß D-0125 anbieten. Keine Teilzahlung oder negative Liquidität.
+4. Nach den Versuchen offene Posten aktualisieren; an diesem Tag fällige Erinnerungen/Mahnungen nur für weiterhin offene Posten auslösen.
+5. Den täglichen Dispozins genau einmal auf Basis des gezogenen Tagessaldos berechnen (Actual/365, keine Tagesrundung); am Monatsende die Monatssumme einmalig auf Cent runden und als Sammelposten belasten. Verschobene Ereignisse dem Monat ihres wirksamen Simulationstags zuordnen.
+
+**Abnahmekriterien**
+
+- Implementierter Ereignisablauf stimmt mit D-0120/D-0126/D-0129 überein; Maschinenkredit bleibt getrennt vom allgemeinen Dunning.
+- Spielerreihenfolge eigener fälliger Zahlungen lässt sich im Browser festlegen und beeinflusst die tatsächlichen Vollzahlungsversuche deterministisch.
+- Manuelle Dispoziehung bleibt exakt auf den Fehlbetrag begrenzt; automatische Ziehung, Teilzahlung und negative Liquidität entstehen nicht.
+- Monatlicher Dispozins wird nicht doppelt berechnet oder gebucht und behält die festgelegte Actual/365-/Rundungsregel.
+- Gezielte Regressionen prüfen taggleiche Kundeneingänge, Dispo-Rückführung, knappe Liquidität, Maschinenrate, eigene Rechnungen, Retry/Mahnung und Monatswechsel.
+- Bestehender Jahreslauf-Smoke-Test läuft mindestens 365 Tage; Browseransicht einschließlich mobilem UI bleibt bedienbar.
+- Änderungsbericht, QA-Ergebnis und Checkpoint; git diff --check erfolgreich.
+- Keine Schema-, Datenbank-, Supabase-, Dependency- oder Architekturänderung; keine Architekturfreigabe.
+
+**Abgrenzung**
+
+D-0010 und bestehende Nutzerentscheidungen bleiben maßgeblich. Falls der Code eine D-Entscheidung nicht abbilden kann, wird die Abweichung an A01 dokumentiert statt eine neue Produktregel einzuführen.
+
+Ergebnis: Tagesablauf folgt Kundeneingang/Disporückführung, Maschinenrate, priorisierten eigenen Betriebsposten, SimTAX und Dispozins. Manuelle Dispoziehung bleibt auf den Fehlbetrag begrenzt. SimTAX hat im V1-Modell eine feste Fälligkeit und wird nach den priorisierten Betriebsposten automatisch versucht; sie wird nicht als frei umsortierbare Lieferantenrechnung angeboten. Regression und Jahreslauf: [CP-0185](checkpoints/CP-0185.md).
+
+---
+### T-0014 – Geschäftsnetzwerk und Personalentwicklung in V1
+
+Status: COMPLETED (2026-10-27; CP-0179)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Owner: A01 – MASTER_ORCHESTRATOR (führt A02/A03/A05/A09-Arbeit selbst aus)
+Priorität: HIGH
+
+Auf Nutzerauftrag wurden drei fiktive Wettbewerber sowie je fünf Kunden und Lieferanten samt dynamischen Beziehungen, Marktvergabe, Bezugsabhängigkeit, Materialvorlauf und Kundenzahlungsmoral ergänzt. Arbeitsplanung enthält Weiterbildungskurse und eine zweijährige duale Metalltechnik-Ausbildung mit Berufsschule, Betreuung und Monatskosten.
+
+Akzeptanz: mobil erreichbare Netzwerk-/Lernseiten, Datenmigration aus V1-Spielstand, deterministische Jahresläufe inklusive Marktverlust, Zahlungseingangsverzug, Lieferverzug, Kursabschluss und Ausbildungsfortschritt, Rechtsannahmen dokumentiert. Keine Schemaänderung/Architekturfreigabe. Nachweis: [CP-0179](checkpoints/CP-0179.md).
+
+---
+
+### T-0013 – V1-Jahresmodell, Arbeitsplanung und Betriebsressourcen
+
+Status: COMPLETED (2026-10-27; CP-0178)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Owner: A01 – MASTER_ORCHESTRATOR (führt A02/A03/A05/A09-Arbeit selbst aus)
+Priorität: HIGH
+
+Auf ausdrücklichen Nutzerauftrag wurde die Browser-V1 um ein Jahresszenario mit synthetischer Volkswirtschaft, Auftragsplanung, Urlaub/Krankheit/Moral, Zeitarbeit, Raumkapazitäten und Mietkosten erweitert. Fehlende Detailentscheidungen wurden als reversible, klar markierte V1-Modellannahmen festgelegt. Keine Schemaänderung, Architekturfreigabe, Commit oder Push.
+
+Akzeptanz: 365-Tage-Lauf, Auftragserzeugung und -abschluss, Finanzperioden, Personalabwesenheiten, Zeitarbeit, Lager-/Raumgrenzen, Browserauslieferung, Rechtsrahmen dokumentiert. Nachweis: [CP-0178](checkpoints/CP-0178.md).
+
+---
+
+### T-0012 – Spielbare Browser-V1 als Prototyp erstellen
+
+Status: COMPLETED (2026-10-27; CP-0159)
+Master Goal: MG-000
+Second-Level Goal: SLG-000.2
+Owner: A01 – MASTER_ORCHESTRATOR (führt A02/A03/A05/A09-Arbeit selbst aus)
+Priorität: HIGH
+
+Aufgabe:
+
+Auf ausdrücklichen Nutzerauftrag eine schnell spielbare, lokal im Browser ausführbare V1 erstellen. Bestätigte Entscheidungen haben Vorrang; fehlende Startwerte bleiben sichtbar offen. Keine Schemaänderung oder Architekturfreigabe.
+
+Akzeptanzkriterien:
+
+- responsives mobiles Browser-UI mit lokalem Spielstand und Tages-/Wochenfortschritt
+- A02-Auftrags-/Kapazitätsabläufe, Lieferung, Abnahme, automatische Kundenrechnung soweit Vertragswert vorliegt, Fälligkeit und Kundeneingang abgebildet
+- A03-Eröffnungsbilanz/SimTAX korrekt; unbelegte Preise und Kosten nicht als bestätigte Werte ausgeben
+- lokale Startanleitung, Syntax-/Browserprüfung, Checkpoint und `git diff --check`
+- keine externe Abhängigkeit, Datenbankschemaänderung, Commit oder Push ohne gesonderten Auftrag
+
+Grundlage: Nutzerauftrag vom 2026-10-27 nach erfolgtem Push; dieser Auftrag hebt T-0010s damaligen Implementierungsausschluss für den Prototyp auf, ohne T-0010 als Spezifikationsarbeit abzuschließen.
+
+---
+
+
 ### T-0010 – A02-Spezifikation für erste spielbare Version überarbeiten
 
-Status: PENDING
+Status: COMPLETED (2026-10-27; CP-0182)
 Master Goal: MG-000
 Second-Level Goal: SLG-000.2
 Owner: A02 SIMULATION
@@ -32,11 +246,13 @@ Akzeptanzkriterien:
 
 Grundlage: D-0092 bis D-0096, CP-0118 bis CP-0120. Start erst nach den genannten Abhängigkeiten.
 
+Abschlussnachweis: A02-Startprofil, D-0095-Gruppen und artikelbezogene Norm-/Zukaufteile mit Einheiten/Mengen/Verbrauchsbezügen ergänzt; Preise außerhalb D-0128 bleiben Referenzen. A02-Bericht a02-t0010-v1-startprofil-aenderungsbericht.md; CP-0182.
+
 ---
 
 ### T-0011 – Marktdaten und Referenzwerte für ausgewählte V1-Warengruppen recherchieren
 
-Status: PENDING
+Status: COMPLETED (2026-10-27; CP-0182)
 Master Goal: MG-000
 Second-Level Goal: SLG-000.2
 Owner: A08 RESEARCH
@@ -58,11 +274,13 @@ Akzeptanzkriterien:
 
 Grundlage: D-0093 bis D-0096 und CP-0118 bis CP-0120. Ergebnisse sind Input für T-0010 und für A03s Bewertung unter T-0008.
 
+Abschlussnachweis: Datierter A08-Referenzscan mit Quellen, Preisbasis, Einschränkungen und Datenlücken; nur D-0128-Preise sind als Startwerte festgelegt. CP-0182.
+
 ---
 
 ### T-0008 – P0-Fachparameter koordinieren und entscheidungsreif vorbereiten
 
-Status: IN_PROGRESS
+Status: COMPLETED (2026-10-27; CP-0182)
 Master Goal: MG-000
 Second-Level Goal: SLG-000.2
 Owner: A01 MASTER_ORCHESTRATOR
@@ -70,7 +288,7 @@ Priorität: HIGH
 
 Aufgabe:
 
-Die in CP-0031 und den Fachunterlagen offenen P0-Parameter geordnet koordinieren. A01 koordiniert ausschließlich; keine Fachentscheidung, Implementierung oder Architekturfreigabe. Die dokumentierten Nutzerentscheidungen D-0013 bis D-0119 und der A03-Abgleich CP-0148 sind übernommen; nur tatsächlich offene Parameter und Fachabstimmungen werden weiterverfolgt. A02 hat D-0011 unter T-0009 übernommen; T-0009 ist mit CP-0150 abgeschlossen. Operative Ereignis-/Periodenabstimmungen mit A03 bleiben als getrennte Arbeit unter T-0008 offen.
+Die in CP-0031 und den Fachunterlagen offenen P0-Parameter geordnet koordinieren. A01 koordiniert ausschließlich; keine Fachentscheidung, Implementierung oder Architekturfreigabe. Die dokumentierten Nutzerentscheidungen D-0013 bis D-0127 und die Fachabgleiche CP-0148 ff. sind übernommen; nur tatsächlich offene Parameter und Fachabstimmungen werden weiterverfolgt. A02 hat D-0011 unter T-0009 übernommen; T-0009 ist mit CP-0150 abgeschlossen. Operative Ereignis-/Periodenabstimmungen mit A03 bleiben als getrennte Arbeit unter T-0008 offen.
 
 Akzeptanzkriterien:
 
@@ -78,13 +296,13 @@ Akzeptanzkriterien:
 - A02-Abgleich CP-0150/CP-0153, A03-Abgleich CP-0148/CP-0154, A04-Abgleich CP-0151 und A02/A03-Bericht CP-0155 korrekt referenziert; keine nicht erfolgte Arbeit behauptet
 - Abhängigkeiten zwischen Kalender-/Simulationsregeln und Finanzregeln dokumentiert
 - Kundeneingänge ohne eigenes Cash-Gate und eigene Auszahlungen mit eigenem Liquiditäts-Gate getrennt gehalten
-- Beschlossene Darlehensart, Restlaufzeit, Monatsrhythmus und Zinslogik gemäß D-0030 bis D-0043 als entschieden behandeln; Rate und erster tatsächlicher Zahlungstermin bleiben offen
+- Beschlossene Darlehensart, Restlaufzeit, Monatsrhythmus, ersten Zahlungstermin und konkrete Rate (D-0121/22) sowie Zinslogik gemäß D-0030 bis D-0043 als entschieden behandeln; A03-Berechnung und A02-Übernahme in CP-0161/0162 dokumentieren
 - A03-Abgleich CP-0148/CP-0154 integrieren; A02-T-0009/CP-0150 und CP-0153 sowie A04-CP-0151 und A02/A03-CP-0155 korrekt referenzieren.
 - A04-Abschlussabgleich CP-0151, A02-Startprofilkorrektur CP-0153, Vorratsabgleich CP-0154 und Ereignisabstimmung CP-0155 integrieren; aktive Steuerungs- und Fachunterlagen gegen Decision Log und CP-0148 bis CP-0155 validieren.
 - D-0010 und ADR-Status unverändert; keine Anwendungscode-, Schema-, Datenbank-, Supabase-, Dependency- oder Architekturänderung
 - nächster Nutzerentscheidungs-/Fachübergabepunkt dokumentiert
 
-Historische Zwischenstandsnotizen weiter unten dokumentieren jeweils den damaligen Stand. Der aktuelle Stand ist unter „A01-Koordinierungsstand nach CP-0155 und Gesamtvalidierung (CP-0156)“ zusammengefasst.
+Historische Zwischenstandsnotizen weiter unten dokumentieren jeweils den damaligen Stand. Der Stand CP-0156 ist durch CP-0180 und die neueren Entscheidungen D-0120 bis D-0127 überholt.
 
 Ergebnisdokument: [P0-Koordinierung offener Fachparameter](p0-offene-parameter-koordinierung.md); Checkpoint [CP-0032](checkpoints/CP-0032.md).
 
@@ -96,7 +314,7 @@ A03 hat die Finanzunterlagen gegen den Decision Log abgeglichen; siehe [CP-0148]
 
 A02 hat D-0011 übernommen und T-0009 mit CP-0150 abgeschlossen. A04 hat den Datenmodellabgleich in CP-0151 abgeschlossen; A03s Finanzabgleich ist in CP-0148 dokumentiert. T-0008 bleibt IN_PROGRESS und koordiniert die verbleibenden A02/A03-Ereignis- und Periodenabstimmungen. Die Gesamtvalidierung ist noch nicht bestanden: Die A02-Spezifikation enthält im Startprofil weiterhin 40.000 € CNC-Buchwert (D-0099/CP-0148: 0 €) und 3,20 €/kg Stahl (D-0091: Wert aus bereitgestelltem Vorjahresschluss; 3,20 € nicht bestätigt). A02 muss diese alten Angaben aktualisieren oder klar als historische/unbestätigte Vorschläge kennzeichnen. Kein Sicherungs-Commit/Push bis dahin. Nachweise: [CP-0148](checkpoints/CP-0148.md), [CP-0150](checkpoints/CP-0150.md), [CP-0151](checkpoints/CP-0151.md), [CP-0152](checkpoints/CP-0152.md).
 
-### A01-Koordinierungsstand nach CP-0155 und Gesamtvalidierung (CP-0156)
+### Historischer A01-Koordinierungsstand nach CP-0155 (CP-0156; durch CP-0180 überholt)
 
 A02 hat D-0011 unter T-0009 übernommen; T-0009 ist abgeschlossen (CP-0150). Die aktiven Startprofilangaben wurden gemäß D-0091/D-0099 korrigiert (CP-0153). A03 bestätigt den Gesamtvorratswert von 12.800 €, aber keine bestätigten Einzelgruppenwerte; ein Stahlwert wird nicht als Differenz hergeleitet (CP-0154). A04 hat den Datenmodellabgleich abgeschlossen (CP-0151). A02/A03 haben bestätigte Finanz-/Simulationsregeln und verbleibende Ereignis-/Periodenlücken abgeglichen (CP-0155).
 
@@ -258,11 +476,13 @@ Abgleich abgeschlossen: Der Nutzer hat den CNC-Anschaffungszeitpunkt auf 01.01.2
 
 Zwischenstand 2026-10-25: Der Nutzer hat den V1-Arbeitskalender gemäß D-0011 bestätigt. A02-Übernahme in die Simulationsspezifikation und Abstimmung der offenen 14-/30-Tage-Fälligkeit mit A03 stehen noch aus; T-0008 bleibt IN_PROGRESS. Nachweis: [CP-0033](checkpoints/CP-0033.md).
 
+Abschlussnachweis: bestätigte Regeln und V1-Ereignis-/Periodenkonventionen konsolidiert; Erweiterungs- und historische Belegfragen außerhalb V1 markiert. CP-0182.
+
 ---
 
 ### T-0001 – Agent Control Plane implementieren
 
-Status: IN_PROGRESS
+Status: COMPLETED (2026-10-27; CP-0182)
 Master Goal: MG-000
 Second-Level Goal: SLG-000.1
 Owner: A10 DEVOPS_INFRASTRUCTURE
@@ -285,9 +505,10 @@ Akzeptanzkriterien:
 - keine Supabaseänderung
 - keine Dependencyänderung
 
+Abschlussnachweis: Preflight, Agentenstruktur A01–A11, aktive Goals, Ticketfilter, Checkpoint- und Kommunikationsregeln sind im Repository dokumentiert. CP-0182.
+
 ---
 
-## Abgeschlossene Tickets
 
 ### T-0009 – D-0011-Arbeitskalender in A02-Spezifikation übernehmen
 
@@ -406,3 +627,16 @@ Aufgabe:
 Die dokumentarische MINOR-Abweichung aus CP-0013 in den Fachspezifikationen von A02 und A03 bereinigen. D-0010 bleibt maßgeblich und unverändert; Teilfertigung, Teillieferung, Teilrechnung und Teilzahlung sind aus V1 ausgeschlossen. Keine Erweiterung des MVP und keine neuen Fachregeln.
 
 Abschlussgrund: A02 und A03 haben ihre jeweiligen Scope-Texte an D-0010 angeglichen. Konkrete Zahlungs-/Finanzregeln bleiben offen. Nachweis: [CP-0014](checkpoints/CP-0014.md).
+
+### T-0012 Fortschreibung – Monatsabschluss und Finanzansicht (CP-0158)
+
+Der Spielprototyp zeigt nun den kalendarischen Monatsabschluss mit verfügbaren Cash-, Rechnungs-, SimTAX-, Kundeneingangs-, Lieferungs- und Abschlusszahlen. Nicht verfügbare Kosten-/BAB-/Vorratswerte werden nicht abgeleitet. Syntax-, Monatsfunktions- und lokale HTTP-Auslieferungsprüfungen bestanden. Die reale Browser- und Mobilprüfung bleibt offen, daher bleibt T-0012 IN_PROGRESS. Kein Commit/Push. Details: [CP-0158](checkpoints/CP-0158.md).
+
+### T-0012 Abschluss (CP-0159)
+
+Browser- und Mobilprüfung vollständig: echte Oberfläche, Mobile-Navigation, Wochenfortschritt, Produktion/Lieferung, Abnahme, Szenariorechnung/SimTAX, Fälligkeit/Zahlung, G3-Abschluss, Monatsabschluss und lokale Wiederherstellung nach Reload erfolgreich. Der Test fand und korrigierte den Bottom-Nav-Handler. T-0012 ist COMPLETED; CP-0159 enthält den Nachweis. Offene fachliche Parameter verbleiben separat unter T-0008. Kein Commit/Push.
+
+
+### Nutzerentscheidung D-0127 / A02-A03-Übernahme (CP-0175 bis CP-0177)
+
+Der Dispositionszins wird täglich auf dem gezogenen Saldo berechnet und am Monatsende einmalig als Sammelposten belastet. A03 hat die Finanzspezifikation (CP-0175), A02 das Phase-8-Ereignismodell und den gemeinsamen Abgleich (CP-0176) aktualisiert. A01 hat die offene Detailmenge fortgeschrieben (CP-0177). Offen: Tageszählbasis, Rundungszeitpunkt, Buchungsreihenfolge am Monatsende und Rückführung aus anderen Eingangstypen. T-0008 bleibt IN_PROGRESS.

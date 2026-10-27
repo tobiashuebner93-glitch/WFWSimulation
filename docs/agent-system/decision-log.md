@@ -1177,3 +1177,111 @@ V1 simuliert keine Vorsteuer-Sonderfälle, Ausschlüsse oder anteiligen Abzüge.
 
 Quelle zur rechtlichen Abgrenzung: [§ 15 UStG](https://www.gesetze-im-internet.de/ustg_1980/__15.html).
 ---
+
+## D-0120 – Kundeneingänge vor eigenen Auszahlungen am selben Simulationstag
+
+Status: APPROVED (Nutzerentscheidung)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0021 / D-0110 / CP-0155 / CP-0160
+
+Wenn am selben wirksamen Simulationstag Kundeneingänge und eigene fällige Rechnungen zusammentreffen, werden in V1 zuerst alle fälligen Kundeneingänge vollständig und ohne eigenes Cash-Gate gebucht. Danach werden die eigenen fälligen Vollzahlungsversuche in der vom Spieler bestimmten Reihenfolge mit Liquiditätsprüfung ausgeführt. Kundeneingänge können dadurch die für eigene Zahlungen verfügbare Liquidität am selben Tag erhöhen. Die Regel verändert weder Fälligkeitstage noch die bestätigten Retry-/Mahnfolgen.
+
+Dies ist eine deterministische Produktkonvention für V1. BGB §§ 675s, 675t und 675n sowie EPC-SCT-Regeln legen keine allgemeine Reihenfolge solcher unabhängigen taggleichen Kontovorgänge fest. Recherche: [A08-Recherche](a08-same-day-zahlungsreihenfolge-recherche.md).
+
+---
+
+## D-0121 – Erster tatsächlicher Zahlungstermin des Maschinendarlehens
+
+Status: APPROVED (Nutzerentscheidung)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0030 bis D-0033 / CP-0160
+
+Die erste tatsächliche monatliche Annuitätenzahlung ist am 29.01.2027 fällig. Danach gilt der letzte Arbeitstag jedes Monats. Bei sieben Jahren Restlaufzeit und monatlicher Zahlung umfasst der Plan 84 Monatsraten bis Dezember 2033. Die Rate ist durch die spätere Nutzerentscheidung D-0122 festgelegt.
+
+---
+
+## D-0122 – Monatliche Annuitätenrate des Maschinendarlehens
+
+Status: APPROVED (Nutzerentscheidung)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0030 bis D-0041 / D-0121 / CP-0161
+
+Für die konstante monatliche Maschinenrate wird der nominale Jahreszins durch zwölf geteilt. Bei 24.000 € Hauptschuld, 84 Monatsraten und 5 % / 12 Periodenzins beträgt die regelmäßige Annuität **339,21 €**. Für die Ratenrechnung wird jede Monatsrate als eine volle Monatsperiode (30/360 = 1/12) behandelt; ein gesonderter kurzer Eröffnungszinszeitraum wird nicht angesetzt und eine Wochenendverschiebung verändert den Monatsfaktor nicht. Monatliche Zinsanteile werden auf Cent gerundet und die Schlussrate gleicht den dadurch verbleibenden Rundungsrest aus. Die ersten 83 Raten betragen 339,21 €, die 84. Schlussrate 339,57 €. Fälligkeit und Zins-/Tilgungsaufteilung folgen D-0033 bis D-0041; erste Fälligkeit 29.01.2027 gemäß D-0121.
+
+---
+
+## D-0123 – Quartalsweise Anpassung des Dispositionskredit-Höchstbetrags
+
+Status: APPROVED (Nutzerentscheidung; Berechnungsstichtag und Wirksamkeitszeitpunkt durch D-0124 präzisiert)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0021 bis D-0023 / CP-0163
+
+Der Höchstbetrag des Dispositionskredits beträgt 10 % der Bilanzsumme und wird einmal pro Quartal aktualisiert. D-0124 präzisiert die Bilanzsumme zum Ende des Vorquartals als Berechnungsbasis und den ersten Tag des Folgequartals als Wirksamkeitsbeginn. Der nicht gezogene Kreditrahmen ist kein Zahlungsmittel und keine zusätzliche Passivposition; tatsächlich gezogene Beträge erhöhen Liquidität und Darlehensverbindlichkeit. Ziehungsentscheidung, Zinsanfall/-buchung und Rückführungsreihenfolge bleiben offen. Diese Festlegung ist eine Produktregel, keine allgemeine gesetzliche Kreditrahmenvorgabe.
+
+---
+
+## D-0124 – Stichtag und Wirksamkeit der quartalsweisen Kreditrahmenberechnung
+
+Status: APPROVED (Nutzerentscheidung)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0123 / CP-0165
+
+Der Höchstbetrag von 10 % der Bilanzsumme wird anhand der Bilanzsumme zum Ende des Vorquartals berechnet und gilt ab dem ersten Tag des folgenden Kalenderquartals. Für den Simulationsstart am 01.01.2027 wird mangels eines vorangegangenen Simulationsquartals die Eröffnungsbilanzsumme zum 01.01.2027 als Ausgangsbasis verwendet. Bei 55.300 € Bilanzsumme ergibt das für den Start einen Höchstbetrag von 5.530 €. Diese Berechnung ändert nicht die 30.000 € Eröffnungsliquidität oder den separaten 20.000-€-Restfinanzierungsrahmen. Ziehungs- und Rückführungsregeln bleiben offen.
+
+---
+
+## D-0125 – Manuelle Dispositionskreditziehung zur Deckung eines Zahlungsfehlbetrags
+
+Status: APPROVED (Nutzerentscheidung)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0021 / D-0123/24 / CP-0168
+
+Reicht die verfügbare Liquidität am Fälligkeitstag nicht für eine eigene fällige Vollzahlung, kann der Spieler manuell eine Dispositionskreditziehung in Höhe genau des Fehlbetrags wählen. Die Ziehung ist nur möglich, wenn der Fehlbetrag den noch freien Kreditrahmen nicht überschreitet. Bei ausreichendem Rahmen erhöht die Ziehung die Liquidität und die Darlehensverbindlichkeit um denselben Betrag; anschließend wird die Rechnung vollständig bezahlt. Es gibt keinen automatischen Draw. Lehnt der Spieler ab oder reicht der freie Kreditrahmen nicht aus, scheitert der Vollzahlungsversuch vollständig; Teilzahlung und negative Liquidität bleiben ausgeschlossen. Zinszeitpunkt/-periodik und Rückführung bleiben offen.
+
+---
+
+## D-0126 – Automatische Rückführung des Dispositionskredits aus Kundeneingängen
+
+Status: APPROVED (Nutzerentscheidung)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0110 / D-0120 / D-0123 bis D-0125 / CP-0171
+
+Geht eine Kundenzahlung ein, wird eine bestehende gezogene Dispositionskreditschuld automatisch zuerst zurückgeführt. Die Rückführung entspricht höchstens dem niedrigeren Betrag aus Kundeneingang und offener Disposchuld. Ein danach verbleibender Betrag steht als freie Liquidität zur Verfügung. Die Rückführung vermindert Zahlungsmittel und Dispositionskreditverbindlichkeit; die Kundenzahlung vermindert zugleich die Forderung. Diese Tilgung erfolgt vor den eigenen Zahlungsversuchen desselben wirksamen Simulationstags gemäß D-0120. Andere Zahlungseingänge sind von dieser Entscheidung nicht erfasst. Zinszeitpunkt/-periodik und die Rückführung außerhalb von Kundeneingängen bleiben offen.
+
+---
+
+## D-0127 – Tägliche Berechnung und monatliche Belastung des Dispositionszinses
+
+Status: APPROVED (Nutzerentscheidung)
+Quelle: Nutzerantwort im A01-Entscheidungsdialog vom 2026-10-27
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0123 bis D-0126 / CP-0174
+
+Der Dispositionszins wird täglich berechnet und am Monatsende einmalig als Sammelposten belastet. Zusammen mit D-0126 gilt: Kundeneingänge reduzieren zuerst die gezogene Disposchuld; der für jeden Tag maßgebliche gezogene Saldo ist die Grundlage der täglichen Berechnung. Tageszählbasis, Rundungszeitpunkt, exakte Reihenfolge der Zinsbuchung gegenüber anderen Finanzereignissen am Monatsende sowie Rückführung aus anderen Eingangstypen bleiben offen. Es wird kein Zinssatz ergänzt.
+
+---
+
+## D-0128 – V1-Anfangsbestand und marktbezogene Materialpreis-Basis
+
+Status: APPROVED (Nutzerentscheidung für den V1-Szenariostart)
+Quelle: Nutzerauftrag vom 2026-10-27: Anfangsvorräte für die ersten drei Aufträge festlegen und Preise nach aktuellen Marktpreisen als Basisstand fixieren.
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0090 bis D-0096 / D-0123/24 / CP-0180
+
+Für V1 bleiben 2.000 kg Stahl gemäß D-0090 erhalten. Aluminium wird auf 100 kg und Norm-/Zukaufteile werden auf 60 Stück gesetzt. Die drei Startaufträge benötigen zusammen 172 kg Stahl, 90 kg Aluminium und 56 Stück; nach vollständigem Materialverbrauch verbleiben 1.828 kg, 10 kg und 4 Stück.
+
+Die Preisbasis zum 27.10.2026 lautet: S235JR-Rundstahl blank 1,63 €/kg netto, Aluminium EN AW-5754 H111 3 mm 9,20 €/kg netto, Schraube DIN 933, Festigkeit 10.9, M10 × 30 mm 0,57 €/Stück netto (Preisstaffel 1–99 Stück). Quellen, Abrufdatum und Abgrenzungen sind in [Materialpreis-Basisstand](../market-data/material-price-baseline-2026-10-27.md) dokumentiert. Diese Händlerreferenzpreise sind feste V1-Startwerte, keine verbindlichen Angebote oder historischen Belege; das bestehende 2-%-Jahrespreismodell gilt ab 2028 weiter.
+
+Für den spielbaren V1-Eröffnungsbestand wird daraus ein Gesamtwert von 4.214,20 € angesetzt. Damit werden der frühere V1-Gesamtposten von 12.800 € und der Bezug des Stahlwerts auf einen bereitgestellten Vorjahresschluss für diesen Prototyp ersetzt; D-0090s Stahlmenge von 2.000 kg bleibt bestehen. Die sonstigen Eröffnungssalden bleiben unverändert, daher betragen Bilanzsumme und Eigenkapital-Restposition 46.714,20 € bzw. 15.214,20 €. Der Dispo-Höchstbetrag zum Start beträgt nach D-0123/24 folglich 4.671,42 € (10 % der neuen Eröffnungsbilanzsumme). Bank 30.000 €, Lieferantenverbindlichkeiten 7.500 €, Maschinendarlehen 24.000 € und der außerhalb der Bilanz geführte Restbudgetrahmen 20.000 € ändern sich nicht.
+
+Diese aktuelle Händlerpreis-Basis ist eine ausdrückliche Spielvereinfachung und keine bestätigte HGB-Anschaffungskostenbewertung. Der Prototyp darf daraus keine reale oder prüfungsfähige Handelsbilanz ableiten.
+
+## D-0129 – Deterministische Ereignis- und Periodenzuordnung für V1
+
+Status: APPROVED (A01-V1-Modellkonvention unter dem ausdrücklichen Nutzerauftrag, offene Entscheidungen für die spielbare V1 selbst zu lösen)
+Quelle: Nutzerauftrag vom 2026-10-27, nicht eindeutig geklärte V1-Entscheidungen eigenständig und wahrscheinlichkeitsbasiert festzulegen
+Bezug: MG-000 / SLG-000.2 / T-0008 / D-0011 / D-0120 bis D-0128 / CP-0182
+
+Am selben wirksamen Simulationstag werden zuerst Kundeneingänge verarbeitet und bestehende Disposchuld daraus gemäß D-0126 zurückgeführt. Danach wird die vertragliche Maschinenrate versucht; anschließend folgen eigene Lieferanten- und sonstige fällige Verbindlichkeiten in der Spielerreihenfolge. Für jeden eigenen Zahlungsvorgang gilt Vollzahlung mit Liquiditäts-Gate und gegebenenfalls manuellem Dispoabruf gemäß D-0125. Der Zahlungsstatus wird vor an diesem Tag fälliger Erinnerung/Mahnung aktualisiert; eine Mahnung wird nicht ausgelöst, wenn der Posten an diesem Tag vollständig bezahlt wurde. Bei der Maschinenverwertung zählen drei verschiedene fällige Monatsraten, die nach den vorgesehenen Versuchen unbezahlt bleiben (D-0042/43).
+
+Ein nach Wochenendverschiebung wirksames Ereignis gehört zum Monat und Geschäftsjahr seines tatsächlichen Simulationsdatums, auch wenn das geplante Datum im Vormonat lag. Der Dispozins wird täglich auf dem tatsächlich gezogenen Saldo nach Actual/365 berechnet, ohne tägliche Rundung; die Summe des Monats wird einmalig auf Cent gerundet und als Monatssammelposten gebucht. Dies ist eine vereinfachte V1-Konvention; sie behauptet keine universelle Bankbuchungspraxis und ändert weder die rechtlichen Fälligkeiten noch die bestätigten Zahlungsziele.
+
+Für die spielbare V1 wird SimTAX als eigener, fest terminierter Simulationsposten nach den priorisierten betrieblichen Verbindlichkeiten versucht. Der Spieler kann diesen Steuerposten nicht in der Lieferantenreihenfolge umsortieren. Das setzt weder eine echte steuerrechtliche Vollberechnung noch eine allgemeine gesetzliche Rangfolge aller Gläubiger um.

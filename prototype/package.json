@@ -1,0 +1,1 @@
+{"type":"module","private":true,"scripts":{"test:year":"node year-simulation-smoke.mjs"}}

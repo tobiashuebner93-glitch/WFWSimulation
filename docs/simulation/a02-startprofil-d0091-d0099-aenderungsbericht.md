@@ -1,7 +1,9 @@
 # A02-Änderungsbericht – Startprofilabgleich D-0091 / D-0099
 
-Datum: 2026-10-27  
-Agent: A02 – SIMULATION  
+**Historischer Stand:** Die hier beschriebene Vorjahresschluss-/Preisoffenheit für den Anfangsbestand wurde für den V1-Prototyp durch D-0128/CP-0181 ersetzt. Maßgeblich ist der [Materialpreis-Basisstand](../market-data/material-price-baseline-2026-10-27.md).
+
+Datum: 2026-10-27\
+Agent: A02 – SIMULATION\
 Bezug: MG-000 / SLG-000.2 / T-0008 / T-0010 / D-0091 / D-0099 / CP-0148–CP-0152
 
 Die aktive CNC-Startprofilzeile weist nun den Eröffnungsbuchwert von 0 € aus (D-0099), bei weiterhin getrennt dokumentierten ursprünglichen Anschaffungskosten von 120.000 €, Anschaffungsdatum 01.01.2019 und operativen Kapazitäten.

@@ -2,7 +2,43 @@
 
 Stand: 2026-10-27
 
-## Aktiver Kontext
+## Aktueller Goal- und Ticketabgleich (CP-0188)
+
+MG-000 ist abgeschlossen, nachdem die dokumentierten Ergebnisse der Second-Level-Goals bewertet wurden: SLG-000.1 (Agent Control Plane), SLG-000.2 (Architektur V0.2 prüfen) und SLG-000.3 (Repository-Bestand aufnehmen) sind abgeschlossen. Belege und Kriterien stehen in [CP-0188](checkpoints/CP-0188.md).
+
+T-0001 ist mit CP-0182 abgeschlossen. T-0002 ist mit CP-0006 als Architekturvorschlag abgeschlossen; CP-0029 dokumentiert die Architekturgegenprüfung. T-0020 ist mit CP-0187 abgeschlossen. Die Prüfung des Architekturentwurfs gilt als erfüllt, ist jedoch keine Architekturfreigabe: Architektur V0.2 und ADR-001 bis ADR-008 bleiben PROPOSED. Die dokumentierten Kopplungen und die noch ausstehende interaktive Recovery-Ansichtsprüfung gelten als nicht blockierende Folgearbeit, siehe CP-0187.
+
+T-0021 – Goal- und Ticketstatus gegen Checkpoints abgleichen – wurde durch A01 ausgeführt und mit CP-0188 abgeschlossen. Es sind keine aktiven Tickets unter MG-000 offen. Die zuletzt gesicherte Arbeit ist der Status-/Goal-Abgleich CP-0188; die letzte fachliche Umsetzung/Validierung ist T-0020 mit CP-0187. Die lokalen Änderungen und ungetrackten Dateien des Arbeitsbaums wurden erhalten; dieser Abgleich erzeugt keinen Commit oder Push.
+
+## Historischer Auftragsstand (T-0020; vor Abschluss CP-0187)
+
+Zum damaligen Zwischenstand war T-0020 IN_PROGRESS und bearbeitete die fachlichen/QA-Lücken des CP-0185-Reviews. T-0015–T-0019 galten noch nicht als vollständig fachlich validiert. Der Abschluss ist in CP-0187 dokumentiert. A01 führte A02/A03/A04/A05/A08/A09-Arbeit selbst aus. Scope waren Same-Day-Abhängigkeiten, Vorsteuer-SimTAX, Dunning, Wiederherstellung beschädigter lokaler Spielstände und konsistente Spezifikationen/Tests. Keine Architektur- oder Schemafreigabe. Die dort erwähnten Arbeitsbaumänderungen sind der damalige Stand.
+
+## Historischer Abschlussstatus (CP-0185; durch CP-0187 aktualisiert)
+
+T-0015 bis T-0019 sind lokal umgesetzt und als COMPLETED dokumentiert; T-0008 bleibt entsprechend dem früheren Stand bereits abgeschlossen. CP-0185 enthält A01-Ausführung der A02/A03/A05/A08/A09-Arbeit, Änderungsliste, Testlauf und Grenzen. Die fünf Tickets decken Zahlungsereignisse, Angebotswirtschaft, Preis-Szenarien, Monatsabschluss und Auftragspriorisierung/Abnahme ab. Keine neue Nutzerentscheidung, Schemaänderung, Architekturfreigabe, Commit oder Push. Browseransicht wurde wegen blockierter UI-Automation nicht visuell bestätigt.
+
+## Historischer Abschlussstand (CP-0182)
+
+T-0001, T-0008, T-0010 und T-0011 sind mit CP-0182 abgeschlossen. T-0008 schließt die P0-Koordination für die spielbare V1 mit ausdrücklich bezeichneten deterministischen Modellkonventionen ab; verbleibende historische Beleg-/V2-Fragen blockieren den Prototyp nicht. T-0010 ergänzt das A02-Startprofil und artikelbezogene Norm-/Zukaufteile; T-0011 übergibt den datierten A08-Referenzscan. T-0001 ist anhand der vorhandenen Governance-Artefakte abgenommen. Keine Schema-, Architektur- oder Produktfreigabe über D-0128/D-0129 hinaus.
+
+## Historischer Folgeauftragstand (CP-0183)
+
+T-0015 ist als PENDING angelegt: A02-Implementierung der Zahlungsereignisreihenfolge aus D-0120/D-0126/D-0129, A03-Fachreview, A05-UI-Review und A09-QA. A01 koordiniert und führt die Rollenarbeit gemäß dem früheren Nutzerauftrag selbst aus. Der aktuelle Prototyp verarbeitet Kosten-Retries, Zins, SimTAX und Maschinenrate in einer Reihenfolge, die nicht vollständig D-0129 entspricht; außerdem muss die Spielerreihenfolge eigener Zahlungen im UI wirksam sein. Keine Codeänderung wurde im Rahmen der Ticketerstellung vorgenommen.
+
+## Historischer Kontext bis CP-0182 (durch CP-0187/CP-0188 überholt)
+
+### V1-Anfangsbestand und aktuelle Materialpreis-Basis (D-0128 / CP-0181)
+
+Der Nutzer hat die drei Startaufträge als Bedarfsbasis festgelegt: 2.000 kg Stahl bleiben gemäß D-0090; Aluminium wird auf 100 kg und Normteile auf 60 Stück gesetzt. Festgehaltene Händlerreferenzpreise vom 27.10.2026 ergeben einen Startwert von 4.214,20 €. Damit werden für den V1-Szenarioprototyp der frühere Gesamtvorratswert von 12.800 € und die Vorjahresschlussannahme für den Eröffnungswert ersetzt. Aktiva/Passiva betragen 46.714,20 €, Eigenkapitalrest 15.214,20 € und Dispo-Startlimit 4.671,42 €. Preise, Bestände und Quellen stehen im [Materialpreis-Basisstand](../market-data/material-price-baseline-2026-10-27.md).
+
+Die Listenpreise sind Simulations-Proxies, keine tatsächlichen Einkaufsbelege. § 253 HGB wird im Modell nicht als erfüllt behauptet. Die Entscheidung ist in [D-0128](decision-log.md#d-0128--v1-anfangsbestand-und-marktbezogene-materialpreis-basis) und [CP-0181](checkpoints/CP-0181.md) dokumentiert.
+
+### Historischer A01-Rollenreview des V1-Prototyps (CP-0180; für Vorräte durch CP-0181 ersetzt)
+
+Am 27.10.2026 hat A01 den aktuellen Commit-Kandidaten anhand der Fachzuständigkeiten A01–A11 geprüft. Die Überprüfung ergibt: A03-Dispozinsfehler D-0023 korrigiert (relativ ×1,08 statt +8 Prozentpunkte); A02-Partnerabhängigkeitsauswahl auf normalisierte Gewichte korrigiert; V1-Feiertagsausbau ausdrücklich von D-0011-Kernumfang abgegrenzt. A05-Browseransichten und A09-Jahreslauf sind geprüft. A04/Schema, A10/Deployment und A11/Architektur wurden nicht erweitert oder freigegeben.
+
+Eine fachübergreifende Eingangsdatenlücke bleibt offen: die belegten Vorratskomponenten aus dem Vorjahresschluss fehlen. Die D-0042/43-Darlehens-Retry-/Verwertungsfolge wurde mit A02/A03/A05/A09-Rollenlogik umgesetzt und getestet. Der Prototyp ist als begrenzter Szenariolauf reviewbar; die Vorratsbewertung muss vor einer vollständigen Finanzsimulation ergänzt werden. Einzelheiten und geänderte Dateien: [CP-0180](checkpoints/CP-0180.md), [P0-Abgleich](p0-offene-parameter-koordinierung.md).
 
 Master Goal:
 MG-000
@@ -12,19 +48,23 @@ Second-Level Goals:
 - SLG-000.1 ACTIVE
 - SLG-000.2 ACTIVE / PROPOSED
 
-Aktive Tickets:
+Ticketstatus zum historischen Abschlussstand CP-0182:
 
-- T-0009 – COMPLETED; A02 hat D-0011 übernommen (CP-0150).
-- T-0011 – PENDING; A08 recherchiert belegte Markt-/Referenzwerte für die ausgewählten Warengruppen; Ergebnisse bleiben Vorschläge zur Nutzerbestätigung.
-- T-0010 – PENDING; A02 überarbeitet die Spezifikation zur ersten spielbaren Version nach T-0008, T-0011 und A03-Fachprüfung; Norm-/Zukaufteile müssen artikelbezogen statt als Durchschnittspreis-Sammelposten beschrieben werden.
-- T-0008 – IN_PROGRESS; A01 koordiniert nur tatsächlich offene Entscheidungen und Fachabstimmungen. Die outcome-kritische Frage zur Verfügbarkeit gleichentägiger Kundeneingänge vor eigenen Auszahlungen wird bis nach der Sicherung zurückgestellt.
-- T-0001
+- T-0009 – COMPLETED (CP-0150).
+- T-0011 – COMPLETED (CP-0182; A08-Referenzscan abgelegt).
+- T-0010 – COMPLETED (CP-0182; A02-Spezifikation und Änderungsbericht abgelegt).
+- T-0008 – COMPLETED (CP-0182; V1-Koordination einschließlich D-0129 konsolidiert).
+- T-0001 – COMPLETED (CP-0182).
 
-Aktueller Stand: CP-0156 ist der neueste A01-Checkpoint; CP-0155 ist der neueste fachliche Abgleich. T-0009 ist abgeschlossen. A02 hat D-0011 sowie CNC-Buchwert 0 € und die Stahlwert-Übergabe aus dem Vorjahresschluss im Startprofil berücksichtigt. A03 bestätigt 12.800 € Gesamtvorräte, aber keine Einzelgruppenbewertungen; kein Differenzwert wurde angesetzt. A04 hat das Datenmodell abgeglichen. A02/A03 ordnen Finanzereignisse Phase 8 zu; weitere Reihenfolge- und Periodendetails bleiben offen. Bestätigte Kalender-, Zahlungsziel-, Dunning-, Darlehensgrund-, SimTAX- und BAB-Regeln sind keine offenen Nutzerentscheidungen. Details und nächste Schritte stehen in der P0-Koordinierung und CP-0155.
+Damals war CP-0182 der neueste A01-Checkpoint. T-0001, T-0008, T-0010 und T-0011 waren abgeschlossen. D-0120 bis D-0129 waren in den aktiven Fachunterlagen konsolidiert. Der Dispozins im Prototyp folgte D-0023 als 8 % relativer Aufschlag auf den individuellen FKQ-Unternehmenszins; D-0127 wurde nach D-0129 mit Actual/365 und Monatsend-Rundung als ausgewiesene V1-Annahme konkretisiert. Die V1 verwendete normalisierte Partnerabhängigkeiten. D-0042/43 waren mit Wochenretry, Dispoabruf und Verwertung nach drei offenen Monatsraten umgesetzt und gestresst. D-0128 legte den V1-Szenariostartwert fest; historische Einkaufsbelege blieben ausdrücklich außerhalb der Prototypbilanz. Details stehen in [CP-0180](checkpoints/CP-0180.md), [CP-0179](checkpoints/CP-0179.md) und [V1-Modellblatt](../../prototype/V1-MODELL.md). Der spätere Stand ist CP-0187/CP-0188.
+
+### Historische Fortschreibung – Nutzerentscheidungen D-0120 bis D-0127 (CP-0160 bis CP-0177)
+
+D-0120 legt für gleiche wirksame Simulationstage fest: zuerst sämtliche fälligen Kundeneingänge, danach eigene Vollzahlungsversuche in Spielerreihenfolge mit Liquiditätsprüfung. D-0121/22 legen Darlehenstermin und Rate fest: erste Rate 29.01.2027, weitere am letzten Arbeitstag des Monats; 83 Raten zu je 339,21 € und Schlussrate 339,57 €, bis Dezember 2033. Der Periodenfaktor ist `5 % / 12` je Rate ohne kurzen Eröffnungszeitraum. A03 hat den Tilgungsplan berechnet, A02 hat die Parameter in die Spezifikation übernommen. D-0123/24 setzen den Dispositionskredit auf 10 % der Bilanzsumme am Vorquartalsende, wirksam ab Quartalsbeginn; die Startgrenze aus 55.300 € beträgt 5.530 €. D-0125 erlaubt dem Spieler eine manuelle Ziehung exakt des Fehlbetrags, soweit der freie Rahmen reicht; A02 und A03 haben die Regel dokumentiert. Kundeneingänge führen bestehende Disposchuld automatisch zuerst zurück (D-0126). D-0127 legt tägliche Zinsberechnung auf den gezogenen Saldo und einmalige Monatsendbelastung als Sammelposten fest. Der Prototyp konkretisiert D-0127 nach CP-0178 mit Actual/365 und einmaliger Cent-Rundung am Monatsende. T-0008 bleibt wegen weiterer fachlicher Punkte IN_PROGRESS.
 
 ## Historische Entscheidungs- und Checkpointnotizen
 
-Die folgenden datierten Notizen dokumentieren jeweils den damaligen Wissensstand. Für den aktuellen Stand sind die Abschnitte CP-0148 bis CP-0156 am Dateiende und die P0-Koordinierung maßgeblich.
+Die folgenden datierten Notizen dokumentieren jeweils den damaligen Wissensstand. Für den aktuellen Stand sind der CP-0180-Rollenreview und die aktuelle P0-Koordinierung maßgeblich; Abschnitte CP-0148 bis CP-0156 sind historische Zwischenstände.
 
 Nutzerentscheidung D-0037: Monatliche Darlehenszinsen werden kaufmännisch auf Cent gerundet. Nachweis: [CP-0061](checkpoints/CP-0061.md).
 
@@ -142,17 +182,17 @@ A03 hat auf Grundlage von CP-0014 die Entscheidungsgrundlage [P0-Finanzoptionen 
 
 A01 hat die zentrale [P0-Nutzerentscheidungsvorlage](p0-entscheidungs-vorlage-maschinenbau-mvp.md) für A, B, C, D, E, F, G und I erstellt. Empfehlungen sind nicht beschlossen; H bleibt gemäß CP-0014 P1. D-0010 und Architekturstatus bleiben unverändert. Nachweis: [CP-0016](checkpoints/CP-0016.md).
 
-A04 hat die angefragten P0-Regeln read-only gegen das abgeschlossene T-0006-Datenmodell geprüft. Mehrere Grundobjekte sind vorhanden, aber Kalender-/Automationsabläufe, Vollstreckungsfälle, konkrete Steuer-/Rundungsregeln, gleitender Durchschnitt, getrenntes Budget/Liquidität und operative Kapazitätsdaten sind nur teilweise oder nicht abgebildet. T-0006 bleibt abgeschlossen; das Ergebnis ist eine separate Modellabdeckungsprüfung, keine Freigabe zur Schemaänderung. Bericht und Nachweis: [P0-Abdeckungsprüfung](../database/p0-produktstand-datenmodell-abdeckung.md), [CP-0017](checkpoints/CP-0017.md). Die zentrale P0-Vorlage nennt ihre Optionen weiterhin als unentschieden; Nutzerauftrag wurde als Prüfziel, nicht als Änderung von D-0010 oder Entscheidungslog behandelt.
+A04 hat die angefragten P0-Regeln read-only gegen das abgeschlossene T-0006-Datenmodell geprüft. Mehrere Grundobjekte sind vorhanden, aber Kalender-/Automationsabläufe, Vollstreckungsfälle, konkrete Steuer-/Rundungsregeln, gleitender Durchschnitt, getrenntes Budget/Liquidität und operative Kapazitätsdaten sind nur teilweise oder nicht abgebildet. T-0006 bleibt abgeschlossen; das Ergebnis ist eine separate Modellabdeckungsprüfung, keine Freigabe zur Schemaänderung. Bericht und Nachweis: [P0-Abdeckungsprüfung](../database/p0-produktstand-datenmodell-abdeckung.md); CP-0017 (Checkpoint-Datei im Checkout nicht vorhanden). Die zentrale P0-Vorlage nennt ihre Optionen weiterhin als unentschieden; Nutzerauftrag wurde als Prüfziel, nicht als Änderung von D-0010 oder Entscheidungslog behandelt.
 
-Letzter Checkpoint: [CP-0017](checkpoints/CP-0017.md).
+Letzter Checkpoint: CP-0017 (Checkpoint-Datei im Checkout nicht vorhanden).
 
 A02 hat den vorgegebenen P0-Produktstand aus Simulationssicht auf Prozesskonsistenz und deterministische Ausführbarkeit geprüft. Befunde und Ergänzungsvorschläge stehen in [P0-Festlegungen – Simulationsprüfung](../simulation/p0-festlegungen-simulationspruefung.md); Nachweis: [CP-0018](checkpoints/CP-0018.md). A02-/A03-Spezifikationen, D-0010, Datenmodell und Architekturstatus wurden nicht geändert. Operative Folgeklärungen bleiben offen; keine Architektur- oder Implementierungsfreigabe.
 
 A03 hat die Finanzkonsistenz des vorgegebenen P0-Produktstands geprüft und in [P0-Finanzkonsistenzprüfung](../accounting/p0-finanzkonsistenzpruefung.md) dokumentiert; die Finanzspezifikation verweist auf die Konkretisierung. Nachweis: [CP-0019](checkpoints/CP-0019.md). Offene Start-/Rundungs-/Retry-/Eskalationsparameter bleiben Folgearbeit; D-0010 und Architekturstatus bleiben unverändert.
 
-Der Nutzer hat die Eröffnungsbilanz zum 01.01.2027 einschließlich CNC-Buchwert, Maschinendarlehen und Eigenkapital als Restposition festgelegt. A03 hat Bilanzabgleich und Darlehensoptionen in der Finanzspezifikation dokumentiert; Nachweis: [CP-0020](checkpoints/CP-0020.md). Tilgungsart und weitere Darlehensparameter bleiben offen.
+Der Nutzer hat die Eröffnungsbilanz zum 01.01.2027 einschließlich CNC-Buchwert, Maschinendarlehen und Eigenkapital als Restposition festgelegt. A03 hat Bilanzabgleich und Darlehensoptionen in der Finanzspezifikation dokumentiert; CP-0020 wird als historischer Nachweis genannt, seine Checkpoint-Datei ist im Checkout nicht vorhanden und wurde nicht rekonstruiert. Tilgungsart und weitere Darlehensparameter bleiben offen.
 
-Letzter Checkpoint: [CP-0020](checkpoints/CP-0020.md).
+Letzter Checkpoint: CP-0020 (Checkpoint-Datei im Checkout nicht vorhanden; nicht rekonstruiert).
 
 A02 hat die vom Nutzer bestätigten Tagesphasen-, F3-, Zahlungs- und G3-Regeln in die Simulationsspezifikation übernommen und ein deterministisches Startauftragsprofil mit drei vollständigen Aufträgen sowie Ressourcenstunden ergänzt. Bericht: [A02-P0-Konkretisierung](../simulation/a02-p0-konkretisierung-aenderungsbericht.md); Nachweis: [CP-0021](checkpoints/CP-0021.md). Offene Kalender-/Finanzparameter bleiben markiert. D-0010, A03-Spezifikation, Datenmodell und Architekturstatus bleiben unverändert; keine Implementierungsfreigabe.
 
@@ -688,3 +728,42 @@ Die aktive Dokumentationsvalidierung gegen AGENTS.md, Agentenstruktur, Goals, Ti
 Checkpoint: [CP-0156](checkpoints/CP-0156.md).
 
 Letzter Checkpoint: [CP-0156](checkpoints/CP-0156.md).
+## A01 – Browser-V1-Prototyp (CP-0157)
+
+Der Nutzer hat nach dem bestätigten Push A01 beauftragt, die A02-/A03-/A05-/A09-Agentenarbeit zunächst selbst auszuführen und eine erste spielbare, mobiloptimierte V1 möglichst schnell zu erstellen. Neuer Koordinierungsauftrag: T-0012 (IN_PROGRESS); T-0008 bleibt wegen noch offener Parameter aktiv, T-0010 bleibt separate Spezifikationsarbeit. Keine Architekturfreigabe.
+
+Der Prototyp unter `prototype/` umfasst Simulationskern, Finance-Reducer, mobile Oberfläche und lokale Speicherung. Bestätigte Startwerte und Regeln werden genutzt; Auftragsnettopreise sind explizite Szenariowerte. Kosten, unbekannte Vorratsbewertungen, individuelle Start-OP-Fälligkeiten und nicht bestätigte Darlehenswerte werden nicht erfunden. CP-0157 dokumentiert Umfang und Vorbehalte.
+
+Syntax- und HTTP-Auslieferungsprüfung sind erfolgreich. Die angeforderte echte Browser-/Mobilprüfung ist noch offen: verfügbare CUA-Umgebung listete keinen steuerbaren Browser, und Edge-Zugriff wurde wegen unbekannter aktueller URL sicherheitshalber gestoppt. Nächster Schritt ist eine tatsächliche Browserprüfung, dann A09-End-to-End-Review. Vor Nutzerfragen zum Zahlungsereignis recherchiert A01 gemäß Auftrag Gesetz, Branchenregeln und Forenberichte; Nutzerentscheidung bleibt abschließend.
+
+Checkpoint: [CP-0157](checkpoints/CP-0157.md).
+
+### CP-0157-Fortschreibung – A09-QA
+
+Der lokale Simulations-/Finanz-Ende-zu-Ende-Lauf sowie ein separater DOM-Stummel-UI-Eventfluss sind erfolgreich. Der zuletzt ausgeführte UI-Fluss bestätigt Szenariopreiseingabe, automatische Rechnungserstellung, Zahlung und Auftragsabschluss; localStorage wurde befüllt. Das ist keine echte Browser-/Mobilprüfung. CUA bietet hier weiterhin keine steuerbare Browserinstanz; T-0012 bleibt deshalb IN_PROGRESS. Keine offenen Nutzerentscheidungen wurden getroffen oder gestellt.
+
+## Historischer A08-Recherche-/Frageübergang – ersetzt durch D-0120
+
+A08-Recherche zur offenen CP-0155-Frage ist unter [a08-same-day-zahlungsreihenfolge-recherche.md](a08-same-day-zahlungsreihenfolge-recherche.md) abgelegt. BGB §§ 675s, 675t und 675n sowie das EPC-SCT-Regelwerk definieren Ausführungsfristen, Verfügbarkeit nach tatsächlichem Zahlungseingang und Geschäftstage/Annahmeschluss, aber keine allgemeine Reihenfolge taggleicher unabhängiger Eingänge und Ausgänge auf dem Firmenkonto. Bundesbankangaben und anekdotische Forumsberichte belegen unterschiedliche Cut-offs/Buchungsabläufe. Keine Quelle rechtfertigt eine universelle Priorität.
+
+Damals war die Entscheidung noch offen. Der Nutzer bestätigte später „Kundeneingänge zuerst“, dokumentiert als D-0120; die Recherchevorlage wurde in T-0020 als abgeschlossen markiert. Maßgeblich sind D-0120 und der T-0020-Stand in CP-0187.
+
+## A01 – Monatsabschluss im Browser-V1-Prototyp (CP-0158)
+
+A02/A03/A05 haben den Monatsabschluss samt Finanzbericht in `prototype/` umgesetzt. Pro Monat werden Rechnungen nach Rechnungsdatum, Kundeneingänge nach Zahlungsdatum, Cash am Monatsanfang/-ende sowie Lieferung und Auftragsabschluss summarisch gezeigt. Fehlende BAB-, Kosten- und Vorratswerte sowie Margen bleiben ausgeklammert. Syntax-, Direktsummen- und HTTP-Prüfungen bestanden. Ein echter Browser-/Mobilcheck ist noch nicht erfolgt: CUA beendete Edge-Zugriff wegen nicht sicher bestimmbarer aktueller Browser-URL; `open_in_codex` meldete nur queued. T-0012 bleibt IN_PROGRESS. Checkpoint: [CP-0158](checkpoints/CP-0158.md).
+
+## A01 – Browser-/Mobil-QA und T-0012-Abschluss (CP-0159)
+
+Der echte In-App-Browserlauf bei 390×844 prüfte Startwerte, Mobile-Nav, Wochenlauf, Lieferung/Abnahme, Rechnung (1.000 € netto/190 € SimTAX), Zahlung am 21.01., G3-Auftragsabschluss, Januarabschluss und Speicherung über Reload. Die vorher nicht reagierende Bottom-Nav wurde behoben. Das Browserfenster ist sauber auf den Start 01.01.2027 zurückgesetzt und als Deliverable offen. T-0012 ist COMPLETED; T-0008 bleibt IN_PROGRESS mit fachlich offenen Nutzerentscheidungen. Details: [CP-0159](checkpoints/CP-0159.md). Kein Commit/Push.
+
+## Wirtschaftssystem-Audit (CP-0184, 2026-10-27)
+
+A01 hat den Ticketbestand, den Prototyp und den 365-Tage-Smoke geprüft. Im aktiven Goal ist T-0015 das einzige offene Ticket aus dem bisherigen Board. Das Audit ist in [V1-Wirtschaftssystem-Audit](audit-wirtschaftssystem-v1-2026-10-27.md) dokumentiert. T-0015 bleibt erste Implementierungspriorität. Neu angelegt: T-0016 Angebots-/Preisverhandlung und Auftragswirtschaft, T-0017 Markt-/Materialpreispfade, T-0018 Monatsabschluss-/Finanz-Reconciliation, T-0019 Auftragspriorisierung/Abnahme. Alle stehen PENDING; keine Umsetzung oder Abnahme wird vorweggenommen.
+
+Der 365-Tage-Smoke läuft bis 01.01.2028. Er zeigt 23 Chancen, 12 Lieferungen und 9 geschlossene Aufträge; die drei Startaufträge sind geliefert/abgerechnet, aber nicht geschlossen. Das ist keine Profitabilitäts- oder vollständige Zahlungskontrolle. Destatis-PPI und HERMLE-Konzernberichte dienen als Größenordnungs-/Marktindikatoren, nicht als Kleinbetriebszielwerte oder konkrete Beschaffungspreise. Kein Commit/Push. Vorhandene lokale Änderungen blieben erhalten.
+
+## T-0020-Abschluss – V1-Finanz- und Auftragsablauf (CP-0187)
+
+T-0020 ist abgeschlossen. A02 korrigierte die Same-Day-Fortsetzung und die V1-Kalenderdarstellung; A03 dokumentierte Vorsteuer-/SimTAX-Kreditübertrag und Dunning; A04 synchronisierte das logische Datenmodell; A05 prüfte Recovery- und mobile Finance-Anzeigen; A08 markierte die durch D-0120 geschlossene Recherchefrage; A09 führte gezielte Regressionen und den 365-Tage-Lauf aus; A10 prüfte Start-/Testanleitung; A11 dokumentierte den Modulzyklus als technische Schuld. Ergebnisse stehen im [A01-Abschlussbericht](a01-t0020-abschlussbericht.md), [A09-QA-Bericht](a09-t0020-qa-bericht.md), [A11-Kopplungsreview](../architecture/a11-t0020-prototype-kopplungsreview.md) und [CP-0187](checkpoints/CP-0187.md).
+
+Tests bestanden: gezielte Regressionen für Same-Day-Arbeitsgänge, SimTAX-Ausgang/Vorsteuer samt Guthabenübertrag, Dunning/Retry, Zahlung vor Mahnung und Finanzmigration; Jahreslauf bis 01.01.2028 mit 12 Abschlüssen, drei geschlossenen Startaufträgen und ohne Cash-Reconciliation-Fehler. `git diff --check` bestanden (nur LF/CRLF-Hinweise). Branch `main` auf `62dbc71`; vorhandene lokale Änderungen und ungetrackte Dateien blieben erhalten. Kein Commit/Push. Manuelle Browser-/Recovery-Bedienung wurde nicht ausgeführt; Schema-/Architekturfreigabe bleibt aus.
