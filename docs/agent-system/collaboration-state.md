@@ -2,6 +2,12 @@
 
 Stand: 2026-10-27
 
+## Aktueller Sicherungs-Commit (CP-0189)
+
+Der in CP-0188 abgeglichene Repository-Stand wurde lokal auf `main` gesichert: Commit `43981f2e435385b8d49dc51ad8518e454bd45c7b` (`chore: secure validated project state with CP-0188`). Der Commit enthält 66 geprüfte Dateien unter `docs/` und `prototype/`, einschließlich der T-0015–T-0020-Nachweise, des Prototyps und CP-0188. Regressionen, Jahres-Smoke-Test, Linkprüfung und `git diff --cached --check` bestanden. Unmittelbar nach dem Commit war der Arbeitsbaum sauber; `main` lag einen Commit vor `origin/main`. Kein Push. Details: [CP-0189](checkpoints/CP-0189.md).
+
+Die nächste lokale Fortschreibung hält den Commit-Abgleich selbst fest. Sie ist dokumentarisch und ändert keine Produktentscheidung, Architekturfreigabe oder Schema.
+
 ## Aktueller Goal- und Ticketabgleich (CP-0188)
 
 MG-000 ist abgeschlossen, nachdem die dokumentierten Ergebnisse der Second-Level-Goals bewertet wurden: SLG-000.1 (Agent Control Plane), SLG-000.2 (Architektur V0.2 prüfen) und SLG-000.3 (Repository-Bestand aufnehmen) sind abgeschlossen. Belege und Kriterien stehen in [CP-0188](checkpoints/CP-0188.md).
