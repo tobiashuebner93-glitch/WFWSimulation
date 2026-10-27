@@ -1,6 +1,30 @@
+## Cross-Agent-Auditstand (CP-0197)
+
+A02/A09/A11 bestätigen drei konkrete V1-Inkonsistenzen: Konkurrenzantworten liegen laut Datum in der Zukunft, werden aber sofort gezeigt und gewertet; gelieferte Aufträge belasten weiter den Anfrage-Kapazitätsabzug; verlorene Angebote können als vereinbarter Preis dargestellt werden. A03 bestätigt die Finanzlogik ohne Spezifikationskonflikt, weist aber erhebliche Unterdeckung bei nur einem gewonnenen Auftrag aus. A04 meldet eine nicht blockierende logische Datenmodelllücke für persistente Konkurrenzangebots-Snapshots. A05 fand im statischen UI-Review keinen Ablaufkonflikt, hat den „Vereinbarter Auftragspreis“-Zweig eines verlorenen Angebots jedoch nicht identifiziert; A02/A09-Befund wird durch den aktuellen Code bestätigt. A06/A07 fanden keinen Rollenkonflikt; A08 bewertet Konkurrenzwerte als synthetisch korrekt gekennzeichnet, empfiehlt aber D-0136 als historischen Monatsstand kenntlich zu machen; A10 sieht keine Infrastrukturänderung. Keine Architektur-/Schemafreigabe, kein Commit/Push. Folgeauftrag T-0028 PENDING; CP-0197.
+
+## Aktueller Stand MG-001 / T-0027 (CP-0196)
+
+Die Marktanfragen laufen jetzt wöchentlich statt zweimal monatlich; ausgewertet wird am ersten Arbeitstag der Woche. Die Einladungs- und Zuschlagsregeln aus D-0136 bleiben bestehen, mit der Kundenbindungs-Kalibrierung D-0138. Die Einladung wird bei hoher offener Auftragslast gedämpft. Im Jahreslauf kamen 25 Angebote herein, 22 wurden mit Standardpreisen gewonnen; der Cashbestand blieb positiv und unbezahlte Kosten gab es nicht. T-0027 ist mit CP-0196 abgeschlossen. T-0022 bleibt wegen übriger Standort-/Browserpunkte IN_PROGRESS. Kein Commit oder Push.
+
+## Aktueller Stand MG-001 / T-0026 (CP-0195)
+
+Kundenanfragen werden selektiv verteilt. Ruf, das aus abgegebenen Preisen fortgeschriebene Preisprofil und Kapazitätsbelastung bestimmen, ob der Betrieb eingeladen wird. Für offene Angebote werden ein bis zwei der drei fiktiven Wettbewerber mit Preis, Reputation und modellierter Lieferzeit angezeigt. Der Zuschlag wird beim Einreichen anhand von Preis und Ruf deterministisch ermittelt. D-0136 kennzeichnet Formel, Quote-Spanne und Werte als synthetische V1-Spielannahmen. T-0026 ist mit CP-0195 abgeschlossen. T-0022 bleibt wegen ausstehender Standort-/Browserpunkte IN_PROGRESS. Kein Commit oder Push.
+
+## Aktueller Stand MG-001 / T-0025 (CP-0194)\n\nA01 hat die Zeitarbeitsverhandlung als Fachrollen A02/A03/A05/A09 umgesetzt. Vor der ersten Buchung wird einer von drei Agenturverträgen ausgewählt: 0 €/Monat + 55 €/h, 120 €/Monat + 43 €/h oder 300 €/Monat + 31 €/h. Der Grundpreis wird einmal pro genutztem Monat, der Stundenpreis je gebuchter Stunde berechnet. Nach Annahme sind Konditionen fix und in Buchungen gespeichert. Alte Spielstände behalten ihre 45-€/h-Regel. T-0025 ist mit CP-0194 abgeschlossen; T-0022 bleibt wegen der noch offenen übrigen Standort-/Browserpunkte IN_PROGRESS. Kein Commit oder Push.\n\n## Aktueller Stand MG-001 / T-0024 (CP-0193)
+
+A04s logisches Datenmodell wurde gegen D-0120 bis D-0129 und D-0134 synchronisiert. Die zuvor veralteten Offenmarkierungen zu Annuität/Rate, erster Darlehenstermin, Dispolimit und -bedienung, Ereignisreihenfolge und Periodenzuordnung sowie die Feiertagsaussage bei F3 sind berichtigt. Es wurden keine Schema- oder Architekturänderungen vorgenommen. T-0024 ist mit CP-0193 abgeschlossen; T-0022 bleibt IN_PROGRESS. Das A10-Risiko des PR-Workflows ist in goals.md als nicht aktives V2-Ziel erfasst.
+
 # Collaboration State – WFWSimulation
 
 Stand: 2026-10-27
+
+## Abschluss MG-001 / SLG-001.1 (CP-0199)
+
+T-0022 ist abgeschlossen. Der Nutzer hat die manuellen Browserprüfungen für Speichern/Laden, dauerhaft erreichbare Navigation bei hoher Zoomstufe, Standortwechsel, Preissperre nach Angebotsannahme und Mobilansicht durchgeführt und keine Fehler gefunden. Die automatisierten Playtest- und Finanzregressionen, der Marktregressionstest, der Einjahres-Smoke sowie `git diff --check` waren bereits bestanden. Zusammen mit T-0028/CP-0198 sind damit keine offenen Tickets unter MG-001 / SLG-001.1 verblieben. MG-001 und SLG-001.1 sind in goals.md als COMPLETED gekennzeichnet. Kein Commit oder Push. Details: [CP-0199](checkpoints/CP-0199.md).
+
+## Aktueller Cross-Agent-Befund (CP-0198)
+
+T-0028 ist abgeschlossen. Gleichzeitige Konkurrenzangebote tragen den Anfrage-/Eingangstag; gelieferte Aufträge geben Produktionskapazität frei; verlorene Preise werden nicht als Vertragswert oder Zahlungsziel geführt. Der Qualitätswert ist in der UI als Ruf-Proxy gekennzeichnet. Das logische Datenmodell enthält Anfragebeteiligung, unveränderlichen Quote-Snapshot und Zuschlagsergebnis als Anforderungen, ohne Schema- oder Architekturfreigabe. Der Ein-Auftrag-Stresslauf ist wiederholbar: 1 von 25 Angeboten gewonnen, Jahresendcash 306,08 €, offene Kosten 116.978 €, acht Retry-Fehlschläge, `gameLost=true`, Maschinenverwertung ausgelöst. Dies dokumentiert ein wirtschaftliches Risiko des Szenarios; es wurde keine neue Finanzregel festgelegt. Regressionen bestanden; kein Commit/Push. Details: [CP-0198](checkpoints/CP-0198.md).
 
 ## Aktueller Sicherungs-Commit (CP-0189)
 
@@ -773,3 +797,39 @@ Der 365-Tage-Smoke läuft bis 01.01.2028. Er zeigt 23 Chancen, 12 Lieferungen un
 T-0020 ist abgeschlossen. A02 korrigierte die Same-Day-Fortsetzung und die V1-Kalenderdarstellung; A03 dokumentierte Vorsteuer-/SimTAX-Kreditübertrag und Dunning; A04 synchronisierte das logische Datenmodell; A05 prüfte Recovery- und mobile Finance-Anzeigen; A08 markierte die durch D-0120 geschlossene Recherchefrage; A09 führte gezielte Regressionen und den 365-Tage-Lauf aus; A10 prüfte Start-/Testanleitung; A11 dokumentierte den Modulzyklus als technische Schuld. Ergebnisse stehen im [A01-Abschlussbericht](a01-t0020-abschlussbericht.md), [A09-QA-Bericht](a09-t0020-qa-bericht.md), [A11-Kopplungsreview](../architecture/a11-t0020-prototype-kopplungsreview.md) und [CP-0187](checkpoints/CP-0187.md).
 
 Tests bestanden: gezielte Regressionen für Same-Day-Arbeitsgänge, SimTAX-Ausgang/Vorsteuer samt Guthabenübertrag, Dunning/Retry, Zahlung vor Mahnung und Finanzmigration; Jahreslauf bis 01.01.2028 mit 12 Abschlüssen, drei geschlossenen Startaufträgen und ohne Cash-Reconciliation-Fehler. `git diff --check` bestanden (nur LF/CRLF-Hinweise). Branch `main` auf `62dbc71`; vorhandene lokale Änderungen und ungetrackte Dateien blieben erhalten. Kein Commit/Push. Manuelle Browser-/Recovery-Bedienung wurde nicht ausgeführt; Schema-/Architekturfreigabe bleibt aus.
+
+## A01 – Manuelle Playtestfehlerkorrektur (CP-0190)
+
+Nach dem vom Nutzer bestätigten Push führte A01 die Playtestfehler über die Fachrollen A02/A03/A05/A09/A11 selbst aus. Neues Ziel MG-001 / SLG-001.1 und Ticket T-0022 sind aktiv. Behoben: expliziter JSON-Speichern-/Laden-Export zusätzlich zum lokalen Autosave; feste Bereichsnavigation an jeder Fensterbreite/Zoomstufe; Jahressimulation aus der Spieloberfläche entfernt (Jahres-Smoke-Test bleibt als Agentenwerkzeug); Disporahmen wird als Bankfazilität mit gezogenem Betrag und Limit beschriftet; Zeitarbeit und Ausbilderanwärter berücksichtigen Raumkapazität, Erkrankte werden vor der Personalbegrenzung herausgefiltert; bestätigter Preis/Zahlungsziel werden read-only und dienen als Rechnungsquelle; Raumänderung erfolgt nur über Umzug; Ausbildung setzt AEVO-Weiterbildung und Platzkapazität voraus; Urlaubsplanung wird erst am Urlaubstag als Verbrauch gezählt.
+
+Die V1-Rechtsmodellierung ordnet kundenspezifische bewegliche CNC-Fertigungsaufträge als Werklieferung gemäß § 650 BGB ein. Die automatische Fünf-Arbeitstage-Abnahme bleibt ausdrücklich eine Spielkonvention ohne pauschale Aussage zur gesetzlichen Abnahme. Immobilienpreise und Flächen sind Szenarioannahmen. Kaufimmobilien werden vereinfacht ohne Abschreibung/Nebenkosten zum Szenariobuchwert fortgeführt.
+
+Prüfungen unter Node v24.22.1: neue `playtest-fixes-regressions.mjs`, `t0020-regressions.mjs` und `year-simulation-smoke.mjs` bestanden. Der Jahreslauf endete am 01.01.2028, erzeugte 23 Marktchancen / 10 Angebote, schloss alle drei Startaufträge, buchte eine Zeitarbeitskraft und meldete keine Reconciliation-Fehler. `git diff --check` ohne Whitespacefehler; LF/CRLF-Hinweise bleiben. Interaktive Browserprüfung nach diesen Änderungen wurde nicht ausgeführt. Kein Commit/Push; Arbeitsbaum enthält lokale Korrekturen. Details: [CP-0190](checkpoints/CP-0190.md).
+
+Letzter Checkpoint: [CP-0190](checkpoints/CP-0190.md).
+
+## Cross-Agent-Konfliktaudit (CP-0191)
+
+A01 ließ alle Fachrollen read-only prüfen; Ergebnisse und konkrete Fundstellen sind in [CP-0191](checkpoints/CP-0191.md) dokumentiert. Es wurden weder Produktdateien noch bestehende Änderungen angepasst. T-0022 bleibt IN_PROGRESS wegen fehlender interaktiver Browserprüfung. Das Audit fand einen reproduzierbaren Zeitarbeitsindexfehler, veraltete A02-/Frontend-Dokumentation, eine Finanzzustandsmutation in der UI und logische Datenmodell-Lücken. A04s Befunde erfordern keine Schemafreigabe. Feiertagsbehandlung bedarf zusätzlich einer eindeutigen Auflösung zwischen D-0011 und späterem V1-Modelltext.
+
+Zum Auditzeitpunkt CP-0191 war [T-0023](ticket-board.md) als PENDING angelegt und an A02, A03, A04, A05 und A09 adressiert. Der Abschluss ist mit CP-0192 dokumentiert. Keine Nutzerentscheidung oder Rückfrage war erforderlich. Kein Commit/Push.
+
+Letzter Audit-Checkpoint: [CP-0191](checkpoints/CP-0191.md).
+
+## T-0023-Abschluss – Cross-Agent-Konflikte und Lücken (CP-0192)
+
+A01 führte die im Auftrag adressierten Rollen selbst aus. T-0023 ist COMPLETED; T-0022 bleibt IN_PROGRESS, da dessen vollständiger interaktiver Browser-Playtest weiterhin aussteht.
+
+- **A02 Simulation:** Der temporäre Mitarbeiterfilter nutzt nun die für den aktuellen Tag gefilterte und kapazitätsbegrenzte Einsatzliste. A02-Spezifikation und Kapazitätsabschnitt wurden gegen Urlaub, Krankheit, Weiterbildung und Feiertagskalender aktualisiert. D-0011 bleibt historischer Kern; D-0134 erklärt die spätere konservative V1-Kalenderkonvention ausdrücklich als Spielregel.
+- **A03 Accounting/Finance:** Kauf/Verkauf eines Standorts wird über `recordFacilityRelocation` im Finance-Modul gebucht. Cash, Cashbewegungen und Immobilien-Szenariowert werden gemeinsam aktualisiert; die UI mutiert keine Finanzsalden direkt. Der Immobilienwert ist separat sichtbar. A03 dokumentiert die vereinfachte Szenariobuchung und die Grenze zum nicht dynamischen vollständigen Abschluss.
+- **A04 Database:** Logische Anforderungen zu Facility-/Flächenbindung, Umzug, Abwesenheit, täglicher Zeitarbeit und Ausbildung/Ausbilderqualifikation ergänzt. Keine Schemaänderung und keine Architekturfreigabe.
+- **A05 Frontend:** V1-Modellblatt korrigiert zu Urlaubverbrauch, Miet-/Flächenänderung nur durch Standortwechsel, Weiterbildung/Ausbildung und AEVO-Spielvoraussetzung; automatische Abnahme in UI und Dokumentation klar als Spielregel bezeichnet.
+- **A09 QA:** Neue Mehrtages-Mehrfachbuchungsregression zeigt zwei Zeitarbeitseinsätze an getrennten Tagen mit zwei tatsächlichen Arbeitseinträgen und Lieferung am Folgetag. Property-buy/sell/insufficient-cash Tests und statische Prüfung der UI-Finance-Grenze ergänzt.
+
+D-0134 verwendet für den Prototyp die Vereinigungsmenge hinterlegter gesetzlicher Länderfeiertage als konservative einheitliche Spielkalenderbasis für Simulationstagverschiebungen. Dies ersetzt keine standortbezogene Prüfung. Rechtsquellen: ArbZG § 9, BGB § 193 und AO § 108 (Links in Decision Log und CP-0192).
+
+Verifikation: `playtest-fixes-regressions.mjs`, `t0020-regressions.mjs`, `year-simulation-smoke.mjs`, `node --check` und `git diff --check` bestanden. Jahreslauf bis 01.01.2028, drei Startaufträge geschlossen, 12 Monatsabschlüsse, keine Reconciliation-Fehler. Die sichtbare lokale Browseransicht auf `localhost:8001` zeigte Speichern/Laden und die Bereiche Aufträge, Planung, Finanzen, Netzwerk und Lernen; eine interaktive Klickprüfung der gesamten Umzugs-/Mobile-Flows wurde nicht ausgeführt. Diese verbleibt unter T-0022.
+
+Offene Grenzen: keine vollständige dynamische HGB-Bilanz (nur Immobilien-Szenariowert separat); keine Abschreibung, Marktwert-/Transaktionskosten oder Standortkalenderermittlung für ein konkretes Bundesland; interaktive Browser-QA bleibt T-0022. Keine Schema-/Architekturfreigabe, kein Commit/Push. Bestehende lokale Änderungen aus CP-0190/0191 blieben erhalten.
+
+Letzter Checkpoint: [CP-0192](checkpoints/CP-0192.md).

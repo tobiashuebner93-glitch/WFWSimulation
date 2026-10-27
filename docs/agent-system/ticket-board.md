@@ -2,9 +2,116 @@
 
 ## Aktive Tickets
 
-Keine aktiven Tickets unter MG-000. Der Goal-/Ticketabgleich T-0021 wurde im Rahmen dieses Auftrags abgeschlossen; Nachweis: [CP-0188](checkpoints/CP-0188.md).
+### T-0028 – Cross-Agent-Befunde zu Angebotszeit, Kapazität und Liquidität bereinigen
+
+Status: COMPLETED (A01 hat Fachrollen intern abgearbeitet; 2026-10-27; CP-0198)
+Master Goal: MG-001
+Second-Level Goal: SLG-001.1
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A02 SIMULATION, A03 ACCOUNTING_FINANCE, A04 DATABASE, A05 FRONTEND, A09 QA
+Priorität: HIGH
+
+Aufgabe:
+- A01-Produktkonvention: Konkurrenzgebote liegen als gleichzeitige Vergleichsangebote am Tag der Spieleranfrage vor. A02 setzt responseDate auf das Anfragedatum; A05 bezeichnet es als Eingangsdatum statt als künftige Antwortfrist.
+- A02: Kapazitätsabzug nur aus noch nicht gelieferten generierten Aufträgen berechnen, nicht aus bereits gelieferter Produktion, deren Forderung noch offen ist.
+- A05: Bei MARKT_VERLOREN den eingereichten Preis als verlorenes Angebot zeigen, nicht als vereinbarten Auftragspreis oder Vertragszahlungsziel. A09 ergänzt Regressionen.
+- A05/A02: Qualitätswert als V1-Proxy für Wettbewerber-Reputation kenntlich machen.
+- A04: Logische Spezifikation um Anfragezuordnung, Konkurrenzangebots-Snapshot und Zuschlag ergänzen; keine physische Schemaänderung oder Freigabe.
+- A03/A09: Ein-Auftrag-Stresslauf wiederholbar prüfen und tatsächlichen Spielverlust-/Retrystatus ausweisen. Keine unbelegte Finanz- oder Insolvenzregel ergänzen.
+- A01: D-0136 als historischen Ausgangsstand kennzeichnen; D-0137 als gültige wöchentliche Frequenzreferenz verlinken.
+
+Akzeptanz:
+- Verfügbarkeit, Antwortdatum und Zuschlag widersprechen sich nicht.
+- Produktionskapazität wird mit Lieferung frei.
+- Verlorene Angebote sind klar von angenommenen Verträgen getrennt.
+- Ein-Auftrag-Liquiditätsrisiko ist mit Cash, unbezahlten Posten und Retry-/Spielverluststatus reproduzierbar dokumentiert.
+- Logische Datenmodellanforderungen sind vollständig, ohne Schemaänderung.
+- gezielte Regressionen, bestehende Regressionen und git diff --check bestanden.
+
+Abschluss: Konkurrenzangebote haben das Anfragedatum als Eingangsdatum; gelieferte Aufträge zählen nicht länger als Produktionslast; verlorene Gebote bleiben vom Vertragswert getrennt und die UI kennzeichnet den abgegebenen, nicht angenommenen Preis. Der Wettbewerberruf ist sichtbar als Qualitäts-Proxy beschriftet. Das logische Datenmodell umfasst Anfragebeteiligung, Quote-Snapshot und Zuschlagsergebnis ohne physische Schemaänderung. Regressionen und Ein-Auftrag-Stresstest sind in CP-0198 dokumentiert. Keine Finanzregel ergänzt; Ein-Auftrag-Strategie löst nach acht Fehlversuchen Spielverlust und Maschinenverwertung aus. Kein Commit/Push.
+
+### T-0027 – Marktanfragen und Spielerangebote wöchentlich erzeugen
+
+Status: COMPLETED (A01 intern als A02/A05/A09 ausgeführt; 2026-10-27; CP-0196)
+Master Goal: MG-001
+Second-Level Goal: SLG-001.1
+Owner: A01 – MASTER_ORCHESTRATOR (Fachrollen A02/A05/A09 intern abgedeckt)
+Priorität: HIGH
+
+Aufgabe: Zu seltene Marktanfragen erhöhen, damit genügend wählbare Angebote entstehen. Konkurrenzselektion und Ruf-/Preisabhängigkeit aus D-0136 erhalten; hohe gleichzeitige Auftragslast soll den Zufluss dämpfen.
+
+Abschluss: Eine Anfrage pro Simulationswoche am ersten Arbeitstag. Einladungsprüfung und Kapazitätsabzug bleiben aktiv; je Spieleranfrage ein bis zwei Konkurrenzbieter. Jahres-Smoke und Marktregression bestanden. Entscheidungen D-0137/D-0138, Nachweis CP-0196. Keine Schemaänderung, kein Commit/Push.
+
+### T-0026 – Selektive Konkurrenzangebote und Zuschlagslogik umsetzen
+
+Status: COMPLETED (A01 intern als A02/A05/A09 ausgeführt; 2026-10-27; CP-0195)
+Master Goal: MG-001
+Second-Level Goal: SLG-001.1
+Owner: A01 – MASTER_ORCHESTRATOR (Fachrollen A02/A05/A09 intern abgedeckt)
+Priorität: HIGH
+
+Aufgabe: Kundenanfragen nicht an alle Unternehmen verteilen. Sichtbare Konkurrenzangebote für offene Spielerangebote abbilden. Einladung und Zuschlag sollen von Reputation und Preis abhängen; das Verhalten bleibt reproduzierbar und mobil lesbar.
+
+Abschluss: Der Betrieb erhält Anfragen anhand von Ruf, bisherigem Preisprofil und Kapazitätsbelastung; pro Anfrage bieten ein bis zwei Wettbewerber. Preis, Ruf und modellierte Lieferzeit werden angezeigt. Der Zuschlag vergleicht eigenes Angebot und Rivalen deterministisch. Preisprofil wird aus eigenen Geboten fortgeschrieben. Regression, bisherige Playtest-Regressionen und Jahres-Smoke bestanden. Entscheidung D-0136; Nachweis CP-0195. Keine Schemaänderung, kein Commit/Push.
+
+### T-0022 – V1-Playtestfehler beheben und Browserbedienung sichern
+
+Status: COMPLETED (manuelle Browser-Reprüfung durch Nutzer bestätigt; 2026-10-27; CP-0199)
+Master Goal: MG-001
+Second-Level Goal: SLG-001.1
+Owner: A01 – MASTER_ORCHESTRATOR (Fachrollen A02/A03/A05/A09/A11 intern abgedeckt)
+Priorität: HIGH
+
+Umfang: Save/Load-Export, dauerhaft erreichbare Navigation, Entfernen des Jahressimulationsbuttons aus der Spieloberfläche, Disporahmenanzeige, Platzgrenzen einschließlich Krankheit, unveränderlicher angenommener Preis, Standortwechsel statt Flächeneditierung, Ausbildungs-/Weiterbildungsabgrenzung mit Ausbilderqualifikation und korrekte Urlaubserfassung. Rechtliche Modellgrenzen und deterministische V1-Annahmen dokumentieren.
+
+Akzeptanz: neue Fehlerregressionen, bestehende Regressionen und Einjahres-Smoke bestanden; Nutzer hat die manuelle Browserprüfung von Datei-Dialogen, Bottom-Navigation bei hoher Zoomstufe, Umzugsdialog, Preissperre und Mobilansicht ohne Fehler bestätigt. `git diff --check` sauber. Keine Schemaänderung, kein Commit/Push.
+
+Abschluss: Korrekturen und automatisierte Regressionen sind in CP-0190 dokumentiert; T-0028-Cross-Agent-Prüfung steht in CP-0197/0198. Nutzer bestätigte am 2026-10-27, alle in CP-0190 offenen interaktiven Punkte getestet und keine Fehler gefunden zu haben. T-0022 ist mit CP-0199 abgeschlossen.
+
+### T-0025 – Zeitarbeitskonditionen vor Buchung verhandeln und fixieren
+
+Status: COMPLETED (A01 intern als A02/A03/A05/A09 ausgeführt; 2026-10-27; CP-0194)
+Master Goal: MG-001
+Second-Level Goal: SLG-001.1
+Owner: A01 – MASTER_ORCHESTRATOR (Fachrollen A02/A03/A05/A09 intern abgedeckt)
+Priorität: HIGH
+
+Aufgabe: Zeitarbeitstarif durch Agenturverhandlung mit Grundpreis und Stundenpreis ersetzen. Höherer Grundpreis muss niedrigeren Stundenpreis anbieten; nach Vereinbarung müssen Preise fixiert und in Einsatzkosten abgerechnet werden.
+
+Abschluss: Drei illustrative, monotone Preisstufen eingeführt. Konditionen sind nach Annahme unveränderlich; Buchungen speichern die vereinbarten Sätze. Monatsgrundpreis fällt einmal in Monaten mit mindestens einer Buchung an; Legacy-Spielstände behalten 45 €/h. Regression und Jahres-Smoke bestanden. Details: CP-0194.
 
 ## Abgeschlossene Tickets
+
+### T-0024 – A04-Datenmodell mit aktuellen V1-Entscheidungen synchronisieren
+
+Status: COMPLETED (A01 intern als A04 ausgeführt; 2026-10-27; CP-0193)
+Master Goal: MG-001
+Second-Level Goal: SLG-001.1
+Owner: A04 – DATABASE (fachliche Rolle durch A01 ausgeführt)
+Koordination: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: Überholte Offenmarkierungen und Kalenderaussagen im logischen Datenmodell gegen D-0120 bis D-0129 und D-0134 korrigieren. Historische CP-Verweise als damaligen Stand kennzeichnen. Keine Schema- oder Architekturfreigabe.
+
+Abschluss: Darlehen, Dispositionskredit, Zahlungsreihenfolge und Periodenzuordnung sind aktualisiert; F3/Feiertage sind mit D-0134 abgeglichen; verbleibende offene Punkte sind korrekt eingegrenzt. CP-0193. Keine Schemaänderung, kein Commit/Push.
+
+
+### T-0023 – Cross-Agent-Konflikte aus CP-0191 bereinigen
+
+Status: COMPLETED (A01 hat die adressierten Fachrollen ausgeführt; 2026-10-27; CP-0192)
+Master Goal: MG-001
+Second-Level Goal: SLG-001.1
+Koordination: A01 – MASTER_ORCHESTRATOR
+Adressierte Fachrollen: A02 SIMULATION, A03 ACCOUNTING_FINANCE, A04 DATABASE, A05 FRONTEND, A09 QA
+Priorität: HIGH
+
+Aufgabe: Die dokumentierten Konflikte und Abdeckungslücken aus CP-0191 beheben. A02 korrigiert den Tagesfilter für wiederholte Zeitarbeitsbuchungen und gleicht die Simulationsspezifikation gegen Urlaub/Krankheit ab. A03 verlagert Immobilienkauf/-verkauf in Finance-eigene Funktionen und synchronisiert die Finanzspezifikation. A04 synchronisiert nur logische Anforderungen zu Facility, Abwesenheit, Zeitarbeit und Ausbildung; keine Schemaänderung. A05 aktualisiert V1-MODELL.md und kennzeichnet automatische Abnahme klar als Spielregel. A09 ergänzt Regressionen für mehrere Zeitarbeitseinsätze und prüft die betroffenen UI-Abläufe.
+
+Zusatzpunkt abgeschlossen: D-0011 bleibt die historische Kernregel; D-0134 hält den später ausdrücklich beauftragten V1-Kalender als konservative Spielkonvention fest.
+
+Akzeptanz: keine stale/conflicting V1-Dokumentation in den betroffenen Themen; wiederholte Buchungen werden eingesetzt oder transparent abgelehnt; Finance-State wird nicht durch UI direkt gebucht; automatisierte Regressionen bestehen; bestehende Architektur- und Datenbankschemafreigaben bleiben unverändert.
+
+Abschlussnachweis: Zeitarbeitsfilter korrigiert und Regression für Einsätze an zwei verschiedenen Tagen ergänzt; Immobilienbuchungen liegen in Finance, UI delegiert und zeigt den Szenariovermögenswert; A02/A03/A04/A05-Dokumentation abgeglichen; Feiertags- und automatische Abnahmeregeln korrekt abgegrenzt. Gezielte Regression, T-0020-Regressionssuite und Jahressmoke bestanden. Details: [CP-0192](checkpoints/CP-0192.md). Keine Schema-/Architekturfreigabe, kein Commit/Push. Browserinteraktion für den vollständigen Playtest bleibt als separates T-0022 offen.
 
 
 ### T-0021 – Goal- und Ticketstatus gegen Checkpoints abgleichen

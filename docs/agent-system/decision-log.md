@@ -1285,3 +1285,80 @@ Am selben wirksamen Simulationstag werden zuerst Kundeneingänge verarbeitet und
 Ein nach Wochenendverschiebung wirksames Ereignis gehört zum Monat und Geschäftsjahr seines tatsächlichen Simulationsdatums, auch wenn das geplante Datum im Vormonat lag. Der Dispozins wird täglich auf dem tatsächlich gezogenen Saldo nach Actual/365 berechnet, ohne tägliche Rundung; die Summe des Monats wird einmalig auf Cent gerundet und als Monatssammelposten gebucht. Dies ist eine vereinfachte V1-Konvention; sie behauptet keine universelle Bankbuchungspraxis und ändert weder die rechtlichen Fälligkeiten noch die bestätigten Zahlungsziele.
 
 Für die spielbare V1 wird SimTAX als eigener, fest terminierter Simulationsposten nach den priorisierten betrieblichen Verbindlichkeiten versucht. Der Spieler kann diesen Steuerposten nicht in der Lieferantenreihenfolge umsortieren. Das setzt weder eine echte steuerrechtliche Vollberechnung noch eine allgemeine gesetzliche Rangfolge aller Gläubiger um.
+
+---
+
+## D-0130 – Vertragswerte nach Angebotsannahme fixieren
+
+Status: APPROVED (V1-Produktkonvention aus Nutzer-Playtestauftrag)
+Bezug: MG-001 / SLG-001.1 / T-0022 / CP-0190
+
+Preis und Zahlungsziel werden bei Annahme eines Angebots in den Auftragsdaten fixiert. Die Oberfläche erlaubt nach Annahme keine einseitige Änderung; eine spätere Vertragsänderung durch beiderseitige Vereinbarung wird in V1 nicht modelliert. Der kundenspezifische CNC-Fertigungsauftrag wird im Spiel als Werklieferungsvertrag nach § 650 BGB behandelt, für den grundsätzlich Kaufrecht gilt. Die Einordnung hängt im Einzelfall von Vertragsgegenstand und Vereinbarung ab. Die automatische Abnahme nach fünf Arbeitstagen ist eine Spielregel und keine pauschale Rechtsaussage zur Abnahme nach § 640 BGB.
+
+## D-0131 – Standortwechsel als einzige Flächenänderung
+
+Status: APPROVED (V1-Szenariokonvention aus Nutzer-Playtestauftrag)
+Bezug: MG-001 / SLG-001.1 / T-0022 / CP-0190
+
+Lager-, Büro-, Personal- und Werkstattflächen sowie Maschinenplätze sind an ein Gebäude gebunden und können nur durch Umzug in ein anderes Miet- oder Kaufobjekt geändert werden. Kaufpreise, Mieten und Gebäudegrößen sind illustrative Szenariowerte und keine aktuellen Immobilienangebote. Ein gekaufter Standort wird in V1 zum angesetzten Kaufwert bilanziert und bei Umzug zum selben Szenariobuchwert verkauft; Abschreibung, Nebenkosten, Finanzierung und rechtliche Gebäudeprüfung sind nicht simuliert.
+
+## D-0132 – Ausbildungsplatz erfordert ausbildungsgeeignete Person
+
+Status: APPROVED (V1-Szenariokonvention aus Nutzer-Playtestauftrag)
+Bezug: MG-001 / SLG-001.1 / T-0022 / CP-0190
+
+Ein Ausbildungsplatz kann erst besetzt werden, wenn eine beschäftigte Person die Weiterbildung „Ausbildereignung (AEVO)“ abgeschlossen hat und am Standort Kapazität besteht. Dies ist der V1-Nachweis für die im Spiel vorausgesetzte Eignung, keine vollständige Abbildung der gesetzlichen Ausnahmen und Eignungstatbestände. Maßgeblich sind BBiG §§ 27–30. Vorhandene Beschäftigte gelten im Startprofil als ausgebildete Fachkräfte und erhalten Weiterbildung; ein Ausbildungsverhältnis erzeugt erst nach Abschluss eine zusätzliche Fachkraft.
+
+## D-0133 – Urlaub geplant versus tatsächlich genommen
+
+Status: APPROVED (V1-Korrektur nach Nutzer-Playtest)
+Bezug: MG-001 / SLG-001.1 / T-0022 / CP-0190
+
+Vorgemerkte Urlaubstage werden erst am jeweiligen Arbeitstag als tatsächlich genommen gezählt. Jahreskontingent, Statistik und Personalverfügbarkeit unterscheiden damit Planung und tatsächlichen Verbrauch. Die V1-Planannahme beträgt 20 Arbeitstage pro Jahr bei Fünf-Tage-Woche, entsprechend mindestens 24 Werktagen bei gesetzlicher Sechs-Tage-Umrechnung gemäß BUrlG § 3.
+
+## D-0134 – Feiertagskalender für den rechtsorientierten V1-Prototyp
+
+Status: APPROVED (V1-Prototypkonvention unter dem ausdrücklichen Nutzerauftrag, Feiertage und geltendes Recht für den spielbaren Jahreslauf zu berücksichtigen)
+Bezug: MG-001 / SLG-001.1 / T-0023 / CP-0178/0179 / D-0011
+
+D-0011 bleibt als ursprüngliche Kernregel unverändert: Feiertage waren dort mangels Standortkalender unberücksichtigt. Für den später ausdrücklich beauftragten V1-Prototyp gilt vorsorglich die Vereinigungsmenge der im Code hinterlegten gesetzlichen Feiertage deutscher Länder als arbeitsfrei und als einheitliche Spielkalenderbasis für Simulationstag-Verschiebungen. Mangels konkretem Betriebsort ist dies eine konservative V1-Konvention, kein standortspezifischer Rechtsbefund und keine Aussage zum tatsächlich maßgeblichen Feiertagsort. Arbeitszeit an Sonn- und gesetzlichen Feiertagen ist nach ArbZG § 9 grundsätzlich untersagt, soweit keine gesetzliche Ausnahme greift; der Prototyp plant deshalb an den hinterlegten Feiertagen keine Beschäftigten ein. Tatsächliche gesetzliche oder vertragliche Fristenden bleiben vom einschlägigen Ort und der konkreten Regel abhängig; BGB § 193 und für steuerliche Fristen AO § 108 gelten jeweils in ihrem Anwendungsbereich. Die einheitliche Kalenderfunktion ist allein eine V1-Spielvereinfachung. Die Fünf-Arbeitstage-Abnahme bleibt ausdrücklich eine V1-Spielregel, keine allgemeine Rechtsfolge.
+
+Quellen: [ArbZG § 9](https://www.gesetze-im-internet.de/arbzg/__9.html), [BGB § 193](https://www.gesetze-im-internet.de/bgb/__193.html), [AO § 108](https://www.gesetze-im-internet.de/ao_1977/__108.html).
+
+
+## D-0135 – Fest verhandelte Zeitarbeitskonditionen
+
+Status: APPROVED (V1-Modellkonvention aus Nutzeranforderung; Preisstufen als Szenariowerte)
+Quelle: Nutzeranforderung vom 2026-10-27
+Bezug: MG-001 / SLG-001.1 / T-0025
+
+Vor dem ersten Zeitarbeitseinsatz wird ein fester Agenturvertrag gewählt. Der Vertrag enthält einen Grundpreis je Monat mit mindestens einer Buchung und einen Preis je gebuchter Arbeitsstunde. V1 bietet drei illustrative Verhandlungspakete: Flexibel (0 € Grundpreis/Monat, 55 €/h), Ausgewogen (120 €/Monat, 43 €/h) und Hohe Auslastung (300 €/Monat, 31 €/h). Damit sinkt der Stundenpreis mit steigendem Grundpreis; der Grundpreis wird im Nutzungsmonat einmalig berechnet. Einmal vereinbarte Konditionen bleiben fest und werden in jeder Einsatzbuchung gespeichert. Die Beträge sind Spielangebote, keine aktuellen Marktpreise oder rechtliche Tarifaussagen. Bestehende Spielstände ohne Agenturvertrag behalten ihre bisherige V1-Kondition von 45 €/h ohne Grundpreis.
+
+
+## D-0136 – Selektive Konkurrenzangebote und Zuschlagsentscheidung
+
+Status: APPROVED (V1-Modellkonvention zur Umsetzung der Nutzeranforderung)
+Quelle: Nutzeranforderung vom 2026-10-27
+Bezug: MG-001 / SLG-001.1 / T-0026 / CP-0195
+
+Historischer Stand zu CP-0195, vor D-0137: Je Monat wurde eine synthetische Kundenanfrage ausgewertet. D-0137 ersetzt diese Frequenz durch eine wöchentliche Anfrage am ersten Arbeitstag der Woche. Im aktuellen V1-Stand hängt die Einladung deterministisch von Ruf, fortgeschriebenem relativem Preisprofil und Kapazitätsbelastung ab. Pro Anfrage werden nur ein oder zwei der drei Wettbewerber als Bieter ausgewählt; Auswahl und Quote sind reproduzierbar. Der Vergleich zeigt Netto-Angebot, Reputation und modellierte Lieferzeit. Nach Einreichung des eigenen Preises gewinnt die höchste gewichtete Kombination aus Reputation und Preisvorteil; eine Kundenbindungs-Komponente fließt ergänzend in den Spielerscore ein. Der gewählte eigene Preis wird in das künftige Einladungspreisprofil übernommen.
+
+Die V1-Formel ist deterministisch: Einladungswahrscheinlichkeit = auf 18–92 % begrenzter Wert aus 50 + 0,7 × (eigener Ruf − durchschnittliche Konkurrenzqualität) + 35 × (durchschnittlicher Konkurrenzpreisindex − eigener Preisindex) − Kapazitätsabzug 9 bei mehr als fünf aktiven generierten, noch nicht ausgelieferten Aufträgen. Der Wettbewerber-Score lautet 0,3 × Reputation + 70 / Preisindex, zuzüglich reproduzierbarer Beteiligungsstreuung bis 5 Punkte; Gebote liegen um bis zu ±4 % um den jeweiligen Preisindex. Der Zuschlags-Score des Spielers lautet 0,3 × Ruf + 70 / eigenem relativen Angebotspreisindex + 0,1 × Kundenbeziehung; bei Wettbewerbern entfällt der nur für den eigenen Betrieb verfügbare Beziehungsbonus. Nach einem eigenen Gebot wird der Preisindex als 80 % vorheriger Index + 20 % neues Verhältnis aus Angebotspreis und Referenzpreis fortgeschrieben und auf 0,75–1,35 begrenzt. Diese Formeln und Spannen sind ausschließlich Spielmechanik. Die fiktiven Wettbewerberwerte sind weder reale Firmenangebote noch repräsentative Branchen- oder Marktdaten. Keine externe Rechts- oder Preisbehauptung wird damit getroffen.
+
+
+## D-0137 – Wöchentlicher Marktanfragerhythmus
+
+Status: APPROVED (V1-Modellkonvention zur Umsetzung des Nutzerfeedbacks)
+Quelle: Nutzeranforderung vom 2026-10-27
+Bezug: MG-001 / SLG-001.1 / T-0027 / CP-0196; ergänzt D-0136
+
+Die bisher monatliche Verteilung wird auf eine Kundenanfrage pro Simulationswoche erhöht. Die Anfrage geht am ersten Arbeitstag der Woche in den Marktfluss. Die Auswahl des Betriebs und der ein bis zwei Konkurrenzbieter sowie der Zuschlag richten sich weiter nach D-0136. Bei mehr als fünf aktiven generierten, noch nicht ausgelieferten Aufträgen wirkt weiterhin der dokumentierte Kapazitätsabzug auf die Einladung; der Wochenrhythmus erzeugt daher mehr Auswahl, aber keine uneingeschränkte Auftragsannahme. Es ist eine V1-Szenarioannahme, keine Marktprognose.
+
+
+
+## D-0138 – Kundenbindung als stärkerer Zuschlagsfaktor kalibrieren
+
+Status: APPROVED (A01-V1-Kalibrierung als Reaktion auf den Jahres-Smoke; keine neue Nutzerentscheidung)
+Bezug: MG-001 / SLG-001.1 / T-0027 / CP-0196; ergänzt D-0136
+
+Der Zuschlags-Score des eigenen Betriebs verwendet 0,2 × Kundenbeziehung statt 0,1 × gemäß der ursprünglichen D-0136-Implementierung. Motivation: Bei normalen, kostenbasierten Angebotspreisen verlor der Betrieb im integrierten Jahreslauf sämtliche 25 erhaltenen Angebote, obwohl isolierte Marktregressionen funktionierten. Die höhere Gewichtung lässt bestehende Kundenbindung als Wettbewerbsvorteil wirken, ohne kostendeckende Preise pauschal unter den Referenzpreis zu drücken. Konkurrenzscores bleiben unverändert. Die Kalibrierung ist eine V1-Szenarioannahme und keine empirisch bestimmte Marktwirkung.

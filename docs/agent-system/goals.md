@@ -61,3 +61,26 @@ Nur Tickets des aktuellen Master Goals und aktuellen Second-Level Goals gehören
 Tickets abgeschlossener Second-Level Goals bleiben historisch erhalten, werden aber nicht mehr aktiv berücksichtigt.
 
 Ein Goal darf erst als COMPLETED markiert werden, wenn seine Ergebnisse dauerhaft dokumentiert und geprüft wurden.
+
+---
+
+## Aktuelles Master Goal
+
+### MG-001 – Browser-V1-Playtestfehler beheben
+
+Status: COMPLETED (2026-10-27; CP-0199)
+Priorität: HIGH
+
+Ziel: Die vom Nutzer beim manuellen Spieltest gemeldeten Bedienungs-, Kapazitäts-, Vertrags-, Personal- und Urlaubsfehler beheben und eine erneut testbare Browser-Version sichern.
+
+Abschlussnachweis: T-0022 wurde nach Nutzerbestätigung der fehlerfreien manuellen Browserprüfung abgeschlossen; T-0028 ist mit CP-0198 abgeschlossen. Automatisierte Regressionen und Einjahres-Smoke bestanden. Details: CP-0190 und CP-0199.
+
+Second-Level Goal: SLG-001.1 – V1-Fehlerkorrekturen und Browserbedienbarkeit
+Status: COMPLETED (2026-10-27; CP-0199)
+
+
+---
+
+## V2-Zielrückstand (nicht aktiv)
+
+- **A10 – PR-Workflow gegen Injection absichern:** PR-Diff-Daten dürfen nicht als Shell-Ausdruck oder unsicher zusammengesetzter JSON-String in Workflow-Befehle interpoliert werden. Umsetzung und Verifikation erfolgen im Rahmen der V2-Infrastrukturarbeit; dieses Ziel ist kein aktives V1-Ticket.
