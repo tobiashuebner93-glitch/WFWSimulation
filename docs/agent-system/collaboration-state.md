@@ -893,3 +893,8 @@ Der A09-Abschlussreview hatte acht Bereiche PASS gegeben; danach wurde `hsq-logi
 A09 hat alle 450 WBQ-/HSQ-Fälle freigegeben; A04 hat die Daten-/Persistenzgrenze und A11 die Architektur-/Integrationsgrenze bestätigt. A10 hat den PR-Review-Workflow gegen Shell-/Expression-Injection gehärtet und 5/5 Sicherheitstests bestanden; der Workflow selbst wurde nicht ausgeführt. A01 hat die vollständige Simulations-, Lern-, UI- und Jahresregressionsmatrix erneut ausgeführt; alle Läufe bestanden. Die Browser-/Mobilprüfung bei 390×844 zeigte keine horizontale Überbreite, sichtbare Navigation und bedienbare Lernhinweise. git diff --check ist sauber (nur LF/CRLF-Hinweise).
 
 Es liegen keine blockierenden fachlichen oder technischen Konflikte für T-0033 vor. MG-002 und SLG-002.2 bleiben IN_PROGRESS; spätere Prüfungsübungen unter SLG-002.4 bleiben Roadmap-Arbeit. T-0033 bleibt bis zum klar benannten Commit und dem Push über GitHub Desktop IN_PROGRESS. CP-0209 dokumentiert die Gate-Prüfung. Architektur V0.2, ADR-001 bis ADR-008 und jede Schemafreigabe bleiben PROPOSED/nicht erteilt.
+
+
+## T-0033 abgeschlossen und gepusht (CP-0210)
+
+Der 32-Dateien-Releasecommit 424927125ba882b33726c47de7b68347a9dbe4d9 (feat: add Wirtschaftsfachwirt V2 learning simulation) wurde über GitHub Desktop nach origin/main gepusht. Git bestätigt HEAD = origin/main und sauberen Arbeitsbaum. T-0033 ist COMPLETED. CP-0209 enthält Reviews und Testläufe; CP-0210 enthält Commit-/Pushnachweis. MG-002 und SLG-002.2 bleiben IN_PROGRESS, SLG-002.4 bleibt Roadmap-Arbeit. Architektur V0.2 und ADR-001 bis ADR-008 bleiben PROPOSED/nicht freigegeben.
