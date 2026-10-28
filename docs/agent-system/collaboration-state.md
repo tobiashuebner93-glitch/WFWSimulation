@@ -18,6 +18,10 @@ A04s logisches Datenmodell wurde gegen D-0120 bis D-0129 und D-0134 synchronisie
 
 Stand: 2026-10-27
 
+## V1-Zielreview und V2-Zielvorschlag (CP-0201)
+
+Alle Rollen A01–A11 haben den gepushten V1-Stand geprüft. MG-000/001 sind gemäß den formalen Zielen abgeschlossen; die V1-Abnahme belegt jedoch weder eine realistisch kalibrierte Unternehmenswirtschaft noch WBQ/HQ-Lernwirksamkeit. Beschäftigtenweiterbildung ist vorhanden, aber kein Wirtschaftsfachwirt-Curriculum, Lernkartensystem oder Prüfungssimulator. Die Simulation bleibt ein transparent begrenztes Szenariomodell. MG-002 mit SLG-002.1–002.5 wurde als PROPOSED in `goals.md` aufgenommen: zuerst erhebt A08 den Prüfungsrahmen aus Internetquellen der zuständigen IHK; A06 leitet daraus die Kompetenzlandkarte ab; A07/A08 gleichen diese mit weiteren Internetquellen ab und detaillieren sie. Danach folgen erklärbare Simulation, Lernkarten und Prüfungsübungen/Debriefs sowie eine nachgelagerte Daten-/Architektur-/QA-Basis. Quellenstand und agentenseitige Ableitung sind getrennt zu dokumentieren. Keine Implementierung, kein Ticket für unbestätigte V2-Arbeit, keine Schema-/Architekturfreigabe. Details: [CP-0201](checkpoints/CP-0201.md).
+
 ## Abschluss MG-001 / SLG-001.1 (CP-0199)
 
 T-0022 ist abgeschlossen. Der Nutzer hat die manuellen Browserprüfungen für Speichern/Laden, dauerhaft erreichbare Navigation bei hoher Zoomstufe, Standortwechsel, Preissperre nach Angebotsannahme und Mobilansicht durchgeführt und keine Fehler gefunden. Die automatisierten Playtest- und Finanzregressionen, der Marktregressionstest, der Einjahres-Smoke sowie `git diff --check` waren bereits bestanden. Zusammen mit T-0028/CP-0198 sind damit keine offenen Tickets unter MG-001 / SLG-001.1 verblieben. MG-001 und SLG-001.1 sind in goals.md als COMPLETED gekennzeichnet. Kein Commit oder Push. Details: [CP-0199](checkpoints/CP-0199.md).
@@ -833,3 +837,59 @@ Verifikation: `playtest-fixes-regressions.mjs`, `t0020-regressions.mjs`, `year-s
 Offene Grenzen: keine vollständige dynamische HGB-Bilanz (nur Immobilien-Szenariowert separat); keine Abschreibung, Marktwert-/Transaktionskosten oder Standortkalenderermittlung für ein konkretes Bundesland; interaktive Browser-QA bleibt T-0022. Keine Schema-/Architekturfreigabe, kein Commit/Push. Bestehende lokale Änderungen aus CP-0190/0191 blieben erhalten.
 
 Letzter Checkpoint: [CP-0192](checkpoints/CP-0192.md).
+
+## MG-002 – Aktiver A01-Koordinierungsstand (2026-10-28)
+
+MG-002 wurde durch den Nutzerauftrag aktiviert. Der Umfang enthält ausdrücklich Marketing/Vertrieb sowie Logistik und 450 originäre Multiple-Choice-Lernszenarien: je 50 pro vier WBQ-Qualifikationsbereichen und fünf HSQ-Handlungsbereichen. Fachwissen soll als mobil und per Tastatur nutzbarer Tooltip im Spiel erscheinen. Änderungen werden pro Ticket durch eine unabhängige Fachrolle geprüft; festgestellte Konflikte werden vor Ticketabschluss abgearbeitet. Es erfolgt keine ungeprüfte Architektur- oder Schemafreigabe.
+
+A08 hat den offiziellen Prüfungsrahmen gelesen: § 3 WFachwPrV nennt vier WBQ- und fünf HSQ-Bereiche; Logistik und Marketing/Vertrieb sind enthalten. Der DIHK-Rahmenplan ist kostenpflichtig; nicht eingesehene Inhalte werden nicht als Quelle behauptet. IHK-Prüfungsraster sind ergänzende Orientierung, wenn sie abweichend gliedern oder unverbindliche Richtwerte aufführen. Beleg-/Ableitungsdetails und Review sind Gegenstand T-0030.
+
+T-0029 ist nach Umsetzung und unabhängigem Review abgeschlossen: Der Wochenknopf endet am nächsten strikt zukünftigen Montag und verarbeitet diesen Zieltag nicht.
+
+Aktive Ticketfolge: T-0029 Wochenknopf (COMPLETED nach A11/A09-Review); T-0030 Kompetenzlandkarte (COMPLETED nach A07/A08-Review); T-0031 Marketing/Logistik und Tooltips (COMPLETED nach A11/A09-Review); T-0032 450 MC-Lernszenarien (IN_PROGRESS, A06 WBQ / A07 HSQ); T-0033 Integrationsreview und Release (PENDING). Je Ticket folgen fachliche Arbeit, unabhängiger Review, Konfliktbereinigung, gezielte Regressionen und dokumentierter Abschluss. Vor diesem Arbeitslauf vorhandene Änderungen an `goals.md`, `collaboration-state.md` und CP-0201 bleiben erhalten.
+A11/A09 prüften die MG-002-Aktivierung unabhängig. Sie bestätigten die Prüfungsbereiche und Ticketabhängigkeiten, fanden jedoch drei Dokumentationslücken. A01 passte die Goal-Überschrift an MG-002 IN_PROGRESS an, verlangt nun in T-0031 je einen Marketing-/Vertriebs- und Logistikzyklus und präzisiert T-0032 auf absichtliche, begrenzte Szenarioeffekte. Unbeabsichtigte Buchungs-/Ledgermutationen sind ausgeschlossen. Details: CP-0202.
+
+T-0029 wurde am 2026-10-28 umgesetzt und unabhängig von A11/A09 geprüft. Montag-, Mittwoch-, Freitag-, Samstag-, Sonntag- sowie Feiertagsstarts enden am nächsten strikt zukünftigen Montag; der Zielmontag wird nicht verarbeitet. Wochenregression, Playtest-Regression und Jahres-Smoke bestehen. Browser-E2E verbleibt in T-0033. Details: CP-0202.
+
+T-0030 ist nach A06-Lieferung, A07-Fachreview und A08-Quellenreview abgeschlossen. T-0031 wurde unabhängig davon an A02/A03/A05 gestartet: zuerst vorhandene Mechaniken prüfen, dann Marketing/Vertrieb und Logistik getrennt mit sichtbaren Wirkungen vervollständigen und passende Tooltips ergänzen.
+
+T-0032 ist gestartet: A06 erstellt 200 originäre Items für die vier WBQ-Bereiche, A07 erstellt 250 originäre Items für die fünf HSQ-Bereiche. A01s D-0139 trennt die erklärten Unternehmensfolgen der Lernfälle vom produktiven Spielstand und Ledger.
+
+T-0032 ist als parallele Inhaltsproduktion durch A06 (200 WBQ-Items) und A07 (250 HSQ-Items) beauftragt. Beide verwenden gleiche Feldnamen, Antwortschlüssel A–D und getrennte Dateien. A05-Lernmodusintegration erfolgt erst nach Abschluss/Review von T-0031, um gleichzeitige App-UI-Edits zu vermeiden.
+
+T-0031 ist nach unabhängiger A11/A09-Prüfung abgeschlossen. Marketing-Ausgaben laufen über Finance und sind im Monatsabschluss/Cashabgleich; bevorzugte Lieferanten gelten nur für neue Fehlbestandsbestellungen. Der Reviewer empfiehlt zusätzlich einen Testfall bei unzureichender Liquidität, der für T-0033 vorgemerkt ist.
+
+T-0032 Zwischenreview: A09 hat die überarbeitete HSQ-Lieferung (250 Fälle, exakt 50 je Bereich, deutsch, eindeutige Inhaltsfelder, Lösungsschlüssel A–D ausgewogen) unabhängig geprüft. Die ursprünglichen Sprach- und Templateblocker sind behoben. Noch offen sind direkte Einzelparagraphenlinks, validatorgestützte Zuordnung zu den konkreten Kompetenzlandkarten-IDs und eine fallweise Überarbeitung weiterer unplausibler Distraktoren. A07 arbeitet diese drei Punkte ab; A06 übernimmt dieselben Prüfkriterien in WBQ. Bis zum erneuten unabhängigen Review bleibt T-0032 IN_PROGRESS und die UI-Integration ausstehend.
+
+T-0032 Integration update: A01 added a separate learning quiz UI and local-only progress store; the targeted regression verifies feedback, all 450 loaded items, nine areas, spaced-review dates, filtering, and no mutation of game or Finance objects. Browser inspection found and fixed WBQ area labels (`title` fallback). The same audit found duplicate option rotation in WBQ, which misaligned some correct keys and is now assigned to A06 for a single deterministic shuffle plus correctness validation and removal of dead English source data. A09 re-review of the revised HSQ set is active. Ticket remains open until both reviewed data sets pass and app integration review completes.
+
+A09-HSQ-Nachreview 2 bestätigt 250/50, Deutsch, eindeutige Inhalte, korrekte Antwortschlüssel, direkte Rechtsquellen und Nichtmutation des Spiels, lehnt aber noch ab: HSQ-Kompetenz-IDs existieren nur in Modul-internen Buckets statt in der externen Kompetenzlandkarte; darüber hinaus sind noch offenkundige, unplausible Distraktoren in mehreren der fünf Bereiche vorhanden. A07 ergänzt die Map und führt eine weitere fallweise Inhaltsrevision durch. Keine UI-Integration oder Ticketabschlussfreigabe für den HSQ-Satz bis zum erneuten A09-Review.
+
+A06 hat den WBQ-Schlüsselversatz behoben: englische Altzeilen und doppelte Postprocessingblöcke sind entfernt; die Antwortrotation erfolgt nur einmal, und `correctAnswer` wird im Validator mit der finalen Option abgeglichen. A01 reproduzierte den WBQ-Validator (200, 50/Bereich, Deutsch, map-/source-valid, A48/B48/C52/D52). A09 prüft Inhalt und Korrektheit jetzt unabhängig.
+
+A09 WBQ-Nachreview 1 bestätigt 200/50, korrekte Schlüssel, externe IDs, direkte Quellen, deutsche statische Items und keine Spielmutation. Distraktorplausibilität ist in allen vier Bereichen weiterhin unzureichend; der feste Wortfilter erkennt sie nicht. A06 revidiert alle Bereiche und ergänzt eine menschlich prüfbare Qualitätscheckliste. T-0032 bleibt offen.
+
+## 2026-10-28 – A01-Fortsetzung T-0032 (CP-0203)
+
+Der Preflight wurde erneut ausgeführt. Der aktuelle HSQ-Validator sieht inzwischen 25 externe `wfprv5-*`-Kompetenz-IDs; er besteht für Umfang, je 50 je Bereich, Quellen, Antwortschlüssel, Referenzen und seine heuristischen Sprach-/Distraktorflags. Das ist keine fachliche Freigabe. Der WBQ-Validator besteht strukturell (200/50, Quellen/Kompetenzen, finale Antworttexte und Schlüsselverteilung), während A09 die Distraktoren weiterhin nicht plausibel genug findet. A06 hat VW und Rechnungswesen überarbeitet; die übrigen 100 Items in Recht/Steuern und Unternehmensführung sind noch in Arbeit. A07 soll die HSQ-Fälle weiter fallweise verbessern und die Zuordnung zur Map validieren. Beide wurden angewiesen, ausschließlich den Repository-Checkout und nicht `sources/` zu verwenden.
+
+Die Lern-UI-Regression besteht: 450 Items, neun Bereiche, Antwortfeedback, Lernfortschritt/Wiederholungen, Filter und unveränderter aktiver Spiel-/Finanzzustand. A09-Neureview beider finalen Sätze, vollständige T-0033-Regression/Mobil-/Browserprüfung und Jahres-Smoke sind offen; bis dahin keine Commit-/Push-Freigabe. Siehe CP-0203.
+
+Nachtrag T-0033-Baseline: A01 führte Playtest-Fixes, T-0020, Markt-Konkurrenz, Solvenz-Stressfall, Marketing/Logistik, Wochenadvance und Jahressmoke erneut aus; alle Prozesse endeten mit Exit 0. Der Jahressmoke erreichte 2028-01-01 mit 52 Marktchancen, 25 generierten und ausgelieferten Aufträgen, 22 Zuschlägen/Abschlüssen, zwölf Monaten, endlicher Liquidität und null Abstimmungsfehlern. Der separate Ein-Auftrag-Stresstest löste wie vorgesehen Zahlungsausfall und Kreditverwertung aus. Diese Tests schließen den unabhängigen A09-Inhaltsreview, Browser-/Mobilprüfung und T-0033 nicht ab.
+
+A06 hat die verbliebenen 100 WBQ-Fälle zu Recht/Steuern und Unternehmensführung überarbeitet; alle 200 WBQ-Fälle sind nun in der manuellen Prüfliste erfasst. Syntax- und WBQ-Validator bestehen (50/Bereich; A48/B52/C52/D48). A09 erhielt den Auftrag, nach dem vollständigen HSQ-Review auch sämtliche WBQ-Fälle inhaltlich unabhängig zu prüfen. T-0032 bleibt IN_PROGRESS bis zum Review und zur Konfliktbereinigung.
+
+A09 lieferte vorläufige Inhaltsbefunde mit konkreten IDs, konnte aber nur den Projektspiegel ohne `.git` verifizieren. Die wichtigsten Konflikte sind mögliche zweite richtige Antworten/fehlende Annahmen in HSQ BM-027, IFRWC-027/-039, Logistik-007/-010/-015/-018 und WBQ VW-002/RW-013; zusätzlich sind WBQ RT-005/006 rechtlich präziser zu formulieren und mehrere Distraktoren in Marketing/Führung bzw. Recht/Unternehmensführung noch zu offensichtlich. A01 prüft die Fälle im lokalen Repository; A06/A07 korrigieren die jeweiligen Fachdaten. A09 soll danach alle 450 aktuellen Items erneut im Checkout reviewen. T-0032 bleibt offen; siehe CP-0204.
+
+A09 hat die überarbeiteten Inhalte jetzt direkt im tatsächlichen Checkout geprüft. Vorbefunde WBQ VW-002, RW-013 und RT-005/006 sind bereinigt. Neue/festgestellte Restbefunde: doppelte richtige WBQ-Antworten in VW-027/028, HSQ-Mehrdeutigkeiten BM-027, IFRWC-027 und Logistik-007/-010/-015/-018, sowie zu offensichtliche Distraktoren in HSQ Marketing/Führung und WBQ UF-034/045 sowie RT-001. Der WBQ-Validator findet außerdem einen verwaisten Quellenkatalogeintrag `LAW-BGB-631-DIRECT`. A06/A07 korrigieren die Liste aus CP-0205; A09 prüft danach die betroffenen Items und finalisiert die Bereichsfreigabe. T-0032 bleibt IN_PROGRESS.
+
+A06/A07 haben diese Restbefunde bearbeitet; CP-0206 enthält den geänderten Itemumfang. A01 hat nach den Änderungen beide Inhaltsvalidatoren und die Lern-UI-Regression erneut ausgeführt. Sie bestehen, `LAW-BGB-631-DIRECT` ist im aktiven Quellkatalog nicht mehr vorhanden. A09 soll im Checkout mit frischem Preflight den vollständigen aktuellen Satz aus 450 Items und neun Bereichen abschließend lesen. Erst bei seiner Freigabe kann T-0032 geschlossen und T-0033 finalisiert werden.
+
+Der A09-Abschlussreview hatte acht Bereiche PASS gegeben; danach wurde `hsq-logistik-018` verengt und im gezielten Re-Review ebenfalls PASS erteilt. A09 bestätigt damit alle 450 Items und neun Bereiche. WBQ-Checkliste umfasst 200 Freigaben, HSQ-Nacharbeit ist mit konkreten Vorher/Nachher-Items dokumentiert. CP-0208 schließt T-0032 ab und startet T-0033. Offen bleiben die dort vorgesehenen Integrations-/Release-Reviews und Browser-/Mobilprüfung.
+
+
+## T-0033 – Abschlussprüfung vor Sicherung (CP-0209)
+
+A09 hat alle 450 WBQ-/HSQ-Fälle freigegeben; A04 hat die Daten-/Persistenzgrenze und A11 die Architektur-/Integrationsgrenze bestätigt. A10 hat den PR-Review-Workflow gegen Shell-/Expression-Injection gehärtet und 5/5 Sicherheitstests bestanden; der Workflow selbst wurde nicht ausgeführt. A01 hat die vollständige Simulations-, Lern-, UI- und Jahresregressionsmatrix erneut ausgeführt; alle Läufe bestanden. Die Browser-/Mobilprüfung bei 390×844 zeigte keine horizontale Überbreite, sichtbare Navigation und bedienbare Lernhinweise. git diff --check ist sauber (nur LF/CRLF-Hinweise).
+
+Es liegen keine blockierenden fachlichen oder technischen Konflikte für T-0033 vor. MG-002 und SLG-002.2 bleiben IN_PROGRESS; spätere Prüfungsübungen unter SLG-002.4 bleiben Roadmap-Arbeit. T-0033 bleibt bis zum klar benannten Commit und dem Push über GitHub Desktop IN_PROGRESS. CP-0209 dokumentiert die Gate-Prüfung. Architektur V0.2, ADR-001 bis ADR-008 und jede Schemafreigabe bleiben PROPOSED/nicht erteilt.

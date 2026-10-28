@@ -4,46 +4,51 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   chatgpt-review:
     name: Run ChatGPT Review
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout trusted base revision
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
 
-      - name: Collect PR diff
-        id: diff
+      - name: Collect PR diff as a file
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          git fetch origin ${{ github.base_ref }}
-          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD)
-          echo "diff<<EOF" >> $GITHUB_OUTPUT
-          echo "$DIFF" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          PR_REF="refs/remotes/origin/pull/$PR_NUMBER"
+          git fetch --no-tags origin "refs/pull/$PR_NUMBER/head:$PR_REF"
+          ACTUAL_HEAD_SHA="$(git rev-parse "$PR_REF")"
+          test "$ACTUAL_HEAD_SHA" = "$PR_HEAD_SHA"
+          git diff "$BASE_SHA...$PR_REF" -- > "$RUNNER_TEMP/pr.diff"
+
+      - name: Build JSON request from diff file
+        run: node .github/scripts/chatgpt-review.mjs create-request "$RUNNER_TEMP/pr.diff" "$RUNNER_TEMP/request.json"
 
       - name: Ask ChatGPT for review
-        id: chatgpt
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+          curl --fail-with-body --silent --show-error https://api.openai.com/v1/chat/completions \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
-            -d "{
-              \"model\": \"gpt-4o-mini\",
-              \"messages\": [
-                {\"role\": \"system\", \"content\": \"Du bist ein präziser, technischer Code-Reviewer. Fasse dich klar, strukturiert und hilfreich.\"},
-                {\"role\": \"user\", \"content\": \"Analysiere den folgenden Code-Diff aus dem WFWSimulation-Repo und gib konkrete Verbesserungsvorschläge, potentielle Fehler, Sicherheitsrisiken und Optimierungen:\n\n${{ steps.diff.outputs.diff }}\"}
-              ]
-            }" | jq -r '.choices[0].message.content')
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            --data-binary "@$RUNNER_TEMP/request.json" \
+            > "$RUNNER_TEMP/response.json"
+          node .github/scripts/chatgpt-review.mjs extract-response "$RUNNER_TEMP/response.json" "$RUNNER_TEMP/review.md"
 
-          echo "response<<EOF" >> $GITHUB_OUTPUT
-          echo "$RESPONSE" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Post ChatGPT review as PR comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          header: chatgpt-review
-          message: |
-            🤖 **ChatGPT Review für WFWSimulation**
-            ${{ steps.chatgpt.outputs.response }}
+      - name: Post or update the review comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: node .github/scripts/chatgpt-review.mjs post-comment "$RUNNER_TEMP/review.md"

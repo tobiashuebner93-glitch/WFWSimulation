@@ -1362,3 +1362,19 @@ Status: APPROVED (A01-V1-Kalibrierung als Reaktion auf den Jahres-Smoke; keine n
 Bezug: MG-001 / SLG-001.1 / T-0027 / CP-0196; ergänzt D-0136
 
 Der Zuschlags-Score des eigenen Betriebs verwendet 0,2 × Kundenbeziehung statt 0,1 × gemäß der ursprünglichen D-0136-Implementierung. Motivation: Bei normalen, kostenbasierten Angebotspreisen verlor der Betrieb im integrierten Jahreslauf sämtliche 25 erhaltenen Angebote, obwohl isolierte Marktregressionen funktionierten. Die höhere Gewichtung lässt bestehende Kundenbindung als Wettbewerbsvorteil wirken, ohne kostendeckende Preise pauschal unter den Referenzpreis zu drücken. Konkurrenzscores bleiben unverändert. Die Kalibrierung ist eine V1-Szenarioannahme und keine empirisch bestimmte Marktwirkung.
+
+## D-0139 – Lernfallfolgen vom aktiven Unternehmenskonto trennen
+
+Status: APPROVED (A01-V2-Umsetzungskonvention unter der delegierten Entscheidungsbefugnis des Nutzers; 2026-10-28)
+Quelle: Nutzerauftrag zur Erstellung von Multiple-Choice-Ereignissen mit Unternehmensauswirkungen; Konkretisierung durch A01 nach Agentenreview
+Bezug: MG-002 / SLG-002.3 / SLG-002.4 / T-0032
+
+Die 450 Lernfälle stellen eigenständige, originäre Unternehmenssituationen dar. Antwortfeedback erklärt die plausiblen Auswirkungen der gewählten Handlungsoption auf das Fallunternehmen (z. B. Kosten, Liquidität, Lieferfähigkeit, Absatz, Risiko oder Zusammenarbeit). Die Antwort verändert den produktiven Jahres-Spielstand und dessen Accounting-/Ledger-State nicht. Eine spätere Überführung von Lernfällen in aktive Spielereignisse mit dauerhaften Auswirkungen benötigt einen eigenen Simulationsauftrag, kontrollierte Engine-Commands, Fachreview und Regressionsabdeckung. Diese Trennung ist eine V2-Konvention, keine allgemeine didaktische oder rechtliche Regel.
+## D-0140 – Marketingkampagnen und Lieferantenpräferenz als V1-Szenariomechanik
+
+Status: APPROVED (A01-Szenariokonvention unter delegiertem Nutzerauftrag; 2026-10-28)
+Quelle: Nutzerauftrag, MG-002 / T-0031; fachlicher Cross-Review A11/A09
+
+Die Simulation bietet zwei einmalige Kampagnen als illustrative Optionen: „Gezielte Kundenansprache“ kostet 650 € und erhöht die Einladungswahrscheinlichkeit der nächsten Marktchance um 8 Prozentpunkte; „Fachmesse und Direktvertrieb“ kostet 1.100 € und erhöht sie um 14 Prozentpunkte. Die Chance ist auf höchstens 96 % gedeckelt. Eine Kampagne wird bei der nächsten Marktchance verbraucht, auch wenn daraus keine Einladung entsteht. Kosten werden einmalig durch Finance als Cash-Ausgabe oder offene Betriebskosten erfasst und im Monatsabschluss als Marketingaufwand gezeigt. Die Werte sind keine empirischen Werbewirkungen, realen Marktpreise oder Rechtsvorgaben.
+
+Der Spieler kann je Material einen geeigneten bevorzugten Lieferanten einstellen. Die Präferenz wirkt nur auf neue Fehlbestandsbestellungen und lässt bereits ausgelöste Bestellungen unverändert. Modellierte Lieferzeit, Lieferzuverlässigkeitsaufschlag und Szenariopreise bleiben maßgeblich; individuelle, reale Lieferantenangebote werden nicht behauptet. Der Mechanismus ist eine transparente Spielannahme.

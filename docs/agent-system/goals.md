@@ -71,7 +71,7 @@ Ein Goal darf erst als COMPLETED markiert werden, wenn seine Ergebnisse dauerhaf
 Status: COMPLETED (2026-10-27; CP-0199)
 Priorität: HIGH
 
-Ziel: Die vom Nutzer beim manuellen Spieltest gemeldeten Bedienungs-, Kapazitäts-, Vertrags-, Personal- und Urlaubsfehler beheben und eine erneut testbare Browser-Version sichern.
+Ziel: Die vom Nutzer beim manuellen Spieltest gemeldeten Bedienungs-, Kapazitäts-, Vertrags-, Personal- und Urlaubsfehler beheben und eine erneut testbare Browser-Version sichern. Dieses Ziel umfasste die V1-Playtestkorrekturen; es war keine Abnahme der weitergehenden Realismus- oder WBQ/HQ-Lernziele.
 
 Abschlussnachweis: T-0022 wurde nach Nutzerbestätigung der fehlerfreien manuellen Browserprüfung abgeschlossen; T-0028 ist mit CP-0198 abgeschlossen. Automatisierte Regressionen und Einjahres-Smoke bestanden. Details: CP-0190 und CP-0199.
 
@@ -81,6 +81,26 @@ Status: COMPLETED (2026-10-27; CP-0199)
 
 ---
 
-## V2-Zielrückstand (nicht aktiv)
+## Aktives V2-Mastergoal MG-002
 
-- **A10 – PR-Workflow gegen Injection absichern:** PR-Diff-Daten dürfen nicht als Shell-Ausdruck oder unsicher zusammengesetzter JSON-String in Workflow-Befehle interpoliert werden. Umsetzung und Verifikation erfolgen im Rahmen der V2-Infrastrukturarbeit; dieses Ziel ist kein aktives V1-Ticket.
+- Der A10-Sicherheitsrückstand (PR-Diff-Daten sicher behandeln; keine Shell-/JSON-Interpolation) wird in SLG-002.5 überführt.
+
+### MG-002 – Wirtschaftsfachwirt-Lernsimulation und WBQ/HQ-Vorbereitung entwickeln
+
+Status: IN_PROGRESS (2026-10-28; durch Nutzerauftrag aktiviert; A01 koordiniert)
+
+Ziel: Eine nachvollziehbare Unternehmenssimulation entwickeln, die betriebswirtschaftliche Zusammenhänge auf Wirtschaftsfachwirt-Niveau erfahrbar macht und mit belegten Lerninhalten, Lernkarten und Prüfungssimulation auf WBQ und HQ vorbereitet. Der Unternehmensbereich umfasst ausdrücklich auch Marketing/Vertrieb und Logistik (Beschaffung, Materialfluss, Lagerung und Auslieferung). Marketing-, Logistik- und sonstige Simulationsannahmen, allgemeine Fachregeln und rechtliche Anforderungen müssen unterscheidbar bleiben. Lernwissen erscheint an fachlich passenden Stellen als zugängliche Tooltips; pro offiziellem WBQ-Qualifikationsbereich und HSQ-Handlungsbereich entstehen jeweils 50 eigenständige Multiple-Choice-Lernszenarien mit Begründung und beschriebener Unternehmenswirkung.
+
+**Aktive Second-Level Goals und Reihenfolge:**
+
+1. **SLG-002.1 – IHK-Prüfungsrahmen erheben und Kompetenzlandkarte ableiten und gegenprüfen (COMPLETED; CP-0202):** A08 recherchiert den WBQ-/HQ-Prüfungsrahmen aus den im Internet verfügbaren Quellen der zuständigen IHK und dokumentiert URL, Veröffentlichungs-/Versionsstand und Abrufdatum. A06 leitet daraus die Kompetenzlandkarte ab. A07/A08 gleichen sie mit weiteren einschlägigen Internetquellen ab und detaillieren sie, wobei Quelle, bestätigter IHK-Inhalt, agentenseitige Ableitung, Ergänzung und verbleibender Widerspruch jeweils unterscheidbar bleiben. Weitere Quellen ergänzen oder prüfen die Ableitung; sie überschreiben den IHK-Prüfungsrahmen nicht stillschweigend. Keine Kompetenzlandkarte wird als von der IHK herausgegeben bezeichnet.
+2. **SLG-002.2 – Erklärbare Unternehmens- und Finanzsimulation validieren (IN_PROGRESS):** A02/A03 definieren überprüfbare Lern-Szenarien für Auftragswirtschaft, Kostenrechnung, Preisbildung, Kapazität, Personal, Finanzierung, Liquidität und Jahresabschluss-Sichten. Läufe müssen reproduzierbar und ihre Finanzwirkungen aus Ereignissen nachvollziehbar sein. Öffentliche Unternehmensberichte dürfen nur mit dokumentierter Vergleichbarkeit als Plausibilitätsreferenz dienen.
+3. **SLG-002.3 – WBQ/HQ-Lernkarten und Wiederholungslogik aufbauen (COMPLETED; CP-0208):** T-0032 liefert 450 quellen-/kompetenzbezogene, fachlich durch A09 geprüfte MC-Lernfälle (50 je WBQ-/HSQ-Bereich), mit Begründung, Fallwirkung, getrenntem lokalem Lernfortschritt und Wiederholungsplanung. Spielvereinfachungen sind als solche ausgewiesen und Antworten mutieren den aktiven Simulations-/Accounting-State nicht.
+4. **SLG-002.4 – Prüfungsübungen und spielbezogene Lernrückblicke entwickeln (P1/P2):** A07 erstellt nach belegtem Prüfungsrahmen Übungs- und zeitbegrenzte Prüfungsabläufe mit dokumentierter Bewertungsrubrik, Musterlösung und fachlichem Feedback. A02/A03 liefern Ereignis- und Kennzahlenkontext für Debriefs, die Entscheidungen mit Ergebnis, Kosten, Liquidität und passenden Kompetenzen verbinden.
+5. **SLG-002.5 – V2-Daten-, Architektur-, Qualitäts- und Auslieferungsbasis freigeben (P2, parallel vorbereiten):** A04/A11 legen nach fachlichem Scope versionierte Simulationsläufe, Regelstände, Lerninhalte und Lernfortschritt als Anforderungen vor. A09/A10 definieren automatisierte Simulations-, Inhalts-, Browser-/Mobil- und CI-Prüfungen einschließlich des PR-Workflow-Sicherheitsrückstands. Architektur, Schema, Persistenzziel (lokal/offline oder Konto/Cloud) und Datenschutz bleiben bis zu gesonderter Nutzerfreigabe PROPOSED.
+
+**Gemeinsame Abnahmerichtung:** Kompetenzziele sind Quellen und Lernaktivitäten zugeordnet; Simulationsergebnisse sind bei gleicher Szenario-/Regelversion reproduzierbar; Finanzberichte lassen sich auf Geschäftsvorfälle zurückführen; Karten und Prüfungsaufgaben besitzen Versions-/Quellenbeleg und fachlichen Review; Nutzerfortschritt sowie Prüfungsfeedback sind nachvollziehbar; Browser- und Mobilpfade bestehen definierte E2E- und Qualitätsprüfungen. Konkrete Quoten, Marktmodelle, Architektur und verbindlicher Prüfungsumfang werden erst in den jeweiligen Scope-Tickets festgelegt.
+
+**Abhängigkeiten:** SLG-002.1 ist Eingangsvoraussetzung für Lernkarten und Prüfungsinhalte. Unternehmens- und Finanzmodellierung kann parallel beginnen, umfasst Marketing/Vertrieb und Logistik und benötigt Lernzielmapping sowie explizite Realismusgrenzen. Lern-UX folgt den fachlichen Lern-/Prüfungsverträgen. Persistenz, Schema und Architekturentscheidungen benötigen einen freigegebenen Betriebs- und Datenschutzbedarf.
+
+**Nicht mit V1 verwechselt:** MG-001 ist abgeschlossen; die V1-Playtestkorrekturen und der einjährige Browserlauf sind kein Nachweis einer rechtlich vollständigen Buchführung, prognosefähigen Unternehmensplanung oder bestätigten WBQ-/HQ-Prüfungsvorbereitung. Details: [V1-/V2-Zielreview CP-0201](checkpoints/CP-0201.md).

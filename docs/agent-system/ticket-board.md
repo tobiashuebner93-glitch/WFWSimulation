@@ -2,6 +2,76 @@
 
 ## Aktive Tickets
 
+### T-0033 – V2-Integration, Qualitätsreview und Release vorbereiten
+
+Status: IN_PROGRESS (Abnahmegates bestanden; GitHub-Desktop-Commit/Push ausstehend; CP-0209)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.5
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A04 DATABASE, A09 QA, A10 DEVOPS_INFRASTRUCTURE, A11 TECHNICAL_ARCHITECT
+Priorität: HIGH
+
+Aufgabe: Die fachlich abgeschlossenen MG-002-Lieferungen integrieren, Browser-/Mobilpfade, Inhalte, Simulation und Qualitätsgates unabhängig prüfen und Konflikte vor Sicherung bereinigen. Keine Architektur- oder Schemafreigabe ohne gesonderte Nutzerentscheidung.
+
+Akzeptanz: Alle V2-Tickets haben dokumentierte Agentenergebnisse und unabhängige Reviews; 450 Lernszenarien sind strukturell und fachlich geprüft; Regressionen und einjähriger Simulationslauf bestehen; Mobilbedienung und Tooltipzugänglichkeit sind geprüft; `git diff --check` ist sauber. Nach Abnahme werden klar benannte Sicherungs-Commits erstellt und über lokale Git-Arbeitsmittel/GitHub Desktop gepusht.
+
+### T-0032 – 450 WBQ-/HSQ-Multiple-Choice-Lernszenarien erstellen und integrieren
+
+Status: COMPLETED (A06/A07-Lieferung, A09-Prüfung sämtlicher 450 Items; 2026-10-28; CP-0208)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.3 / SLG-002.4
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A06 IHK_LEARNING, A07 EXAM, A05 FRONTEND, A09 QA (Inhaltsproduktion A06/A07 zuerst; UI-Integration A05 erst nach T-0031)
+Priorität: HIGH
+
+Aufgabe: Für jeden der vier WBQ-Qualifikationsbereiche und fünf HSQ-Handlungsbereiche jeweils 50 eigenständige, originäre Multiple-Choice-Lernszenarien erstellen. Jede Aufgabe enthält vier plausible Antwortoptionen, einen Lösungsschlüssel A–D, eine fachliche Begründung, Quellen-/Kompetenzbezug, eine verständliche Unternehmenswirkung und eine klare Kennzeichnung von Rechtsstand bzw. Spielvereinfachung. A06 und A07 liefern getrennte Inhaltsmodule mit demselben Schema. A05 integriert diese Module als Lernmodus erst nach Abschluss und Review von T-0031, damit UI-Änderungen nicht konkurrierend erfolgen.
+
+Akzeptanz: Genau 50 valide Fragen je offiziellem Bereich (450 insgesamt); keine kopierten DIHK-Prüfungsaufgaben; genau ein richtiger Schlüssel pro Item; Distraktoren und Erklärungen fachlich geprüft; Unternehmenswirkungen werden als plausible Fallfolgen im Feedback erklärt; Antworten verändern den aktiven Jahres-Spielstand oder das Accounting-/Ledger-State nicht. Inhalte sind responsiv sowie tastatur-/touchbedienbar.
+
+### T-0031 – Marketing, Logistik und kontextbezogene Fachwissen-Tooltips ergänzen
+
+Status: COMPLETED (A02/A03/A05-Implementierung, A11/A09-Review; 2026-10-28; CP-0202)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2 / SLG-002.3
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A02 SIMULATION, A03 ACCOUNTING_FINANCE, A05 FRONTEND, A06 IHK_LEARNING, A08 RESEARCH
+Priorität: HIGH
+
+Aufgabe: Marketing/Vertrieb sowie Logistik (Beschaffung, Lieferanten, Materialfluss, Lager und Auslieferung) in die nachvollziehbare Unternehmenssimulation und Lernziele aufnehmen. Fachwissen soll an passenden Spielbegriffen und Entscheidungen durch zugängliche Tooltips erklärt werden. Allgemeine Fachregeln, Rechtsvorgaben und V1-/V2-Szenarioannahmen sind sichtbar getrennt.
+
+Akzeptanz: Mindestens ein eigener spielbarer Marketing-/Vertriebszyklus und ein eigener Logistikzyklus bilden jeweils nachvollziehbare Unternehmenswirkungen ab; beide sind reproduzierbar und finanzielle Effekte abstimmbar. Tooltips funktionieren per Maus, Tastatur und Touch. Keine Architektur-/Schemaänderung ohne Freigabe; Fachreview durch unabhängige Rollen.
+Abschluss: Zwei einmalige Szenariokampagnen (+8/+14 Prozentpunkte auf die nächste Marktchance) werden beim Aktivieren als Kosten oder offene Kostenposition gebucht und in Monatsabschluss/Ergebnis/Cash geprüft. Bevorzugter Lieferant je Material steuert künftige Fehlbestandsbestellungen, bei unveränderten Bestellungen und Zuverlässigkeits-/Beziehungswartezeiten. Marketing-/Logistikhinweise sind als native, per Tastatur und Touch nutzbare Details integriert. T-0031-Regression, V1-Regressionsuite, Wochenregression und 12-Monats-Smoke bestanden; unabhängiger A11/A09-Review ohne blockierende Konflikte. Ein separater Test des Marketing-Zahlungsversuchs bei unzureichendem Cash wird im T-0033-Gesamt-QA ergänzt. Kein Commit/Push.
+
+### T-0030 – IHK-Prüfungsrahmen und Kompetenzlandkarte belegen
+
+Status: COMPLETED (A06-Lieferung, A07-Fachreview, A08-Quellenreview; 2026-10-28; CP-0202)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.1
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A08 RESEARCH, A06 IHK_LEARNING, A07 EXAM
+Priorität: P0
+
+Aufgabe: Den WBQ-/HSQ-Prüfungsrahmen anhand der geltenden WFachwPrV und öffentlich erreichbarer IHK-/DIHK-Angaben dokumentieren; URL, Versions-/Veröffentlichungsstand und Abrufdatum festhalten. A06 leitet eine nachvollziehbare Kompetenzlandkarte ab, A07 prüft Prüfungsformate und Handlungsorientierung. Verbindlicher Normtext, IHK-Hinweise, agentenseitige Ableitungen und nicht belegte Ergänzungen bleiben unterscheidbar.
+
+Akzeptanz: Vier WBQ- und fünf HSQ-Bereiche vollständig abgebildet; Logistik und Marketing/Vertrieb enthalten; Quellen und Abweichungen dokumentiert; kostenpflichtige Rahmenpläne nicht als eingesehene Quelle ausgegeben; unabhängiger Cross-Review bestanden; Kompetenzlandkarte wird nicht fälschlich als IHK-Veröffentlichung bezeichnet.
+
+Abschluss: `docs/learning/wirtschaftsfachwirt-kompetenzlandkarte.md` dokumentiert WFachwPrV §§ 3–5 und 7, regionale IHK-Angaben, agentenseitige Ableitungen und Spielbezüge. A07 und A08 bestätigen Bereichszuordnung, Prüfungsformat, Rechts-/Zeitangaben sowie Quellenstände. Der spezifische Wirtschaftsfachwirt-Rahmenplan 2024 und der allgemeine WBQ-Rahmenplan 2026 sind getrennt; keiner der kostenpflichtigen Volltexte wurde als gelesen behauptet. Keine blockierenden Konflikte; siehe CP-0202.
+
+### T-0029 – „Woche abarbeiten“ bis zum nächsten Montag begrenzen
+
+Status: COMPLETED (A02/A05-Umsetzung, A11/A09-Review; 2026-10-28; CP-0202)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A02 SIMULATION, A05 FRONTEND, A09 QA
+Priorität: HIGH
+
+Aufgabe: Den Wochenknopf so ändern, dass er unabhängig vom Startwochentag bis zum nächsten strikt zukünftigen Montag läuft. Das Ziel-Montagdatum selbst wird nicht verarbeitet. Klar beschriften, welches Zeitintervall aufgelöst wird.
+
+Akzeptanz: Starts an Montag, Mittwoch, Freitag, Samstag und Sonntag sowie Feiertagswochen enden am nächsten zukünftigen Montag; kein Ereignis oder Finanzlauf am Zielmontag; Einzel-Tag-Fortschritt bleibt unverändert; Regressionen und `git diff --check` bestehen.
+
+Abschluss: `getWeekAdvanceWindow()` berechnet das strikt zukünftige Montagziel; die App verarbeitet nur die davorliegenden Kalendertage. Alle drei Buttons nennen das Montagziel. Wochenregression, Playtest-Regression und Jahres-Smoke bestanden; unabhängiger Review durch A11/A09 fand keine blockierenden Konflikte. Browser-E2E folgt unter T-0033. Kein Commit/Push.
+
 ### T-0028 – Cross-Agent-Befunde zu Angebotszeit, Kapazität und Liquidität bereinigen
 
 Status: COMPLETED (A01 hat Fachrollen intern abgearbeitet; 2026-10-27; CP-0198)
@@ -747,3 +817,51 @@ Browser- und Mobilprüfung vollständig: echte Oberfläche, Mobile-Navigation, W
 ### Nutzerentscheidung D-0127 / A02-A03-Übernahme (CP-0175 bis CP-0177)
 
 Der Dispositionszins wird täglich auf dem gezogenen Saldo berechnet und am Monatsende einmalig als Sammelposten belastet. A03 hat die Finanzspezifikation (CP-0175), A02 das Phase-8-Ereignismodell und den gemeinsamen Abgleich (CP-0176) aktualisiert. A01 hat die offene Detailmenge fortgeschrieben (CP-0177). Offen: Tageszählbasis, Rundungszeitpunkt, Buchungsreihenfolge am Monatsende und Rückführung aus anderen Eingangstypen. T-0008 bleibt IN_PROGRESS.
+
+### T-0032 Qualitätspräzisierung nach A09-Zwischenreview (2026-10-28)
+
+Die Freigabe erfordert zusätzlich zur Mengen- und Feldprüfung: deutsche, natürlich formulierte Falltexte; vier fachlich plausible und fallbezogene Optionen; stabile `competenceId`-Zuordnung zu den tatsächlich in der Kompetenzlandkarte dokumentierten IDs; direkte Primärlinks für jeden inhaltlich herangezogenen Rechtsparagraphen; und eine Validatorabdeckung für Bereichszahlen, Inhaltsduplikate, Optionsverteilung, Kompetenzreferenzen und auffällige Fremdsprachenmarker. Exakte Textunterschiede allein gelten nicht als semantischer Qualitätsnachweis. A09 prüft nach der Nacharbeit erneut unabhängig.
+
+### T-0032 UI-Integration und neuer WBQ-Schlüsselkonflikt (2026-10-28)
+
+A01 hat den vorhandenen Bereich „Lernen“ um eine Prüfungsfallansicht mit WBQ-/HSQ-Filter, vier Antwortbuttons, Feedback, Quellen-/Kompetenzhinweis und separatem lokalen Wiederholungsfortschritt erweitert. Die Quizantworten speichern nur den Lernfortschritt und verändern laut Regression weder den aktiven Spielstand noch Finance/Ledger. Browserprüfung korrigierte den WBQ-Bereichstitel (Exportfeld `title`). Ein Inhaltsabgleich fand anschließend im WBQ-Modul doppelte Rotation der Antwortoptionen; dadurch ist der Lösungsschlüssel bei einigen Items nicht mehr der richtigen Option zugeordnet. A06 bereinigt die Verarbeitung und ergänzt eine Prüfung gegen den richtigen Antworttext; A09 reprüft HSQ separat. Das Ticket bleibt IN_PROGRESS.
+
+### T-0032 HSQ-Nachreview 2: Kompetenzlandkarte und Distraktoren offen
+
+A09 bestätigte Umfang, deutsche und eindeutige Inhalte, Schlüsselkorrektheit, Rechtslinks und getrennten Spielstand, erteilte aber keine Freigabe. A07 muss die 25 HSQ-Kompetenz-IDs in der externen Kompetenzlandkarte hinterlegen und jedes Item gegen diese tatsächlichen Map-Einträge validieren. Zusätzlich müssen offensichtliche Falschantworten in allen fünf HSQ-Bereichen durch plausible fallbezogene Fehlannahmen oder Zielkonflikte ersetzt werden; ein Längen-/Schlüsselwortfilter ist kein Plausibilitätsnachweis.
+
+### T-0032 WBQ-Schlüsselabgleich korrigiert; A09-Review offen
+
+A06 hat englische Altinhalte und doppelte Bearbeitungs-/Rotationsblöcke entfernt. Die endgültige A–D-Position wird einmalig aus dem Datensatz erzeugt; jedes Item führt `correctAnswer`, und die WBQ-Regression prüft `options[correctOption] === correctAnswer`. A01 reproduzierte den Validator mit 200 Items und 50 je Bereich. Die unabhängige fachliche A09-Prüfung bleibt vor Freigabe erforderlich.
+
+### T-0032 WBQ-Inhaltsreview: Distraktoren noch nicht freigegeben
+
+A09 bestätigt strukturelle WBQ-Korrekturen (200/50, deutsche statische Inhalte, Kompetenz-Map, direkte Rechtsquellen, korrekte Schlüssel, keine Spielmutation). Die fachliche Abnahme blockiert weiterhin an unplausiblen Distraktoren in allen vier Bereichen. Die aktuelle Keyword-Prüfung reicht nicht; A06 überarbeitet die Optionen fallweise und ergänzt eine nachvollziehbare manuelle Prüfliste, bevor A09 erneut reviewt.
+
+### T-0032 A01-Fortsetzung (2026-10-28; CP-0203)
+
+Der aktuelle A01-Lauf bestätigt, dass die HSQ-Kompetenzlandkarte nun 25 `wfprv5-*` IDs enthält und der HSQ-Strukturvalidator 250/50, Quellen, Schlüssel und Referenzen besteht. Der WBQ-Strukturvalidator besteht mit 200/50 und korrekten Antworttexten; A06 arbeitet die verbleibenden 100 Distraktor-Sets zu Recht/Steuern und Unternehmensführung noch fallweise nach. Die getrennte Lern-UI-Regression besteht. Diese automatisierten Strukturprüfungen ersetzen keine fachliche Distraktorprüfung. A07/A06 setzen ihre Arbeit im Repository-Checkout fort; A09 muss beide finalen Datensätze unabhängig neu prüfen. T-0032 bleibt IN_PROGRESS; T-0033, Commit und Push bleiben ausstehend. Details: CP-0203.
+
+**Nachtrag:** A06 hat die übrigen WBQ-Distraktoren inzwischen ebenfalls fallweise überarbeitet und `prototype/learning-wbq-review-checklist.md` erstellt. Validator und Syntaxprüfung bestehen (200/50, A48/B52/C52/D48). A09 prüft jetzt unabhängig den gesamten HSQ- und WBQ-Satz; fachliche Abnahme bleibt offen.
+
+### T-0032 A09-Befunde und gezielte Korrekturen (2026-10-28; CP-0204)
+
+A09 meldete vorläufige Inhaltsblocker: mehrdeutige/unterbestimmte Fallfragen (HSQ BM-027, IFRWC-027/-039, Logistik-007/-010/-015/-018; WBQ VW-002/RW-013), Rechtspräzisierung in WBQ RT-005/RT-006 (Werkvertrag/Werklieferungsvertrag und Abnahme) sowie auffällige offensichtliche Distraktoren in den genannten Marketing-/Führungs-/Rechts-/Unternehmensführungsfällen. Der Review lief aus einem Spiegel ohne `.git`; diese Befunde sind direkt im Repo zu verifizieren. A06/A07 bearbeiten konkrete Fälle. A09 wiederholt nach Korrektur die vollständige Prüfung im Git-Checkout. Keine Abnahme, kein Commit/Push. Details: CP-0204.
+
+### T-0032 A09-Verifikation und verbleibende fachliche Blocker (2026-10-28; CP-0205)
+
+A09 hat den Nachreview im tatsächlichen Checkout mit Preflight durchgeführt. WBQ VW-002, RW-013 und RT-005/006 sind jetzt behoben; WBQ RW und RT sind fachlich PASS mit Restqualität RT-001. Verbleibend: HSQ BM-027, IFRWC-027 und Logistik-007/-010/-015/-018 sind mehrdeutig/unterbestimmt; Marketing-005/-030, Führung-002/-008/-012/-018 sowie WBQ UF-034/-045/RT-001 haben zu offensichtliche Distraktoren; WBQ VW-027/-028 enthalten jeweils zwei richtige Antworten. WBQ-Validator bricht zusätzlich an verwaister Quelle `LAW-BGB-631-DIRECT` ab. A06/A07 korrigieren, danach finaler A09-Nachreview. Keine Freigabe, kein Commit/Push. Details: CP-0205.
+
+**Nacharbeit:** A06/A07 haben alle IDs aus CP-0205 korrigiert, die Checklisten angepasst und Validatoren/syntax erfolgreich ausgeführt. BGB §§ 640, 650 und 442 sind in den betroffenen Fallbegründungen/Links abgeglichen. Der finale A09-Abschlussreview der aktuellen 450 Items läuft; T-0032 bleibt bis zu dessen Ergebnis offen. Siehe CP-0206.
+
+### T-0032 A09-Abschlussreview: ein einzelner Blocker (CP-0207)
+
+A09 hatte nach CP-0206 zunächst acht Bereiche PASS gegeben; danach wurde `hsq-logistik-018` verengt und im gezielten Re-Review PASS gegeben. T-0032 ist mit CP-0208 abgeschlossen.
+
+### T-0032 Abschluss (CP-0208)
+
+A09 hat den letzten Befund `hsq-logistik-018` gezielt freigegeben und zuvor alle neun Prüfungsbereiche vollständig bestanden. 450 Fälle sind strukturell, fachlich, quellen-/kompetenzbezogen und auf Nichtmutation des aktiven Spielstands geprüft. WBQ-Checkliste enthält 200 A09-Freigaben; HSQ-Nacharbeit und Re-Review sind dokumentiert. Validatoren, Lern-UI-Regression, Gesamtsuite/Jahreslauf und `git diff --check` bestehen. T-0032 ist COMPLETED; T-0033 übernimmt Integration/Release. Kein Commit/Push vor T-0033-Abnahme.
+
+### T-0033 Start nach T-0032-Abnahme (CP-0208)
+
+T-0033 ist IN_PROGRESS. Offen sind abschließende Integrations- und Architektur-/Daten-/DevOps-Reviews, Browser-/Mobil-E2E und Tooltip-/Tastaturprüfung. Anschließend erfolgt der kontrollierte Commit-/Push-Lauf gemäß AGENTS.md. Bestehende lokale Änderungen bleiben erhalten.
