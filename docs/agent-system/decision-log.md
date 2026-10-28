@@ -1378,3 +1378,76 @@ Quelle: Nutzerauftrag, MG-002 / T-0031; fachlicher Cross-Review A11/A09
 Die Simulation bietet zwei einmalige Kampagnen als illustrative Optionen: „Gezielte Kundenansprache“ kostet 650 € und erhöht die Einladungswahrscheinlichkeit der nächsten Marktchance um 8 Prozentpunkte; „Fachmesse und Direktvertrieb“ kostet 1.100 € und erhöht sie um 14 Prozentpunkte. Die Chance ist auf höchstens 96 % gedeckelt. Eine Kampagne wird bei der nächsten Marktchance verbraucht, auch wenn daraus keine Einladung entsteht. Kosten werden einmalig durch Finance als Cash-Ausgabe oder offene Betriebskosten erfasst und im Monatsabschluss als Marketingaufwand gezeigt. Die Werte sind keine empirischen Werbewirkungen, realen Marktpreise oder Rechtsvorgaben.
 
 Der Spieler kann je Material einen geeigneten bevorzugten Lieferanten einstellen. Die Präferenz wirkt nur auf neue Fehlbestandsbestellungen und lässt bereits ausgelöste Bestellungen unverändert. Modellierte Lieferzeit, Lieferzuverlässigkeitsaufschlag und Szenariopreise bleiben maßgeblich; individuelle, reale Lieferantenangebote werden nicht behauptet. Der Mechanismus ist eine transparente Spielannahme.
+
+## D-0141 – Agenturpersonalpools und spielwirksame Tageslernfragen
+
+Status: APPROVED (A01-Umsetzung unter dem ausdrücklichen Playtestauftrag; 2026-10-28)
+Quelle: Nutzeranforderung, MG-002 / T-0034
+
+Zeitarbeitskräfte werden aus einem festen, fiktiven Personalpool der vereinbarten Agentur gebucht. Die Buchung wählt Qualifikation, Kopfzahl und Dauer: ein Arbeitstag, fünf Arbeitstage oder 20 Arbeitstage. Maßgeblich sind Simulationsarbeitstage einschließlich des im Spiel verwendeten Feiertagskalenders; liegt das Simulationsdatum arbeitsfrei, beginnt die Buchung am nächsten Arbeitstag. Vor Annahme prüft das Spiel passende verfügbare Poolmitglieder und die Arbeitsplatzkapazität für jeden gebuchten Tag. Die Personen erscheinen in der gewöhnlichen Personalplanung und werden dort Aufträgen zugewiesen; die Buchung selbst bindet sie an keinen Auftrag. Agenturprofile, Fähigkeiten, Motivation und Preise sind Modellannahmen, keine echten Agenturangebote oder arbeitsrechtliche Freigabe.
+
+Beschäftigte und Poolkräfte erhalten je einen aktuellen Kompetenzstand und ein individuelles Entwicklungslimit für Fach-, Methoden-, Sozial- und Individualkompetenz. Maschinen- und Ausbilderqualifikationen werden getrennt als Berechtigungsmerkmale geführt. Weiterbildung und richtige Lernantworten dürfen Kompetenzstände nicht über das Entwicklungslimit erhöhen. Die Arbeitsleistung reagiert begrenzt und deterministisch auf Kompetenz und Motivation.
+
+Auf der Übersichtsseite können pro Simulationsdatum höchstens fünf Multiple-Choice-Antworten abgegeben werden. Richtige und falsche Antworten lösen kleine sichtbare Änderungen an Ruf, Mitarbeiterkompetenz oder Motivation aus; sie erzeugen keine direkten Finanz-, Steuer- oder Ledgerbuchungen. Diese V2-Spielmechanik ersetzt für die aktive tägliche Frage den älteren Nichtmutationsgrundsatz aus D-0139; D-0139 bleibt für die separaten Lernfall-Erklärungen und Prüfungsbibliothek im Übrigen bestehen. Wirkungen sind didaktische Szenarioheuristiken, keine psychometrische oder empirische Aussage.
+
+## D-0142 – V2-Neustartprofil, Marktberichte und BAB
+
+Status: APPROVED (A01-Umsetzungskonvention unter dem ausdrücklichen Nutzerauftrag; 2026-10-28)
+Quelle: Nutzerauftrag, MG-002 / SLG-002.2 / T-0035
+
+Neue Spielstände beginnen im Szenariojahr 2019 als Einpersonen-Einzelunternehmen (Kleingewerbe-Szenario), mit 10.000 € Bankbestand, leerem Lager, gemieteter Münchner Garage, Werkbank und Baumarkt-Handwerkzeug. Bestehende Spielstände behalten ihr jeweiliges Startprofil. Die 2019er Preise, Flächen, Nachfrage, Mieten, Lebenshaltungskosten und Gründungsaufwände sind Modellannahmen und keine historischen Angebote oder Steuerberatung. Eine GmbH benötigt im Spiel 25.000 € Stammkapital, davon mindestens 12.500 € eingezahlt, zuzüglich einer modellierten Gründungsgebühr; eine UG benötigt voll eingezahltes Kapital und eine modellierte Gründungsgebühr. Die gesetzlichen UG-Rücklagen sind als Spielanforderung zu berücksichtigen, nicht als frei verfügbares Geld. Die Anzeige verwendet den Begriff Kleingewerbe nur als Unternehmensszenario; dies ist keine eigene Gesellschaftsform.
+
+An jedem ersten Arbeitstag der Woche werden im V2-Profil drei Marktchancen erzeugt. Einladung und Loswahrscheinlichkeit reagieren auf Unternehmensruf, Preisposition und Kapazität. Ein Teil der Chancen wird absichtlich deutlich unter den modellierten Kosten angeboten, damit Deckungsbeiträge aktiv beurteilt werden müssen. Einzelpreise von Konkurrenzangeboten werden nicht offengelegt. Das Postfach enthält Monatsberichte mit dem Mittelwert aller drei Konkurrenzprofile sowie einer modellierten Spanne für kleine, mittlere und große Aufträge. Diese Wettbewerbswerte sind Szenarioheuristiken.
+
+Standortwahl zeigt zehn Mietobjekte und zehn separate Kaufobjekte auf einer schematischen München-Umlandkarte. Kauf, Kreditverhandlung und Grundschuldszenario sind getrennte Abläufe. Maschinenmiete benötigt passende Flächen und Fachqualifikation; Standort-, Lieferanten-, Personal-, Markt- und BAB-Wirkungen sind dynamische Spielmodelle. Der BAB wird aus gebuchten Monatskosten, tatsächlichen Raum-/Maschinenanteilen und protokollierten Arbeits-/Maschinenstunden abgeleitet. Privatentnahmen werden als Entnahme und nicht als betrieblicher Aufwand behandelt. Diese Regeln sind weder ein prüfungsfähiger Abschluss noch eine Rechts-/Steuer- oder Marktauskunft.
+## D-0143 – V2-Anfragekalender, Angebotsantwort und Werkzeugbestand
+
+Status: APPROVED (A01-Umsetzungskonvention unter dem ausdrücklichen Nutzerauftrag; 2026-10-28)
+Quelle: Nutzeranforderung, MG-002 / T-0036
+
+Im 2019er V2-Profil entstehen Kundenanfragen an drei innerhalb der fünf Arbeitstage je Woche rotierenden Werktagen. Wochenenden und im Spiel geführte Feiertage erzeugen keine Anfragen. Die Rotation macht Eingangstage planbar und verhindert einen festen wöchentlichen Bündelungstag. Unbeantwortete Anfragen sind drei bis fünf Kalendertage verfügbar; die Dauer ist pro generierter Anfrage reproduzierbar festgelegt. Nach Einreichung eines Nettoangebots und Zahlungsziels wartet der Kunde ein bis drei Kalendertage. Der spätere Ausgang wird bis zum Entscheidungstag nicht vorweggenommen oder als Vertrag verbucht. Die Preis-/Rufbewertung bleibt Szenariomodell; Einzelpreise der Konkurrenz werden nicht offengelegt. Der Legacy-/2027-Ablauf bleibt bei sofortiger Entscheidung.
+
+Generierte Fertigungsaufträge zeigen erforderliche Fähigkeiten. CNC zählt nur dann als verfügbar, wenn eine Person sowohl CNC-Kompetenz als auch die für CNC-01 geführte Maschinenberechtigung hat. Fehlende Anforderungen werden rot ausgewiesen. Das Datum in der Oberfläche wird gelb hervorgehoben, wenn der Reststundenbedarf offener Produktionsaufträge die verfügbare Tageskapazität aus einsatzfähigem Stammpersonal und heutigen Zeitarbeitsstunden übersteigt. Das ist ein grober Arbeitslastindikator, keine garantierte Terminprognose.
+
+Der Baumarkt bleibt für fehlmengenbedingte Material-Notbeschaffung verfügbar und kann je Material als bevorzugter Lieferant gesetzt werden. Zusätzlich werden dort drei fiktive Werkzeuge tageweise vermietet. Mietkosten werden als Betriebskosten erfasst; die Rückgabe erfolgt zum gespeicherten Arbeitstag. Der Inventarreiter unterscheidet tatsächlich geführte Materialbestände, Arbeitsmittel und Maschinen; Computer ohne Anfangsbestand werden als nicht vorhanden ausgewiesen. Fristen, Preise, Materialien und Leihkonditionen sind Spielannahmen, keine realen Händlerangebote.
+## D-0144 – Auftragsgebundener Werkzeugverleih und Maschinenskills
+
+Status: APPROVED (A01-Umsetzungskonvention unter dem ausdrücklichen Nutzerauftrag; 2026-10-28)
+Quelle: Nutzeranforderung, MG-002 / T-0037
+
+Die Baumarkt-Werkzeugauswahl ist auf Spezialwerkzeuge begrenzt, die ein angenommener, noch offener Auftrag im aktuellen Profil verlangt. Der Katalog zeigt diese Werkzeuge nur dann an, wenn der Bedarf besteht. Eine Buchung umfasst genau ein Gerät; das Zahlenfeld bestimmt ausschließlich die Mietdauer in Arbeitstagen. Der Arbeitsgang kann an einem Tag ohne gemietetes, verfügbares Werkzeug nicht fortschreiten. Mietpreis und Gerätekatalog sind Spielannahmen.
+
+Mietmaschinen führen die benötigten Fachskills und Maschinenberechtigungen als Daten. Die Inventaransicht zeigt beide Anforderungen an. Die CNC-Produktion verlangt im Modell CNC-Kompetenz und CNC-01-Berechtigung. Das Logo in der Kopfzeile führt jederzeit zur Übersichtsansicht.
+## D-0145 – Lagerbelegung, Beschaffungsvorlauf und Versandfertigwaren
+
+Status: APPROVED (A01-Umsetzungskonvention unter dem ausdrücklichen Nutzerauftrag; 2026-10-28)
+Quelle: Nutzeranforderung, MG-002 / T-0038
+
+Rohmaterial und Fertigware belegen gemeinsam die verfügbare Lagerfläche. Dashboard und Inventar zeigen belegte sowie maximale Kapazität in m²; im Lager werden Stahl, Aluminium und Zukaufteile einzeln geführt. Fertigware bleibt nach Produktionsabschluss als V2-Status `VERSANDBEREIT` eingelagert. Erst die Aktion „Auftrag aus Lager versenden“ setzt das Versanddatum, gibt Fertigwarenfläche frei und startet die Abnahmefrist. Eine Fertigung, die den verbleibenden Platz überschreiten würde, wartet. Ein überfülltes Lager verzögert angelieferte Bestellungen, bis Fläche frei wird.
+
+Das V2-Lieferantenmodell unterscheidet lokale Baumarkt-Sofortversorgung und Onlinebestellung. Der Baumarkt ist teurer, hat null Lieferzeit und endliche Materialbestände. Onlinebestellungen nutzen Mindestmengen, mehrtägige Werktags-Lieferzeiten, feste Versandkosten je Materialposition und ein reproduzierbares Verzögerungsrisiko. Ist Baumarktbestand erschöpft, wird der Rest online bezogen. Die Bestell-/Liefer-/Versandwerte sind Spielheuristiken und keine realen Händlerangebote oder Marktpreisbehauptungen. Der Legacy-Spielpfad behält seinen bisherigen automatischen Versand.
+
+## D-0146 – Profilabhängige Preisfortschreibung und quartalsweise Dispo-Basis
+
+Status: APPROVED (A01-Korrektur zur Umsetzung bestehender Produktentscheidungen; 2026-10-28)
+Quelle: Cross-Agent-Review zu T-0039; D-0123, D-0124, D-0128 und D-0142
+
+Für das V2-Startprofil 2019 beginnt die modellierte jährliche Preisfortschreibung im Januar 2020. Für das Legacy-V1-Startprofil 2027 bleibt das bestätigte Preisniveau im Startjahr unverändert; die Fortschreibung beginnt im Januar 2028. Das übernimmt bestehende, profilgebundene Annahmen und ist keine Marktprognose.
+
+Das quartalsweise Dispolimit gilt ab dem ersten Tag eines Quartals und verwendet den Zustand zum Ende des Vorquartals (zum Simulationsstart die Eröffnungsbasis). Die vereinfachte Aktivabasis umfasst Bankcash, offene Forderungen, aktuellen Rohmaterialbestand zu aktuellen Szenariopreisen, den direkt-materialbezogenen Wert noch nicht ausgelieferter Aufträge und gekaufte Immobilienwerte. Der Prototyp bildet keinen vollständigen HGB-Abschluss und keine historische Durchschnittsbewertung dieser Limitbasis ab.
+
+Materialeinkäufe mit modelliertem Lieferantenbeleg belasten Cash in Höhe von Nettoaufwand plus positionsweise berechneter SimTAX; der Kosten-/Materialaufwand bleibt netto und Vorsteuer wird separat verrechnet. Der ungezogene Disporahmen bleibt außerhalb der Zahlungsmittel. Es wird kein zusätzliches Nutzerproduktentscheidungsrecht aus dem Review abgeleitet.
+
+## D-0147 – Tagesfragen-Deck getrennt von der Prüfungsbibliothek
+
+Status: APPROVED (A01-Korrektur zur Vereinbarkeit von D-0139 und D-0141; 2026-10-28)
+Quelle: Cross-Agent-Review zu T-0039; D-0139 und D-0141
+
+Die 450 WBQ-/HSQ-Fälle werden ausschließlich im Prüfungs-/Übungsmodus beantwortet und verändern weder Spiel- noch Finanzzustand. Das Dashboard nutzt ein separates, eigenständiges DAILY_ITEMS-Deck. Nur Antworten auf diesen Tagesfragen können innerhalb des Tageslimits kleine modellierte Ruf-, Kompetenz- oder Motivationswirkungen auslösen; sie erzeugen keine Buchungen. Tages- und Prüfungsmodus besitzen getrennte Sitzungen und lokale Lernfortschrittsschlüssel. Der Antwortschlüssel der Tagesfragen wird deterministisch variiert. Alle Fragen und Wirkungen bleiben didaktische Szenarioannahmen, keine psychometrischen Messungen.
+
+## D-0148 – Standortwechsel bei laufender grundpfandrechtlicher Szenariosicherheit
+
+Status: APPROVED (A01-Sicherheitskonvention zur bereits modellierten Darlehensbesicherung; 2026-10-28)
+Quelle: Cross-Agent-Review zu T-0039; vorhandene Immobilienkredit- und Grundschuldmechanik
+
+Solange ein Immobiliendarlehen eine Grundschuld-Szenariosicherheit am aktuellen Standort führt und eine Restschuld besteht, ist der Verkauf dieses Standorts im Spiel gesperrt. Der Umzug kann nach vollständiger Tilgung fortgesetzt werden. Eine Ablösung aus Verkaufserlös, Zustimmung des Kreditgebers oder ein Sicherheitenwechsel ist nicht simuliert. Die Sperre ist eine konservative Produktvereinfachung und keine allgemeine Rechtsaussage über jede Immobilienveräußerung.

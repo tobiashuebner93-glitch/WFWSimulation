@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {createInitialGame,MARKETING_CAMPAIGNS,activateMarketingCampaign,setPreferredSupplier,advanceOneDay} from './engine.js';
-import {createInitialFinance,recordMarketingCost,recordMaterialPurchase,closeMonthlyPeriod} from './finance.js';
+import {createLegacyInitialGame as createInitialGame,MARKETING_CAMPAIGNS,activateMarketingCampaign,setPreferredSupplier,advanceOneDay} from './engine.js';
+import {createLegacyInitialFinance as createInitialFinance,recordMarketingCost,recordMaterialPurchase,closeMonthlyPeriod} from './finance.js';
 
 // Marketing is a separate, finite decision cycle with a cash and P&L trail.
 const game=createInitialGame(),finance=createInitialFinance(),campaign=MARKETING_CAMPAIGNS.find(x=>x.id==='targeted');

@@ -1,4 +1,7 @@
-import { createInitialGame, advanceOneDay, acceptMarketOffer } from './engine.js';
+import { createLegacyInitialGame as createInitialGame, advanceOneDay, acceptMarketOffer } from './engine.js';
+import { estimateOrderEconomics } from './economics.js';
+
+const ownedSite=createInitialGame();ownedSite.roomSettings.rent=0;ownedSite.latestBab=null;const zeroRentCost=estimateOrderEconomics(ownedSite.orders[0],ownedSite).estimatedCost;ownedSite.roomSettings.rent=550;const rentedSiteCost=estimateOrderEconomics(ownedSite.orders[0],ownedSite).estimatedCost;if(!(zeroRentCost<rentedSiteCost))throw new Error('Gekaufter Standort mit Monatsmiete 0 erhält in der Fallback-Kalkulation fiktive Miete');
 
 function marketInquiry(date, reputation=68, priceIndex=1) {
   const game=createInitialGame();

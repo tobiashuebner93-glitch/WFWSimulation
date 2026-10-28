@@ -1,6 +1,6 @@
-import { createInitialGame, advanceOneDay } from './engine.js';
+import { createLegacyInitialGame as createInitialGame, advanceOneDay, FACILITIES } from './engine.js';
 import {
-  createInitialFinance, issueInvoice, migrateFinanceState, processOutstandingCosts,
+  createLegacyInitialFinance as createInitialFinance, issueInvoice, migrateFinanceState, processOutstandingCosts,
   recordMaterialPurchase, recordTrainingCost,
 } from './finance.js';
 
@@ -10,7 +10,8 @@ function assert(condition, message) {
 
 // A qualified plan-to-production-to-following-operation chain can finish on one day.
 const work = createInitialGame();
-work.date = '2027-01-04';
+work.date = '2027-01-05';
+const machineSite=FACILITIES.filter(f=>f.machineCapacity>0).at(-1);work.facility={...machineSite,tenure:'rent'};work.roomSettings.workshop=machineSite.workshop;work.roomSettings.machineCount=1;
 const order = work.orders[0];
 work.orders = [order];
 order.planningHours = 1;
@@ -24,18 +25,21 @@ order.operationIndex = 0;
 order.operationDone = 0;
 advanceOneDay(work);
 const sameDayEvents = work.events.filter(e => e.orderId === order.id && ['PLANUNG', 'ARBEITSGANG_FERTIG', 'GELIEFERT'].includes(e.kind));
-assert(order.deliveredAt === '2027-01-04', 'Same-day chain did not finish despite available worker/machine capacity');
-assert(sameDayEvents.some(e => e.kind === 'PLANUNG') && sameDayEvents.every(e => e.date === '2027-01-04'), 'Same-day planning/work events lost their effective date');
+assert(order.deliveredAt === '2027-01-05', 'Same-day chain did not finish despite available worker/machine capacity');
+assert(sameDayEvents.some(e => e.kind === 'PLANUNG') && sameDayEvents.every(e => e.date === '2027-01-05'), 'Same-day planning/work events lost their effective date');
 assert(sameDayEvents.filter(e => e.kind === 'ARBEITSGANG_FERTIG').length === 3, 'Not every dependent operation completed on the same day');
 
 // Supplier input tax is separate, and unused credit rolls forward chronologically.
 const taxGame = createInitialGame();
 const taxFinance = createInitialFinance();
+const taxOpeningCash = taxFinance.cash;
 recordMaterialPurchase(taxFinance, { steel: 1000 }, '2027-01-04', 'L-01', taxGame);
 const invoiceOrder = (id, date) => ({ id, customer: 'K-01', invoiceReadyAt: date, deliveredAt: date });
 issueInvoice(taxFinance, invoiceOrder('TAX-JAN', '2027-01-04'), 1000, 14);
 const jan = taxFinance.taxPeriods.find(p => p.month === '2027-01');
 assert(jan?.outputTax === 190 && jan.inputTax === 309.7 && jan.amount === 0 && jan.creditCarriedForward === 119.7, 'January SimTAX components or credit are incorrect');
+assert(taxFinance.cash === taxOpeningCash - 1630 - 309.7, 'Supplier cash payment must include net material cost and separately booked input SimTAX');
+const grossPayableFinance=createInitialFinance();grossPayableFinance.cash=0;recordMaterialPurchase(grossPayableFinance,{steel:1000},'2027-01-04','L-01',taxGame);assert(grossPayableFinance.unpaidItems[0]?.amount===1939.7&&grossPayableFinance.expenses[0]?.amount===1630,'Unpaid supplier entry must retain gross cash payable separately from net expense');
 issueInvoice(taxFinance, invoiceOrder('TAX-FEB', '2027-02-05'), 500, 14);
 const feb = taxFinance.taxPeriods.find(p => p.month === '2027-02');
 assert(feb?.outputTax === 95 && feb.creditBroughtForward === 119.7 && feb.amount === 0 && feb.creditCarriedForward === 24.7, 'SimTAX credit did not carry into February');

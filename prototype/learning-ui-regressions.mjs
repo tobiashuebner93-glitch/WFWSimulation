@@ -1,12 +1,14 @@
 import assert from 'node:assert/strict';
 import { WBQ_ITEMS, WBQ_AREAS } from './learning-wbq.js';
 import { hsqQuestions, areas as HSQ_AREAS } from './learning-hsq.js';
+import { DAILY_ITEMS } from './learning-daily.js';
 const records = new Map();
 globalThis.localStorage = { getItem: key => records.get(key) ?? null, setItem: (key, value) => records.set(key, String(value)) };
-const { renderLearningQuiz, handleLearningQuizClick, handleLearningQuizChange, getLearningProgressSnapshot } = await import('./learning-ui.js');
+const { renderDailyQuiz, renderLearningQuiz, handleLearningQuizClick, handleLearningQuizChange, getLearningProgressSnapshot } = await import('./learning-ui.js');
 const all = [...WBQ_ITEMS, ...hsqQuestions];
 assert.equal(all.length, 450);
 assert.equal(new Set([...WBQ_AREAS, ...HSQ_AREAS].map(area => area.id)).size, 9);
+assert.equal(new Set(DAILY_ITEMS.map(item => item.correctOption)).size, 4, 'daily answers must not always occupy one position');
 const gameAndFinance = { game: { date: '2027-01-01', cash: 30000, orders: [] }, finance: { cash: 30000, ledger: [] } };
 const before = JSON.stringify(gameAndFinance);
 let html = renderLearningQuiz('2027-01-01');
@@ -38,5 +40,21 @@ html = renderLearningQuiz('2027-01-01');
 assert.ok(html.includes(chosenArea.name || chosenArea.title));
 assert.match(html, /Fall 1 von 50/);
 assert.equal(JSON.stringify(gameAndFinance), before);
-console.log('PASS: 450-item library; nine areas; correct/incorrect feedback; spaced review; area filtering; learning-only storage; game and finance state unchanged');
+const dailyGame = { ...createDailyGame() };
+function createDailyGame() {
+  return { date:'2027-01-01', learningDaily:{date:'2027-01-01',answeredCount:0}, employees:[{id:'E-1',name:'Test',morale:70,competencies:{fach:70,methoden:70,sozial:70,individual:70},maxPotential:{fach:90,methoden:90,sozial:90,individual:90}}], network:{companyReputation:70}, events:[] };
+}
+const dailyBefore = JSON.stringify(dailyGame);
+assert.match(renderDailyQuiz(dailyGame.date,dailyGame), /Tagesfrage/);
+const dailyItem = DAILY_ITEMS[0];
+assert.equal(handleLearningQuizClick(eventFor('[data-learning-answer]', {dataset:{learningMode:'daily',learningAnswer:dailyItem.correctOption}}), dailyGame.date, dailyGame), true);
+assert.equal(dailyGame.learningDaily.answeredCount, 1);
+assert.notEqual(JSON.stringify(dailyGame), dailyBefore, 'daily answer may apply a small game effect');
+const afterDaily = JSON.stringify(dailyGame);
+const practiceItem = all[2];
+assert.equal(handleLearningQuizClick(eventFor('[data-learning-answer]', {dataset:{learningMode:'practice',learningAnswer:practiceItem.correctOption}}), dailyGame.date, dailyGame), true);
+assert.equal(JSON.stringify(dailyGame), afterDaily, 'exam practice must not mutate the game');
+assert.match(renderLearningQuiz(dailyGame.date), /450/);
+assert.match(renderDailyQuiz(dailyGame.date,dailyGame), /1\/5 heute/);
+console.log('PASS: 450-item non-mutating exam library; separate daily deck; daily cap/state effects; spaced review and area filtering');
 

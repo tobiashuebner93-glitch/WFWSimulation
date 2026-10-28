@@ -2,6 +2,34 @@
 
 ## Aktive Tickets
 
+### T-0039 – Cross-Agent-Konfliktprüfung und Freigabe des Sicherungsstands
+
+Status: COMPLETED (Release-Committee PASS; CP-0216; 2026-10-28)
+Master Goal: MG-002
+Second-Level Goals: SLG-002.2 / SLG-002.3 / SLG-002.5
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachreview: A02–A04 durch unabhängigen Cross-Review; A05–A08 durch A11; A09 Release Committee; A10 DevOps; A11 Architecture
+Priorität: HIGH
+
+Aufgabe: Den gesamten lokalen Arbeitsstand nach T-0034 bis T-0038 prüfen, widersprüchliche Implementierungen oder Dokumentation beheben und den vollständigen V2-Sicherungsstand für Commit/Push freigeben. Keine Schema- oder Architekturfreigabe.
+
+Abschluss: Release-Committee PASS. Bereinigt wurden die Kopplung zwischen Tagesfragen und Prüfungsbibliothek, Profilgrenzen der Preisfortschreibung, Bruttozahlung/Vorsteuer, Bilanzbasis des Quartalslimits, gesicherte Immobilien beim Umzug und Nullmiete in der Fallback-Kalkulation. Tagesfragen verwenden nun einen eigenen Pool mit variierter Antwortposition; die 450 Prüfungsfälle bleiben nichtmutierend. Alle 13 MJS-Regressionen/Validatoren, 21 Syntaxchecks, 5/5 Workflow-Sicherheitstests sowie manuelle Mobile-Prüfung bei 390×844 bestanden. Whitespace auch in zuvor ungetrackten Markdown-Dateien bereinigt. Der Stand ist für Commit/Push bereit; diese Git-Schreibvorgänge werden in GitHub Desktop ausgeführt. Siehe CP-0216.
+
+### T-0034 – Personalpools, Kompetenzwirkung und tägliche Lernfragen
+
+Status: COMPLETED (A01-Implementierung, Gesamtregression und Browserprüfung; CP-0211; 2026-10-28)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2 / SLG-002.3
+Koordination: A01 – MASTER_ORCHESTRATOR
+Fachrollen: A02 SIMULATION, A05 FRONTEND, A06 IHK_LEARNING, A09 QA
+Priorität: HIGH
+
+Aufgabe: Playtestkorrekturen für Zeitarbeits-Personalplanung und Lernfragen integrieren. Zeitarbeit wird aus festem Agenturpool nach Anzahl, Fähigkeit und Zeitraum (Arbeitstag, fünf Arbeitstage oder 20 Arbeitstage) gebucht, bleibt ohne Auftragsbindung und erscheint in der normalen Tagesplanung. Mitarbeitende führen aktuelle und maximale Werte in Fach-, Methoden-, Sozial- und Individualkompetenz; Fachqualifikationen werden zusätzlich explizit markiert. Kompetenz und Motivation müssen die Arbeitsleistung beeinflussen. Lernfragen erscheinen auf der Übersicht, sind auf fünf Antworten je Simulationsdatum begrenzt und haben kleine, sichtbare Ruf-/Kompetenz-/Motivationswirkungen.
+
+Akzeptanz: Personalbuchungen prüfen Agenturpool und Raumgrenze über den gesamten Zeitraum; keine Person wird zeitgleich doppelt gebucht; Agenturabrechnung bleibt abstimmbar; Lernlimit wird gespeichert und täglich zurückgesetzt; Antworten verändern keine Finanz-/Ledgerposten; bestehende Spielstände werden migriert; gezielte Regressionen und der Jahres-Smoke bestehen. Keine Schema- oder Architekturfreigabe.
+
+Abschluss: Drei Agenturen mit je vier fest definierten Poolkräften. Buchungen wählen Personenzahl und Dauer von einem, fünf oder 20 Arbeitstagen, beginnen arbeitsfrei am nächsten Arbeitstag, prüfen durchgehend Poolverfügbarkeit und Standortkapazität und erscheinen ohne Auftragsbindung in der Tagesplanung. Die alte 8-Stunden-Auswahl im Zeitarbeitsformular wurde entfernt; ein Leihmitarbeiter wird modellseitig für einen vollen Arbeitstag gebucht. Kompetenz-/Entwicklungslimits und Qualifikationen werden angezeigt und in Weiterbildung/Leistung berücksichtigt. Das Dashboard enthält die Tagesfragen; fünf Antworten pro Simulationsdatum bewirken kleine sichtbare Änderungen ausschließlich über Engine-Logik, ohne Finanz-/Ledgerbuchungen. Fokus-Regressionen, vollständige MJS-Regressionsmatrix, WBQ-/HSQ-Validatoren, Jahres-Smoke und Browseransichten für Dashboard, Planung und Agenturvertrag bestanden. Kein Schema-/Architekturentscheid; kein Commit/Push in T-0034. Details: [CP-0211](checkpoints/CP-0211.md).
+
 ### T-0033 – V2-Integration, Qualitätsreview und Release vorbereiten
 
 Status: COMPLETED (Reviews, Regressionen, Browser-/Mobilprüfung, Commit 4249271 und Push; CP-0210)
@@ -870,3 +898,49 @@ T-0033 ist IN_PROGRESS. Offen sind abschließende Integrations- und Architektur-
 ### T-0033 Abschluss (CP-0210)
 
 A04/A09/A10/A11-Reviews, die vollständige Regressionsmatrix, der einjährige Simulationslauf sowie Browser-/Mobilprüfung sind in CP-0209 belegt. Der 32-Dateien-Sicherungsstand wurde am 2026-10-28 über GitHub Desktop als feat: add Wirtschaftsfachwirt V2 learning simulation committed und nach origin/main gepusht. HEAD und origin/main stimmen auf 424927125ba882b33726c47de7b68347a9dbe4d9 überein; Arbeitsbaum sauber. T-0033 ist abgeschlossen. MG-002/SLG-002.2 bleiben in Arbeit; SLG-002.4 ist Folgearbeit. Keine Architektur- oder Schemafreigabe; ADR-001 bis ADR-008 bleiben PROPOSED. Siehe [CP-0210](checkpoints/CP-0210.md).
+### T-0035 – V2-Neustartprofil, Postfach, dynamischer BAB und Betriebsstandorte
+
+Status: COMPLETED (V2-Startprofil, Marktberichte, BAB und Standorte; CP-0212; 2026-10-28)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Owner: A01 MASTER_ORCHESTRATOR
+
+Aufgabe: Den Spielstart als Einzelunternehmen in München 2019 mit 10.000 € Bankbestand, leerem Lager und einer gemieteten Garage neu aufsetzen. Manuelle Tageszuweisung bleibt optional und automatische Planung der Standard. Anfragen und Marktberichte laufen über ein Postfach; individuelle Konkurrenzpreise sind verborgen und Monatsberichte zeigen Durchschnittswerte je Auftragsgröße. Dynamische BAB-Auswertung, Nachfrage-/Standortwirkung, Maschinenmiete/-qualifikation, Lieferanten-Mindestmengen, Lebenshaltungskosten/Privatentnahmen und Gesellschaftsformwechsel als V2-Szenariofunktionen integrieren.
+
+Umfang: Browserfähiger Prototyp. Historische/regionale Preise und Flächen sind ausdrücklich Szenariowerte, keine aktuellen Immobilienangebote oder Rechts-/Steuerberatung. Bestehende Spielstände bleiben ladbar; das neue Profil gilt für neu gestartete Spiele.
+
+Abnahmekriterien: Neues Spiel zeigt 01.01.2019 und 10.000 € Bankbestand, keine Mitarbeiter außer Inhaber, kein Vorrat, Garagenmiete und Privatentnahme; automatische Planung ist vorausgewählt und manuell umstellbar; abgelaufene/abgeschlossene Aufträge blockieren keine Folgezuweisung; Postfach erhält Kundenanfragen und einen monatlichen anonymisierten Konkurrenzpreisbericht; Standortübersicht hat mindestens zehn Miet- und zehn Kaufobjekte auf einer schematischen München-Umlandkarte; monatlicher BAB wird aus den realisierten Szenariokosten und Beschäftigungs-/Maschinenstunden errechnet.
+
+Abschluss: Ein neues V2-Spiel beginnt 01.01.2019 mit 10.000 €, leerem Lager, Inhaber, gemieteter Garage, Handwerkzeug und monatlicher Privatentnahme. Im Planer ist Automatisch voreingestellt und Auftragsauswahl manuell möglich; erledigte Zuweisungen blockieren die automatische Folgeplanung nicht. Das Postfach enthält Monatsberichte mit Mittelwert und Spanne aller drei Konkurrenzprofile nach drei Auftragsgrößenklassen; weder Auftragsansicht noch Konkurrenz-Zuschlagsmeldung veröffentlicht Einzelpreise. Die wöchentliche Marktchance wurde auf drei Einladungsgelegenheiten erhöht; ein Teil ist absichtlich verlustbringend. Es gibt 10 Miet- und 10 Kaufobjekte sowie zwei CNC-Mietmaschinen; Standort, Nachfrage, Kapazität, Mindestbestellmengen und Baumarktpreise beeinflussen das Spiel. Der BAB rechnet Szenariokosten und realisierte Arbeits-/Maschinenstunden mit. Einjahreslauf: 62 Anfragen, 57 abgeschlossene Aufträge, 12 Marktberichte, 12 Monatsabschlüsse und positiver Endbankbestand bei getesteter wettbewerbsfähiger Angebotsstrategie. V1-Regressionsläufe wurden auf explizite Legacy-Startfabriken umgestellt und bestehen weiterhin. Browserprüfung auf isoliertem Port 8011 bestand für Dashboard, Planung, Standorte, Bank-/Dispoanzeige und Postfach. Historische Marktwerte, Immobilien-/Betriebsdaten, UG/GmbH-Wechsel und Rechtsmechanik bleiben Szenarioheuristiken; UG-Rücklage sowie vollständige Steuer-, Gründungs- und Registerlogik sind keine Implementierungsbehauptung. Details: CP-0212.
+
+### T-0036 – Verteilte Anfragen, verzögerte Kundenentscheidung und Inventar
+
+Status: COMPLETED (V2-Marktfluss und Baumarkt-Inventar; CP-0213; 2026-10-28)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Owner: A01 MASTER_ORCHESTRATOR
+
+Aufgabe: Verteilte Eingangstage, Antwortwartezeit, Angebotsablauf, sichtbare Fertigungsqualifikationen und Überlastanzeige ergänzen. Baumarkt als Materiallieferant und Werkzeugverleiher sowie ein Inventarreiter für Bestände und Betriebsmittel integrieren.
+
+Abschluss: Neue V2-Anfragen entstehen an drei über die fünf Arbeitstage rotierenden Werktagen je Woche (Feiertage bleiben ohne Erzeugung). Unbeantwortete Anfragen laufen nach 3–5 Kalendertagen ab. Nach Angebotsabgabe wartet der V2-Kunde 1–3 Kalendertage; Preis und Zahlungsziel bleiben währenddessen unverändert und der Zuschlag wird erst am Entscheidungstag aufgelöst. Generierte Aufträge zeigen Skills; fehlende interne Skill-/Maschinenberechtigung erscheint rot. Der globale Datumspfeil wird gelb, wenn die restliche modellierte Auftragsstundenlast die aktuell verfügbare tägliche Belegschaftskapazität übersteigt. Baumarkt ist als Materiallieferant auswählbar und liefert nach Mindestmengenregel weiterhin Notbeschaffung; Handwerkzeuge können tageweise gemietet und automatisch zurückgegeben werden, mit Betriebskostenbuchung. Der neue Inventarreiter zeigt Material, Arbeitsmittel, Maschinen, Computerhinweis und laufende Baumarkt-Ausleihen. V1 bleibt im Angebotsentscheidungsfluss unverändert. Gezielt und regressiv geprüft; Einzelheiten CP-0213.
+
+### T-0037 – Werkzeugverleih nach Auftragsbedarf, Maschinen-Skills und Logo-Navigation
+
+Status: COMPLETED (UX-/Qualifikationspräzisierung; CP-0214; 2026-10-28)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Owner: A01 MASTER_ORCHESTRATOR
+
+Aufgabe: Die Baumarkt-Mietauswahl sprachlich eindeutig machen, irrelevante Werkzeuge ausblenden und Spezialwerkzeug an aktive Auftragsanforderungen binden. Maschinen-Skills zeigen und die Logo-Navigation zur Übersicht reparieren.
+
+Abschluss: Werkzeugmiete wählt ausdrücklich ein Gerät; der Zahlenwert steht für Arbeitstage (1–30). Der Baumarkt bietet nur ein Spezialwerkzeug an, wenn ein angenommener, noch nicht abgeschlossener Auftrag genau dieses Werkzeug erfordert. Der Engine-Start eines entsprechenden Arbeitsgangs wartet, wenn das Mietwerkzeug an dem Tag nicht verfügbar ist. Mietmaschinen führen benötigte Fachskills und Maschinenberechtigungen in ihrem Katalog und im Inventar. Der Klick auf das Logo setzt die Ansicht auf Übersicht und verhindert, dass nur der Hash geändert wird. Geprüft mit gezielter Regression, V2-Jahreslauf, Legacy-Jahreslauf, Gesamtsuite, Syntax- und Whitespaceprüfung; siehe CP-0214.
+### T-0038 – Lagerbelegung, Materialvorlauf und Versandfertigwaren
+
+Status: COMPLETED (Materialfluss und Fertigwarenlager; CP-0215; 2026-10-28)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Owner: A01 MASTER_ORCHESTRATOR
+
+Aufgabe: Die Lageranzeige als belegte/maximale Fläche ausweisen, Materialien einzeln im Lager führen, Bestellvorlauf und Lieferantenunterschiede simulieren und Fertigware bis zum Versand im Lager halten.
+
+Abschluss: Dashboard und Inventar zeigen belegte von maximaler Lagerfläche in m². Unter „Inventar → Lager“ stehen Stahl, Aluminium und Zukaufteile einzeln, Fertigware bis zum tatsächlichen Versand sowie offene Lieferungen mit Lieferant und voraussichtlichem Termin. Online-Lieferanten sind im Modell günstiger als Baumarkt-Einzelbezug, verlangen Versand und Mindestmengen, haben mehrtägige Vorläufe und ein reproduzierbares Verzögerungsrisiko. Der lokale Baumarkt liefert sofort, aber nur aus endlichem Lagerbestand und mit Einzelmengenaufschlag; ausgeschöpfte Bestände weichen auf Onlinebeschaffung aus. Fertige V2-Aufträge belegen bis zur Aktion „Auftrag aus Lager versenden“ gemeinsam mit Rohmaterial Fläche. Bei Platzmangel warten Warenzugänge und Fertigung. Legacy-/2027-Versandverhalten bleibt kompatibel. Regressionen und Jahresläufe siehe CP-0215.
