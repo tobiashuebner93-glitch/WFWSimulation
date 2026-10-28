@@ -933,3 +933,7 @@ Unabhängige Reviews: A11 bestätigte die Trennung des Tagesfragen-/Prüfungsmod
 Validierung: alle 13 Prototype-MJS-Regressionen/Validatoren, 21 Syntaxprüfungen, 5/5 GitHub-Workflow-Sicherheitstests und `git diff --check` bestanden. Die 11 ungetrackten Dateien wurden separat auf trailing whitespace geprüft; keine Beanstandungen. V1-Jahressmoke bis 01.01.2028 und V2-Jahreslauf bis 01.01.2020 bestehen. Kein Schema-/Architekturentscheid; ADRs bleiben unverändert `PROPOSED`.
 
 T-0039 ist fachlich abgeschlossen. Der vollständige Sicherungsstand ist zum GitHub-Desktop-Commit/Push freigegeben. Vor dem Sicherungsschritt waren keine Dateien gestaged und keine Änderungen committet. Siehe CP-0216.
+
+## T-0039 Sicherung (CP-0216)
+
+Die 29 geprüften Dateien wurden als `c15cd31ca74d113b01919c77776ad1ab54649bec` (`chore: secure audited simulation snapshot (CP-0216)`) committet und über GitHub Desktop nach `origin/main` gepusht. HEAD und `origin/main` waren danach gleich; der Arbeitsbaum war sauber. T-0039 ist abgeschlossen. Keine Schema-/Architekturfreigabe; ADR-001 bis ADR-008 bleiben `PROPOSED`.
