@@ -31,6 +31,7 @@ assert(sameDayEvents.filter(e => e.kind === 'ARBEITSGANG_FERTIG').length === 3, 
 
 // Supplier input tax is separate, and unused credit rolls forward chronologically.
 const taxGame = createInitialGame();
+const taxSupplier=taxGame.network.suppliers.find(x=>x.id==='L-01');taxSupplier.relationship=60;taxSupplier.quantityDiscounts=[];taxSupplier.relationshipDiscountRate=0;
 const taxFinance = createInitialFinance();
 const taxOpeningCash = taxFinance.cash;
 recordMaterialPurchase(taxFinance, { steel: 1000 }, '2027-01-04', 'L-01', taxGame);
@@ -39,7 +40,7 @@ issueInvoice(taxFinance, invoiceOrder('TAX-JAN', '2027-01-04'), 1000, 14);
 const jan = taxFinance.taxPeriods.find(p => p.month === '2027-01');
 assert(jan?.outputTax === 190 && jan.inputTax === 309.7 && jan.amount === 0 && jan.creditCarriedForward === 119.7, 'January SimTAX components or credit are incorrect');
 assert(taxFinance.cash === taxOpeningCash - 1630 - 309.7, 'Supplier cash payment must include net material cost and separately booked input SimTAX');
-const grossPayableFinance=createInitialFinance();grossPayableFinance.cash=0;recordMaterialPurchase(grossPayableFinance,{steel:1000},'2027-01-04','L-01',taxGame);assert(grossPayableFinance.unpaidItems[0]?.amount===1939.7&&grossPayableFinance.expenses[0]?.amount===1630,'Unpaid supplier entry must retain gross cash payable separately from net expense');
+taxSupplier.relationship=60;const grossPayableFinance=createInitialFinance();grossPayableFinance.cash=0;recordMaterialPurchase(grossPayableFinance,{steel:1000},'2027-01-04','L-01',taxGame);assert(grossPayableFinance.unpaidItems[0]?.amount===1939.7&&grossPayableFinance.expenses[0]?.amount===1630,'Unpaid supplier entry must retain gross cash payable separately from net expense');
 issueInvoice(taxFinance, invoiceOrder('TAX-FEB', '2027-02-05'), 500, 14);
 const feb = taxFinance.taxPeriods.find(p => p.month === '2027-02');
 assert(feb?.outputTax === 95 && feb.creditBroughtForward === 119.7 && feb.amount === 0 && feb.creditCarriedForward === 24.7, 'SimTAX credit did not carry into February');

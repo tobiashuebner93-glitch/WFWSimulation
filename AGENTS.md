@@ -5,7 +5,7 @@
 Jeder Agent und der Master Orchestrator müssen VOR jeder Bearbeitung:
 
 1. dieses Dokument lesen,
-2. `docs/agent-system/agent-structure.md` lesen,
+2. `docs/agent-system/agent-structure.md` und `docs/agent-system/agent-rights-matrix.md` lesen,
 3. `docs/agent-system/goals.md` lesen,
 4. `docs/agent-system/ticket-board.md` lesen und nur Tickets des aktuellen Master-/Second-Level-Goals berücksichtigen,
 5. `docs/agent-system/collaboration-state.md` lesen,

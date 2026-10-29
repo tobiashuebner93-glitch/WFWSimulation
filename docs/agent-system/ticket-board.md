@@ -1,6 +1,32 @@
 # Ticket Board – WFWSimulation
 
 ## Aktive Tickets
+### T-0045 – V2-Auftragsplanung, Beschaffung und Finanzbedienung
+
+Status: COMPLETED (A01-Umsetzung und Regressionen; CP-0225; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Koordination / Umsetzung: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: Den gemeldeten Inventar-/Werkzeugfehler beheben und die tägliche Mitarbeiterplanung um zuweisbare Auftragsstufen, Beschaffungs-/Warenannahme-/Versandblöcke ergänzen. Dashboard-Nachrichten, Kreditdarstellung und vorzeitige Ablösung sowie plausiblere V2-Auftragsgrößen/-zeiten ergänzen.
+
+Abschluss: Eine vorhandene Werkbank mit Spannmitteln erfüllt die passende Spannmittelanforderung, aber keine CNC-Anforderung. Drag-and-drop weist passende anwesende Mitarbeitende einzelnen Produktionsstufen zu; Folgestufen können nur nach Abschluss der vorherigen Stufe laufen. Baumarkteinkäufe benötigen 1–4 zugewiesene Arbeitsstunden und geben Material erst nach Abschluss frei; Onlinebestellungen beachten Mindestmengen und Wartezeit, erzeugen nach Ankunft eine 0,5-Stunden-Warenannahme. Versand wird als 1-Stunden-PACK-Aufgabe geplant. Lieferantenrabatte und Beziehungskonditionen wirken bei Bestellungen. Das Dashboard zeigt höchstens drei aktuelle Nachrichten, ungelesene fett und gelesene normal. Aktive Kredite werden nur bei positivem Saldo gezeigt und lassen sich aus verfügbarer Liquidität zum Restkapital ohne modellierte Vorfälligkeitsentschädigung ablösen. V2-Auftragsreferenzpreis und Fälligkeitshorizont wurden gesenkt. Gezielte Regressionen und alle Prototypprüfungen außer der Jahressolvabilitätsprüfung bestanden; HTTP-Server liefert die aktualisierte UI. `year-simulation-smoke.mjs` läuft bis 2028, scheitert im Legacy-2027-Fall aber mit `gameLost=true` und 119.638,87 € offenen Kosten. Derselbe Fehler besteht auch, wenn die Same-Day-Auftragsfreigabe dieses Tickets temporär zurückgenommen wird. Interaktive Browserabnahme wurde nicht ausgeführt. Keine Schema-/Architekturfreigabe, kein Commit/Push.
+
+### T-0040 – V2-Arbeitsplatzausstattung, Inventar-Lebenszyklus und Ratenkauf
+
+Status: IN_PROGRESS (A01-Umsetzung; CP-0217)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Koordination / Umsetzung: A01 – MASTER_ORCHESTRATOR
+Fachliche Grenzen: A02-Simulationsregeln, A03-Finanzsicht, A05-Inventar-UX, A08-AfA-Quellenreview, A09-Qualitätsreview (Folgeschritte)
+Priorität: HIGH
+
+Aufgabe: Arbeitsplatz- und Lagerausstattung in das 2019er V2-Profil aufnehmen. Mindestens drei Ausrüstungskomponenten je Arbeitsplatzbereich und mindestens zehn kaufbare Ausprägungen je Komponente; Produktivität, Beschaffung, Marketing, Angebote/Rechnungen und Lagerkapazität wirksam abbilden. Werkstätten bleiben über die bestehende Karte auswählbar und mietbar. Ausstattung weist Zustand/Verschleiß sowie Buchwert und AfA aus. Nur Spezialwerkzeuge erhalten einen Mietpfad; größere Anschaffungen können bei fehlender Liquidität als Ratenkauf angeboten werden, sofern die maximale Kreditbelastung eingehalten wird.
+
+Umsetzungsstand: Prototyp-Modul `prototype/equipment.js` enthält zehn Kategorien und je zehn Varianten, mit mindestens drei Kategorien in Büro, Werkstatt und Lager/Versand. Inventaransicht, Kauf, Spezialwerkzeug-Miete, zustandsbasierte Produktion/Markt-/Lagerwirkung und Monatsabschlusswerte sind implementiert. Kreditangebot: 12 Monate, 8 % p. a. als klar gekennzeichnete V2-Modellannahme; Neuverschuldung wird auf den freien Rest des quartalsweisen 10-%-Finanzierungsrahmens nach Abzug bestehender Finanzierungen begrenzt. GWG-Sofortaufwand bis 800 € sowie lineare AfA oberhalb davon sind Szenariokonkretisierungen; unabhängiger Fachreview, Jahresregression und Mobile-Abnahme stehen aus. Quellen und Grenzen: [V2-Inventar- und Arbeitsplatzmodell](../simulation/v2-inventar-arbeitsplaetze.md), [D-0149](decision-log.md#d-0149--v2-arbeitsplatzausstattung-verschleiss-und-anschaffungsfinanzierung).
+
+Abnahme: Katalog zählt mindestens drei Kategorien je Arbeitsplatz und mindestens zehn Varianten je Kategorie; Kauf/Kreditlimit sowie Spezialwerkzeugmiete funktionieren; Zustand und Buchwert laufen unabhängig auseinander; Lagerregal verbessert belegbare Lagerkapazität; Produktions-/Markt-/Büroeffekte erscheinen im Simulations- und BAB-Kontext; AfA-/GWG-Regeln sind mit Primärquellen abgeglichen; mobile Inventarseite bleibt bedienbar; bestehende Speicherstände laden weiter.
 
 ### T-0039 – Cross-Agent-Konfliktprüfung und Freigabe des Sicherungsstands
 
@@ -179,6 +205,80 @@ Aufgabe: Zeitarbeitstarif durch Agenturverhandlung mit Grundpreis und Stundenpre
 Abschluss: Drei illustrative, monotone Preisstufen eingeführt. Konditionen sind nach Annahme unveränderlich; Buchungen speichern die vereinbarten Sätze. Monatsgrundpreis fällt einmal in Monaten mit mindestens einer Buchung an; Legacy-Spielstände behalten 45 €/h. Regression und Jahres-Smoke bestanden. Details: CP-0194.
 
 ## Abgeschlossene Tickets
+
+### T-0046 – Eigenständiges iPhone-Paket und Touch-Personalplanung
+
+Status: COMPLETED (A01; Paketprüfung und Nutzerfreigabe der Oberfläche; CP-0226; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goals: SLG-002.2 / SLG-002.5
+Koordination / Umsetzung: A01 – MASTER_ORCHESTRATOR
+
+Aufgabe: Den aktuellen Browserstand als eigenständige, offline nutzbare HTML-Datei und ZIP-Anleitung für iPhone bereitstellen.
+
+Abschluss: HTML enthält alle lokalen Module und Styles; Builder erzeugt HTML und ZIP reproduzierbar. Personalplanung erlaubt Mitarbeiter antippen und anschließend Arbeitsgang antippen; Drag-and-drop bleibt verfügbar. Syntax, interne Imports und ZIP-Struktur geprüft. Nutzer hat die Oberfläche visuell freigegeben. Kein tatsächlicher iPhone-Gerätetest. T-0040 und der fehlgeschlagene Jahressolvabilitäts-Smoke bleiben unabhängig offen; dieses Ticket erteilt keine vollständige V2-Releasefreigabe. Details: CP-0226.
+
+
+### T-0041 – Lernfragen: Schwierigkeitsstufen, Qualitätsmix und Wiederholung
+
+Status: COMPLETED (A09 Vollreview PASS; 13 Regressionen bestanden; CP-0224; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.3
+Koordination: A01 – MASTER_ORCHESTRATOR
+
+Abschluss: 540 Fragen in neun Fachbereichen, 60 pro Bereich. A09 stufte alle 450 Kernfragen nach Denkoperation ein und prüfte alle 90 Ergänzungen inhaltlich nach. Je Fach werden 20 Fälle pro Stufe erreicht; der Kernbestand ist 20/15/15, ergänzt um je fünf Aufbau- und Transferfälle. Lern-UI, Antwortschlüssel, Quellen-/Kompetenzverweise, Wiederholung und Tageslimit bestehen die vorhandenen Tests. A12s begrenzter isolierter UI-Check steht in CP-0221. Die Einordnung ist redaktionell, keine psychometrische Kalibrierung oder IHK-Zertifizierung. Details: [A09-Review](../learning/a06-a07-a08-a09-review-90-ergaenzungsfragen.md#unabhaengiger-a09-review-2026-10-29), [CP-0224](checkpoints/CP-0224.md).
+
+### T-0043 – A01–A12-Auditbefunde vor T-0041-Abnahme bereinigen
+
+Status: COMPLETED (A01-Fachrollenreview, Regression und isolierter Browsercheck; CP-0221; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goals: SLG-002.3 / SLG-002.5
+
+Abschluss: Lern-UI-Regression auf 540 Fragen und gemeinsames Tages-/Übungsdeck angepasst; A12 für den isolierten Browserreview aufgenommen; Quellen-/Kompetenzbezüge der Ergänzungen explizit; A05-/A10-Governanceangaben synchronisiert. CP-0224 ergänzt den späteren A09-Inhaltsreview. Browsercheck ohne Import/Änderung eines Nutzerspielstands; Details in CP-0221.
+
+### T-0044 – Rechteprofile A01–A11 und Preflight konsolidieren
+
+Status: COMPLETED (A01; CP-0222; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.5
+
+Abschluss: [Agenten-Rechtekarte](agent-rights-matrix.md) dokumentiert Rollenverantwortung und READ/PROPOSE/VALIDATE/WRITE-/Freigabegrenzen. A05 beschreibt den aktuellen HTML/CSS-/ES-Module-Stack; der bekannte A10-Workflow-Sicherheitsfix ist abgeschlossen. AGENTS.md verankert die Rechtekarte im Pflicht-Preflight. Kein Agent erhält Produkt-, Rechts-, Schema- oder Architekturfreigabe.
+
+### T-0041 – Lernfragen: Schwierigkeitsstufen, Qualitätsmix und Wiederholung
+
+Status: COMPLETED (A09 Vollreview PASS; 13 Regressionen bestanden; CP-0224; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.3
+Koordination: A01 – MASTER_ORCHESTRATOR
+
+Abschluss: 540 Fragen in neun Fachbereichen, 60 pro Bereich. A09 stufte alle 450 Kernfragen nach Denkoperation ein und prüfte alle 90 Ergänzungen inhaltlich nach. Je Fach werden 20 Fälle pro Stufe erreicht; der Kernbestand ist 20/15/15 und der Ergänzungsbestand ergänzt je fünf Aufbau- und Transferfälle. Lern-UI, Antwortschlüssel, Quellen-/Kompetenzverweise, Wiederholung und Tageslimit bestehen die vorhandenen Tests. A12s begrenzter isolierter UI-Check steht in CP-0221. Die Einstufung ist redaktionell, keine psychometrische Kalibrierung oder IHK-Zertifizierung. Details: [A09-Review](../learning/a06-a07-a08-a09-review-90-ergaenzungsfragen.md#unabhaengiger-a09-review-2026-10-29), [CP-0224](checkpoints/CP-0224.md).
+
+### T-0043 – A01–A12-Auditbefunde vor T-0041-Abnahme bereinigen
+
+Status: COMPLETED (A01-Fachrollenreview, Regression und isolierter Browsercheck; CP-0221; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goals: SLG-002.3 / SLG-002.5
+
+Abschluss: Lern-UI-Regression auf 540 Fragen und gemeinsames Tages-/Übungsdeck angepasst; A12 für den isolierten Browserreview aufgenommen; Quellen-/Kompetenzbezüge der Ergänzungen explizit; A05-/A10-Governanceangaben synchronisiert. CP-0224 ergänzt die später erfolgte Inhaltsfreigabe durch A09. Browsercheck ohne Import/Änderung eines Nutzerspielstands; Details in CP-0221.
+
+### T-0044 – Rechteprofile A01–A11 und Preflight konsolidieren
+
+Status: COMPLETED (A01; CP-0222; 2026-10-29)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.5
+
+Abschluss: [Agenten-Rechtekarte](agent-rights-matrix.md) dokumentiert Rollenverantwortung und READ/PROPOSE/VALIDATE/WRITE-/Freigabegrenzen. A05 beschreibt den aktuellen HTML/CSS-/ES-Module-Stack; der bekannte A10-Workflow-Sicherheitsfix ist abgeschlossen. AGENTS.md verankert die Rechtekarte im Pflicht-Preflight. Kein Agent erhält Produkt-, Rechts-, Schema- oder Architekturfreigabe.
+
+### T-0042 – Browser-Playtest-Agent A12 definieren
+
+Status: COMPLETED (A01-Rollendefinition und Rechteabgrenzung; 2026-10-29; CP-0219)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.5
+Adressat: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: Eine eigenständige Browser-Playtest-Rolle samt Fachauftrag, Fähigkeiten, Aufgabenrechten, Sicherheitsgrenzen, Berichtsvorlage und Übergabe reproduzierbarer Situationen an den Nutzer in der bestehenden Agentenstruktur verankern.
+
+Abschluss: A12 – BROWSER_PLAYTEST ist in der Rollenstruktur und im Qualitäts-/Auslieferungsziel ergänzt. Das Rollenprofil grenzt A12 von A09 ab, erlaubt lokale Browserbedienung und isolierte Testspielstände sowie QA-Artefakte und verbietet Produktcode-, Simulations-/Finanzregel-, Nutzerspielstand- und Releaseänderungen. Die Nutzerübergabe verlangt einen direkt ladbaren oder kurz reproduzierbaren Startzustand mit Erwartung und Beleg. Keine Browserprüfung oder Anwendungsänderung war Teil dieses Definitionsauftrags. Nachweis: [CP-0219](checkpoints/CP-0219.md).
 
 ### T-0024 – A04-Datenmodell mit aktuellen V1-Entscheidungen synchronisieren
 

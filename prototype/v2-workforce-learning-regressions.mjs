@@ -62,7 +62,7 @@ for(let i=1;i<5;i++){
   handleLearningQuizClick(event('[data-learning-answer]',{dataset:{learningMode:'daily',learningAnswer:question.correctOption}}),learningGame.date,learningGame);
 }
 assert.equal(learningGame.learningDaily.answeredCount,5);
-assert.match(renderLearningQuiz(learningGame.date), /Alle Bereiche \(450\)/, 'daily cap must not hide the separate examination library');
+assert.match(renderLearningQuiz(learningGame.date), /Alle Bereiche \(540\)/, 'daily cap must not hide the shared examination library');
 handleLearningQuizClick(event('[data-learning-next]',{dataset:{learningMode:'daily'}}),learningGame.date,learningGame);
 question=items[5];
 handleLearningQuizClick(event('[data-learning-answer]',{dataset:{learningMode:'daily',learningAnswer:question.correctOption}}),learningGame.date,learningGame);

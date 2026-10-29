@@ -1434,16 +1434,16 @@ Quelle: Cross-Agent-Review zu T-0039; D-0123, D-0124, D-0128 und D-0142
 
 Für das V2-Startprofil 2019 beginnt die modellierte jährliche Preisfortschreibung im Januar 2020. Für das Legacy-V1-Startprofil 2027 bleibt das bestätigte Preisniveau im Startjahr unverändert; die Fortschreibung beginnt im Januar 2028. Das übernimmt bestehende, profilgebundene Annahmen und ist keine Marktprognose.
 
-Das quartalsweise Dispolimit gilt ab dem ersten Tag eines Quartals und verwendet den Zustand zum Ende des Vorquartals (zum Simulationsstart die Eröffnungsbasis). Die vereinfachte Aktivabasis umfasst Bankcash, offene Forderungen, aktuellen Rohmaterialbestand zu aktuellen Szenariopreisen, den direkt-materialbezogenen Wert noch nicht ausgelieferter Aufträge und gekaufte Immobilienwerte. Der Prototyp bildet keinen vollständigen HGB-Abschluss und keine historische Durchschnittsbewertung dieser Limitbasis ab.
+Das quartalsweise Dispolimit gilt ab dem ersten Tag eines Quartals und verwendet den Zustand zum Ende des Vorquartals (zum Simulationsstart die Eröffnungsbasis). Die vereinfachte Aktivabasis umfasst Bankcash, offene Forderungen, aktuellen Rohmaterialbestand zu aktuellen Szenariopreisen, den direkt-materialbezogenen Wert noch nicht ausgelieferter Aufträge, gekaufte Immobilien und den Buchwert gekaufter Betriebsausstattung. Der Prototyp bildet keinen vollständigen HGB-Abschluss und keine historische Durchschnittsbewertung dieser Limitbasis ab.
 
 Materialeinkäufe mit modelliertem Lieferantenbeleg belasten Cash in Höhe von Nettoaufwand plus positionsweise berechneter SimTAX; der Kosten-/Materialaufwand bleibt netto und Vorsteuer wird separat verrechnet. Der ungezogene Disporahmen bleibt außerhalb der Zahlungsmittel. Es wird kein zusätzliches Nutzerproduktentscheidungsrecht aus dem Review abgeleitet.
 
-## D-0147 – Tagesfragen-Deck getrennt von der Prüfungsbibliothek
+## D-0147 – Tagesfragen- und Prüfungsmodus mit gemeinsamer Inhaltsbibliothek
 
-Status: APPROVED (A01-Korrektur zur Vereinbarkeit von D-0139 und D-0141; 2026-10-28)
-Quelle: Cross-Agent-Review zu T-0039; D-0139 und D-0141
+Status: APPROVED für gemeinsame Bibliothek, getrennte Spielwirkungen und Auswahlregeln; Kernstufen und 90 Ergänzungen durch A09 geprüft (T-0041/CP-0224). Redaktionelle Einordnung, keine psychometrische/IHK-Kalibrierung.
+Quelle: Nutzerauftrag T-0041; A09-Review vom 2026-10-29; [Lernfragenstufen und Wiederholung](../learning/lernfragen-schwierigkeitsstufen-und-wiederholung.md)
 
-Die 450 WBQ-/HSQ-Fälle werden ausschließlich im Prüfungs-/Übungsmodus beantwortet und verändern weder Spiel- noch Finanzzustand. Das Dashboard nutzt ein separates, eigenständiges DAILY_ITEMS-Deck. Nur Antworten auf diesen Tagesfragen können innerhalb des Tageslimits kleine modellierte Ruf-, Kompetenz- oder Motivationswirkungen auslösen; sie erzeugen keine Buchungen. Tages- und Prüfungsmodus besitzen getrennte Sitzungen und lokale Lernfortschrittsschlüssel. Der Antwortschlüssel der Tagesfragen wird deterministisch variiert. Alle Fragen und Wirkungen bleiben didaktische Szenarioannahmen, keine psychometrischen Messungen.
+Dashboard und Prüfungs-/Übungsmodus ziehen Fälle aus derselben WBQ-/HSQ-Bibliothek. Das Mengenziel beträgt 20 Fälle je Stufe und Fach. A09s redaktionelle Denkoperations-Zuordnung der 450 Kernfälle ist am 2026-10-29 eingearbeitet; die Laufzeit prüft 20/15/15 Kernfälle pro Fach und erreicht mit Ergänzungen 20/20/20. A09 hat alle 90 Ergänzungen nach der dokumentierten Nacharbeit unabhängig geprüft und PASS erteilt (T-0041/CP-0224). Tages- und Prüfungsmodus besitzen weiterhin getrennte Sitzungen und lokale Lernfortschrittsschlüssel. Nur Antworten im Dashboard können innerhalb des Fünf-Antworten-Tageslimits kleine modellierte Ruf-, Kompetenz- oder Motivationswirkungen auslösen; sie erzeugen keine Buchungen. Prüfungsantworten verändern weder Spiel- noch Finanzzustand. Die Tagesauswahl wird je Simulationsdatum aus unterschiedlichen Bereichen/Stufen gemischt, wiederholt keinen Fall am selben Datum und bevorzugt fällige Wiederholungen. Alle Fragen und Wirkungen bleiben didaktische Szenarioannahmen; die Einstufung ist nicht psychometrisch kalibriert.
 
 ## D-0148 – Standortwechsel bei laufender grundpfandrechtlicher Szenariosicherheit
 
@@ -1451,3 +1451,36 @@ Status: APPROVED (A01-Sicherheitskonvention zur bereits modellierten Darlehensbe
 Quelle: Cross-Agent-Review zu T-0039; vorhandene Immobilienkredit- und Grundschuldmechanik
 
 Solange ein Immobiliendarlehen eine Grundschuld-Szenariosicherheit am aktuellen Standort führt und eine Restschuld besteht, ist der Verkauf dieses Standorts im Spiel gesperrt. Der Umzug kann nach vollständiger Tilgung fortgesetzt werden. Eine Ablösung aus Verkaufserlös, Zustimmung des Kreditgebers oder ein Sicherheitenwechsel ist nicht simuliert. Die Sperre ist eine konservative Produktvereinfachung und keine allgemeine Rechtsaussage über jede Immobilienveräußerung.
+
+## D-0149 – V2-Arbeitsplatzausstattung, Verschleiß und Anschaffungsfinanzierung
+
+Status: APPROVED (A01-Umsetzungskonvention aus Nutzerauftrag; fachlicher Review/QA bleibt Ticketarbeit)
+Quelle: Nutzerauftrag vom 2026-10-28; [EStG § 7](https://www.gesetze-im-internet.de/estg/__7.html), [EStG § 6](https://www.gesetze-im-internet.de/estg/__6.html), [BMF AfA-Tabellen](https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerverwaltungu-Steuerrecht/Betriebspruefung/AfA_Tabellen/afa_tabellen.html?7de29e68_page=2&cd6c62dc_page=8), [AfA-Tabelle AV](https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/Weitere_Steuerthemen/Betriebspruefung/AfA-Tabellen/Ergaenzende-AfA-Tabellen/AfA-Tabelle_AV.pdf)
+Bezug: MG-002 / SLG-002.2 / T-0040 / CP-0217
+
+Die Arbeitsplatzbereiche Büro/Beschaffung, Werkstatt und Lager/Versand erhalten jeweils mindestens drei Ausstattungskategorien mit je zehn kaufbaren Varianten. Szenariowerte für Gerätepreise, Verschleiß, Effektstärken und Nutzungsdauern sind keine aktuellen Marktangebote oder empirischen Produktivitätsdaten. Zustand/Verschleiß wird unabhängig vom steuerlichen Buchwert geführt. Der Prototyp behandelt Anschaffungen bis einschließlich 800 € als sofort abzugsfähige GWG-Szenariooption; darüber wird linear nach einer passenden angenommenen Nutzungsdauer abgeschrieben. Mietgegenstände werden nicht als eigenes Anlagevermögen abgeschrieben. Materialbestände werden verbraucht und sind keine AfA-Anlagegüter. EStG § 6 enthält außerdem eine optionale Sammelpostenregel für selbständig nutzbare bewegliche Anlagegüter zwischen 250 € und 1.000 €; der Prototyp simuliert diese Wahl derzeit nicht. Das Modell ist kein Steuerprogramm und deckt Einzelfallvoraussetzungen, Vorsteuer, Poolwahl, Nutzungsanteile, tatsächliche Nutzungsdauer oder vollständige Bilanzierung nicht ab.
+
+Ein Ratenkauf ist eine eigene, illustrative Finanzierung und keine Leasingoption. Nur Spezialwerkzeuge können im zusätzlichen Ausstattungskatalog gemietet werden. Ratenkauf wird angeboten, wenn der Preis das Bankguthaben übersteigt und der Fehlbetrag in den freien Rahmen passt. Der Höchstrahmen greift die bestehende quartalsweise 10-%-Finanzierungsentscheidung auf; bestehende gezogene Dispo-, Immobilien- und Ausstattungsschulden werden auf diesen vereinfachten Rahmen angerechnet. Vertragszins 8 % p. a. und 12 Monatsraten sind Spielwerte. Diese Verschuldungs-/Kreditregel behauptet keine bankübliche Kreditwürdigkeitsprüfung und setzt keine rechtliche Kreditobergrenze.
+
+## D-0150 – Aufgabenrechte von A12 Browser Playtest
+
+Status: APPROVED (A01-Governancekonvention im Rahmen des ausdrücklichen Nutzerauftrags; 2026-10-29)
+Quelle: Nutzerauftrag zur Einrichtung eines Browser-Playtest-Agenten; T-0042 / CP-0219
+
+A12 – BROWSER_PLAYTEST ist für explorative visuelle und funktionale Prüfungen im Browser sowie reproduzierbare Übergaben von Spielsituationen an den Nutzer zuständig. A09 behält automatisierte Qualitätssicherung, Testabdeckung und Release-Gates. A12 darf den lokalen Browser in isolierten Testprofilen bedienen und QA-Artefakte, Screenshots sowie separate Test-Speicherstände/Fixtures erstellen. A12 darf keinen Produktcode, keine Simulations-/Finanzregeln, keinen autoritativen oder persönlichen Spielstand und keine Schema-/Architekturentscheidung verändern; ebenso sind Commit, Push, Merge und Deployment ausgeschlossen. Wenn ein Testzustand eine Änderung am Produkt oder einen Debug-Importpfad erfordert, beantragt A12 einen separaten, adressierten Auftrag an A01. Nutzer-Rückfragen und Testübergaben laufen ausschließlich über A01. Diese Rollenkonvention erteilt keine Architekturfreigabe.
+
+## D-0151 – V2-Arbeitsblöcke, Beschaffung und vorzeitige Kreditablösung
+
+Status: APPROVED (A01-Szenariokonvention unter dem laufenden Nutzerauftrag; 2026-10-29)
+Quelle: Nutzerauftrag zu Personalplanung, Inventar, Lagerbeschaffung und Krediten
+Bezug: MG-002 / SLG-002.2 / T-0045 / CP-0225
+
+Produktionsaufträge werden in geordnete Arbeitsgänge zerlegt. Mitarbeiterzuweisungen per Drag-and-drop gelten für den jeweiligen Tagesplan; der Engine-Index verhindert, dass ein Folgeschritt vor Abschluss seines Vorgängers arbeitet. Nach vollständigem Auftragsabschluss steht verbleibende Tageskapazität für den nächsten Auftrag zur Verfügung. Nicht passende, kranke, beurlaubte oder in Weiterbildung befindliche Beschäftigte können nicht zugewiesen werden. Werkbank/Spannmittel erfüllt im Szenario die passende einfache Spannmittelanforderung, aber ersetzt weder CNC-Maschine noch CNC-Berechtigung.
+
+Manueller Baumarkteinkauf bindet je nach Menge 1 bis 4 Arbeitsstunden; Material geht nach Abschluss des Einkaufsblocks in den Bestand. Onlinebestellungen beachten je Lieferant die Mindestmenge, eine modellierte Lieferzeit von 4 bis 6 Arbeitstagen sowie das vorhandene Verspätungsrisiko. Eine eingetroffene Lieferung wird erst nach einem 0,5-Stunden-Warenannahmeblock zum verfügbaren Bestand. Versandfertige Aufträge benötigen einen 1-Stunden-Versandblock mit PACK-Kompetenz. Die Arbeitszeiten sind Szenarioannahmen.
+
+Online-Lieferanten bieten Mengenrabatte von 2 %, 4 % und 7 % ab modellierten Schwellen 250, 500 und 1.000 Mengeneinheiten. Zusätzlich ist ein persönlicher Beziehungsrabatt von bis zu 8 % ab Beziehungswert 60 möglich; vorhandene Zuverlässigkeitsaufschläge und Versandkosten bleiben wirksam. Das sind illustrative Spielwerte, keine beobachteten Händlerkonditionen.
+
+Für das V2-Profil verwendet die nächste Auftragsreferenz einen Stückwert von 180 € zuzüglich eines deterministischen Zuschlags von 0 bis 90 €. Der Lieferzielhorizont beträgt 12 bis 20 Arbeitstage. Beide Werte sind balancierte Szenariowerte und keine Marktpreisbehauptung oder Lieferzeitgarantie.
+
+Aktive Kredite werden nur mit positivem Saldo angezeigt. Vorzeitige Ablösung bucht das verbleibende Kapital aus ausreichendem Bankguthaben; die Simulation setzt dabei keine Vorfälligkeitsentschädigung an. Reale Kreditverträge können andere Ablösebeträge und Bedingungen vorsehen. Dies ist keine Aussage zu gesetzlichen Kündigungsrechten.

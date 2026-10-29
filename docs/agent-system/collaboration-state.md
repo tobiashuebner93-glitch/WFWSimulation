@@ -1,5 +1,9 @@
 ## Cross-Agent-Auditstand (CP-0197)
 
+## Aktueller Sicherungsstand MG-002 (T-0046; CP-0226)
+
+Das eigenständige iPhone-Paket und der reproduzierbare Builder sind unter prototype/ gesichert; die Personalplanung unterstützt zusätzlich Tipp-Auswahl auf Touchgeräten. Der Nutzer hat die Oberfläche visuell freigegeben. Ein Geräte-/Offline-Test auf dem iPhone steht aus. Die aktuelle Prüfung bestand in 11 von 12 Läufen; der Jahreslauf erreicht 2028-01-01, scheitert jedoch mit gameLost=true und 119.638,87 € offenen Kosten. T-0040 bleibt IN_PROGRESS. Commit/Push sichern den Zwischenstand und stellen keine V2-Releasefreigabe dar. Details: CP-0226.
+
 A02/A09/A11 bestätigen drei konkrete V1-Inkonsistenzen: Konkurrenzantworten liegen laut Datum in der Zukunft, werden aber sofort gezeigt und gewertet; gelieferte Aufträge belasten weiter den Anfrage-Kapazitätsabzug; verlorene Angebote können als vereinbarter Preis dargestellt werden. A03 bestätigt die Finanzlogik ohne Spezifikationskonflikt, weist aber erhebliche Unterdeckung bei nur einem gewonnenen Auftrag aus. A04 meldet eine nicht blockierende logische Datenmodelllücke für persistente Konkurrenzangebots-Snapshots. A05 fand im statischen UI-Review keinen Ablaufkonflikt, hat den „Vereinbarter Auftragspreis“-Zweig eines verlorenen Angebots jedoch nicht identifiziert; A02/A09-Befund wird durch den aktuellen Code bestätigt. A06/A07 fanden keinen Rollenkonflikt; A08 bewertet Konkurrenzwerte als synthetisch korrekt gekennzeichnet, empfiehlt aber D-0136 als historischen Monatsstand kenntlich zu machen; A10 sieht keine Infrastrukturänderung. Keine Architektur-/Schemafreigabe, kein Commit/Push. Folgeauftrag T-0028 PENDING; CP-0197.
 
 ## Aktueller Stand MG-001 / T-0027 (CP-0196)
@@ -15,8 +19,33 @@ Kundenanfragen werden selektiv verteilt. Ruf, das aus abgegebenen Preisen fortge
 A04s logisches Datenmodell wurde gegen D-0120 bis D-0129 und D-0134 synchronisiert. Die zuvor veralteten Offenmarkierungen zu Annuität/Rate, erster Darlehenstermin, Dispolimit und -bedienung, Ereignisreihenfolge und Periodenzuordnung sowie die Feiertagsaussage bei F3 sind berichtigt. Es wurden keine Schema- oder Architekturänderungen vorgenommen. T-0024 ist mit CP-0193 abgeschlossen; T-0022 bleibt IN_PROGRESS. Das A10-Risiko des PR-Workflows ist in goals.md als nicht aktives V2-Ziel erfasst.
 
 # Collaboration State – WFWSimulation
+## Aktueller V2-Stand (T-0045; CP-0225)
 
-Stand: 2026-10-27
+T-0045 ist mit CP-0225 abgeschlossen: Industrie-Werkbank/Spannmittel erfüllt die passende Spannmittelanforderung; Mitarbeiter können qualifikationsgeprüft einzelne geordnete Arbeitsgänge per Drag-and-drop planen. Baumarkteinkäufe, Online-Warenannahmen und Ergebnisversand verbrauchen zugewiesene Arbeitszeit. Anbieter-Mindestmengen, Mengen-/Beziehungsrabatte, Lieferzuverlässigkeit und Versandkosten sind in der Bestelllogik ausgewiesen/wirksam. Das Dashboard zeigt die drei neuesten Nachrichten mit Lesestatus; laufende Kredite werden nur bei positiver Restschuld angezeigt und können im Szenario vorzeitig abgelöst werden. V2-Auftragsreferenzwerte und -Lieferzielhorizonte wurden reduziert. Gezielte Regressionen und alle bestehenden Prüfungen außer dem Legacy-Jahressolvabilitäts-Smoke bestanden. Der 365-Tage-Lauf erreicht 2028-01-01, scheitert aber am End-Gate mit `gameLost=true` und 119.638,87 € offenen Kosten; der Fehler besteht auch ohne die neue Same-Day-Auftragsfreigabe. Der lokale HTTP-Server liefert die Änderungen. Eine interaktive visuelle Browserabnahme ist noch nicht erfolgt. T-0040 bleibt für unabhängigen Fachreview/Mobile-Abnahme IN_PROGRESS. Kein Commit/Push.
+
+Stand: 2026-10-29
+
+## Historischer A01–A12-Agenten-Auditstand (CP-0220/0221; fortgeschrieben in CP-0224)
+
+Der nachstehende Text friert den damaligen Zwischenstand CP-0220/0221 ein: seitdem wurden A09s vollständige 450er-Zuordnung implementiert und Regressionen ergänzt; die 90 korrigierten Ergänzungen warten weiterhin auf unabhängige Inhaltsnachprüfung. Der aktuelle Status steht im Abschnitt SLG-002.3 weiter unten und in CP-0224.
+
+## MG-002 / SLG-002.5 – Browser-Playtest-Rolle A12 (T-0042; CP-0219)
+
+A12 – BROWSER_PLAYTEST ist als explorative Browser-Testrolle in [agent-structure.md](agent-structure.md) aufgenommen und in [a12-browser-playtest.md](a12-browser-playtest.md) definiert. Der Auftrag umfasst visuelle und funktionale Prüfung im Browser sowie reproduzierbare Szenario-Spielstände/Startpunkte, Screenshots und einen konkreten Nutzer-Handoff. A09 behält automatisierte Testabdeckung, Regressionen und Release-Gates. A12 darf nur isolierte Testzustände und QA-Artefakte bearbeiten; Produktcode, autoritativer Simulations-/Finanzzustand, dauerhafte Nutzerspielstände und Releases sind ausgeschlossen. Definitions-Ticket T-0042 ist mit CP-0219 abgeschlossen. Es wurde noch kein A12-Playtest ausgeführt und kein Testfixture-System implementiert.
+
+## Governance-Rechtekarte A01–A11 (T-0044; CP-0222)
+
+Die Rechtekarte [agent-rights-matrix.md](agent-rights-matrix.md) dokumentiert je Rolle Verantwortung, READ/PROPOSE/VALIDATE/WRITE-Rechte und Sperrgrenzen. `AGENTS.md` nimmt sie in den Pflicht-Preflight auf. A05s Stackangabe entspricht dem aktuellen statischen HTML/CSS-/ES-Module-Prototyp; A10s mit T-0033/CP-0216 abgeschlossener Workflow-Sicherheitsfix ist nicht länger als Rückstand geführt. Kein Agent erhält Produkt-, Rechts-, Architektur-, Schema-, Release- oder Nutzerfreigabe. T-0044 ist mit CP-0222 abgeschlossen.
+
+## MG-002 / SLG-002.3 – Lernfragenstufen und abwechslungsreiche Wiederholung (CP-0221)
+
+T-0041 und SLG-002.3 sind COMPLETED (CP-0224). A09s redaktionelle Einzelstufung der 450 Kernfälle ist als explizite Liste umgesetzt; Laufzeit und Regression sichern 20/15/15 je Fach im Kernbestand und 20/20/20 einschließlich Ergänzungen. A09 prüfte alle 90 nachgearbeiteten Ergänzungen vollständig und erteilte PASS. 13 Validatoren/Regressionen einschließlich Jahreslauf bestehen. Die Einstufung ist redaktionell, nicht psychometrisch oder IHK-kalibriert. A12s isolierter Browsercheck bleibt der dokumentierte begrenzte UI-Nachweis. Details stehen im [A09-Reviewnachweis](../learning/a06-a07-a08-a09-review-90-ergaenzungsfragen.md#unabhaengiger-a09-review-2026-10-29) und CP-0224.
+
+## MG-002 / SLG-002.2 – Inventar- und Arbeitsplatzausbau (CP-0217)
+
+T-0040 wurde durch A01 begonnen. Der Prototyp hat jetzt einen eigenständigen, datengetriebenen Ausstattungskatalog mit zehn Kategorien und je zehn Varianten für Büro/Beschaffung/Marketing, Werkstatt sowie Lager/Versand. Arbeitsmittel können gekauft werden; nur Spezialwerkzeuge haben im Katalog eine zusätzliche Monatsmiete. Ein Kauf bei unzureichender Liquidität fragt einen 12-Monats-Ratenkauf an und prüft, ob Fehlbetrag sowie bestehende Schulden in den freien quartalsweisen Finanzierungsrahmen passen.
+
+Zustand/Verschleiß, Buchwert/AfA, Mietkosten, Ratenzinsen, GWG-Aufwand und Lagerregal-Kapazität sind in getrennten Spielzuständen vorgesehen. Ausstattung wirkt auf Produktionsgeschwindigkeit, Beschaffungs-Vorlauf, Einladung/Zuschlag und Büro-/BAB-Kennwerte. Die Standortkarte nutzt die bestehenden zehn Miet- und zehn Kaufstandorte. Fachlicher Cross-Review, vollständige Funktions-/Jahresregression und Mobile-Abnahme stehen noch aus; daher bleibt T-0040 IN_PROGRESS. Keine Schema- oder Architekturfreigabe.
 
 ## V1-Zielreview und V2-Zielvorschlag (CP-0201)
 

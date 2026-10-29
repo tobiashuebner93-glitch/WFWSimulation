@@ -9,6 +9,8 @@ Ein neu gestarteter Spielstand beginnt am 01.01.2019 als Einpersonen-Einzelunter
 
 Der Inhaber erwirbt Maschinenberechtigungen durch Weiterbildung. CNC-Arbeit wird erst bei gemieteter Maschine, ausreichender Werkstattfläche und qualifiziertem Personal erzeugt. Beschäftigte und Zeitarbeitende erscheinen in der Arbeitsplanung. Automatische Zuordnung ist vorausgewählt, manuelle Auftragsauswahl bleibt möglich. Nach Abschluss oder Wegfall eines Auftrags wird eine veraltete manuelle Zuweisung gelöscht; automatische Planung kann den nächsten passenden Auftrag bearbeiten.
 
+Der Arbeitsplatzausbau mit Kaufkatalog, Lager-/Büro-/Werkstattausstattung, Verschleiß, AfA und Ratenkauf wird separat in der [V2-Inventar- und Arbeitsplatzspezifikation](v2-inventar-arbeitsplaetze.md) geführt (T-0040 / D-0149).
+
 ## Markt und Kunden
 
 Am ersten Arbeitstag jeder Woche entstehen im V2-Profil drei Marktchancen. Nicht jede Anfrage erreicht jedes Unternehmen: Einladung und Zuschlag werden anhand von Ruf, Preisposition, Kundenbeziehung und Kapazität modelliert. Ein Teil der Anfragen hat bewusst niedrige Erlösannahmen. Vor Annahme zeigt die Auftragssicht keine einzelnen Konkurrenzpreise. Das Postfach erhält einen monatlichen Bericht mit durchschnittlichem Konkurrenzpreis und Spanne für Klein-, Mittel- und Großaufträge, modelliert aus den drei Konkurrenzprofilen.
