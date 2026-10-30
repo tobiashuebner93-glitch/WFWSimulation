@@ -6,13 +6,13 @@
 
 ### T-0062 – Unabhängige Rest-Gates und revisionsgebundene V2-Freigabe
 
-Status: IN_PROGRESS – G01/G02/G03/G04/G05/G06/G07/G08/G09 materiell PASS auf dem Working Tree; G10 technisch durch A10 geprüft, Commitbindung offen. CP-0271 enthält Touch-/Keyboard-Planungsnachweise und eine Matrix von sieben repräsentativen Kernaktionen außerhalb der Planung (14 erfolgreiche Pfade bei 390×844). A05 behob den dabei gefundenen fehlenden Marketingimport und ergänzte eine Regression; 16 Regressionen und Jahressmoke bestehen nach dem Fix. A09 muss G08-Matrix und Committee-Abschluss unabhängig prüfen. Offen bleiben gemeinsamer Sicherungscommit, erneuter A10-Paketabgleich auf dieser Revision, Gate-Recheck und finaler Committee-PASS.
+Status: IN_PROGRESS – Quellstand in `3ce96b2` und Builderkorrektur in `7a89210` committet. Auf `7a89210` bestehen 16 Regressionen und der Jahressmoke; A09 bestätigt G03/G08 (14 Touch-/Keyboardpfade), A10 bestätigt G10 und alle Quell-/Artefakthashes. Der Paketbuilder setzt `workingTreeSourcesIncluded=false`, wenn die zwölf Runtimequellen dem Commit entsprechen. Offen: Paketartefaktcommit und danach A09s finales Committee-Recheck; Push erst nach PASS.
 Master Goal: MG-002
 Second-Level Goals: SLG-002.2 / SLG-002.4 / SLG-002.5
 Koordination: A01 – MASTER_ORCHESTRATOR
 Priorität: HIGH
 
-Aufgabe: Alle V2-Gates mit unabhängigen Rollen prüfen und Nachweise an denselben Commit binden. A02/A03 bestätigen D-0160 und Finanzbefunde; A09 führt die Committee-Neubewertung. CP-0270 enthält den 768-px-CSS-Fix; CP-0271 belegt 16 Regressionen, Jahressmoke, neun Touchbereiche bei 390×844, Touch-Arbeitsgangzuweisung bei 390×844/768×1024, Timeline-Wischpfad bei 768×1024 und responsive Breitenprüfung. A09 bestätigt, dass die Kriterien Touch-Emulation akzeptieren, sofern Touchereignisse ausgelöst werden und die Methode benannt ist. Offen bleiben Commitbindung und Committee-Abschluss. Historische CP-0266 bis CP-0268 bleiben unverändert. Nutzerabnahmen D-0159 nicht erneut erfragen.
+Aufgabe: Alle V2-Gates mit unabhängigen Rollen prüfen und Nachweise an denselben Release-Quellcommit und dieselbe Artefaktidentität binden. A02/A03 bestätigen D-0160 und Finanzbefunde; A09 führt die Committee-Neubewertung. CP-0270 enthält den 768-px-CSS-Fix; CP-0271 belegt Touch-/Keyboardplanung und responsive Breiten; CP-0272 dokumentiert Quell-/Paketbindung und Commit-Retrospektiven. A09 bestätigt, dass die Kriterien Touch-Emulation akzeptieren, sofern Touchereignisse ausgelöst werden und die Methode benannt ist. Offen ist nur das Artefaktcommit mit anschließendem A09-Finalreview. Historische CP-0266 bis CP-0268 bleiben unverändert. Nutzerabnahmen D-0159 nicht erneut erfragen.
 
 Abnahme: G01–G11 für denselben Commit PASS, keine ungelösten blockierenden Konflikte, aktueller Release-Committee-Bericht PASS. Kein Schema-/Architekturentscheid ohne separate Nutzerfreigabe.
 

@@ -22,6 +22,8 @@ Ein mobil nutzbares, browserbasiertes Wirtschaftsspiel entwickeln, in dem Lernen
 
 ## V2 – Spiel- und Lernfundament (Qualitätsziel)
 
+**Aktueller T-0062-Nachtrag (2026-10-30):** Die G03/G08-Prüfung und alle 16 Regressionen/Jahressmoke beziehen sich auf Quellcommit `7a892102e90fe98716db2c2d59c21fb59489dbf7`. A10 hat das daraus gebaute Paket mit `workingTreeSourcesIncluded=false` und passenden Quell-/Artefakthashes bestätigt. Das Artefakt ist noch nicht committet; A09-Finalurteil steht danach aus. Keine V2-Freigabe vor diesem Committee-PASS.
+
 **Versionsziel:** Das existierende Unternehmensspiel erhält eine konsistente Bedienstruktur und einen belastbaren Kompetenzkontext. Mitarbeitende lassen sich für jeden der nächsten fünf sichtbaren Arbeitstage (rollendes 7-Kalendertage-Fenster, nur Montag bis Freitag) planen. Wochenenden werden nicht als Spalten angeboten. Automatik bleibt Standard; manuelle Tageszuweisung berücksichtigt Verfügbarkeit, Qualifikation und Reihenfolge. Inventar wird durch verständliche, kategorisierte Symbole dargestellt; Name und Fähigkeiten sind per Hover, Fokus und Touch zugänglich. Lernkarten lassen sich aus Aufträgen, Personal, Finanzen, Markt und Logistik passend öffnen und führen in den Ursprungskontext zurück. Lernantworten im Übungsmodus verändern nicht den Spielstand. V2 besteht erst, wenn Szenarioläufe reproduzierbar und alle untenstehenden V2-Gates bestanden sind.
 
 ### V2 – messbare Abnahmekriterien (T-0060)

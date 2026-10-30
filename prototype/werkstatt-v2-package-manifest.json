@@ -1,24 +1,24 @@
 {
   "package": "Werkstatt V2 iPhone/iPad offline test package",
-  "sourceRevision": "main@a1ae2bfac0948db5cb46763331f342efe3527d08",
-  "workingTreeSourcesIncluded": true,
+  "sourceRevision": "main@7a892102e90fe98716db2c2d59c21fb59489dbf7",
+  "workingTreeSourcesIncluded": false,
   "minimumBrowser": "Safari iOS/iPadOS 16.4+",
   "sourceSha256": {
-    "app.js": "d23599f552f6f859633c812c7255dc011610f97b216d1bd95252d2aaff412e62",
+    "app.js": "d41a5acccab6bdf94aeff130cdf6b5823925d41ce08cba15dd8e5ab2744d03ec",
     "economics.js": "2661c6096598e41f91fdac198e1a3adbcce5c5429d1c4d2a0d90169cd087cd86",
-    "engine.js": "14783e229dc17ce57fbcfc821d1f03d039cf671b7e5674d479c898acb51227d0",
+    "engine.js": "91fa7357705d0c4480937418f59f3cf2c9e970106f808bf3ed99d75d6f12b85a",
     "equipment.js": "34e9b50ef1300ba7b14c9556335c6d808dbcd0d308aa2801559a17fe369f1b40",
-    "finance.js": "ae70e4df1c6750528b790bedb5876cfaa440b93782fdc3eb37a364ce118d2de0",
-    "index.html": "fb2dc959d67352657900d1a03a8fdbfef29bc53edd00629ed97fcead2c53d2c6",
+    "finance.js": "7d47add95fb2a39e996ad8d8141ae5bb18d51a645209cff444a892455e0406aa",
+    "index.html": "92b16e7468c56ed7fd5c0af3addc6df23a2a96fc8368e2ff17c7a95aca917803",
     "learning-hsq.js": "1c849759d5640d332a5e3aed724985d9eb781904843a7e1de6cab284e0d189d3",
     "learning-supplemental.js": "80e628b78424975dfe6f26bb58d17ca5be69ebc406b8ec2625c1dc3f55167b78",
-    "learning-ui.js": "54ee31d61d6e6d46067d0640238ffa664bf3f5a2e498589b0afcb79dc3401fb2",
+    "learning-ui.js": "3daf78f48d93373155a0e8376ae272614ed6b47308a6823fad947ce3471c3bf7",
     "learning-wbq.js": "506c7f778bf3123e327afbe6922816a4649b18ecce71c15a106e3f6f5b54ce2e",
-    "planning-ui.js": "60e85a962503219c478e2f3dd4c1b39acadc93f7b3bbcd546480902183e71995",
-    "styles.css": "427411f25c8a6f9e5b639f1f8aa29ad6fbbf9295c9cfdcfa5d011d218c8bfbb2"
+    "planning-ui.js": "99b3fae81e8154287bbf7e58769643c319d4be704134603acb1ab0b96fb33636",
+    "styles.css": "27f00c6f6cc802588802d1b72c4a82097ab9fd6a089fe6c4acdb3561a9880401"
   },
   "artifactSha256": {
-    "werkstatt-v2-iphone.html": "50189966520643da033a1a67f57a91d570d723199c58ca44e87701e91aa5d0cf",
+    "werkstatt-v2-iphone.html": "ab5586a0ddf182777c70a227b4afee5514eab3de3caa0b11d1e633991cc64935",
     "WERKSTATT-V2-IPHONE-README.txt": "d4438ac5253b65fca2ef9adbc460f23838fbfbb11a0c852d7234e96d1c63c49a"
   }
 }
