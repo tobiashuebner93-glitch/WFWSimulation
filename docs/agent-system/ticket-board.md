@@ -1,19 +1,12 @@
 # Ticket Board – WFWSimulation
 
 ## Aktive Tickets
-### T-0050 – Playtest-Nacharbeiten und Belastungsgrenzen
 
-Status: IN_PROGRESS (Nutzerempfehlungen angenommen; Teilumfang umgesetzt, CP-0233/0234)
-Master Goal: MG-002
-Second-Level Goal: SLG-002.2
-Koordination / Umsetzung: A01 – MASTER_ORCHESTRATOR
-Priorität: HIGH
 
-Aufgabe: Die akzeptierten Korrekturen aus `prototype/manual-year-smoke-test-log.md` umsetzen. Nutzerentscheidungen zu Arbeitslast und Inhaber-Mehrarbeit sind durch D-0153 festgehalten. Postfachbedienung, eindeutige Angebotswirtschaftlichkeit, Verlustfilter und getrennte Bank-/Dispoanzeige sind ebenfalls begonnen.
 
-Teilabschluss: 8 h = 100 %, Automatik stoppt bei 8 h. Nur eine explizite manuelle Tageszuweisung öffnet die Mehrarbeitsgrenze bis 10 h (125 %) bei Beschäftigten bzw. 12 h (150 %) beim Inhaber. Inhaberarbeit über zehn Stunden senkt Motivation um 1,5 Punkte je Stunde und wird protokolliert. CNC bleibt bei 8 h/Tag. Nachrichtendetail und Navigation, Verliererfilter, negative-DB-Warnung samt Bestätigung sowie Bankbestand/Dispo-KPIs wurden angepasst.
+Keine aktuell offenen Tickets.
+## Abgeschlossene Tickets
 
-Noch abzuarbeiten: geordnete Mehrfachblöcke innerhalb des Tages mit Abhängigkeiten; geplante Team-Auslastung und längerfristige Kompetenz-/Motivationswirkung; sichere Verdichtung alter abgeschlossener Aufträge. Drag-and-drop-Aufgabenrichtung (Aufgabe zu Person) ist umgesetzt; Marktchancen protokollieren die Marketingwirkung; der dynamische BAB berechnet praktische Kapazität, Leerkosten und Privatentnahmen und zeigt Auslastung, Leerkosten sowie verrechnete FGK im Monatsabschluss. Gezielte Regressionen bestanden; T-0050 bleibt bis Mehrfachblock-Reihenfolge, langfristiger Teamwirkung und sicherer Auftragsverdichtung offen. Keine Schema- oder Architekturfreigabe.
 
 ### T-0048 – Jahreslauf-Managemententscheidungen (Umzug, Inventar, Personal)
 
@@ -29,21 +22,7 @@ Umsetzung: Der Runner kauft am 01.01.2027 einmal jede der zehn Stufe-1-Ausstattu
 
 Abnahme 2026-10-30: Runner kauft alle zehn Stufe-1-Artikel am 01.01.2027, verlegt nach Milbertshofen, stellt Personal bedarfs- und kapazitätsgeprüft ein, beginnt AEVO erst nach dem Umzug und startet Ausbildung nach erfolgreicher AEVO. Einjahres-Smoke erreicht 2028-01-01 mit 12 Monatsabschlüssen, 152 Marktchancen, 129 Anfragen, 63 Lieferungen, 59 bezahlten Abschlüssen, 1.239,16 € Cash, 0 € offenen Betriebskosten und Reconciliation-Fehlern. Kontrollierte Fixtures prüfen Krankheit und Weiterbildung. Urlaub wird für die Startkraft als 20 Werktage geprüft; später eingestellte Beschäftigte werden nur für ihre tatsächliche Beschäftigungszeit bewertet. Automatisierter Jahreslauf PASS; der frühere insolvente Lauf ist durch geänderte Simulations-/Runnerstände überholt. Manueller Nutzertest und Jahreslauf stellen keine Architektur- oder Releasefreigabe dar. Details: CP-0253.
 
-### T-0047 – V2-Qualitätsziele, Spiel-/Lernkontext und Mitarbeiter-Zeitleiste
 
-Status: IN_PROGRESS (Zielkarte und A01-Implementierung; CP-0227)
-Master Goal: MG-002
-Second-Level Goals: SLG-002.2 / SLG-002.3 / SLG-002.5
-Koordination: A01 – MASTER_ORCHESTRATOR
-Priorität: HIGH
-
-Aufgabe: MG-002 als durchgängige Wirtschaftslernspiel-Zielsetzung neu fassen, V2-Qualitätsziele erweitern, A01–A12 je ein V2-Unterziel zuweisen, V3–V12 für alle WBQ-/HQ-Fächer und integrierte Prüfung festlegen. Spieloberfläche und Lernkarten über stabile Kompetenz-/Kontextbezüge zusammenführen. Inventar grafisch und zugänglich darstellen sowie eine Mitarbeiter-Zeitleiste für die nächsten Arbeitstage (ohne Wochenenden) anbieten.
-
-Umsetzung: Die verbindliche Zielkarte steht in `v2-v12-goal-map.md`; `goals.md` fasst Ziel und Releasekriterien zusammen. A01 ergänzte `planning-ui.js`, die Zeitleiste in `app.js`, SVG-Inventar-/Materialsymbole, den Lernkarten-Sprung/Rückkehrkontext und Regressionen. Ein nachweislich veralteter `data-plan`-Change-Handler samt nicht mehr verwendeten Importen wurde entfernt. Das mobile Offline-/iPhone-Paket wurde mit dem neuen Modul neu generiert.
-
-Abnahme: A01–A12-Reviewbefunde sind in CP-0227 dokumentiert; fünf sichtbare Arbeitstage werden in einem 7-Kalendertagefenster ohne Wochenendeinträge angeboten; Verfügbarkeit, Skills, Aufgabenblöcke und Wiederherstellung einer vorherigen gültigen Zuordnung sind regressiv geprüft; Lernkarte öffnet anhand der Kompetenz und führt zum ursprünglichen Spielbereich zurück; Übungsmodus mutiert keine Betriebsdaten; Icons bieten Name/Fähigkeiten bei Hover/Fokus. Der Jahres-Smoke besteht laut CP-0253. IN_PROGRESS bis A12-Sichtprüfung und Wiederherstellungsabnahme; ein manueller Nutzertest blockiert den Commit/Push nicht.
-
-Prüfstand 2026-10-29: Syntaxprüfungen sowie `v2-ui-context-timeline-regressions.mjs`, `learning-ui-regressions.mjs`, `t0045-regressions.mjs`, `v2-orderflow-inventory-regressions.mjs`, `v2-workforce-learning-regressions.mjs`, `v2-reset-profile-regressions.mjs` und `week-advance-regressions.mjs` bestanden. Das iPhone-HTML/ZIP wurde neu gebaut und enthält `planning-ui.js`. Kein Commit/Push. Die Regression deckt Funktionen und Kalender-/Skillregeln ab, aber ersetzt keine visuelle A12-Prüfung. Der Jahressmoke-Fehler ist bekannt und bleibt Releaseblocker.
 
 ### T-0045 – V2-Auftragsplanung, Beschaffung und Finanzbedienung
 
@@ -57,20 +36,7 @@ Aufgabe: Den gemeldeten Inventar-/Werkzeugfehler beheben und die tägliche Mitar
 
 Abschluss: Eine vorhandene Werkbank mit Spannmitteln erfüllt die passende Spannmittelanforderung, aber keine CNC-Anforderung. Drag-and-drop weist passende anwesende Mitarbeitende einzelnen Produktionsstufen zu; Folgestufen können nur nach Abschluss der vorherigen Stufe laufen. Baumarkteinkäufe benötigen 1–4 zugewiesene Arbeitsstunden und geben Material erst nach Abschluss frei; Onlinebestellungen beachten Mindestmengen und Wartezeit, erzeugen nach Ankunft eine 0,5-Stunden-Warenannahme. Versand wird als 1-Stunden-PACK-Aufgabe geplant. Lieferantenrabatte und Beziehungskonditionen wirken bei Bestellungen. Das Dashboard zeigt höchstens drei aktuelle Nachrichten, ungelesene fett und gelesene normal. Aktive Kredite werden nur bei positivem Saldo gezeigt und lassen sich aus verfügbarer Liquidität zum Restkapital ohne modellierte Vorfälligkeitsentschädigung ablösen. V2-Auftragsreferenzpreis und Fälligkeitshorizont wurden gesenkt. Gezielte Regressionen und alle Prototypprüfungen außer der Jahressolvabilitätsprüfung bestanden; HTTP-Server liefert die aktualisierte UI. `year-simulation-smoke.mjs` läuft bis 2028, scheitert im Legacy-2027-Fall aber mit `gameLost=true` und 119.638,87 € offenen Kosten. Derselbe Fehler besteht auch, wenn die Same-Day-Auftragsfreigabe dieses Tickets temporär zurückgenommen wird. Interaktive Browserabnahme wurde nicht ausgeführt. Keine Schema-/Architekturfreigabe, kein Commit/Push.
 
-### T-0040 – V2-Arbeitsplatzausstattung, Inventar-Lebenszyklus und Ratenkauf
 
-Status: IN_PROGRESS (Quellenprüfung und Szenariogrenzen dokumentiert; mobile Fachabnahme offen; CP-0253)
-Master Goal: MG-002
-Second-Level Goal: SLG-002.2
-Koordination / Umsetzung: A01 – MASTER_ORCHESTRATOR
-Fachliche Grenzen: A02-Simulationsregeln, A03-Finanzsicht, A05-Inventar-UX, A08-AfA-Quellenreview, A09-Qualitätsreview (Folgeschritte)
-Priorität: HIGH
-
-Aufgabe: Arbeitsplatz- und Lagerausstattung in das 2019er V2-Profil aufnehmen. Mindestens drei Ausrüstungskomponenten je Arbeitsplatzbereich und mindestens zehn kaufbare Ausprägungen je Komponente; Produktivität, Beschaffung, Marketing, Angebote/Rechnungen und Lagerkapazität wirksam abbilden. Werkstätten bleiben über die bestehende Karte auswählbar und mietbar. Ausstattung weist Zustand/Verschleiß sowie Buchwert und AfA aus. Nur Spezialwerkzeuge erhalten einen Mietpfad; größere Anschaffungen können bei fehlender Liquidität als Ratenkauf angeboten werden, sofern die maximale Kreditbelastung eingehalten wird.
-
-Umsetzungsstand: Prototyp-Modul `prototype/equipment.js` enthält zehn Kategorien und je zehn Varianten, mit mindestens drei Kategorien in Büro, Werkstatt und Lager/Versand. Inventaransicht, Kauf, Spezialwerkzeug-Miete, zustandsbasierte Produktion/Markt-/Lagerwirkung und Monatsabschlusswerte sind implementiert. Kreditangebot: 12 Monate, 8 % p. a. als klar gekennzeichnete V2-Modellannahme; Neuverschuldung wird auf den freien Rest des quartalsweisen 10-%-Finanzierungsrahmens nach Abzug bestehender Finanzierungen begrenzt. GWG-Sofortaufwand bis 800 € gilt im Modell nur für selbständig nutzbare Katalogeinheiten. § 6 Abs. 2 EStG und BMF-AfA-Quellen sind gegengeprüft; das Modell weist weiterhin Nettowert/Vorsteuer beim Gerätekauf und Sammelpostenwahl nicht vollständig ab, also keine steuerliche Compliance. Einjahresregression bestanden; mobile Browserabnahme bleibt offen. Quellen und Grenzen: [V2-Inventar- und Arbeitsplatzmodell](../simulation/v2-inventar-arbeitsplaetze.md). Quellen und Grenzen: [V2-Inventar- und Arbeitsplatzmodell](../simulation/v2-inventar-arbeitsplaetze.md), [D-0149](decision-log.md#d-0149--v2-arbeitsplatzausstattung-verschleiss-und-anschaffungsfinanzierung).
-
-Abnahme: Katalog zählt mindestens drei Kategorien je Arbeitsplatz und mindestens zehn Varianten je Kategorie; Kauf/Kreditlimit sowie Spezialwerkzeugmiete funktionieren; Zustand und Buchwert laufen unabhängig auseinander; Lagerregal verbessert belegbare Lagerkapazität; Produktions-/Markt-/Büroeffekte erscheinen im Simulations- und BAB-Kontext; AfA-/GWG-Regeln sind mit Primärquellen abgeglichen; mobile Inventarseite bleibt bedienbar; bestehende Speicherstände laden weiter.
 
 ### T-0039 – Cross-Agent-Konfliktprüfung und Freigabe des Sicherungsstands
 
@@ -84,6 +50,7 @@ Priorität: HIGH
 Aufgabe: Den gesamten lokalen Arbeitsstand nach T-0034 bis T-0038 prüfen, widersprüchliche Implementierungen oder Dokumentation beheben und den vollständigen V2-Sicherungsstand für Commit/Push freigeben. Keine Schema- oder Architekturfreigabe.
 
 Abschluss: Release-Committee PASS. Bereinigt wurden die Kopplung zwischen Tagesfragen und Prüfungsbibliothek, Profilgrenzen der Preisfortschreibung, Bruttozahlung/Vorsteuer, Bilanzbasis des Quartalslimits, gesicherte Immobilien beim Umzug und Nullmiete in der Fallback-Kalkulation. Tagesfragen verwenden nun einen eigenen Pool mit variierter Antwortposition; die 450 Prüfungsfälle bleiben nichtmutierend. Alle 13 MJS-Regressionen/Validatoren, 21 Syntaxchecks, 5/5 Workflow-Sicherheitstests sowie manuelle Mobile-Prüfung bei 390×844 bestanden. Whitespace auch in zuvor ungetrackten Markdown-Dateien bereinigt. Der Stand ist für Commit/Push bereit; diese Git-Schreibvorgänge werden in GitHub Desktop ausgeführt. Siehe CP-0216.
+
 
 ### T-0034 – Personalpools, Kompetenzwirkung und tägliche Lernfragen
 
@@ -100,6 +67,7 @@ Akzeptanz: Personalbuchungen prüfen Agenturpool und Raumgrenze über den gesamt
 
 Abschluss: Drei Agenturen mit je vier fest definierten Poolkräften. Buchungen wählen Personenzahl und Dauer von einem, fünf oder 20 Arbeitstagen, beginnen arbeitsfrei am nächsten Arbeitstag, prüfen durchgehend Poolverfügbarkeit und Standortkapazität und erscheinen ohne Auftragsbindung in der Tagesplanung. Die alte 8-Stunden-Auswahl im Zeitarbeitsformular wurde entfernt; ein Leihmitarbeiter wird modellseitig für einen vollen Arbeitstag gebucht. Kompetenz-/Entwicklungslimits und Qualifikationen werden angezeigt und in Weiterbildung/Leistung berücksichtigt. Das Dashboard enthält die Tagesfragen; fünf Antworten pro Simulationsdatum bewirken kleine sichtbare Änderungen ausschließlich über Engine-Logik, ohne Finanz-/Ledgerbuchungen. Fokus-Regressionen, vollständige MJS-Regressionsmatrix, WBQ-/HSQ-Validatoren, Jahres-Smoke und Browseransichten für Dashboard, Planung und Agenturvertrag bestanden. Kein Schema-/Architekturentscheid; kein Commit/Push in T-0034. Details: [CP-0211](checkpoints/MCP-2026103001.md#cp-0211).
 
+
 ### T-0033 – V2-Integration, Qualitätsreview und Release vorbereiten
 
 Status: COMPLETED (Reviews, Regressionen, Browser-/Mobilprüfung, Commit 4249271 und Push; CP-0210)
@@ -112,6 +80,7 @@ Priorität: HIGH
 Aufgabe: Die fachlich abgeschlossenen MG-002-Lieferungen integrieren, Browser-/Mobilpfade, Inhalte, Simulation und Qualitätsgates unabhängig prüfen und Konflikte vor Sicherung bereinigen. Keine Architektur- oder Schemafreigabe ohne gesonderte Nutzerentscheidung.
 
 Akzeptanz: Alle V2-Tickets haben dokumentierte Agentenergebnisse und unabhängige Reviews; 450 Lernszenarien sind strukturell und fachlich geprüft; Regressionen und einjähriger Simulationslauf bestehen; Mobilbedienung und Tooltipzugänglichkeit sind geprüft; `git diff --check` ist sauber. Nach Abnahme werden klar benannte Sicherungs-Commits erstellt und über lokale Git-Arbeitsmittel/GitHub Desktop gepusht.
+
 
 ### T-0032 – 450 WBQ-/HSQ-Multiple-Choice-Lernszenarien erstellen und integrieren
 
@@ -126,6 +95,7 @@ Aufgabe: Für jeden der vier WBQ-Qualifikationsbereiche und fünf HSQ-Handlungsb
 
 Akzeptanz: Genau 50 valide Fragen je offiziellem Bereich (450 insgesamt); keine kopierten DIHK-Prüfungsaufgaben; genau ein richtiger Schlüssel pro Item; Distraktoren und Erklärungen fachlich geprüft; Unternehmenswirkungen werden als plausible Fallfolgen im Feedback erklärt; Antworten verändern den aktiven Jahres-Spielstand oder das Accounting-/Ledger-State nicht. Inhalte sind responsiv sowie tastatur-/touchbedienbar.
 
+
 ### T-0031 – Marketing, Logistik und kontextbezogene Fachwissen-Tooltips ergänzen
 
 Status: COMPLETED (A02/A03/A05-Implementierung, A11/A09-Review; 2026-10-28; CP-0202)
@@ -139,6 +109,7 @@ Aufgabe: Marketing/Vertrieb sowie Logistik (Beschaffung, Lieferanten, Materialfl
 
 Akzeptanz: Mindestens ein eigener spielbarer Marketing-/Vertriebszyklus und ein eigener Logistikzyklus bilden jeweils nachvollziehbare Unternehmenswirkungen ab; beide sind reproduzierbar und finanzielle Effekte abstimmbar. Tooltips funktionieren per Maus, Tastatur und Touch. Keine Architektur-/Schemaänderung ohne Freigabe; Fachreview durch unabhängige Rollen.
 Abschluss: Zwei einmalige Szenariokampagnen (+8/+14 Prozentpunkte auf die nächste Marktchance) werden beim Aktivieren als Kosten oder offene Kostenposition gebucht und in Monatsabschluss/Ergebnis/Cash geprüft. Bevorzugter Lieferant je Material steuert künftige Fehlbestandsbestellungen, bei unveränderten Bestellungen und Zuverlässigkeits-/Beziehungswartezeiten. Marketing-/Logistikhinweise sind als native, per Tastatur und Touch nutzbare Details integriert. T-0031-Regression, V1-Regressionsuite, Wochenregression und 12-Monats-Smoke bestanden; unabhängiger A11/A09-Review ohne blockierende Konflikte. Ein separater Test des Marketing-Zahlungsversuchs bei unzureichendem Cash wird im T-0033-Gesamt-QA ergänzt. Kein Commit/Push.
+
 
 ### T-0030 – IHK-Prüfungsrahmen und Kompetenzlandkarte belegen
 
@@ -155,6 +126,7 @@ Akzeptanz: Vier WBQ- und fünf HSQ-Bereiche vollständig abgebildet; Logistik un
 
 Abschluss: `docs/learning/wirtschaftsfachwirt-kompetenzlandkarte.md` dokumentiert WFachwPrV §§ 3–5 und 7, regionale IHK-Angaben, agentenseitige Ableitungen und Spielbezüge. A07 und A08 bestätigen Bereichszuordnung, Prüfungsformat, Rechts-/Zeitangaben sowie Quellenstände. Der spezifische Wirtschaftsfachwirt-Rahmenplan 2024 und der allgemeine WBQ-Rahmenplan 2026 sind getrennt; keiner der kostenpflichtigen Volltexte wurde als gelesen behauptet. Keine blockierenden Konflikte; siehe CP-0202.
 
+
 ### T-0029 – „Woche abarbeiten“ bis zum nächsten Montag begrenzen
 
 Status: COMPLETED (A02/A05-Umsetzung, A11/A09-Review; 2026-10-28; CP-0202)
@@ -169,6 +141,7 @@ Aufgabe: Den Wochenknopf so ändern, dass er unabhängig vom Startwochentag bis 
 Akzeptanz: Starts an Montag, Mittwoch, Freitag, Samstag und Sonntag sowie Feiertagswochen enden am nächsten zukünftigen Montag; kein Ereignis oder Finanzlauf am Zielmontag; Einzel-Tag-Fortschritt bleibt unverändert; Regressionen und `git diff --check` bestehen.
 
 Abschluss: `getWeekAdvanceWindow()` berechnet das strikt zukünftige Montagziel; die App verarbeitet nur die davorliegenden Kalendertage. Alle drei Buttons nennen das Montagziel. Wochenregression, Playtest-Regression und Jahres-Smoke bestanden; unabhängiger Review durch A11/A09 fand keine blockierenden Konflikte. Browser-E2E folgt unter T-0033. Kein Commit/Push.
+
 
 ### T-0028 – Cross-Agent-Befunde zu Angebotszeit, Kapazität und Liquidität bereinigen
 
@@ -198,6 +171,7 @@ Akzeptanz:
 
 Abschluss: Konkurrenzangebote haben das Anfragedatum als Eingangsdatum; gelieferte Aufträge zählen nicht länger als Produktionslast; verlorene Gebote bleiben vom Vertragswert getrennt und die UI kennzeichnet den abgegebenen, nicht angenommenen Preis. Der Wettbewerberruf ist sichtbar als Qualitäts-Proxy beschriftet. Das logische Datenmodell umfasst Anfragebeteiligung, Quote-Snapshot und Zuschlagsergebnis ohne physische Schemaänderung. Regressionen und Ein-Auftrag-Stresstest sind in CP-0198 dokumentiert. Keine Finanzregel ergänzt; Ein-Auftrag-Strategie löst nach acht Fehlversuchen Spielverlust und Maschinenverwertung aus. Kein Commit/Push.
 
+
 ### T-0027 – Marktanfragen und Spielerangebote wöchentlich erzeugen
 
 Status: COMPLETED (A01 intern als A02/A05/A09 ausgeführt; 2026-10-27; CP-0196)
@@ -210,6 +184,7 @@ Aufgabe: Zu seltene Marktanfragen erhöhen, damit genügend wählbare Angebote e
 
 Abschluss: Eine Anfrage pro Simulationswoche am ersten Arbeitstag. Einladungsprüfung und Kapazitätsabzug bleiben aktiv; je Spieleranfrage ein bis zwei Konkurrenzbieter. Jahres-Smoke und Marktregression bestanden. Entscheidungen D-0137/D-0138, Nachweis CP-0196. Keine Schemaänderung, kein Commit/Push.
 
+
 ### T-0026 – Selektive Konkurrenzangebote und Zuschlagslogik umsetzen
 
 Status: COMPLETED (A01 intern als A02/A05/A09 ausgeführt; 2026-10-27; CP-0195)
@@ -221,6 +196,7 @@ Priorität: HIGH
 Aufgabe: Kundenanfragen nicht an alle Unternehmen verteilen. Sichtbare Konkurrenzangebote für offene Spielerangebote abbilden. Einladung und Zuschlag sollen von Reputation und Preis abhängen; das Verhalten bleibt reproduzierbar und mobil lesbar.
 
 Abschluss: Der Betrieb erhält Anfragen anhand von Ruf, bisherigem Preisprofil und Kapazitätsbelastung; pro Anfrage bieten ein bis zwei Wettbewerber. Preis, Ruf und modellierte Lieferzeit werden angezeigt. Der Zuschlag vergleicht eigenes Angebot und Rivalen deterministisch. Preisprofil wird aus eigenen Geboten fortgeschrieben. Regression, bisherige Playtest-Regressionen und Jahres-Smoke bestanden. Entscheidung D-0136; Nachweis CP-0195. Keine Schemaänderung, kein Commit/Push.
+
 
 ### T-0022 – V1-Playtestfehler beheben und Browserbedienung sichern
 
@@ -236,6 +212,7 @@ Akzeptanz: neue Fehlerregressionen, bestehende Regressionen und Einjahres-Smoke 
 
 Abschluss: Korrekturen und automatisierte Regressionen sind in CP-0190 dokumentiert; T-0028-Cross-Agent-Prüfung steht in CP-0197/0198. Nutzer bestätigte am 2026-10-27, alle in CP-0190 offenen interaktiven Punkte getestet und keine Fehler gefunden zu haben. T-0022 ist mit CP-0199 abgeschlossen.
 
+
 ### T-0025 – Zeitarbeitskonditionen vor Buchung verhandeln und fixieren
 
 Status: COMPLETED (A01 intern als A02/A03/A05/A09 ausgeführt; 2026-10-27; CP-0194)
@@ -248,7 +225,59 @@ Aufgabe: Zeitarbeitstarif durch Agenturverhandlung mit Grundpreis und Stundenpre
 
 Abschluss: Drei illustrative, monotone Preisstufen eingeführt. Konditionen sind nach Annahme unveränderlich; Buchungen speichern die vereinbarten Sätze. Monatsgrundpreis fällt einmal in Monaten mit mindestens einer Buchung an; Legacy-Spielstände behalten 45 €/h. Regression und Jahres-Smoke bestanden. Details: CP-0194.
 
-## Abgeschlossene Tickets
+### T-0050 – Playtest-Nacharbeiten und Belastungsgrenzen
+
+Status: COMPLETED (Tagesreihenfolge, Teamwirkung und sichere Archivverdichtung umgesetzt; CP-0257; 2026-10-30)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Koordination / Umsetzung: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: Die akzeptierten Korrekturen aus `prototype/manual-year-smoke-test-log.md` umsetzen. Nutzerentscheidungen zu Arbeitslast und Inhaber-Mehrarbeit sind durch D-0153 festgehalten. Postfachbedienung, eindeutige Angebotswirtschaftlichkeit, Verlustfilter und getrennte Bank-/Dispoanzeige sind ebenfalls begonnen.
+
+Teilabschluss: 8 h = 100 %, Automatik stoppt bei 8 h. Nur eine explizite manuelle Tageszuweisung öffnet die Mehrarbeitsgrenze bis 10 h (125 %) bei Beschäftigten bzw. 12 h (150 %) beim Inhaber. Inhaberarbeit über zehn Stunden senkt Motivation um 1,5 Punkte je Stunde und wird protokolliert. CNC bleibt bei 8 h/Tag. Nachrichtendetail und Navigation, Verliererfilter, negative-DB-Warnung samt Bestätigung sowie Bankbestand/Dispo-KPIs wurden angepasst.
+
+Ursprünglich offene Punkte (Tagesreihenfolge, Teamwirkung und sichere Auftragsverdichtung) wurden mit Abschluss CP-0257 umgesetzt und geprüft. Marktchancen protokollieren die Marketingwirkung; der dynamische BAB berechnet praktische Kapazität, Leerkosten und Privatentnahmen und zeigt Auslastung, Leerkosten sowie verrechnete FGK im Monatsabschluss. Keine Schema- oder Architekturfreigabe.
+
+Abnahme 2026-10-30: Tagesblöcke werden pro Mitarbeiter als Warteschlange abgearbeitet; Auftragsstufen bleiben voneinander abhängig. Aufgaben und Fertigungsstufen können sich am selben Tag abwechseln, solange Kapazität verbleibt. Die Zeitleiste zeigt die Reihenfolge und geschätzte Stundenlast. Arbeitsstunden erhöhen Fach-/Methodenkompetenz höchstens bis zum individuellen Potenzial; Motivation wirkt weiter auf die Leistung und verändert sich leicht durch Arbeit. Abgeschlossene Aufträge werden erst nach 365 Tagen Detailtiefe reduzieren; finanzielle Kerndaten bleiben erhalten. `v2-ui-context-timeline-regressions.mjs` und der Jahres-Smoke bestanden.
+
+### T-0047 – V2-Qualitätsziele, Spiel-/Lernkontext und Mitarbeiter-Zeitleiste
+
+Status: COMPLETED (A01-Browserabnahme gemäß visuellen und Recovery-Kriterien; CP-0257; 2026-10-30)
+Master Goal: MG-002
+Second-Level Goals: SLG-002.2 / SLG-002.3 / SLG-002.5
+Koordination: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: MG-002 als durchgängige Wirtschaftslernspiel-Zielsetzung neu fassen, V2-Qualitätsziele erweitern, A01–A12 je ein V2-Unterziel zuweisen, V3–V12 für alle WBQ-/HQ-Fächer und integrierte Prüfung festlegen. Spieloberfläche und Lernkarten über stabile Kompetenz-/Kontextbezüge zusammenführen. Inventar grafisch und zugänglich darstellen sowie eine Mitarbeiter-Zeitleiste für die nächsten Arbeitstage (ohne Wochenenden) anbieten.
+
+Umsetzung: Die verbindliche Zielkarte steht in `v2-v12-goal-map.md`; `goals.md` fasst Ziel und Releasekriterien zusammen. A01 ergänzte `planning-ui.js`, die Zeitleiste in `app.js`, SVG-Inventar-/Materialsymbole, den Lernkarten-Sprung/Rückkehrkontext und Regressionen. Ein nachweislich veralteter `data-plan`-Change-Handler samt nicht mehr verwendeten Importen wurde entfernt. Das mobile Offline-/iPhone-Paket wurde mit dem neuen Modul neu generiert.
+
+Abnahme: Responsive Browser- und Recovery-Kriterien wurden bei 390×844 geprüft: fünf Werktage ohne Wochenendeinträge, 9/9 sichtbare Navigationsbereiche, keine horizontale Seitenüberbreite; Lieferantenauswahl bleibt in der Kartenbreite. Die Wiederherstellung des zuvor gesicherten Spieltags wurde bestätigt. Kein reales iOS-Gerät geprüft. Details: CP-0257.
+### T-0040 – V2-Arbeitsplatzausstattung, Inventar-Lebenszyklus und Ratenkauf
+
+Status: COMPLETED (Netto-/Vorsteuerpfad und mobile Inventarabnahme; CP-0257; 2026-10-30)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Koordination / Umsetzung: A01 – MASTER_ORCHESTRATOR
+Fachreview: A02-Simulation, A03-Finance, A05-UI, A08-Quellenhinweise und A09-Qualität anhand CP-0257 und CP-0260
+Priorität: HIGH
+
+Aufgabe: Arbeitsplatz- und Lagerausstattung in das 2019er V2-Profil aufnehmen. Mindestens drei Ausrüstungskomponenten je Arbeitsplatzbereich und mindestens zehn kaufbare Ausprägungen je Komponente; Produktivität, Beschaffung, Marketing, Angebote/Rechnungen und Lagerkapazität wirksam abbilden. Werkstätten bleiben über die bestehende Karte auswählbar und mietbar. Ausstattung weist Zustand/Verschleiß sowie Buchwert und AfA aus. Nur Spezialwerkzeuge erhalten einen Mietpfad; größere Anschaffungen können bei fehlender Liquidität als Ratenkauf angeboten werden, sofern die maximale Kreditbelastung eingehalten wird.
+
+Umsetzungsstand: Prototyp-Modul `prototype/equipment.js` enthält zehn Kategorien und je zehn Varianten, mit mindestens drei Kategorien in Büro, Werkstatt und Lager/Versand. Inventaransicht, Kauf, Spezialwerkzeug-Miete, zustandsbasierte Produktion/Markt-/Lagerwirkung und Monatsabschlusswerte sind implementiert. Kreditangebot: 12 Monate, 8 % p. a. als klar gekennzeichnete V2-Modellannahme; Neuverschuldung wird auf den freien Rest des quartalsweisen 10-%-Finanzierungsrahmens nach Abzug bestehender Finanzierungen begrenzt. GWG-Sofortaufwand bis 800 € gilt im Modell nur für selbständig nutzbare Katalogeinheiten. § 6 Abs. 2 EStG und BMF-AfA-Quellen sind gegengeprüft; das Modell weist weiterhin Nettowert/Vorsteuer beim Gerätekauf und Sammelpostenwahl nicht vollständig ab, also keine steuerliche Compliance. Einjahresregression bestanden; Mobile Browserabnahme bei 390×844 abgeschlossen; kein reales iOS-Gerät geprüft. Quellen und Grenzen: [V2-Inventar- und Arbeitsplatzmodell](../simulation/v2-inventar-arbeitsplaetze.md), [D-0149](decision-log.md#d-0149--v2-arbeitsplatzausstattung-verschleiss-und-anschaffungsfinanzierung).
+
+Abnahme: Inventar zeigt Nettokatalogpreis, 19 % SimTAX separat, Bruttobelastung bei Cash/Ratenkauf und getrennten Netto-Buchwert/GWG sowie Vorsteuer-Komponente. Inventarregression und 365-Tage-Smoke bestehen. Steuerbehandlung bleibt eine Spielvereinfachung. Details: CP-0257.
+### T-0054 – Bestätigte CPs und MCPs als unveränderliche Historie schützen
+
+Status: COMPLETED (Governance-Regeln in Control Plane und Agentenregeln ergänzt; CP-0256)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2
+Koordination: A01 – MASTER_ORCHESTRATOR
+
+Aufgabe: Die vom Nutzer bestätigte Unveränderlichkeit abgeschlossener MCP-Dateien analog zu CP-Dateien verbindlich in den Agentenregeln festhalten.
+
+Abschluss: `AGENTS.md`, `agent-structure.md` und `agent-rights-matrix.md` bestimmen, dass CPs und MCPs nach Analyseabschluss und Nutzerbestätigung unveränderlich sind. MCP-Entwürfe sind bis dahin als Entwurf zu markieren. Spätere Korrekturen oder Erkenntnisse werden in einem neuen CP dokumentiert; eine neue Synthese erhält eine neue MCP-ID. Bestehende CP-/MCP-Dateien wurden nicht verändert. Nachweis: CP-0256.
 
 ### T-0051 – Checkpoint-Retrospektive und Mastercheckpoint erstellen
 
@@ -1137,3 +1166,24 @@ Owner: A01 MASTER_ORCHESTRATOR
 Aufgabe: Die Lageranzeige als belegte/maximale Fläche ausweisen, Materialien einzeln im Lager führen, Bestellvorlauf und Lieferantenunterschiede simulieren und Fertigware bis zum Versand im Lager halten.
 
 Abschluss: Dashboard und Inventar zeigen belegte von maximaler Lagerfläche in m². Unter „Inventar → Lager“ stehen Stahl, Aluminium und Zukaufteile einzeln, Fertigware bis zum tatsächlichen Versand sowie offene Lieferungen mit Lieferant und voraussichtlichem Termin. Online-Lieferanten sind im Modell günstiger als Baumarkt-Einzelbezug, verlangen Versand und Mindestmengen, haben mehrtägige Vorläufe und ein reproduzierbares Verzögerungsrisiko. Der lokale Baumarkt liefert sofort, aber nur aus endlichem Lagerbestand und mit Einzelmengenaufschlag; ausgeschöpfte Bestände weichen auf Onlinebeschaffung aus. Fertige V2-Aufträge belegen bis zur Aktion „Auftrag aus Lager versenden“ gemeinsam mit Rohmaterial Fläche. Bei Platzmangel warten Warenzugänge und Fertigung. Legacy-/2027-Versandverhalten bleibt kompatibel. Regressionen und Jahresläufe siehe CP-0215.
+
+### T-0055 – Review-/Retrofrequenz in der Control Plane aktualisieren
+
+Status: COMPLETED (Nutzerregel in Control Plane, Rollenunterlagen und Decision Log übernommen; CP-0259)
+Master Goal: MG-002
+Koordination: A01 – MASTER_ORCHESTRATOR
+
+Aufgabe: Die bestätigte Nutzerfrequenz für Reviews/Retros nach 250er-CP-Meilensteinen sowie nach Commit und Push in den Agentenregeln verankern.
+
+Abschluss: AGENTS.md, Agentenstruktur und Rechtekarte nennen CP-0250, CP-0500 usw. und erfolgreiche Commit-/Push-Vorgänge als Auslöser; die ältere Abfrage nach jedem Arbeitsauftrag wird ausdrücklich ersetzt. D-0155 hält die Entscheidung fest. Historische bestätigte CPs/MCPs blieben unverändert.
+
+### T-0056 – Cross-Review-Befunde vor Sicherung auflösen
+
+Status: COMPLETED (Planungsrollback, SimTAX-Abgleich und iPhone/iPad-Paket nach Review nachgearbeitet; CP-0260)
+Master Goal: MG-002
+Second-Level Goal: SLG-002.2 / SLG-002.5
+Koordination: A01 – MASTER_ORCHESTRATOR
+
+Aufgabe: A02–A12-Reviewbefunde am aktuellen Diff abarbeiten, blockierende Konflikte lösen und ein überprüfbares Offlinepaket für iPhone und iPad bereitstellen.
+
+Abschluss: Abgewiesene Planungsänderungen stellen auch die Tagesreihenfolge wieder her und besitzen eine Regression. D-0156 klärt eng begrenzt die V2-SimTAX-Vorsteuer auf Inventaranschaffungen; D-0149 und historische Checkpoints bleiben unverändert. Der Offline-Builder erzeugt iPhone/iPad-Hinweise und ein SHA-256-Manifest für Quellrevision, Eingabedateien und Ausgabe-HTML. A02–A12 Reviewbefunde sind getrennt dokumentiert. Kein Schema-/Architekturentscheid.

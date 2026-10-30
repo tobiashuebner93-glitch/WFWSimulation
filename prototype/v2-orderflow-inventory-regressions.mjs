@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import { createInitialGame, advanceOneDay, acceptMarketOffer, rentHardwareTool, HARDWARE_TOOL_RENTALS, isWorkday, getSpaceUse, shipOrder } from './engine.js';
+import { createInitialFinance } from './finance.js';
+import { EQUIPMENT_CATALOG, buyEquipment, equipmentTaxAmount, equipmentGrossPrice } from './equipment.js';
 
+const equipmentGame=createInitialGame(),equipmentFinance=createInitialFinance(),pc=EQUIPMENT_CATALOG.find(item=>item.id==='special-tools-1'),equipmentBuy=buyEquipment(equipmentGame,equipmentFinance,pc.id);assert.equal(equipmentBuy.ok,true);assert.equal(equipmentBuy.tax,equipmentTaxAmount(pc.price));assert.equal(equipmentBuy.grossPrice,equipmentGrossPrice(pc.price));assert.equal(equipmentBuy.asset.bookValue,pc.price,'Asset book value stays net of SimTAX');assert.equal(equipmentFinance.cash,10000-equipmentGrossPrice(pc.price),'Cash pays gross purchase price');assert.equal(equipmentFinance.taxPeriods[0].inputTax,equipmentTaxAmount(pc.price),'Input SimTAX is recorded separately');
 const game=createInitialGame();
 const weekdaySet=new Set();
 for(let i=0;i<45;i++){

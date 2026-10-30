@@ -13,6 +13,8 @@ Geltung: MG-002 und Folgeaufgaben; AGENTS.md bleibt höherrangige Control-Plane-
 
 Jeder Auftrag nennt Adressat, Goal/Ticket, Umfang, erwartetes Ergebnis, Änderungsgrenzen und Review. Fachagenten richten Status und Rückfragen an A01. A01 bündelt nötige Nutzerfragen; Antworten ohne Rückfragen werden in einen konkret adressierten Folgeauftrag überführt oder als Abschluss dokumentiert. Vor jeder Bearbeitung gilt der Preflight aus AGENTS.md.
 
+**Historische Nachweise:** Nach Abschluss der Analyse und Nutzerbestätigung sind CPs und MCPs unveränderlich. WRITE-Rechte gelten dann nicht für diese Dateien, auch nicht für redaktionelle Korrekturen, Ergänzungen oder Löschung. Bis zur Bestätigung wird ein MCP als Entwurf markiert. Nachträge gehören in einen neuen CP; eine neue Gesamtsynthese wird als neue MCP-ID erstellt. Dynamische Statusregister bleiben außerhalb bestätigter Nachweise.
+
 ## Rollenprofile
 
 ### A01 – MASTER_ORCHESTRATOR
@@ -124,3 +126,8 @@ Jeder Release- oder Jahres-Smoke-Bericht bindet sein Ergebnis an Startprofil, Co
 ### Offlinepakete
 
 A10 dokumentiert beim Offlinepaket Quellrevision und Manifest mit Inhalts-Hashes der enthaltenen Quellen/Artefakte. A12 prüft das konkrete erzeugte Paket in den vorgesehenen Browser-/Geräteszenarien und nennt Paketidentität, Plattform und Ergebnis. Ein Zeitstempel allein gilt nicht als Inhaltsnachweis.
+
+
+## Review- und Analyseauslöser
+
+A01 plant die gebündelte Checkpoint-Review/Retro nach jedem 250. CP (CP-0250, CP-0500 usw.). Eine Review/Retro wird außerdem nach jedem erfolgreich erstellten Commit und jedem erfolgreich ausgeführten Push ausgelöst. Zwischen diesen Meilensteinen wird keine Analyse allein nach einem einzelnen CP oder Arbeitsauftrag angefragt. Nummern werden nie zurückgesetzt; spätere Nutzeranweisungen gelten vor älteren CP-/MCP-Texten. Bestätigte Nachweise bleiben unverändert.

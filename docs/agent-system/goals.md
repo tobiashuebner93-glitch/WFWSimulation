@@ -33,16 +33,16 @@ Ein mobil nutzbares, browserbasiertes Wirtschaftsspiel entwickeln, in dem Lernen
 
 V2 definiert das Qualitäts- und Lernkontextfundament. V3–V6 decken die vier WBQ-Fächer ab, V7–V11 je ein HSQ-Handlungsfeld, V12 integrierte Prüfung und Transfer. Fachkarten allein erfüllen kein Fachziel. Vollständige Kriterien und Agentenbeiträge: [v2-v12-goal-map.md](v2-v12-goal-map.md).
 
-## V2-Qualitätsziel und offene Abnahme
+## V2-Qualitätsziel und Abnahmestand
 
 V2 muss eine klare responsive Spieloberfläche, stabile Lernkarten-/Spielkontextverknüpfung, mobile/tastaturbedienbare Inventarsymbole und Mitarbeiterplanung für die nächsten fünf Arbeitstage (rollende 7 Kalendertage, ohne Wochenendspalten) bieten. Lernübungen dürfen im neutralen Übungsmodus den Unternehmensstand nicht verändern. Der logische Kontextvertrag bleibt Vorschlag und begründet keine Architektur- oder Schemafreigabe.
 
-A01–A12 haben den V2-Zielentwurf jeweils in ihren Fachgruppen geprüft. Die Reviewmatrix und konkrete V2-Unterziele stehen in [CP-0227](checkpoints/MCP-2026103001.md#cp-0227). Der vorherige insolvente Jahressmoke ist durch den aktuellen deterministischen Lauf überholt: 2027 läuft bis 2028-01-01 zahlungsfähig, mit 0 € offenen Betriebskosten und ohne Reconciliation-Fehler (CP-0253). V2 ist wegen offener T-0047/T-0040/T-0050-Punkte und fehlender Browser-/Wiederherstellungsabnahme weiterhin nicht release-abgenommen.
+A01–A12 haben den V2-Zielentwurf jeweils in ihren Fachgruppen geprüft. Die Reviewmatrix und konkrete V2-Unterziele stehen in [CP-0227](checkpoints/MCP-2026103001.md#cp-0227). Der vorherige insolvente Jahressmoke ist durch den aktuellen deterministischen Lauf überholt: 2027 läuft bis 2028-01-01 zahlungsfähig, mit 0 € offenen Betriebskosten und ohne Reconciliation-Fehler (CP-0253). T-0047, T-0040 und T-0050 sind mit CP-0257 abgeschlossen. MG-002 bleibt insgesamt IN_PROGRESS; weitere Fach-/Qualitätsarbeit und ein realer iOS-Safari-Test sind keine erledigten Release-Gates.
 
 ## Status
 
 - SLG-002.1 – IHK-Rahmen/Kompetenzlandkarte: COMPLETED (CP-0202).
-- SLG-002.2 – Erklärbare Unternehmens-/Finanzsimulation: IN_PROGRESS; Jahressolvabilität im aktuellen Jahressmoke bestanden (CP-0253), T-0040 und weitere Fach-/Browserabnahmen bleiben offen.
+- SLG-002.2 – Erklärbare Unternehmens-/Finanzsimulation: IN_PROGRESS; Jahressolvabilität im aktuellen Jahressmoke bestanden (CP-0253), T-0040 ist abgeschlossen; weitere Fach- und Qualitätsabnahmen bleiben offen.
 - SLG-002.3 – Lernkarten/Wiederholung: COMPLETED (CP-0224); die Kartenbibliothek ist noch kein vollständiger Fachprozess.
 - SLG-002.4 – Prüfungsübungen und spielbezogene Lernrückblicke: P1/P2.
 - SLG-002.5 – Daten-, Architektur-, Qualitäts- und Auslieferungsbasis: P2; Architektur, Schema und Persistenz bleiben PROPOSED.

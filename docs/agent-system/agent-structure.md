@@ -56,6 +56,10 @@ READ / PROPOSE / VALIDATE / WRITE / APPROVE werden aufgabenbezogen vergeben.
 
 Kein Agent erhält pauschalen direkten Zugriff auf kritische Finanz- oder Simulationszustände.
 
+## Unveränderlichkeit bestätigter Nachweise
+
+Abgeschlossene CPs und MCPs sind nach Abschluss der jeweiligen Analyse und Nutzerbestätigung eingefrorene Historie. Kein Agent darf sie danach ändern, ergänzen, umsortieren, redaktionell korrigieren oder löschen. Bis zur Bestätigung müssen MCPs ausdrücklich als Entwurf gekennzeichnet sein. Spätere Korrekturen und Erkenntnisse werden in einem neuen fortlaufenden CP mit Rückverweis auf den betroffenen Nachweis dokumentiert; eine neue Gesamtsynthese erhält eine neue MCP-ID. A01 hält dynamische Register und Arbeitsstände außerhalb eingefrorener Nachweise aktuell.
+
 ## Verbindliche Zusammenarbeitsstandards
 
 Fachübergreifende Ereignis-/Finanzverträge, Lerninhalts-Gates, Smoke-Nachweise und Offlinepaketprüfungen sind in der [Agenten-Rechtekarte](agent-rights-matrix.md#verbindliche-fachuebergaben-und-qualitaetsnachweise) verbindlich festgelegt. A01 koordiniert die Übergaben; fachliche Autorität bleibt bei den jeweils benannten Rollen.
@@ -63,3 +67,8 @@ Fachübergreifende Ereignis-/Finanzverträge, Lerninhalts-Gates, Smoke-Nachweise
 ## Abgrenzung Browser-Playtest und QA
 
 A09 verantwortet automatisierte Qualitätssicherung, Regressionen, Testabdeckung und Release-Gates. A12 verantwortet explorative visuelle und funktionale Browserprüfung sowie reproduzierbare Übergaben an den Nutzer. A12 darf isolierte Testspielstände und QA-Artefakte erstellen, aber keinen Produktcode, Simulations-/Finanzregeln, dauerhafte Nutzerspielstände oder Releases ändern. Verbindliche Rechte stehen im [Rollenprofil A12](a12-browser-playtest.md).
+
+
+## Review-, Retro- und Analysefrequenz
+
+Gebündelte CP-Review, Retro und Analyse erfolgen nach jedem 250. CP (CP-0250, CP-0500, CP-0750 usw.), nicht nach jedem einzelnen CP oder Arbeitsauftrag. Zusätzlich wird nach jedem erfolgreichen Commit und jedem erfolgreichen Push geprüft. CP-Nummern werden nie zurückgesetzt. Spätere Nutzeranweisungen haben Vorrang vor älteren CP-/MCP-Texten; bestätigte CPs/MCPs werden nicht rückwirkend geändert.

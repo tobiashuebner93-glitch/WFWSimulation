@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { advanceOneDay, createInitialGame, getDailyCapacityHours, getDailyWorkloadPercent, hasManualDayAssignment } from './engine.js';
+import { advanceOneDay, assignEmployeeToStage, assignEmployeeToTask, createInitialGame, getDailyCapacityHours, getDailyWorkloadPercent, hasManualDayAssignment } from './engine.js';
 import { getTimelineBlockReason, getTimelineChoice, getTimelineWorkdays, setTimelineAssignment } from './planning-ui.js';
 import { focusPracticeCompetence } from './learning-ui.js';
 
@@ -27,11 +27,13 @@ assert.equal(getTimelineBlockReason(game, skilled, date, 1), '');
 assert.equal(setTimelineAssignment(game, skilled.id, date, 'stage:TIMELINE-ORDER:0', 1), true);
 assert.equal(getTimelineChoice(game, skilled.id, date), 'stage:TIMELINE-ORDER:0');
 assert.equal(game.workPlan[date][skilled.id], order.id);
+const previousSequence = structuredClone(game.dailyWorkSequence[date]);
 assert.equal(setTimelineAssignment(game, unskilled.id, date, 'stage:TIMELINE-ORDER:0', 1), false, 'Skill mismatch must reject assignment');
 assert.equal(getTimelineChoice(game, unskilled.id, date), 'auto');
 
 assert.equal(setTimelineAssignment(game, skilled.id, date, 'stage:TIMELINE-ORDER:1', 1), false, 'A later stage still requires its own skill when preplanned');
 assert.equal(getTimelineChoice(game, skilled.id, date), 'stage:TIMELINE-ORDER:0', 'A rejected change must preserve the previous valid assignment');
+assert.deepEqual(game.dailyWorkSequence[date], previousSequence, 'A rejected change must restore the previous daily sequence queue too');
 assert.equal(setTimelineAssignment(game, unskilled.id, date, 'stage:TIMELINE-ORDER:1', 1), true, 'Qualified staff can preplan the next stage; engine gates execution until its predecessor finishes');
 const sick = { ...skilled, id:'TIMELINE-SICK', sickUntil:date };
 game.employees.push(sick);
@@ -80,5 +82,28 @@ for (const context of [
   ['wfprv5-3-einkauf-beschaffung','rw-inventory-valuation','vw-make-or-buy'],
   ['wfprv5-2-investitionsrechnung','rw-depreciation','rw-break-even'],
 ]) assert.ok(focusPracticeCompetence(context), `Every UI game context must resolve to a reviewed practice card: ${context.join(', ')}`);
+
+const sequenceGame=createInitialGame();
+sequenceGame.date='2019-01-07';sequenceGame.roomSettings.office=16;sequenceGame.roomSettings.staff=16;sequenceGame.roomSettings.workshop=100;
+const stageWorker={id:'SEQ-STAGE-2',name:'Folgestufe',skill:['BASIC'],morale:75,motivation:75,competencies:{fach:70,methoden:70,sozial:70,individual:70},maxPotential:{fach:90,methoden:90,sozial:90,individual:90},vacationPlan:[],sickUntil:null};
+sequenceGame.employees.push(stageWorker);
+const sequenceOrder={id:'SEQUENCE-ORDER',name:'Sequenztest',status:'BESTÄTIGT',generated:true,closedAt:null,deliveredAt:null,rejectedAt:null,dueDate:'2019-01-08',planningHours:0,planningDone:0,operations:[{id:1,name:'Erster Block',skill:'BASIC',totalHours:1,machineHours:0},{id:2,name:'Nächster Block',skill:'BASIC',totalHours:1,machineHours:0}],operationIndex:0,operationDone:0,quantity:0,materials:{}};
+sequenceGame.orders.push(sequenceOrder);
+assert.equal(assignEmployeeToStage(sequenceGame,'OWNER',sequenceOrder.id,0,sequenceGame.date),true);
+assert.equal(assignEmployeeToStage(sequenceGame,stageWorker.id,sequenceOrder.id,1,sequenceGame.date),true);
+sequenceGame.plannedTasks=[{id:'FOLLOWUP-TASK',label:'Versand vorbereiten',kind:'VERSAND',orderId:sequenceOrder.id,date:sequenceGame.date,status:'OFFEN',requiredSkill:'BASIC',requiredHours:1,progress:0}];
+assert.equal(assignEmployeeToTask(sequenceGame,'OWNER','FOLLOWUP-TASK',sequenceGame.date),true);
+advanceOneDay(sequenceGame);
+assert.equal(sequenceOrder.operationIndex,2,'The next assigned block starts after the preceding operation finishes');
+assert.equal(sequenceOrder.status,'GELIEFERT','The sequentially assigned work blocks finish the order and queued shipping on the same day');
+assert.equal(sequenceGame.plannedTasks[0].status,'ABGESCHLOSSEN','A task queued after production can continue on the same day');
+assert.equal(sequenceGame.dailyWorkSequence[sequenceGame.lastProcessedDate].OWNER.length,0,'Completed work blocks leave the employee queue');
+
+const archiveGame=createInitialGame();archiveGame.date='2020-01-02';
+const archived={id:'OLD-CLOSED',closedAt:'2019-01-01',operations:[{id:10,name:'Fertigung',skill:'BASIC',totalHours:3,machineHours:0}],competitorQuotes:[{price:10}],salesNet:100};archiveGame.orders.push(archived);
+advanceOneDay(archiveGame);
+assert.equal(archived.detailsCompacted,true,'Closed order details are compacted after one year');
+assert.deepEqual(archived.operations,[{name:'Fertigung',skill:'BASIC',totalHours:3}]);
+assert.equal(archived.salesNet,100,'Compaction preserves financial fields');
 
 console.log('V2 UI context/timeline regressions: PASS');

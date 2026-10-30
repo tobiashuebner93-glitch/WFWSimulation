@@ -1512,3 +1512,19 @@ Quelle: Nutzeranweisung zur automatischen Arbeitsplanung
 Bezug: MG-002 / SLG-002.2 / T-0050 / CP-0234
 
 Die automatische Tagesplanung weist jeder Person höchstens acht Arbeitsstunden zu (100 %). Arbeit oberhalb dieses Umfangs darf nur durch eine explizite manuelle Tageszuweisung des Spielers oder einer Führungskraft freigegeben werden. Bei einer solchen manuellen Freigabe gelten die Obergrenzen aus D-0153: höchstens zehn Stunden für Beschäftigte und Zeitarbeit; der Inhaber kann bis zwölf Stunden gehen, mit Motivationsabzug oberhalb von zehn Stunden. Die CNC-Kapazität bleibt acht Stunden je Arbeitstag. Eine allgemeine manuelle Zuweisung ist die bewusste Mehrarbeitsfreigabe für diesen Tag; unzugewiesene Restarbeit bleibt automatisch auf 100 % begrenzt.
+
+## D-0155 – Review-, Retro- und Analysefrequenz
+
+Status: APPROVED (ausdrückliche Nutzeranweisung; 2026-10-30)
+Quelle: Nutzeranweisung zur Reviewfrequenz nach Bestätigung CP-0257
+Bezug: MG-002 / Control Plane / CP-0258–CP-0259
+
+Gebündelte Review, Retro und Analyse finden nach jedem 250. CP statt: CP-0250, CP-0500, CP-0750 usw. Die CP-Nummerierung wird nicht zurückgesetzt. Zusätzlich wird nach jedem erfolgreichen Commit und nach jedem erfolgreichen Push eine Review/Retro ausgelöst. Zwischen diesen Auslösern wird keine Analyse allein wegen eines einzelnen CP oder Arbeitsauftrags angefragt. Diese spätere Regel ersetzt die ältere Routineformulierung, nach jedem Arbeitsauftrag eine Analyse anzubieten. Frühere bestätigte CPs und MCPs bleiben unverändert; die aktuelle Nutzeranweisung gilt für die zukünftige Ablauffrequenz.
+
+## D-0156 – SimTAX-Vorsteuer auf V2-Inventaranschaffungen
+
+Status: A01-Szenarioregel unter der ausdrücklichen Nutzerdelegation, fehlende Entscheidungen selbst zu treffen; 2026-10-30
+Quelle: T-0040-Umsetzung und A03-Review des Code-/Entscheidungsabgleichs
+Bezug: MG-002 / SLG-002.2 / T-0040 / D-0113 / D-0149 / CP-0253 / CP-0260
+
+Für im V2-Katalog gekaufte Betriebsausstattung wird die modellierte SimTAX von 19 % auf den Nettokatalogpreis als separater Vorsteuer-Simulationsbetrag in der jeweiligen Monatsperiode erfasst. Cash bzw. finanzierter Kaufpreis ist brutto; Anlagen-/GWG-Basis und Buchwert bleiben netto. Ein periodenübergreifender SimTAX-Guthabensaldo wird nach der vorhandenen V2-Periodenlogik fortgeschrieben. Dies ist eine ausdrücklich begrenzte, didaktische Szenarioregel. Sie bildet keine vollständige Prüfung von Steuerstatus, ordnungsgemäßer Rechnung, Vorsteuerabzugsberechtigung, Ausschlüssen, Nutzungsanteilen oder tatsächlicher Umsatzsteuer ab und erteilt keine Steuerfreigabe. D-0149 bleibt historisch unverändert; D-0156 präzisiert die spätere V2-Implementierung nur für Inventaranschaffungen. D-0113 bleibt maßgeblich für deren V1-Scope.

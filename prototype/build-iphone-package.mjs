@@ -1,8 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
+const outputArgument = process.argv.indexOf('--output-dir');
+const outputRoot = outputArgument >= 0 ? path.resolve(process.argv[outputArgument + 1] || '') : root;
+fs.mkdirSync(outputRoot, { recursive: true });
 const entry = 'app.js';
 const sources = new Map();
 const importPattern = /\bimport\s+(?:[^'";]*?\s+from\s+)?['"]([^'"]+)['"]/g;
@@ -50,14 +55,28 @@ const bootstrap = `<script type="application/json" id="wfwsim-sources">${encoded
 })();
 </script>`;
 html = html.replace('</body>', `${bootstrap}\n</body>`);
-const output = path.join(root, 'werkstatt-v2-iphone.html');
+const output = path.join(outputRoot, 'werkstatt-v2-iphone.html');
 fs.writeFileSync(output, html);
-const readme = `Werkstatt V2 – iPhone Offline-Paket\n\nDatei: werkstatt-v2-iphone.html\n\nÖffnen auf dem iPhone:\n1. HTML-Datei in „Dateien“ sichern.\n2. Datei mit Safari öffnen (Teilen-Menü > In Safari öffnen, sofern angeboten). Die Schnellvorschau der Dateien-App ist nicht zuverlässig interaktiv.\n3. Für den Spielstand im Spiel „Speichern“ verwenden und die JSON-Datei ebenfalls in „Dateien“ sichern. „Laden“ importiert sie später wieder. Browserdaten können beim Löschen der Safari-Daten verloren gehen.\n\nDas Spiel ist in einer HTML-Datei mit Oberfläche, Styles und allen lokalen Modulen enthalten. Es benötigt keinen Server und keine Netzverbindung. Offline-Datei-Unterstützung unterscheidet sich je nach iOS-Version und Browser.\n\nErstellt aus dem aktuellen prototype/-Stand mit build-iphone-package.mjs.\n`;
-const readmePath = path.join(root, 'WERKSTATT-V2-IPHONE-README.txt');
+const readme = `Werkstatt V2 – Offline-Paket für iPhone und iPad\n\nDatei: werkstatt-v2-iphone.html\nMindestversion: Safari unter iOS/iPadOS 16.4 oder neuer.\n\nÖffnen auf iPhone oder iPad:\n1. ZIP-Datei in „Dateien“ sichern und entpacken.\n2. HTML-Datei über das Teilen-Menü in Safari öffnen. Die Dateien-App-Schnellvorschau führt interaktive Webseiten nicht zuverlässig aus.\n3. Dasselbe Paket kann auf beiden Geräten verwendet werden. Für den Wechsel zwischen Geräten die HTML-/ZIP-Datei und Spielstände über iCloud Drive oder AirDrop übertragen.\n4. Im Spiel „Speichern“ wählen und den JSON-Spielstand in „Dateien“ sichern. „Laden“ importiert ihn wieder. Safari-Daten können beim Löschen der Browserdaten verloren gehen.\n\nDas Spiel enthält Oberfläche, Styles und alle lokalen Module in einer HTML-Datei. Kein Server und keine Netzverbindung zum Spielen erforderlich. Die tatsächliche Ausführung kann je nach iOS-/iPadOS-Version und Öffnungsweg variieren; reale Geräteprüfung wird im Testbericht separat ausgewiesen.\n\nDas Manifest nennt Quellrevision sowie SHA-256-Prüfsummen der Eingabedateien und Ausgabe-HTML. Erstellt mit build-iphone-package.mjs.\n`;
+const readmePath = path.join(outputRoot, 'WERKSTATT-V2-IPHONE-README.txt');
 fs.writeFileSync(readmePath, readme);
-const zip = path.join(root, 'werkstatt-v2-iphone.zip');
+const manifestPath = path.join(outputRoot, 'werkstatt-v2-package-manifest.json');
+const sha256 = data => crypto.createHash('sha256').update(data).digest('hex');
+const sourceFiles = ['index.html', 'styles.css', ...sources.keys()];
+const gitRevision = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
+const manifest = {
+  package: 'Werkstatt V2 iPhone/iPad offline test package',
+  sourceRevision: `main@${gitRevision}`,
+  workingTreeSourcesIncluded: true,
+  minimumBrowser: 'Safari iOS/iPadOS 16.4+',
+  sourceSha256: Object.fromEntries([...new Set(sourceFiles)].sort().map(file => [file, sha256(fs.readFileSync(path.join(root, file)))])),
+  artifactSha256: { 'werkstatt-v2-iphone.html': sha256(fs.readFileSync(output)), 'WERKSTATT-V2-IPHONE-README.txt': sha256(fs.readFileSync(readmePath)) },
+};
+const manifestText = `${JSON.stringify(manifest, null, 2)}\n`;
+fs.writeFileSync(manifestPath, manifestText);
+const zip = path.join(outputRoot, 'werkstatt-v2-iphone.zip');
 const crcTable=Uint32Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);return c>>>0;});
 function crc32(buf){let c=0xffffffff;for(const byte of buf)c=crcTable[(c^byte)&255]^(c>>>8);return (c^0xffffffff)>>>0;}
 function zipFiles(files){const locals=[],centrals=[];let offset=0;for(const [name,data] of files){const filename=Buffer.from(name),body=Buffer.from(data),crc=crc32(body);const local=Buffer.alloc(30);local.writeUInt32LE(0x04034b50,0);local.writeUInt16LE(20,4);local.writeUInt16LE(0x0800,6);local.writeUInt16LE(0,8);local.writeUInt16LE(0,10);local.writeUInt16LE(33,12);local.writeUInt32LE(crc,14);local.writeUInt32LE(body.length,18);local.writeUInt32LE(body.length,22);local.writeUInt16LE(filename.length,26);local.writeUInt16LE(0,28);locals.push(local,filename,body);const central=Buffer.alloc(46);central.writeUInt32LE(0x02014b50,0);central.writeUInt16LE(20,4);central.writeUInt16LE(20,6);central.writeUInt16LE(0x0800,8);central.writeUInt16LE(0,10);central.writeUInt16LE(0,12);central.writeUInt16LE(33,14);central.writeUInt32LE(crc,16);central.writeUInt32LE(body.length,20);central.writeUInt32LE(body.length,24);central.writeUInt16LE(filename.length,28);central.writeUInt16LE(0,30);central.writeUInt16LE(0,32);central.writeUInt16LE(0,34);central.writeUInt16LE(0,36);central.writeUInt32LE(0,38);central.writeUInt32LE(offset,42);centrals.push(central,filename);offset+=local.length+filename.length+body.length;}const directory=Buffer.concat(centrals),end=Buffer.alloc(22);end.writeUInt32LE(0x06054b50,0);end.writeUInt16LE(0,4);end.writeUInt16LE(0,6);end.writeUInt16LE(files.length,8);end.writeUInt16LE(files.length,10);end.writeUInt32LE(directory.length,12);end.writeUInt32LE(offset,16);end.writeUInt16LE(0,20);return Buffer.concat([...locals,directory,end]);}
-fs.writeFileSync(zip,zipFiles([['werkstatt-v2-iphone.html',fs.readFileSync(output)],['WERKSTATT-V2-IPHONE-README.txt',fs.readFileSync(readmePath)]]));
-console.log(JSON.stringify({output,zip,readme:readmePath,moduleCount:sources.size,htmlBytes:Buffer.byteLength(html),modules:[...sources.keys()]},null,2));
+fs.writeFileSync(zip,zipFiles([['werkstatt-v2-iphone.html',fs.readFileSync(output)],['WERKSTATT-V2-IPHONE-README.txt',fs.readFileSync(readmePath)],['werkstatt-v2-package-manifest.json',fs.readFileSync(manifestPath)]]));
+console.log(JSON.stringify({output,zip,readme:readmePath,manifest:manifestPath,sourceRevision:manifest.sourceRevision,moduleCount:sources.size,htmlBytes:Buffer.byteLength(html),modules:[...sources.keys()]},null,2));

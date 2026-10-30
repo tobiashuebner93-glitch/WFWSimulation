@@ -25,8 +25,10 @@ Danach ist ein dauerhafter Checkpoint verpflichtend.
 
 Bei Entscheidungen, Architekturänderungen, wesentlichen Erkenntnissen, Blockern, neuen Abhängigkeiten oder Änderungen an Goals/Tickets ist sofort zu dokumentieren.
 
+Review-, Retro- und Analysefrequenz: Eine gebündelte Checkpoint-Review/Retro wird nur bei jedem 250. CP durchgeführt (CP-0250, CP-0500, CP-0750 usw.), nicht nach jedem einzelnen CP oder Arbeitsauftrag. Zusätzlich wird nach jedem erfolgreich erstellten Commit und nach jedem erfolgreich ausgeführten Push eine Review/Retro ausgelöst. Die CP-Nummern werden nie zurückgesetzt. Nutzeranweisungen mit späterem Datum/Stand haben Vorrang vor älteren CP-/MCP-Texten; bestätigte CPs/MCPs bleiben dennoch unverändert. Außerhalb dieser Auslöser wird keine Analyseabfrage allein wegen eines neuen CP gestellt.
+
 Der Master Orchestrator unterliegt denselben Regeln wie alle anderen Agenten.
-Abgeschlossene Checkpoints sind unveränderliche Historie. Korrekturen, Ergänzungen oder spätere Erkenntnisse werden in einem neuen Checkpoint dokumentiert und auf den betroffenen Vorgänger zurückgeführt.
+Abgeschlossene Checkpoints (CP) und Mastercheckpoints (MCP) sind unveränderliche Historie, sobald die zugehörige Analyse abgeschlossen und vom Nutzer bestätigt ist. Danach dürfen sie weder inhaltlich noch redaktionell verändert, ergänzt, umsortiert oder gelöscht werden; das gilt auch für Tippfehler, Links und nachträgliche Registereinträge. Entwürfe bleiben bis zu diesem Zeitpunkt ausdrücklich als ENTWURF gekennzeichnet. Korrekturen, Ergänzungen oder spätere Erkenntnisse werden in einem neuen, fortlaufend nummerierten CP dokumentiert und auf den betroffenen Vorgänger zurückgeführt. Eine spätere Gesamtsynthese erhält eine neue MCP-ID und verweist auf ältere MCPs, ohne sie zu ändern oder zu ersetzen.
 
 ## GitHub-Connector und Schreibzugriffe
 

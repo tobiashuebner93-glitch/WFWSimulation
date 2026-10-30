@@ -21,6 +21,8 @@ export function getTimelineBlockReason(game, employee, date, dayIndex) {
 }
 
 export function getTimelineChoice(game, employeeId, date) {
+  const next = game.dailyWorkSequence?.[date]?.[employeeId]?.[0];
+  if (next) return next.kind === 'stage' ? `stage:${next.id}` : `task:${next.id}`;
   for (const [key, ids] of Object.entries(game.stageWorkPlan?.[date] || {})) {
     if (ids.includes(employeeId)) return `stage:${key}`;
   }
@@ -40,6 +42,7 @@ function clearEmployeeFromDay(game, employeeId, date) {
     if (id === employeeId) delete game.taskWorkPlan[date][taskId];
   }
   if (game.workPlan?.[date]) delete game.workPlan[date][employeeId];
+  if (game.dailyWorkSequence?.[date]) delete game.dailyWorkSequence[date][employeeId];
 }
 
 export function setTimelineAssignment(game, employeeId, date, value, dayIndex = 0) {
@@ -55,6 +58,7 @@ export function setTimelineAssignment(game, employeeId, date, value, dayIndex = 
   const previousStage = structuredClone(game.stageWorkPlan?.[date] || {});
   const previousTasks = structuredClone(game.taskWorkPlan?.[date] || {});
   const previousOrders = structuredClone(game.workPlan?.[date] || {});
+  const previousSequence = structuredClone(game.dailyWorkSequence?.[date] || {});
   clearEmployeeFromDay(game, employeeId, date);
   let assigned = false;
   if (value.startsWith('stage:')) {
@@ -71,5 +75,7 @@ export function setTimelineAssignment(game, employeeId, date, value, dayIndex = 
   game.stageWorkPlan[date] = previousStage;
   game.taskWorkPlan[date] = previousTasks;
   game.workPlan[date] = previousOrders;
+  game.dailyWorkSequence ||= {};
+  game.dailyWorkSequence[date] = previousSequence;
   return false;
 }

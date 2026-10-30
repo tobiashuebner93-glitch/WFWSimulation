@@ -1,3 +1,6 @@
+## Aktueller Governance-Stand (T-0054; CP-0256; 2026-10-30)
+
+Abgeschlossene CPs und MCPs werden nach Abschluss ihrer Analyse und Nutzerbestätigung eingefroren. Keine nachträgliche redaktionelle Korrektur, Ergänzung, Umordnung oder Löschung; MCP-Entwürfe sind bis zur Bestätigung als Entwurf zu kennzeichnen. Spätere Erkenntnisse gehen in einen neuen CP, neue Gesamtsynthesen in eine neue MCP-ID. Bestehende CP-/MCP-Dateien blieben unangetastet. Details: [CP-0256](checkpoints/CP-0256.md).
 ## Aktueller Git-Stand (CP-0255; 2026-10-30)
 
 Der validierte Ticketstand ist auf `origin/main` gesichert. Lokaler `main` und Remote-HEAD stimmen auf `f56b40bdeb286da3a67f4b781fb1cee3b9693e0b` überein; Arbeitsbaum sauber. T-0048 abgeschlossen; T-0047, T-0040 und T-0050 bleiben offen. Der Push wurde nicht durch den manuellen Nutzertest blockiert. Keine V2-Releasefreigabe. Details: [CP-0255](checkpoints/CP-0255.md).
@@ -1007,3 +1010,34 @@ MG-002 wurde neu als integriertes browser- und mobilfähiges Wirtschaftslernspie
 A01 hat die fehlende Mitarbeiter-Zeitleistenrenderfunktion integriert, Tagesauswahlen pro Person ergänzt und veralteten, nach der Migration ungenutzten `data-plan`-Handler entfernt. Inline-SVG-Inventarsymbole und zugängliche Tooltip-Namen/Fähigkeiten sowie Hin-/Rücksprung aus Spielkontext zu Lernkarte sind enthalten. Die neue Ziel-/UI-Regression und bestehende gezielte V2-Regressionen bestehen; das iPhone-Paket wurde neu gebaut und umfasst `planning-ui.js`. A01–A12 haben den Zielentwurf nach Fachgruppen geprüft; Einzelbefunde und Restpunkte stehen in [CP-0227](checkpoints/MCP-2026103001.md#cp-0227).
 
 T-0047 bleibt IN_PROGRESS bis A12-Sichtprüfung und V2-Jahressolvabilität. Der bekannte Jahreslauf endet mit `gameLost=true` und 119.638,87 € offenen Kosten; das ist ein V2-Releaseblocker. Es gibt kein reales iOS-Safari-Ergebnis. Keine Architektur-/Schemafreigabe, kein Commit/Push.
+
+## Ticketabschluss T-0050, T-0047 und T-0040 (CP-0257-Entwurf; 2026-10-30)
+
+A01 hat die drei zuletzt offenen MG-002-Tickets nach der dokumentierten Reihenfolge umgesetzt. T-0050 besitzt jetzt pro Mitarbeiter eine stabile Tagesblock-Reihenfolge; nach einer abgeschlossenen Fertigungsstufe kann die nächste zugewiesene Stufe oder Arbeitsaufgabe am selben Tag beginnen. Nicht zugewiesene Folgestufen bleiben gesperrt. Die Zeitleiste stellt geplante Reihenfolge und geschätzte Stundenlast dar. Produktive Stunden geben kleine, bis zum individuellen Maximalpotenzial gedeckelte Kompetenzzuwächse; Motivation bleibt leistungswirksam und wird leicht angepasst. Auftragsdetails werden nach 365 Tagen verdichtet; Finanzfelder bleiben erhalten.
+
+Für T-0047 erfolgte eine responsive Browserprüfung bei 390×844: 375 CSS-Pixel Dokumentbreite ohne horizontalen Überlauf, neun sichtbare Navigationsbereiche, fünf Werktage und keine Wochenendspalten. Lieferantenauswahl und Formular passen in die mobile Kartenbreite. Die Recovery-Prüfung stellte einen zuvor gesicherten Spieltag nach dem Voranschreiten wieder her. Der Offline-iPhone-Build wurde erneuert; ein reales iOS-Safari-Gerät wurde nicht geprüft.
+
+T-0040 führt Katalogpreise als Nettobasis, weist 19 % SimTAX separat aus, belastet Cash/Ratenkauf mit Brutto und hält Netto-Buchwert/GWG-Basis getrennt von der monatlichen Vorsteuer-Komponente. Die Inventar-/Vorsteuerregression und der Jahres-Smoke bestehen. Das bleibt eine Simulationsvereinfachung, keine vollständige steuerliche Behandlung.
+
+Validierung: die 15 Regressionen/Smokes aus CP-0253 bestanden erneut; dazu Syntaxprüfungen und `git diff --check` (nur Git-Zeilenendenhinweise). Der Jahressmoke erreicht 2028-01-01 mit 59 bezahlten Abschlüssen, 1.759,26 € Bankbestand, 0 € unbezahlten Kosten und ohne Reconciliation-Fehler. Browsermessung: innerWidth 390, Dokumentbreite 375, 9/9 Nav-Buttons sichtbar, Lieferantenfeld 311,6 px breit innerhalb der Karte.
+
+Arbeitsstand basiert auf `a1ae2bfac0948db5cb46763331f342efe3527d08`, Branch `main` gleichauf mit `origin/main`. Das gesamte lokale Änderungsset wurde erhalten. Kein Commit und kein Push. Keine Schema-/Architekturfreigabe. Die CP-0257-Datei ist als Entwurf zu behandeln, bis eine Reviewanalyse abgeschlossen und vom Nutzer bestätigt wurde; bereits bestätigte CPs/MCPs wurden nicht geändert.
+## Review und Retro zu T-0050/T-0047/T-0040 (CP-0257 Entwurf; 2026-10-30)
+
+A01-Rollenprüfung: PASS mit Restgrenzen. Die Umsetzung ist mit den drei Ticketakzeptanzen vereinbar; kein blockierender Implementierungskonflikt gefunden. 15 vorhandene Regressionen/Smokes liefen mit Exitcode 0; der deterministische Jahressmoke bestand. Responsive Browsermessung 390×844 und ZIP-Neubau wurden dokumentiert. Kein unabhängiger Agentenreview und kein realer iOS-Gerätetest in diesem Durchlauf. SimTAX/AfA bleibt Szenariomodellierung, keine Rechts-/Steuerfreigabe; MG-002 und V2 bleiben IN_PROGRESS.
+
+Retro: A01 hat die fachlichen Rollen intern geprüft. Für künftige Paketübergaben sollten Simulation/Finance, UI, QA und Build getrennte Prüfschritte mit kleinem Übergabeartefakt haben. Der Bereich „Aktive Tickets“ im Ticket-Board enthält historisch abgeschlossene Tickets; separate Bereinigung empfohlen, nicht blockierend. CP-0257 bleibt Entwurf bis zur Analysebestätigung; CP-0256 sowie bestätigte CPs/MCPs wurden nicht verändert. Kein Commit/Push.
+
+## CP-0257 bestätigt; Ticket-Board bereinigt (CP-0258 Entwurf; 2026-10-30)
+
+Der Nutzer bestätigte CP-0257 am 2026-10-30 als abgeschlossene Analyse. CP-0257 gilt damit als eingefroren und wurde nicht nachträglich geändert; sein gespeicherter Entwurfsstatus bleibt als damaliger Dateistand erhalten. Diese Bestätigung ist für Folgearbeit über CP-0258 dokumentiert.
+
+Auf ausdrückliche Nutzerbestätigung wurden 14 als COMPLETED markierte Ticketblöcke aus „Aktive Tickets“ nach „Abgeschlossene Tickets“ verschoben, ohne ihre Inhalte zu ändern oder zu löschen. Es verbleiben keine aktuell offenen Einträge unter der aktiven Überschrift. MG-002/V2 ist weiterhin IN_PROGRESS. `git diff --check` bestanden (nur LF/CRLF-Hinweise); kein Commit/Push. CP-0258 ist Entwurf.
+
+## Reviewfrequenz gemäß Nutzerregel D-0155 (CP-0259 Entwurf; 2026-10-30)
+
+Ab jetzt werden gebündelte Review, Retro und Analyse nur nach jedem 250. CP durchgeführt (CP-0250, CP-0500, CP-0750 usw.), zusätzlich jeweils nach erfolgreichem Commit und Push. Eine Analyseabfrage erfolgt nicht nach jedem einzelnen CP/Arbeitsauftrag. Dies ersetzt die ältere Routineformulierung in MCP-2026103001; historische CP/MCP-Dateien wurden nicht editiert. Die Anweisung wurde in AGENTS.md, Agentenstruktur und Rechtekarte übernommen; D-0155 wurde ergänzt. CP-0257 bleibt bestätigt und eingefroren. CP-0258 bleibt ein nicht analysierter Entwurf. Keine Review wurde für CP-0259 gestartet, da dies kein 250er-Meilenstein und kein Commit-/Push-Lauf ist.
+
+## Pre-Commit Cross-Agent-Review (T-0056/CP-0260 Entwurf; 2026-10-30)
+
+A02–A12 haben die Änderungen jeweils in ihrem Rollenbereich geprüft; A01 integrierte die Befunde. A02 fand Queue-Rollbackfehler, der mit Regression behoben wurde. A03 fand die Inkonsistenz zwischen D-0149 und der V2-Inventar-Vorsteuerlogik; D-0156 löst sie begrenzt für V2-Kataloganlagen. A10 fand fehlendes SHA-256-Manifest und iPad-Anleitung; Builder/ZIP/README wurden aktualisiert. Zielreviews: A02 PASS, A03 PASS, A04 PASS, A05 PASS, A06 PASS, A07 PASS, A08 PASS mit Verifikationsgrenze, A09 PASS, A10 PASS, A11 PASS, A12 keine echten Geräte geprüft. Die 15 Regressionen liefen erneut erfolgreich. Der Paketmanifest-Test bestätigte die Prüfsummen und Manifest-ZIP-Mitgliedschaft. Keine Schema-/Architekturfreigabe; kein Commit/Push bislang.
