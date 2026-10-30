@@ -1,6 +1,6 @@
 # A03-Änderungsbericht: Abgleich mit bestätigten Finanzentscheidungen
 
-**Historischer Stand:** Dieser Abgleich entstand vor D-0128. Für den Anfangsbestand und die V1-Eröffnungssalden ist nun [D-0128](../agent-system/decision-log.md#d-0128--v1-anfangsbestand-und-marktbezogene-materialpreis-basis) mit [CP-0181](../agent-system/checkpoints/CP-0181.md) maßgeblich.
+**Historischer Stand:** Dieser Abgleich entstand vor D-0128. Für den Anfangsbestand und die V1-Eröffnungssalden ist nun [D-0128](../agent-system/decision-log.md#d-0128--v1-anfangsbestand-und-marktbezogene-materialpreis-basis) mit [CP-0181](../agent-system/checkpoints/MCP-2026103001.md#cp-0181) maßgeblich.
 
 Datum: 2026-10-26\
 Agent: A03 – ACCOUNTING_FINANCE\

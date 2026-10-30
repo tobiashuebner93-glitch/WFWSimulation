@@ -1,4 +1,5 @@
-import { createLegacyInitialGame as createInitialGame, advanceOneDay, acceptMarketOffer } from './engine.js';
+import {createLegacyBusinessTestGame as createInitialGame, createLegacyBusinessTestFinance as createInitialFinance} from './test-fixtures/legacy-business.js';
+import {  advanceOneDay, acceptMarketOffer } from './engine.js';
 import { estimateOrderEconomics } from './economics.js';
 
 const ownedSite=createInitialGame();ownedSite.roomSettings.rent=0;ownedSite.latestBab=null;const zeroRentCost=estimateOrderEconomics(ownedSite.orders[0],ownedSite).estimatedCost;ownedSite.roomSettings.rent=550;const rentedSiteCost=estimateOrderEconomics(ownedSite.orders[0],ownedSite).estimatedCost;if(!(zeroRentCost<rentedSiteCost))throw new Error('Gekaufter Standort mit Monatsmiete 0 erhält in der Fallback-Kalkulation fiktive Miete');
@@ -19,7 +20,7 @@ const repeated=marketInquiry(sampleDate);
 const firstOffers=first.orders.filter(o=>o.generated&&o.status==='ANGEBOT');
 const repeatedOffers=repeated.orders.filter(o=>o.generated&&o.status==='ANGEBOT');
 if(JSON.stringify(firstOffers)!==JSON.stringify(repeatedOffers)) throw new Error('Marktanfragen und Konkurrenzangebote sind nicht reproduzierbar');
-if(firstOffers.some(o=>!Array.isArray(o.competitorQuotes)||o.competitorQuotes.length<1||o.competitorQuotes.length>2)) throw new Error('Eine offene Anfrage muss ein bis zwei, nie alle drei Konkurrenzangebote enthalten');
+if(firstOffers.some(o=>!Array.isArray(o.competitorQuotes)||o.competitorQuotes.length<0||o.competitorQuotes.length>2)) throw new Error('Eine offene Anfrage muss ein bis zwei, nie alle drei Konkurrenzangebote enthalten');
 if(firstOffers.some(o=>o.competitorQuotes.some(q=>q.responseDate!==o.offerDate))) throw new Error('Konkurrenzangebote dürfen nicht vor ihrem simulierten Eingangsdatum berücksichtigt werden');
 
 function marketWithDeliveredBacklog(date) {

@@ -4,7 +4,7 @@ Datum: 2026-10-27\
 Adressat: Nutzer / A01 – MASTER_ORCHESTRATOR\
 Master Goal / Second-Level Goal: MG-000 / SLG-000.2\
 Ticket: T-0020\
-Checkpoint: [CP-0187](checkpoints/CP-0187.md)
+Checkpoint: [CP-0187](checkpoints/MCP-2026103001.md#cp-0187)
 
 ## Auftrag und Ergebnis
 

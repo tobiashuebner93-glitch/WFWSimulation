@@ -5,6 +5,10 @@
 
 **V1-Prototyp-Fortschreibung (CP-0178/0179):** Nach dieser Spezifikationsrevision hat der Nutzer ausdrücklich die spielbare V1 mit Abwesenheiten, Feiertagsbehandlung, Markt-/Partnernetzwerk, Aus- und Weiterbildung sowie Raumkapazitäten beauftragt. Diese Erweiterungen sind im lokalen Browser-Prototyp und in [V1-MODELL.md](../../prototype/V1-MODELL.md) dokumentiert. Wo die Erweiterung vom ursprünglichen D-0011-Kernumfang (insbesondere Feiertage unberücksichtigt) abweicht, ist dies als späterer, ausdrücklicher V1-Auftrag kenntlich gemacht und keine stillschweigende Änderung des Decision Logs.
 
+## Aktueller Startprofil-Nachtrag (D-0152 / T-0049 / CP-0230; 2026-10-30)
+
+Für neu angelegte Spiele gelten 2019- und 2027-Profil als derselbe Spielstand mit ausschließlich unterschiedlichem Startdatum (01.01.2019 bzw. 01.01.2027). Beide starten als Ein-Personen-Einzelunternehmen in derselben gemieteten Garage mit 10.000 € Bankbestand, leerem Lager, ohne Startaufträge, Forderungen, Verbindlichkeiten, Maschinen oder Darlehen. Ältere Abschnitte dieser Spezifikation, die das 2027er Unternehmen mit drei Beschäftigten, 30.000 € Bank, CNC-Maschine, Darlehen oder Anfangsposten beschreiben, sind historische Profile und keine aktiven Werte für einen Neustart.
+
 ## Status und Governance
 
 Vorgeschriebene Governance gelesen: `AGENTS.md`, Agentenstruktur, Goals, Ticket-Board, Collaboration State, Decision Log, Architektur V0.2 und CP-0002. Aktives Master Goal ist MG-000. Aktiv: SLG-000.1 (Control Plane) und SLG-000.2 (Architektur prüfen, nicht freigegeben). Das einzige aktive Ticket ist T-0001 zur Control Plane; ein aktives A02-Ticket zu dieser fachlichen Aufgabe ist nicht eingetragen. Die Governance beschränkt Arbeitskontext auf Tickets aktiver Goals. Diese Analyse wurde auf ausdrücklichen Nutzerauftrag hin erstellt; A01 muss ihre Aufnahme in den aktiven Arbeitskontext bestätigen.
@@ -286,7 +290,11 @@ Dieser Abschnitt dokumentiert den damaligen Stand nach CP-0148. Der gemeinsame A
 
 ## Quellen
 
+### V2-Tagesbelastung (D-0153)
+
+Die Arbeitslast wird gegenüber einer Referenz von acht Stunden je Tag angezeigt (100 %). Beschäftigte und Zeitarbeitskräfte haben im Szenario eine tägliche Kapazitätsgrenze von zehn Stunden (125 %). Nur der Inhaber darf bis zu zwölf Stunden (150 %) eingesetzt werden; jede an einem Tag geleistete Inhaberstunde oberhalb von zehn reduziert seine Motivation um 1,5 Prozentpunkte und wird im Tagesereignisprotokoll festgehalten. Die CNC bleibt auf acht operative Stunden je Arbeitstag beschränkt. Die Tagesgrenze allein bildet die gesetzlichen Ausgleichszeiträume und Ruhezeiten nicht vollständig ab.
+
 - [AGENTS.md](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/AGENTS.md)
 - [Agentenstruktur](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/agent-system/agent-structure.md) · [Goals](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/agent-system/goals.md) · [Ticket-Board](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/agent-system/ticket-board.md)
 - [Collaboration State](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/agent-system/collaboration-state.md) · [Decision Log](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/agent-system/decision-log.md)
-- [Architektur V0.2 – PROPOSED](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/architecture/architecture-v0.2.md) · [Checkpoint CP-0002](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/agent-system/checkpoints/CP-0002.md)
+- [Architektur V0.2 – PROPOSED](https://github.com/tobiashuebner93-glitch/WFWSimulation/blob/main/docs/architecture/architecture-v0.2.md) · [Checkpoint CP-0002](../agent-system/checkpoints/MCP-2026103001.md#cp-0002)

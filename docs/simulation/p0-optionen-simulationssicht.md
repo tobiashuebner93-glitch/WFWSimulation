@@ -172,7 +172,7 @@ Wenn V1 keinen Zufall nutzt, ist ein PRNG-Seed für fachliche Ergebnisse nicht e
 ## Quellen
 
 - [D-0010](../agent-system/decision-log.md#d-0010--verbindliche-produktentscheidungen-maschinenbau-mvp)
-- [CP-0014](../agent-system/checkpoints/CP-0014.md)
+- [CP-0014](../agent-system/checkpoints/MCP-2026103001.md#cp-0014)
 - [A02-Spezifikation](maschinenbau-mvp-spezifikation-und-gap-analyse.md)
 - [A03-Finanzspezifikation](../accounting/maschinenbau-mvp-finanzspezifikation.md)
 - [A04-Datenmodell](../database/maschinenbau-mvp-datenmodell.md)

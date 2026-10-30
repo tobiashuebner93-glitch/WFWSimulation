@@ -1,106 +1,52 @@
 # Goals – WFWSimulation
 
-## Aktuelles Master Goal
+## Abgeschlossene Master Goals
 
 ### MG-000 – Agenten-Governance und technische Grundlage etablieren
 
 Status: COMPLETED
-Priorität: HIGH
 
-Ziel:
-
-Eine belastbare und nachvollziehbare Control Plane für Agenten, Goals, Tickets, Arbeitsstände, Checkpoints und Architekturentscheidungen etablieren.
-
-Abschlussnachweis: SLG-000.1, SLG-000.2 und SLG-000.3 sind anhand ihrer dokumentierten Ergebnisse abgeschlossen. Die Architekturprüfung ist abgeschlossen, ohne Architektur V0.2 oder eine ADR freizugeben. Konsolidierung und Belege: [CP-0188](checkpoints/CP-0188.md).
-
----
-
-## Aktuelles Second-Level Goal
-
-### SLG-000.1 – Agent Control Plane implementieren
-
-Status: COMPLETED
-Master Goal: MG-000
-
-Ziel:
-
-Verbindliche Agentenstruktur, Preflight, Goal-/Ticket-Filterung und Arbeitsstands-Dokumentation im Repository verankern.
-
-Abschlussnachweis: T-0001 wurde anhand der Control-Plane-Kriterien geprüft und in [CP-0182](checkpoints/CP-0182.md) abgeschlossen; die dauerhaften Governance-Artefakte sind dokumentiert. Goal-Abgleich: [CP-0188](checkpoints/CP-0188.md).
-
----
-
-### SLG-000.2 – Technische Architektur V0.2 prüfen
-
-Status: COMPLETED / ARCHITEKTURVORSCHLAG WEITERHIN PROPOSED
-Master Goal: MG-000
-
-Grundlage:
-
-A11 hat einen technischen Architekturentwurf V0.2 erstellt.
-
-Der Entwurf ist nicht freigegeben.
-
-Alle ADRs sind PROPOSED.
-
-Abschlussnachweis: T-0002 sichert den Architekturentwurf als Vorschlag (CP-0006); die fachliche Gegenprüfung ist in [CP-0029](checkpoints/CP-0029.md) dokumentiert, und der aktuelle Kopplungsreview steht in [CP-0187](checkpoints/CP-0187.md). Das Prüfziel ist erfüllt; Architektur V0.2 und ADR-001 bis ADR-008 bleiben PROPOSED und nicht freigegeben. Nicht blockierende technische Schulden und UI-Verifikationspunkte sind in CP-0187 benannt. Gesamtbewertung: [CP-0188](checkpoints/CP-0188.md).
-
----
-
-### SLG-000.3 – Repository-Bestand aufnehmen
-
-Status: COMPLETED
-Master Goal: MG-000
-
-Abschlussnachweis: Checkpoint [CP-0002](checkpoints/CP-0002.md).
-
-## Goal-Regeln
-
-Nur Tickets des aktuellen Master Goals und aktuellen Second-Level Goals gehören zum aktiven Arbeitskontext.
-
-Tickets abgeschlossener Second-Level Goals bleiben historisch erhalten, werden aber nicht mehr aktiv berücksichtigt.
-
-Ein Goal darf erst als COMPLETED markiert werden, wenn seine Ergebnisse dauerhaft dokumentiert und geprüft wurden.
-
----
-
-## Aktuelles Master Goal
+Eine belastbare und nachvollziehbare Control Plane für Agenten, Goals, Tickets, Arbeitsstände, Checkpoints und Architekturentscheidungen wurde etabliert. SLG-000.1, SLG-000.2 und SLG-000.3 sind anhand ihrer dokumentierten Ergebnisse abgeschlossen. Die Architekturprüfung gab weder Architektur V0.2 noch eine ADR frei. Nachweise: [CP-0188](checkpoints/MCP-2026103001.md#cp-0188).
 
 ### MG-001 – Browser-V1-Playtestfehler beheben
 
 Status: COMPLETED (2026-10-27; CP-0199)
-Priorität: HIGH
 
-Ziel: Die vom Nutzer beim manuellen Spieltest gemeldeten Bedienungs-, Kapazitäts-, Vertrags-, Personal- und Urlaubsfehler beheben und eine erneut testbare Browser-Version sichern. Dieses Ziel umfasste die V1-Playtestkorrekturen; es war keine Abnahme der weitergehenden Realismus- oder WBQ/HQ-Lernziele.
+Die vom Nutzer beim manuellen Spieltest gemeldeten Bedienungs-, Kapazitäts-, Vertrags-, Personal- und Urlaubsfehler wurden behoben und eine erneut testbare Browser-Version gesichert. Die V1-Playtestkorrekturen waren keine Abnahme der weitergehenden Realismus- oder WBQ/HQ-Lernziele. T-0022 wurde nach Nutzerbestätigung der manuellen Prüfung abgeschlossen; T-0028 ist mit CP-0198 abgeschlossen. Nachweise: CP-0190 und CP-0199.
 
-Abschlussnachweis: T-0022 wurde nach Nutzerbestätigung der fehlerfreien manuellen Browserprüfung abgeschlossen; T-0028 ist mit CP-0198 abgeschlossen. Automatisierte Regressionen und Einjahres-Smoke bestanden. Details: CP-0190 und CP-0199.
+## Goal-Regeln
 
-Second-Level Goal: SLG-001.1 – V1-Fehlerkorrekturen und Browserbedienbarkeit
-Status: COMPLETED (2026-10-27; CP-0199)
-
+Nur Tickets des aktuellen Master Goals und Second-Level Goals gehören zum aktiven Arbeitskontext. Abgeschlossene Ziele und Tickets bleiben historisch erhalten. Ein Goal darf erst als COMPLETED markiert werden, wenn seine Ergebnisse dauerhaft dokumentiert und geprüft wurden.
 
 ---
 
-## Aktives V2-Mastergoal MG-002
+# V2–V12-Qualitätsziele (MG-002)
 
-- A10-Workflow-Sicherheit für PR-Diff-Daten (keine unsichere Shell-/JSON-Interpolation) ist mit T-0033 und CP-0216 abgeschlossen; verbleibende neue Findings benötigen ein eigenes Ticket.
+Status: IN_PROGRESS
+Master Goal: MG-002
+Agentenreviews: A01–A12, 2026-10-29
+Autoritativer Zielplan: [V2–V12 Zielkarte](v2-v12-goal-map.md)
 
-### MG-002 – Wirtschaftsfachwirt-Lernsimulation und WBQ/HQ-Vorbereitung entwickeln
+## Neu gefasstes Gesamtziel
 
-Status: IN_PROGRESS (2026-10-28; durch Nutzerauftrag aktiviert; A01 koordiniert)
+Ein mobil nutzbares, browserbasiertes Wirtschaftsspiel entwickeln, in dem Lernende ein Unternehmen nachvollziehbar führen und Wirtschaftsfachwirt-Kompetenzen auf WBQ-/HQ-Niveau an realen Spielentscheidungen anwenden. Jedes Fach wird als vollständige spielbare Handlungskette in die Unternehmenssimulation integriert; Lernkarten, Tooltips, Übungsfälle und Prüfungsformate vertiefen dieselben Kompetenzen und verweisen wechselseitig auf konkrete Spielkontexte. Regeln, Ereignisse, Kennzahlen und Wirkungen sind nachvollziehbar; Quellen, Recht, fachliche Ableitungen und Szenariovereinfachungen sind getrennt. Kein Anspruch auf Prüfungssiegel, Rechtsberatung oder vollständige Unternehmenssoftware.
 
-Ziel: Eine nachvollziehbare Unternehmenssimulation entwickeln, die betriebswirtschaftliche Zusammenhänge auf Wirtschaftsfachwirt-Niveau erfahrbar macht und mit belegten Lerninhalten, Lernkarten und Prüfungssimulation auf WBQ und HQ vorbereitet. Der Unternehmensbereich umfasst ausdrücklich auch Marketing/Vertrieb und Logistik (Beschaffung, Materialfluss, Lagerung und Auslieferung). Marketing-, Logistik- und sonstige Simulationsannahmen, allgemeine Fachregeln und rechtliche Anforderungen müssen unterscheidbar bleiben. Lernwissen erscheint an fachlich passenden Stellen als zugängliche Tooltips; je offiziellem WBQ-Qualifikations- und HSQ-Handlungsbereich werden 20–30 originäre Multiple-Choice-Lernfälle pro Schwierigkeitsstufe (Grundwissen, Aufbauwissen, Transferwissen) mit Begründung und beschriebener Unternehmenswirkung bereitgestellt.
+V2 definiert das Qualitäts- und Lernkontextfundament. V3–V6 decken die vier WBQ-Fächer ab, V7–V11 je ein HSQ-Handlungsfeld, V12 integrierte Prüfung und Transfer. Fachkarten allein erfüllen kein Fachziel. Vollständige Kriterien und Agentenbeiträge: [v2-v12-goal-map.md](v2-v12-goal-map.md).
 
-**Aktive Second-Level Goals und Reihenfolge:**
+## V2-Qualitätsziel und offene Abnahme
 
-1. **SLG-002.1 – IHK-Prüfungsrahmen erheben und Kompetenzlandkarte ableiten und gegenprüfen (COMPLETED; CP-0202):** A08 recherchiert den WBQ-/HQ-Prüfungsrahmen aus den im Internet verfügbaren Quellen der zuständigen IHK und dokumentiert URL, Veröffentlichungs-/Versionsstand und Abrufdatum. A06 leitet daraus die Kompetenzlandkarte ab. A07/A08 gleichen sie mit weiteren einschlägigen Internetquellen ab und detaillieren sie, wobei Quelle, bestätigter IHK-Inhalt, agentenseitige Ableitung, Ergänzung und verbleibender Widerspruch jeweils unterscheidbar bleiben. Weitere Quellen ergänzen oder prüfen die Ableitung; sie überschreiben den IHK-Prüfungsrahmen nicht stillschweigend. Keine Kompetenzlandkarte wird als von der IHK herausgegeben bezeichnet.
-2. **SLG-002.2 – Erklärbare Unternehmens- und Finanzsimulation validieren (IN_PROGRESS):** A02/A03 definieren überprüfbare Lern-Szenarien für Auftragswirtschaft, Kostenrechnung, Preisbildung, Kapazität, Personal, Finanzierung, Liquidität, Lager/Materialfluss, Ausstattung/Verschleiß und Jahresabschluss-Sichten. Läufe müssen reproduzierbar und ihre Finanzwirkungen aus Ereignissen nachvollziehbar sein. Öffentliche Unternehmensberichte dürfen nur mit dokumentierter Vergleichbarkeit als Plausibilitätsreferenz dienen. Arbeitsplatzausstattung wirkt auf Fertigung, Beschaffung, Markt/Angebote und Rechnungs-/Büroabläufe; Vermögensgegenstände führen physischen Zustand getrennt vom Buchwert. Keine vollständige handels- oder steuerrechtliche Rechnungslegung wird damit behauptet.
-3. **SLG-002.3 – WBQ/HQ-Lernkarten und Wiederholungslogik aufbauen (COMPLETED; T-0041/CP-0224):** T-0032 lieferte 450 quellen-/kompetenzbezogene MC-Lernfälle (50 je WBQ-/HSQ-Bereich). T-0041 ergänzt täglich gemischte Fragen und Wiederholungsplanung. A09 stufte am 2026-10-29 alle 450 Kernfälle nach Denkoperation ein und erteilte nach Nacharbeit den Vollreview-PASS für sämtliche 90 Ergänzungen. Regressionen prüfen Quellen-/Kompetenzbezug, Schlüssel, Wiederholung, Tageslimit und 20 Fälle je Stufe und Fach. Die Einstufung ist redaktionell, nicht psychometrisch kalibriert oder IHK-zertifiziert. CP-0221 ist ein historischer Zwischenstand. Prüfungssimulationen und Debriefs bleiben Gegenstand von SLG-002.4.
-4. **SLG-002.4 – Prüfungsübungen und spielbezogene Lernrückblicke entwickeln (P1/P2):** A07 erstellt nach belegtem Prüfungsrahmen Übungs- und zeitbegrenzte Prüfungsabläufe mit dokumentierter Bewertungsrubrik, Musterlösung und fachlichem Feedback. A02/A03 liefern Ereignis- und Kennzahlenkontext für Debriefs, die Entscheidungen mit Ergebnis, Kosten, Liquidität und passenden Kompetenzen verbinden.
-5. **SLG-002.5 – V2-Daten-, Architektur-, Qualitäts- und Auslieferungsbasis freigeben (P2, parallel vorbereiten):** A04/A11 legen nach fachlichem Scope versionierte Simulationsläufe, Regelstände, Lerninhalte und Lernfortschritt als Anforderungen vor. A09/A10 verantworten automatisierte Simulations-, Inhalts-, Testabdeckungs- und CI-Prüfungen. Der bekannte PR-Workflow-Sicherheitsfix ist mit T-0033/CP-0216 abgeschlossen; neue Findings benötigen ein eigenes Ticket. A12 verantwortet explorative visuelle und funktionale Browser-Playtests und bereitet reproduzierbare Nutzersituationen vor. Architektur, Schema, Persistenzziel (lokal/offline oder Konto/Cloud) und Datenschutz bleiben bis zu gesonderter Nutzerfreigabe PROPOSED.
+V2 muss eine klare responsive Spieloberfläche, stabile Lernkarten-/Spielkontextverknüpfung, mobile/tastaturbedienbare Inventarsymbole und Mitarbeiterplanung für die nächsten fünf Arbeitstage (rollende 7 Kalendertage, ohne Wochenendspalten) bieten. Lernübungen dürfen im neutralen Übungsmodus den Unternehmensstand nicht verändern. Der logische Kontextvertrag bleibt Vorschlag und begründet keine Architektur- oder Schemafreigabe.
 
-**Gemeinsame Abnahmerichtung:** Kompetenzziele sind Quellen und Lernaktivitäten zugeordnet; Simulationsergebnisse sind bei gleicher Szenario-/Regelversion reproduzierbar; Finanzberichte lassen sich auf Geschäftsvorfälle zurückführen; Karten und Prüfungsaufgaben besitzen Versions-/Quellenbeleg und fachlichen Review; Nutzerfortschritt sowie Prüfungsfeedback sind nachvollziehbar; Browser- und Mobilpfade bestehen definierte E2E- und Qualitätsprüfungen. Konkrete Quoten, Marktmodelle, Architektur und verbindlicher Prüfungsumfang werden erst in den jeweiligen Scope-Tickets festgelegt.
+A01–A12 haben den V2-Zielentwurf jeweils in ihren Fachgruppen geprüft. Die Reviewmatrix und konkrete V2-Unterziele stehen in [CP-0227](checkpoints/MCP-2026103001.md#cp-0227). Der vorherige insolvente Jahressmoke ist durch den aktuellen deterministischen Lauf überholt: 2027 läuft bis 2028-01-01 zahlungsfähig, mit 0 € offenen Betriebskosten und ohne Reconciliation-Fehler (CP-0253). V2 ist wegen offener T-0047/T-0040/T-0050-Punkte und fehlender Browser-/Wiederherstellungsabnahme weiterhin nicht release-abgenommen.
 
-**Abhängigkeiten:** SLG-002.1 ist Eingangsvoraussetzung für Lernkarten und Prüfungsinhalte. Unternehmens- und Finanzmodellierung kann parallel beginnen, umfasst Marketing/Vertrieb und Logistik und benötigt Lernzielmapping sowie explizite Realismusgrenzen. Lern-UX folgt den fachlichen Lern-/Prüfungsverträgen. Persistenz, Schema und Architekturentscheidungen benötigen einen freigegebenen Betriebs- und Datenschutzbedarf.
+## Status
 
-**Nicht mit V1 verwechselt:** MG-001 ist abgeschlossen; die V1-Playtestkorrekturen und der einjährige Browserlauf sind kein Nachweis einer rechtlich vollständigen Buchführung, prognosefähigen Unternehmensplanung oder bestätigten WBQ-/HQ-Prüfungsvorbereitung. Details: [V1-/V2-Zielreview CP-0201](checkpoints/CP-0201.md).
+- SLG-002.1 – IHK-Rahmen/Kompetenzlandkarte: COMPLETED (CP-0202).
+- SLG-002.2 – Erklärbare Unternehmens-/Finanzsimulation: IN_PROGRESS; Jahressolvabilität im aktuellen Jahressmoke bestanden (CP-0253), T-0040 und weitere Fach-/Browserabnahmen bleiben offen.
+- SLG-002.3 – Lernkarten/Wiederholung: COMPLETED (CP-0224); die Kartenbibliothek ist noch kein vollständiger Fachprozess.
+- SLG-002.4 – Prüfungsübungen und spielbezogene Lernrückblicke: P1/P2.
+- SLG-002.5 – Daten-, Architektur-, Qualitäts- und Auslieferungsbasis: P2; Architektur, Schema und Persistenz bleiben PROPOSED.
+
+## Release- und Qualitätskriterien
+
+Kein Fachrelease vor Quellen-/Kompetenzprüfung, vollständigem Spielkreislauf, messbarer und rückverfolgbarer Wirkung, plausiblen Übungsaufgaben, Regressionen sowie explorativem mobilem Browserreview. Kein V2-Release-Claim, bis Jahres-Solvabilität und Browser-/Wiederherstellungsgates bestanden sind. V3–V12 sind Zielplanung, keine Behauptung, dass diese Inhalte bereits umgesetzt wurden.

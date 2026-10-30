@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
 import { createInitialGame, advanceOneDay, assignEmployeeToStage, createMaterialProcurement, assignEmployeeToTask, scheduleShippingTask } from './engine.js';
-import { EQUIPMENT_CATALOG, buyEquipment, equipmentSatisfiesTool } from './equipment.js';
+import { EQUIPMENT_CATALOG, buyEquipment, equipmentSatisfiesTool, equipmentAccountingTreatment } from './equipment.js';
 import { createInitialFinance, recordMaterialPurchase, repayLoanEarly } from './finance.js';
 
+assert.equal(equipmentAccountingTreatment({independentlyUsable:true,price:800}),'GWG-Sofortaufwand');
+assert.equal(equipmentAccountingTreatment({independentlyUsable:false,price:800}),'lineare AfA nach Szenario-Nutzungsdauer');
+assert.equal(equipmentAccountingTreatment({independentlyUsable:true,price:800.01}),'lineare AfA nach Szenario-Nutzungsdauer');
 const game=createInitialGame();
 const finance=createInitialFinance();
 finance.cash=10000;
@@ -13,13 +16,13 @@ assert.equal(equipmentSatisfiesTool(game,'cnc-metrology-kit'),false,'Eine Werkba
 
 game.date='2019-01-02';
 game.employees.push({id:'BASIC-1',name:'Fachkraft',role:'Fertigung',skill:['BASIC'],morale:75,motivation:75,competencies:{fach:70,methoden:70,sozial:70,individual:70},maxPotential:{fach:90,methoden:90,sozial:90,individual:90},qualifications:{machines:[]},vacationPlan:[],sickUntil:null});
-const order={id:'T0045-ORDER',name:'Spannmodul',quantity:1,status:'BESTÄTIGT',generated:true,dueDate:'2019-02-01',planningHours:0,planningDone:0,operationIndex:0,operationDone:0,consumed:false,materials:{steel:0,aluminium:0,parts:0},requiredToolId:'bench-clamp-set',requiredToolSkill:'BASIC',operations:[{id:10,name:'Materialbereitstellung',skill:'PREP',totalHours:9},{id:20,name:'Manuelle Bearbeitung',skill:'BASIC',totalHours:1},{id:30,name:'Verpackung',skill:'PACK',totalHours:1}]};
+const order={id:'T0045-ORDER',name:'Spannmodul',quantity:1,status:'BESTÄTIGT',generated:true,dueDate:'2019-02-01',planningHours:0,planningDone:0,operationIndex:0,operationDone:0,consumed:false,materials:{steel:0,aluminium:0,parts:0},requiredToolId:'bench-clamp-set',requiredToolSkill:'BASIC',operations:[{id:10,name:'Materialbereitstellung',skill:'PREP',totalHours:13},{id:20,name:'Manuelle Bearbeitung',skill:'BASIC',totalHours:1},{id:30,name:'Verpackung',skill:'PACK',totalHours:1}]};
 game.orders.push(order);const nextOrder={id:'T0045-ORDER-2',name:'Folgeauftrag',quantity:1,status:'BESTÄTIGT',generated:true,dueDate:'2019-02-01',planningHours:0,planningDone:0,operationIndex:0,operationDone:0,consumed:false,materials:{steel:0,aluminium:0,parts:0},operations:[{id:10,name:'Bereitstellung',skill:'PREP',totalHours:1},{id:20,name:'Verpackung',skill:'PACK',totalHours:1}]};game.orders.push(nextOrder);
 assert.equal(assignEmployeeToStage(game,'OWNER',order.id,0),true);
 assert.equal(assignEmployeeToStage(game,'BASIC-1',order.id,1),true,'Die spätere Zuweisung darf vorgemerkt werden.');
 advanceOneDay(game);
 assert.equal(order.operationIndex,0,'Der nächste Arbeitsschritt darf vor Abschluss der Materialbereitstellung nicht beginnen.');
-assert.equal(order.operationDone,8);
+assert.equal(order.operationDone,12);
 advanceOneDay(game);
 assert.equal(order.operationIndex,3,'Nach Abschluss läuft die Folgearbeit mit qualifiziertem Personal weiter.');
 assert.equal(order.status,'VERSANDBEREIT');assert.equal(nextOrder.operationIndex,2,'Nach Auftragsabschluss kann der Mitarbeiter den Folgeauftrag am selben Tag übernehmen.');

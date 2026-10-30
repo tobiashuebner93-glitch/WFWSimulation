@@ -1484,3 +1484,31 @@ Online-Lieferanten bieten Mengenrabatte von 2 %, 4 % und 7 % ab modellierten Sch
 Für das V2-Profil verwendet die nächste Auftragsreferenz einen Stückwert von 180 € zuzüglich eines deterministischen Zuschlags von 0 bis 90 €. Der Lieferzielhorizont beträgt 12 bis 20 Arbeitstage. Beide Werte sind balancierte Szenariowerte und keine Marktpreisbehauptung oder Lieferzeitgarantie.
 
 Aktive Kredite werden nur mit positivem Saldo angezeigt. Vorzeitige Ablösung bucht das verbleibende Kapital aus ausreichendem Bankguthaben; die Simulation setzt dabei keine Vorfälligkeitsentschädigung an. Reale Kreditverträge können andere Ablösebeträge und Bedingungen vorsehen. Dies ist keine Aussage zu gesetzlichen Kündigungsrechten.
+
+## D-0152 – Einheitlicher Neustart für 2019- und 2027-Profil
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-10-30)
+Quelle: Nutzerauftrag „das 2019er darf außer dem Starttag nicht vom 2027er abweichen“
+Bezug: MG-002 / SLG-002.2 / T-0049 / CP-0230
+
+Neue Spielstände der Profile 2019 und 2027 verwenden denselben Betriebs-, Personal-, Inventar-, Auftrags-, Markt-, Raum-, Finanz- und Regelstand. Der einzige beabsichtigte Unterschied ist das Startdatum (2019-01-01 bzw. 2027-01-01); jahresabhängige Simulationseffekte laufen relativ zum jeweiligen Startdatum. Beide Profile beginnen als Einzelunternehmen in derselben gemieteten Garage mit 10.000 € Bankguthaben, leerem Lager, ohne Forderungen, Verbindlichkeiten, Darlehen, Maschinen oder Aufträge sowie mit dem Inhaber als einziger Arbeitskraft und derselben Grundwerkbank/Handwerkzeugausstattung.
+
+Die früheren 2027-Neustartannahmen mit 30.000 € Bankbestand, OP, Vorratswerten, CNC-Maschine, Maschinendarlehen und drei Beschäftigten bleiben historische Fach-/Teststände und gelten nicht für neu angelegte Spiele. Legacy-Regressions dürfen diese Daten nur über ausdrücklich benannte Test-Fixtures initialisieren; sie sind keine alternative produktive 2027-Neustartvariante. Dieser Beschluss gleicht die Neustartprofile an und ändert keine Architektur oder Datenbankschemata.
+
+## D-0153 – Tagesbelastung von Beschäftigten und Inhaber
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-10-30)
+Quelle: Nutzerantwort nach Durchsicht der Empfehlungen aus dem manuellen Jahrestest
+Bezug: MG-002 / SLG-002.2 / T-0050
+
+Die Belastung wird relativ zu acht Stunden dargestellt: 8 h = 100 %, 10 h = 125 %. Angestellte und Zeitarbeitskräfte können im V2-Szenario höchstens zehn Stunden an einem Arbeitstag eingesetzt werden. Nur der Spieler als Inhaber darf die Zehnstundengrenze überschreiten; die V2-Szenariogrenze beträgt zwölf Stunden bzw. 150 %. Für jede am selben Tag geleistete Inhaberstunde oberhalb von zehn sinkt seine Motivation um 1,5 Prozentpunkte; die Überlast wird im Ereignisprotokoll ausgewiesen. Die CNC bleibt auf acht operative Stunden je Arbeitstag begrenzt.
+
+Die Tageshöchstgrenze ist keine vollständige Abbildung des Arbeitszeitrechts. Für Beschäftigte gelten daneben die gesetzlichen Ausgleichszeiträume und Ruhezeitvorgaben; diese V2-Regel allein weist keine rechtliche Konformität des Dienstplans nach. Sie ändert weder historische V1-Kernwerte noch Schema oder Architektur.
+
+## D-0154 – Automatische Tagesplanung auf 100 % begrenzen
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-10-30)
+Quelle: Nutzeranweisung zur automatischen Arbeitsplanung
+Bezug: MG-002 / SLG-002.2 / T-0050 / CP-0234
+
+Die automatische Tagesplanung weist jeder Person höchstens acht Arbeitsstunden zu (100 %). Arbeit oberhalb dieses Umfangs darf nur durch eine explizite manuelle Tageszuweisung des Spielers oder einer Führungskraft freigegeben werden. Bei einer solchen manuellen Freigabe gelten die Obergrenzen aus D-0153: höchstens zehn Stunden für Beschäftigte und Zeitarbeit; der Inhaber kann bis zwölf Stunden gehen, mit Motivationsabzug oberhalb von zehn Stunden. Die CNC-Kapazität bleibt acht Stunden je Arbeitstag. Eine allgemeine manuelle Zuweisung ist die bewusste Mehrarbeitsfreigabe für diesen Tag; unzugewiesene Restarbeit bleibt automatisch auf 100 % begrenzt.

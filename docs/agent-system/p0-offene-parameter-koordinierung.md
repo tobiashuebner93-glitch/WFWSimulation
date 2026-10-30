@@ -76,15 +76,15 @@ A03 hat mit CP-0148 die Finanzspezifikation und P0-Finanzkonsistenzprüfung abge
 ## Quellen und Provenienz
 
 - [Decision Log](decision-log.md), insbesondere D-0010 bis D-0119.
-- [CP-0147](checkpoints/CP-0147.md) bleibt historischer Nachweis der damaligen Nutzerentscheidung.
-- [CP-0148](checkpoints/CP-0148.md) dokumentiert den A03-Finanzabgleich.
-- [CP-0149](checkpoints/CP-0149.md) dokumentiert den damaligen A01-Koordinierungsstand.
-- [CP-0150](checkpoints/CP-0150.md) dokumentiert A02s abgeschlossene T-0009-Arbeit.
-- [CP-0151](checkpoints/CP-0151.md) dokumentiert A04s Datenmodellabgleich.
-- [CP-0152](checkpoints/CP-0152.md) dokumentiert den historischen Validierungsbefund; die Startprofilabweichungen wurden danach durch CP-0153 korrigiert.
-- [CP-0153](checkpoints/CP-0153.md) dokumentiert die A02-Startprofilkorrektur.
-- [CP-0154](checkpoints/CP-0154.md) dokumentiert den offenen Komponentenabgleich der 12.800 € Vorräte.
-- [CP-0155](checkpoints/CP-0155.md) dokumentiert die A02/A03-Ereignis- und Periodenabstimmung.
-- [CP-0156](checkpoints/CP-0156.md) dokumentiert die bestandene Gesamtvalidierung und den Sicherungsstand.
-- [CP-0178](checkpoints/CP-0178.md) und [CP-0179](checkpoints/CP-0179.md) dokumentieren die V1-Erweiterungen; [CP-0180](checkpoints/CP-0180.md) dokumentiert den Agentenrollen-Review.
+- [CP-0147](checkpoints/MCP-2026103001.md#cp-0147) bleibt historischer Nachweis der damaligen Nutzerentscheidung.
+- [CP-0148](checkpoints/MCP-2026103001.md#cp-0148) dokumentiert den A03-Finanzabgleich.
+- [CP-0149](checkpoints/MCP-2026103001.md#cp-0149) dokumentiert den damaligen A01-Koordinierungsstand.
+- [CP-0150](checkpoints/MCP-2026103001.md#cp-0150) dokumentiert A02s abgeschlossene T-0009-Arbeit.
+- [CP-0151](checkpoints/MCP-2026103001.md#cp-0151) dokumentiert A04s Datenmodellabgleich.
+- [CP-0152](checkpoints/MCP-2026103001.md#cp-0152) dokumentiert den historischen Validierungsbefund; die Startprofilabweichungen wurden danach durch CP-0153 korrigiert.
+- [CP-0153](checkpoints/MCP-2026103001.md#cp-0153) dokumentiert die A02-Startprofilkorrektur.
+- [CP-0154](checkpoints/MCP-2026103001.md#cp-0154) dokumentiert den offenen Komponentenabgleich der 12.800 € Vorräte.
+- [CP-0155](checkpoints/MCP-2026103001.md#cp-0155) dokumentiert die A02/A03-Ereignis- und Periodenabstimmung.
+- [CP-0156](checkpoints/MCP-2026103001.md#cp-0156) dokumentiert die bestandene Gesamtvalidierung und den Sicherungsstand.
+- [CP-0178](checkpoints/MCP-2026103001.md#cp-0178) und [CP-0179](checkpoints/MCP-2026103001.md#cp-0179) dokumentieren die V1-Erweiterungen; [CP-0180](checkpoints/MCP-2026103001.md#cp-0180) dokumentiert den Agentenrollen-Review.
 - CP-0020 fehlt weiterhin im Checkout; sein Inhalt wurde nicht rekonstruiert.

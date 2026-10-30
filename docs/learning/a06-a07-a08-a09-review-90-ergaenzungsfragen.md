@@ -111,7 +111,7 @@ Strukturabnahme: 90/90 sind explizit zugeordnet; UI-Regression weist je Fachbere
 
 ## Unabhängiger A09-Review 2026-10-29
 
-**Review-Runde:** Erste Inhaltsprüfung (Zwischenstand, später behoben). **Ergebnis zu diesem Prüfzeitpunkt:** Inhaltsabnahme nicht bestanden. Der erste unabhängige A09-Review fand inhaltliche Fehler, welche die bestehenden Strukturvalidatoren nicht erkennen. Die späteren Korrekturen und der finale A09-PASS stehen unter [CP-0224](../agent-system/checkpoints/CP-0224.md).
+**Review-Runde:** Erste Inhaltsprüfung (Zwischenstand, später behoben). **Ergebnis zu diesem Prüfzeitpunkt:** Inhaltsabnahme nicht bestanden. Der erste unabhängige A09-Review fand inhaltliche Fehler, welche die bestehenden Strukturvalidatoren nicht erkennen. Die späteren Korrekturen und der finale A09-PASS stehen unter [CP-0224](../agent-system/checkpoints/MCP-2026103001.md#cp-0224).
 
 ### Befunde
 

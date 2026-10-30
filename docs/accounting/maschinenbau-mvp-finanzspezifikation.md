@@ -15,6 +15,10 @@ Fehlschlagende eigene V1-Verbindlichkeiten erhalten den ersten Fehlversuch am F�
 
 **Abgleich mit dem spielbaren Prototyp (CP-0180):** D-0023 wird als relativer Aufschlag umgesetzt: Dispozins = individueller Unternehmenszins × 1,08. Die V1-Codefassung verwendet am 1. Januar den synthetischen MRO-Szenariowert plus den FKQ-Aufschlag nach D-0109 und hält den daraus abgeleiteten Dispozins bis zur nächsten Jahresvereinbarung fest. Für D-0127 konkretisiert der Prototyp Actual/365 ohne Tagesrundung und rundet den Monatssammelposten einmal auf Cent. Das sind reversible V1-Modellannahmen, keine zusätzlichen Nutzerentscheidungen. D-0042/43 sind mit wöchentlichem Retry, drei offenen Monatsraten, Marktwertliquidation und vollständigem Defiziterlass abgebildet; ein zusätzlicher Verzugszins ist nicht modelliert.
 
+## Aktueller Neustartprofil-Nachtrag (D-0152 / T-0049 / CP-0230; 2026-10-30)
+
+Für neu angelegte Spiele starten die Profile 2019 und 2027 mit demselben Finanz- und Betriebsstand; ausschließlich der Stichtag wechselt zwischen 01.01.2019 und 01.01.2027. Der gemeinsame Eröffnungsstand umfasst 10.000 € Bankguthaben, 10.000 € Eigenkapital als Gegenposition und keine Forderungen, Verbindlichkeiten, Vorräte, Maschinen oder Darlehen. Historische Abschnitte mit 30.000 € Bank, offenen Posten, CNC-Maschine oder Maschinendarlehen dokumentieren frühere 2027-Szenariostände und sind nicht die Eröffnungswerte eines neuen Spiels.
+
 ## Zweck und Grenzen
 
 Diese Spezifikation ordnet die von A02 beschriebenen Maschinenbau-Prozesse finanziell ein. Accounting ist die fachliche Autorität für Forderungen, Verbindlichkeiten, Kosten, Erlöse, Liquidität und Auftragsergebnis. A02 bleibt autoritativ für operative Ereignisse, Mengen, Prozessreihenfolge und Simulationszeit. Accounting erhält bestätigte Tatsachen und leitet daraus Finanzzustände ab; Simulation führt keine parallelen Finanzsalden.

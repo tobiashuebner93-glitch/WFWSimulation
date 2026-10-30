@@ -32,3 +32,7 @@ Die neuen Items sind eigenständig formulierte Lernfälle, keine übernommenen D
 Die vollständige Einzelzuordnung der 450 Kernfälle von A09 ist im Lauf vom 2026-10-29 in `prototype/learning-ui.js` eingetragen. Sie nutzt keine ID-Suffix-Heuristik mehr. Laufzeitprüfungen sichern je Fach 20 Grundwissen-, 15 Aufbau- und 15 Transferfälle im Kernbestand; einschließlich der Ergänzungen werden je Fach 20 Fälle pro Stufe angezeigt. Die Regression sichert die Mengen, nicht die psychometrische Schwierigkeit oder eine IHK-Kalibrierung.
 
 Die 90 ergänzenden Fälle weisen je einen expliziten Kompetenzschlüssel auf; Quellen- und Tooltipbezug werden aus dem Kernfall derselben Kompetenz abgeleitet, niemals aus derselben Arrayposition. `learning-ui-regressions.mjs` prüft Zuordnung, Quellenübereinstimmung, eindeutige Antwortoptionen und Quoten, aber nicht allein die inhaltliche Passung. A09 sichtete alle Fälle, die gefundenen Text-/Distraktorprobleme wurden korrigiert und im unabhängigen Vollreview PASS bestätigt (CP-0224). Die Einstufung bleibt redaktionell, ohne psychometrische oder IHK-Kalibrierung.
+
+## Historischer Statushinweis (2026-10-29)
+
+Der Absatz oben, der T-0041 als offen bezeichnet, ist ein historischer Zwischenstand und wurde durch den Abschlussnachweis CP-0224 überholt. T-0041 ist COMPLETED; A09 hat dort die Schwierigkeitsstufung und 90 Ergänzungsfragen geprüft. Die danach beschriebene Prüfungssimulator-/Debrief-Arbeit gehört zu SLG-002.4 und ist nicht Bestandteil eines offenen Restes von T-0041.

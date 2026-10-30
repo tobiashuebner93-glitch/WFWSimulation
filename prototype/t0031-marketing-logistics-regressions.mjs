@@ -1,7 +1,8 @@
+import {createLegacyBusinessTestGame as createInitialGame, createLegacyBusinessTestFinance as createInitialFinance} from './test-fixtures/legacy-business.js';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {createLegacyInitialGame as createInitialGame,MARKETING_CAMPAIGNS,activateMarketingCampaign,setPreferredSupplier,advanceOneDay} from './engine.js';
-import {createLegacyInitialFinance as createInitialFinance,recordMarketingCost,recordMaterialPurchase,closeMonthlyPeriod} from './finance.js';
+import {MARKETING_CAMPAIGNS,activateMarketingCampaign,setPreferredSupplier,advanceOneDay} from './engine.js';
+import {recordMarketingCost,recordMaterialPurchase,closeMonthlyPeriod} from './finance.js';
 
 // Marketing is a separate, finite decision cycle with a cash and P&L trail.
 const game=createInitialGame(),finance=createInitialFinance(),campaign=MARKETING_CAMPAIGNS.find(x=>x.id==='targeted');

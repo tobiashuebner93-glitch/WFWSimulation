@@ -1,6 +1,6 @@
+import {createLegacyBusinessTestGame as createInitialGame, createLegacyBusinessTestFinance as createInitialFinance} from './test-fixtures/legacy-business.js';
 import assert from 'node:assert/strict';
-import { createLegacyInitialGame as createInitialGame, negotiateTemporaryAgency, bookTemporaryWorker, getSpaceUse, relocateFacility, TEMP_AGENCIES, getEmployeeWorkEfficiency } from './engine.js';
-import { createInitialFinance } from './finance.js';
+import {  negotiateTemporaryAgency, bookTemporaryWorker, getSpaceUse, relocateFacility, TEMP_AGENCIES, getEmployeeWorkEfficiency } from './engine.js';
 import { DAILY_ITEMS } from './learning-daily.js';
 
 const game = createInitialGame();

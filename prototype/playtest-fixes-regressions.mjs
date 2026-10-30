@@ -1,5 +1,6 @@
-import { createLegacyInitialGame as createInitialGame, advanceOneDay, bookTemporaryWorker, negotiateTemporaryAgency, TEMP_AGENCY_OFFERS, migrateGameState, getSpaceUse, startApprenticeship, startContinuingEducation, relocateFacility, FACILITIES } from './engine.js';
-import { createLegacyInitialFinance as createInitialFinance, closeMonthlyPeriod, recordFacilityRelocation } from './finance.js';
+import {createLegacyBusinessTestGame as createInitialGame, createLegacyBusinessTestFinance as createInitialFinance} from './test-fixtures/legacy-business.js';
+import {  advanceOneDay, bookTemporaryWorker, negotiateTemporaryAgency, TEMP_AGENCY_OFFERS, migrateGameState, getSpaceUse, startApprenticeship, startContinuingEducation, relocateFacility, FACILITIES } from './engine.js';
+import {  closeMonthlyPeriod, recordFacilityRelocation } from './finance.js';
 import { readFile } from 'node:fs/promises';
 
 const game=createInitialGame();

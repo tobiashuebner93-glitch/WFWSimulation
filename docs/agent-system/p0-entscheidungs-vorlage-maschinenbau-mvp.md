@@ -195,8 +195,8 @@ D-0010 bleibt unverändert; Architektur V0.2 und ADR-001 bis ADR-008 bleiben `PR
 
 ## Quellen
 
-- [CP-0014 – offene P0/P1-Entscheidungen](checkpoints/CP-0014.md)
-- [CP-0015 – A03 P0-Optionen B–E](checkpoints/CP-0015.md)
+- [CP-0014 – offene P0/P1-Entscheidungen](checkpoints/MCP-2026103001.md#cp-0014)
+- [CP-0015 – A03 P0-Optionen B–E](checkpoints/MCP-2026103001.md#cp-0015)
 - [D-0010](decision-log.md#d-0010--verbindliche-produktentscheidungen-maschinenbau-mvp)
 - [A02 Optionen A/F/G/I](../simulation/p0-optionen-simulationssicht.md)
 - [A03 Optionen B/C/D/E](../accounting/p0-finanzentscheidungen-v1-optionen.md)

@@ -56,6 +56,10 @@ READ / PROPOSE / VALIDATE / WRITE / APPROVE werden aufgabenbezogen vergeben.
 
 Kein Agent erhält pauschalen direkten Zugriff auf kritische Finanz- oder Simulationszustände.
 
+## Verbindliche Zusammenarbeitsstandards
+
+Fachübergreifende Ereignis-/Finanzverträge, Lerninhalts-Gates, Smoke-Nachweise und Offlinepaketprüfungen sind in der [Agenten-Rechtekarte](agent-rights-matrix.md#verbindliche-fachuebergaben-und-qualitaetsnachweise) verbindlich festgelegt. A01 koordiniert die Übergaben; fachliche Autorität bleibt bei den jeweils benannten Rollen.
+
 ## Abgrenzung Browser-Playtest und QA
 
 A09 verantwortet automatisierte Qualitätssicherung, Regressionen, Testabdeckung und Release-Gates. A12 verantwortet explorative visuelle und funktionale Browserprüfung sowie reproduzierbare Übergaben an den Nutzer. A12 darf isolierte Testspielstände und QA-Artefakte erstellen, aber keinen Produktcode, Simulations-/Finanzregeln, dauerhafte Nutzerspielstände oder Releases ändern. Verbindliche Rechte stehen im [Rollenprofil A12](a12-browser-playtest.md).

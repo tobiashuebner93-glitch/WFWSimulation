@@ -1,6 +1,7 @@
-import { createLegacyInitialGame as createInitialGame, advanceOneDay, FACILITIES } from './engine.js';
+import {createLegacyBusinessTestGame as createInitialGame, createLegacyBusinessTestFinance as createInitialFinance} from './test-fixtures/legacy-business.js';
+import {  advanceOneDay, FACILITIES } from './engine.js';
 import {
-  createLegacyInitialFinance as createInitialFinance, issueInvoice, migrateFinanceState, processOutstandingCosts,
+   issueInvoice, migrateFinanceState, processOutstandingCosts,
   recordMaterialPurchase, recordTrainingCost,
 } from './finance.js';
 

@@ -9,10 +9,11 @@ Jeder Agent und der Master Orchestrator müssen VOR jeder Bearbeitung:
 3. `docs/agent-system/goals.md` lesen,
 4. `docs/agent-system/ticket-board.md` lesen und nur Tickets des aktuellen Master-/Second-Level-Goals berücksichtigen,
 5. `docs/agent-system/collaboration-state.md` lesen,
-6. relevante Architektur-/Fachdokumente prüfen,
-7. Repository-Stand und Änderungen anderer Agenten prüfen,
-8. offene Entscheidungen und Blocker prüfen,
-9. Kommunikationsrouting beachten: jede Antwort an A01 adressieren; Rückfragen aus Fachagenten an den Nutzer über A01 bündeln; Antworten ohne Rückfragen in den nächsten nötigen Auftrag mit benanntem Adressaten überführen.
+6. Start-/Zielprofil, maßgebliche spätere Entscheidungs-IDs und den Vorgänger-Checkpoint bestimmen und im Arbeitsauftrag/Checkpoint ausweisen,
+7. relevante Architektur-/Fachdokumente prüfen,
+8. Repository-Stand und Änderungen anderer Agenten prüfen,
+9. offene Entscheidungen und Blocker prüfen,
+10. Kommunikationsrouting beachten: jede Antwort an A01 adressieren; Rückfragen aus Fachagenten an den Nutzer über A01 bündeln; Antworten ohne Rückfragen in den nächsten nötigen Auftrag mit benanntem Adressaten überführen.
 
 Abgeschlossene Second-Level-Goals und deren Tickets bleiben historisch erhalten, gehören aber NICHT zum aktiven Arbeitskontext.
 
@@ -25,6 +26,7 @@ Danach ist ein dauerhafter Checkpoint verpflichtend.
 Bei Entscheidungen, Architekturänderungen, wesentlichen Erkenntnissen, Blockern, neuen Abhängigkeiten oder Änderungen an Goals/Tickets ist sofort zu dokumentieren.
 
 Der Master Orchestrator unterliegt denselben Regeln wie alle anderen Agenten.
+Abgeschlossene Checkpoints sind unveränderliche Historie. Korrekturen, Ergänzungen oder spätere Erkenntnisse werden in einem neuen Checkpoint dokumentiert und auf den betroffenen Vorgänger zurückgeführt.
 
 ## GitHub-Connector und Schreibzugriffe
 
@@ -46,15 +48,24 @@ DURCHGEFÜHRTE ARBEIT:
 DATEIEN:
 ENTSCHEIDUNGEN:
 TESTS:
+AUSGEFÜHRT VON:
+FACHREVIEW:
+UNABHÄNGIGE QA:
+BROWSER-/GERÄTETEST:
+GIT-VERIFIKATION:
 OFFENE PUNKTE:
 RÜCKFRAGEN AN A01:
 BLOCKER:
 NÄCHSTER SCHRITT:
 
+## Verbindliche Nachweisrollen
+
+Jeder Bericht unterscheidet ausdrücklich: Ausführung, fachliches Review, unabhängige QA, Browser-/Gerätetest und tatsächliche Git-Verifikation. Je Feld steht ein Ergebnis oder `nicht ausgeführt`/`nicht verfügbar`; fehlender Zugriff darf nicht als Prüfung oder Bestätigung dargestellt werden.
+
 ## Verbindliches Kommunikationsrouting
 
 - Jeder Fachagent adressiert Status, Ergebnisse, offene Punkte und Rückfragen an A01 – MASTER_ORCHESTRATOR. Agenten richten Rückfragen nicht direkt an den Nutzer.
-- A01 bündelt notwendige Nutzerfragen, prüft sie auf Abhängigkeiten und adressiert sie gesammelt an den Nutzer.
+- Vor Nutzerfragen erstellt A01 intern eine Entscheidungsübersicht mit Abhängigkeiten, fachlicher Grundlage, Empfehlung/Default, Auswirkungen und nötigem Folgeauftrag. A01 bündelt die notwendigen, voneinander abhängigen Nutzerfragen und legt ihre Folgen verständlich dar.
 - Ergibt eine Agentenantwort keine notwendige Rückfrage, erstellt A01 aus dem Ergebnis den nächsten erforderlichen Auftrag mit ausdrücklich benanntem Adressaten, Goal-/Ticketbezug, Aufgabe und Ergebnis. Ist kein weiterer Arbeitsschritt erforderlich, dokumentiert A01 den Abschluss statt einen künstlichen Auftrag anzulegen.
 - A01 hält abhängige Folgeaufträge zurück, bis notwendige Nutzerantworten vorliegen; unabhängige Arbeit kann weiterlaufen.
 

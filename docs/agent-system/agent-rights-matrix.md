@@ -107,3 +107,20 @@ Jeder Auftrag nennt Adressat, Goal/Ticket, Umfang, erwartetes Ergebnis, Änderun
 ## A09/A12-Abgrenzung
 
 A09 prüft reproduzierbare automatisierte Eigenschaften und Release-Gates. A12 prüft das Produkt explorativ und visuell im Browser, richtet isolierte Start-/Fehlerzustände ein und schreibt eine nachvollziehbare Nutzerübergabe. A12 darf keine dauerhaften Nutzerspielstände, Produktregeln oder Releases verändern; Rollenprofil: [A12 Browser-Playtest](a12-browser-playtest.md).
+## Verbindliche Fachübergaben und Qualitätsnachweise
+
+### A02/A03 vor A05-Integration
+
+Bei Änderungen, die Simulation und Finanzwirkung verbinden, legen A02 und A03 vor der Frontend-Integration einen gemeinsamen Ereignisvertrag fest. Er benennt mindestens Ereignisphase und Reihenfolge, wirksames Datum/Fälligkeit, Periodenzuordnung, Ledger-/Cashwirkung sowie Fehler- und Wiederholungsfolgen. A01 koordiniert die Übergabe; A05 integriert gegen den bestätigten Vertrag und erfindet keine Fachregel.
+
+### Lerninhalte
+
+Lerninhalte durchlaufen getrennte Gates für technische Struktur, fachliche Semantik, Kompetenz-/Quellenzuordnung und Nichtmutation des Spielstands. A06 verantwortet Didaktik und Kompetenzmapping, A08 die Quellenprovenienz, A07 Aufgaben-/Schlüsselvalidität und A09 das unabhängige QA-Gate. Ein Abschluss als fachlich geprüft setzt ein dokumentiertes A09-Ergebnis voraus.
+
+### Jahres-Smoke und Releaseevidenz
+
+Jeder Release- oder Jahres-Smoke-Bericht bindet sein Ergebnis an Startprofil, Commit oder Tree-Hash, Runner-Version, Start-/Enddatum, Seeds, Ergebnisstatus und Kernmetriken. Nicht verfügbare Werte werden ausdrücklich als nicht verfügbar ausgewiesen; verschiedene Profile oder Runnerläufe werden nicht zu einem Ergebnis zusammengezogen.
+
+### Offlinepakete
+
+A10 dokumentiert beim Offlinepaket Quellrevision und Manifest mit Inhalts-Hashes der enthaltenen Quellen/Artefakte. A12 prüft das konkrete erzeugte Paket in den vorgesehenen Browser-/Geräteszenarien und nennt Paketidentität, Plattform und Ergebnis. Ein Zeitstempel allein gilt nicht als Inhaltsnachweis.

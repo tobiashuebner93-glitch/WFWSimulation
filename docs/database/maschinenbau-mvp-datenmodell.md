@@ -3,6 +3,10 @@
 **Stand:** 2026-10-27 · **Rolle:** A04 DATABASE · **Adressat:** A01 – MASTER_ORCHESTRATOR · **Bezug:** MG-000 / SLG-000.2 / T-0006 / T-0020 / D-0011–D-0129 / CP-0148–CP-0186
 **Status:** Logischer Datenmodellvorschlag nach dokumentarischem Decision-Log-Abgleich; keine physische Schemafreigabe; Architektur V0.2 und ADRs bleiben PROPOSED.
 
+## Aktueller Neustartprofil-Nachtrag (D-0152 / T-0049 / CP-0230; 2026-10-30)
+
+Bei neu angelegten Spielständen unterscheiden sich die Profile 2019 und 2027 ausschließlich durch ihr Startdatum. Initiale fachliche Daten und Spielregeln sind identisch; der gemeinsame Finanzstand lautet 10.000 € Bank und Eigenkapital sowie keine Forderungen, Verbindlichkeiten, Vorräte, Maschine oder Darlehen. Die nachfolgenden 2027-Bilanzzeilen sind historische Modellstände und gelten nicht als produktive Startdaten. `startDate` ist ein fachlicher Profilwert; dieser Nachtrag genehmigt keine Schemaänderung.
+
 ## 1. Zweck und Grenzen
 
 Dieses Dokument konkretisiert ein fachliches und logisches relationales Persistenzmodell für die operative Auftragsabwicklung eines bestehenden Maschinenbauunternehmens. Tabellen sind konzeptionelle persistente Objekte. Es ist weder Implementierungsspezifikation noch Architekturfreigabe. PostgreSQL, Supabase, physische Schemas, APIs, Aggregate-Grenzen und Transaktionsstrategie werden nicht beschlossen.
@@ -259,7 +263,7 @@ Nur die in der letzten Spalte genannten Restpunkte sind derzeit offen. Die als F
 
 ## 9. Quellen
 
-- `docs/agent-system/decision-log.md` (D-0010–D-0119) und [CP-0148](../agent-system/checkpoints/CP-0148.md); historische CP-0009-Grundlage.
+- `docs/agent-system/decision-log.md` (D-0010–D-0119) und [CP-0148](../agent-system/checkpoints/MCP-2026103001.md#cp-0148); historische CP-0009-Grundlage.
 - `docs/simulation/maschinenbau-mvp-spezifikation-und-gap-analyse.md` (A02: Prozess, Ereignisse, Status, Zeit/Mengen, Übergaben).
 - `docs/accounting/maschinenbau-mvp-finanzspezifikation.md` (A03: Finanzbegriffe, Forderungen/Verbindlichkeiten, Liquidität, Kosten/Erlös, Ergebnis, BAB und offene Regeln).
 - `docs/accounting/p0-finanzkonsistenzpruefung.md` und `docs/accounting/a03-decision-log-abgleich-bericht.md` (konsolidierter A03-Abgleich und verbleibende Finanzschnittstellen).
@@ -270,7 +274,7 @@ Nur die in der letzten Spalte genannten Restpunkte sind derzeit offen. Die als F
 
 Dieser Abschnitt dokumentiert den damaligen Reviewstand. Die Scope-Hinweise wurden danach mit T-0007 in A02/A03 bereinigt; die damalige Aufforderung an A01, A02/A03 um Angleichung zu bitten, ist kein aktueller offener Auftrag.
 
-Die drei MAJOR-Befunde aus [CP-0011](../agent-system/checkpoints/CP-0011.md) sind strukturell adressiert:
+Die drei MAJOR-Befunde aus [CP-0011](../agent-system/checkpoints/MCP-2026103001.md#cp-0011) sind strukturell adressiert:
 
 1. **Verbindlichkeit vor Lieferantenrechnung:** `obligation_source` hält Ursprungstatsachen getrennt von `payable`; Payable benötigt keine SupplierInvoice. `payable_invoice_link` kann eine später eingehende Rechnung zuordnen. Das Modell setzt keinen Entstehungszeitpunkt fest.
 2. **Anzahlungen:** `payment` kann Contract und PaymentTerm referenzieren; `payment_term_payment` verbindet Zahlung(en) mit vereinbarten Terminen auch ohne Invoice oder OP. Klassifikation, Bilanz- und Steuerwirkung bleiben offen.

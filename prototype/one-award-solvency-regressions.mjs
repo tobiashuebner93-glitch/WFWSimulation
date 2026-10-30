@@ -1,5 +1,6 @@
-import { createLegacyInitialGame as createInitialGame, advanceOneDay, acceptMarketOffer, declineMarketOffer, closePaidOrder } from './engine.js';
-import { createLegacyInitialFinance as createInitialFinance, issueInvoice, closeMonthlyPeriod, processFinancialDay, refreshOverdraftLimit, recordMaterialUse, recordMaterialPurchase } from './finance.js';
+import {createLegacyBusinessTestGame as createInitialGame, createLegacyBusinessTestFinance as createInitialFinance} from './test-fixtures/legacy-business.js';
+import {  advanceOneDay, acceptMarketOffer, declineMarketOffer, closePaidOrder } from './engine.js';
+import {  issueInvoice, closeMonthlyPeriod, processFinancialDay, refreshOverdraftLimit, recordMaterialUse, recordMaterialPurchase } from './finance.js';
 import { estimateOrderEconomics } from './economics.js';
 
 const game=createInitialGame(),finance=createInitialFinance();
