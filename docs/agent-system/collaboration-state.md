@@ -1,3 +1,6 @@
+## Aktueller Git-Stand (CP-0255; 2026-10-30)
+
+Der validierte Ticketstand ist auf `origin/main` gesichert. Lokaler `main` und Remote-HEAD stimmen auf `f56b40bdeb286da3a67f4b781fb1cee3b9693e0b` überein; Arbeitsbaum sauber. T-0048 abgeschlossen; T-0047, T-0040 und T-0050 bleiben offen. Der Push wurde nicht durch den manuellen Nutzertest blockiert. Keine V2-Releasefreigabe. Details: [CP-0255](checkpoints/CP-0255.md).
 ## Aktueller Arbeitsstand nach Commit-Recheck (CP-0254; 2026-10-30)
 
 Commit `9cfb50b721b54dd97b1eeeb9706c3fa7e7d42cb8` und Tree `08aa2f8fed57d8855f469019966b3e8b92c5ea51` bestehen den erneuten Jahressmoke und alle 15 Regressionen. T-0048 ist abgeschlossen. T-0047, T-0040 und T-0050 bleiben wegen klar benannter Nacharbeit offen; diese Punkte blockieren den Sicherungs-Push nicht. Der manuelle Nutzertest ist nach Nutzeranweisung kein Push-Blocker; keine V2-Releasefreigabe. Details: [CP-0254](checkpoints/CP-0254.md).
