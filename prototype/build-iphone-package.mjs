@@ -64,10 +64,16 @@ const manifestPath = path.join(outputRoot, 'werkstatt-v2-package-manifest.json')
 const sha256 = data => crypto.createHash('sha256').update(data).digest('hex');
 const sourceFiles = ['index.html', 'styles.css', ...sources.keys()];
 const gitRevision = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
+let workingTreeSourcesIncluded = false;
+try {
+  execFileSync('git', ['diff', '--quiet', 'HEAD', '--', ...sourceFiles], { cwd: root, stdio: 'ignore' });
+} catch {
+  workingTreeSourcesIncluded = true;
+}
 const manifest = {
   package: 'Werkstatt V2 iPhone/iPad offline test package',
   sourceRevision: `main@${gitRevision}`,
-  workingTreeSourcesIncluded: true,
+  workingTreeSourcesIncluded,
   minimumBrowser: 'Safari iOS/iPadOS 16.4+',
   sourceSha256: Object.fromEntries([...new Set(sourceFiles)].sort().map(file => [file, sha256(fs.readFileSync(path.join(root, file)))])),
   artifactSha256: { 'werkstatt-v2-iphone.html': sha256(fs.readFileSync(output)), 'WERKSTATT-V2-IPHONE-README.txt': sha256(fs.readFileSync(readmePath)) },
