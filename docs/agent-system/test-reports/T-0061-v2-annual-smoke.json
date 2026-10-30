@@ -1,0 +1,593 @@
+{
+  "date": "2028-01-01",
+  "startDate": "2027-01-01",
+  "startProfile": "garage",
+  "randomness": "none: fixed fixture; no runtime random or wall-clock input in core modules",
+  "eventHash": "15a7c97702f1fccafc128db1d00cb340d5b066604edaec67dea74f9e4079078a",
+  "minimumAvailableLiquidity": 2892.16,
+  "minimumAvailableLiquidityDate": "2027-12-31",
+  "competitorCount": 3,
+  "supplierCount": 6,
+  "onlineSupplierCount": 5,
+  "hardwareStorePresent": true,
+  "customerCount": 5,
+  "marketOpportunities": 152,
+  "generated": 129,
+  "won": 63,
+  "lost": 65,
+  "delivered": 63,
+  "closed": 59,
+  "startOrders": [],
+  "months": 12,
+  "taxPeriods": 12,
+  "taxPayments": 9,
+  "absenceDays": 0,
+  "vacationDaysPerEmployee": [
+    20,
+    0
+  ],
+  "temporaryWorkers": 1,
+  "tempEvents": 1,
+  "monthlyPayroll": 0,
+  "initialInventoryValue": 4214.2,
+  "initialLimit": 1000,
+  "finiteCash": true,
+  "stockNonNegative": true,
+  "endingCash": 1759.26,
+  "unpaidCosts": 0,
+  "salesNet": 81272.81,
+  "customerCash": 92232.79,
+  "unpaidByType": {},
+  "loanBalance": 0,
+  "space": {
+    "warehouse": 2.794,
+    "finishedGoods": 0,
+    "warehouseCapacity": 74,
+    "officePeople": 0,
+    "officeCapacity": 6,
+    "staffPeople": 0,
+    "staffCapacity": 6,
+    "workshopPeople": 0,
+    "workshopPeopleCapacity": 21,
+    "workplacePeople": 0,
+    "workplaceCapacity": 6,
+    "apprenticeOnsite": 0,
+    "machineCount": 0,
+    "machineCapacity": 2,
+    "workshopArea": 174
+  },
+  "supplierOrders": 7,
+  "supplierTestDelivered": true,
+  "courseComplete": true,
+  "sicknessRegression": true,
+  "apprenticeProgress": 6,
+  "apprenticePracticeDays": 102,
+  "paymentMoraleChanged": true,
+  "customerMoral": [
+    100,
+    66,
+    60,
+    100,
+    58
+  ],
+  "annualManagement": {
+    "relocations": [
+      {
+        "date": "2027-05-21",
+        "facilityId": "site-4",
+        "name": "Werkstatt Milbertshofen",
+        "tenure": "rent"
+      }
+    ],
+    "hires": [
+      {
+        "date": "2027-06-14",
+        "id": "MA-V2-01",
+        "name": "Fertigungsmitarbeiter 1",
+        "monthlyCost": 3300
+      }
+    ],
+    "equipmentPurchases": [
+      {
+        "date": "2027-01-01",
+        "id": "office-pc-1",
+        "name": "PC & Beschaffung · Einstieg",
+        "price": 650
+      },
+      {
+        "date": "2027-01-01",
+        "id": "office-furniture-1",
+        "name": "Schreibtisch & Büro · Einstieg",
+        "price": 240
+      },
+      {
+        "date": "2027-01-01",
+        "id": "marketing-1",
+        "name": "Marketing & Kundenkontakt · Einstieg",
+        "price": 180
+      },
+      {
+        "date": "2027-01-01",
+        "id": "workbench-1",
+        "name": "Werkbank & Spannmittel · Einstieg",
+        "price": 420
+      },
+      {
+        "date": "2027-01-01",
+        "id": "hand-tools-1",
+        "name": "Handwerkzeug · Einstieg",
+        "price": 90
+      },
+      {
+        "date": "2027-01-01",
+        "id": "special-tools-1",
+        "name": "Spezialwerkzeug · Einstieg",
+        "price": 850
+      },
+      {
+        "date": "2027-01-01",
+        "id": "ppe-1",
+        "name": "PSA & Arbeitsschutz · Einstieg",
+        "price": 110
+      },
+      {
+        "date": "2027-01-01",
+        "id": "storage-1",
+        "name": "Lagerregale & Behälter · Einstieg",
+        "price": 320
+      },
+      {
+        "date": "2027-01-01",
+        "id": "handling-1",
+        "name": "Lager- und Fördertechnik · Einstieg",
+        "price": 560
+      },
+      {
+        "date": "2027-01-01",
+        "id": "shipping-1",
+        "name": "Verpackungs- und Versandplatz · Einstieg",
+        "price": 260
+      }
+    ],
+    "equipmentLeases": [],
+    "aevoStarts": [
+      {
+        "date": "2027-05-21",
+        "afterRelocation": true,
+        "trainerId": "OWNER"
+      }
+    ],
+    "apprenticeStarts": [
+      {
+        "date": "2027-06-05",
+        "trainerId": "OWNER"
+      }
+    ],
+    "workflowAssignments": [
+      {
+        "date": "2027-01-08",
+        "taskId": "TASK-SHIP-ORD-001",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-01-18",
+        "taskId": "TASK-SHIP-ORD-003",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-01-26",
+        "taskId": "TASK-SHIP-ORD-008",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-02-09",
+        "taskId": "TASK-SHIP-ORD-013",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-02-15",
+        "taskId": "TASK-SHIP-ORD-016",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-02-16",
+        "taskId": "TASK-SHIP-ORD-017",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-02-22",
+        "taskId": "TASK-SHIP-ORD-018",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-02-23",
+        "taskId": "TASK-SHIP-ORD-019",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-02",
+        "taskId": "TASK-SHIP-ORD-023",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-03",
+        "taskId": "TASK-SHIP-ORD-022",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-05",
+        "taskId": "TASK-SHIP-ORD-024",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-16",
+        "taskId": "TASK-RECEIVE-PO-ORD-026-steel",
+        "kind": "WARENANNAHME",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-17",
+        "taskId": "TASK-SHIP-ORD-026",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-25",
+        "taskId": "TASK-RECEIVE-PO-ORD-028-aluminium",
+        "kind": "WARENANNAHME",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-30",
+        "taskId": "TASK-SHIP-ORD-028",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-03-31",
+        "taskId": "TASK-SHIP-ORD-034",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-04-01",
+        "taskId": "TASK-SHIP-ORD-029",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-04-02",
+        "taskId": "TASK-SHIP-ORD-031",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-04-05",
+        "taskId": "TASK-RECEIVE-PO-ORD-029-aluminium",
+        "kind": "WARENANNAHME",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-04-20",
+        "taskId": "TASK-SHIP-ORD-041",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-04-21",
+        "taskId": "TASK-SHIP-ORD-043",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-04-28",
+        "taskId": "TASK-SHIP-ORD-044",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-05-04",
+        "taskId": "TASK-SHIP-ORD-048",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-05-05",
+        "taskId": "TASK-SHIP-ORD-049",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-05-11",
+        "taskId": "TASK-SHIP-ORD-051",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-05-12",
+        "taskId": "TASK-SHIP-ORD-052",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-05-14",
+        "taskId": "TASK-SHIP-ORD-053",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-06-15",
+        "taskId": "TASK-SHIP-ORD-056",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-06-15",
+        "taskId": "TASK-SHIP-ORD-061",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-06-16",
+        "taskId": "TASK-SHIP-ORD-063",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-06-22",
+        "taskId": "TASK-RECEIVE-PO-ORD-066-parts",
+        "kind": "WARENANNAHME",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-06-23",
+        "taskId": "TASK-SHIP-ORD-066",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-06-24",
+        "taskId": "TASK-SHIP-ORD-067",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-06-29",
+        "taskId": "TASK-SHIP-ORD-071",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-07-13",
+        "taskId": "TASK-SHIP-ORD-074",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-07-14",
+        "taskId": "TASK-SHIP-ORD-078",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-07-27",
+        "taskId": "TASK-SHIP-ORD-083",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-07-28",
+        "taskId": "TASK-SHIP-ORD-082",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-10",
+        "taskId": "TASK-SHIP-ORD-089",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-16",
+        "taskId": "TASK-RECEIVE-PO-ORD-087-steel",
+        "kind": "WARENANNAHME",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-16",
+        "taskId": "TASK-RECEIVE-PO-ORD-088-steel",
+        "kind": "WARENANNAHME",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-08-17",
+        "taskId": "TASK-SHIP-ORD-088",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-18",
+        "taskId": "TASK-SHIP-ORD-087",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-19",
+        "taskId": "TASK-SHIP-ORD-091",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-19",
+        "taskId": "TASK-SHIP-ORD-092",
+        "kind": "VERSAND",
+        "employeeId": "OWNER"
+      },
+      {
+        "date": "2027-08-20",
+        "taskId": "TASK-SHIP-ORD-093",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-24",
+        "taskId": "TASK-SHIP-ORD-094",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-27",
+        "taskId": "TASK-SHIP-ORD-098",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-08-31",
+        "taskId": "TASK-SHIP-ORD-099",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-09-14",
+        "taskId": "TASK-SHIP-ORD-104",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-09-21",
+        "taskId": "TASK-SHIP-ORD-107",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-09-22",
+        "taskId": "TASK-SHIP-ORD-106",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-09-23",
+        "taskId": "TASK-SHIP-ORD-108",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-01",
+        "taskId": "TASK-SHIP-ORD-111",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-05",
+        "taskId": "TASK-SHIP-ORD-112",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-06",
+        "taskId": "TASK-SHIP-ORD-113",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-12",
+        "taskId": "TASK-SHIP-ORD-114",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-14",
+        "taskId": "TASK-SHIP-ORD-117",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-27",
+        "taskId": "TASK-SHIP-ORD-122",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-28",
+        "taskId": "TASK-SHIP-ORD-123",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-10-29",
+        "taskId": "TASK-SHIP-ORD-124",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-11-05",
+        "taskId": "TASK-SHIP-ORD-126",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-11-08",
+        "taskId": "TASK-SHIP-ORD-127",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-11-30",
+        "taskId": "TASK-SHIP-ORD-136",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-12-06",
+        "taskId": "TASK-SHIP-ORD-139",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-12-20",
+        "taskId": "TASK-RECEIVE-PO-ORD-142-aluminium",
+        "kind": "WARENANNAHME",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-12-21",
+        "taskId": "TASK-SHIP-ORD-142",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-12-22",
+        "taskId": "TASK-SHIP-ORD-146",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-12-23",
+        "taskId": "TASK-SHIP-ORD-143",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      },
+      {
+        "date": "2027-12-27",
+        "taskId": "TASK-SHIP-ORD-148",
+        "kind": "VERSAND",
+        "employeeId": "MA-V2-01"
+      }
+    ]
+  },
+  "workflowTasksCompleted": 70,
+  "workflowTasksOpen": 0,
+  "reconciliationErrors": [],
+  "events": 2011
+}

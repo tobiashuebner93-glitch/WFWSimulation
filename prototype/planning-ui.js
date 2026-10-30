@@ -1,4 +1,4 @@
-import { isWorkday, assignEmployee, assignEmployeeToStage, assignEmployeeToTask } from './engine.js';
+import { isWorkday, assignEmployee, assignEmployeeToStage, assignEmployeeToTask, getTemporaryWorkersForDate, getDailyCapacityHours } from './engine.js';
 
 export function getTimelineWorkdays(startDate) {
   const days = [];
@@ -13,7 +13,7 @@ export function getTimelineWorkdays(startDate) {
 
 export function getTimelineBlockReason(game, employee, date, dayIndex) {
   if (!isWorkday(date)) return 'Kein Arbeitstag';
-  if (employee.temp && !game.temporaryWorkers.some(worker => (worker.workerId || worker.id) === employee.id && worker.date === date)) return 'Nicht gebucht';
+  if (employee.temp && !getTemporaryWorkersForDate(game,date).some(worker => (worker.workerId || worker.id) === employee.id)) return 'Nicht gebucht';
   if (!employee.temp && employee.sickUntil && employee.sickUntil >= date) return 'Krank';
   if (!employee.temp && employee.vacationPlan?.includes(date)) return 'Urlaub';
   if (!employee.temp && employee.training?.remainingDays > dayIndex) return 'Weiterbildung';
@@ -46,7 +46,7 @@ function clearEmployeeFromDay(game, employeeId, date) {
 }
 
 export function setTimelineAssignment(game, employeeId, date, value, dayIndex = 0) {
-  const employee = [...(game.employees || []), ...(game.temporaryWorkers || []).filter(worker => worker.date === date)]
+  const employee = [...(game.employees || []), ...getTemporaryWorkersForDate(game,date)]
     .find(person => person.id === employeeId);
   if (!employee) return false;
   if (value === 'auto') {
@@ -78,4 +78,39 @@ export function setTimelineAssignment(game, employeeId, date, value, dayIndex = 
   game.dailyWorkSequence ||= {};
   game.dailyWorkSequence[date] = previousSequence;
   return false;
+}
+
+function assignmentHours(game, employeeId, date, block) {
+  if (block.kind === 'task') {
+    const task = game.plannedTasks?.find(item => item.id === block.id);
+    return Math.max(0, Number(task?.requiredHours || 0) - Number(task?.progress || 0));
+  }
+  const split = block.id.lastIndexOf(':');
+  const order = game.orders?.find(item => item.id === block.id.slice(0, split));
+  const index = Number(block.id.slice(split + 1));
+  const operation = order?.operations?.[index];
+  if (!operation) return 0;
+  const remaining = Math.max(0, Number(operation.totalHours || 0) - (index === order.operationIndex ? Number(order.operationDone || 0) : 0));
+  return remaining / Math.max(1, (game.stageWorkPlan?.[date]?.[block.id] || []).length);
+}
+
+export function appendTimelineAssignment(game, employeeId, date, value, dayIndex = 0) {
+  const employee = [...(game.employees || []), ...getTemporaryWorkersForDate(game,date)].find(person => person.id === employeeId);
+  if (!employee || value === 'auto' || getTimelineBlockReason(game, employee, date, dayIndex)) return false;
+  const kind = value.startsWith('stage:') ? 'stage' : value.startsWith('task:') ? 'task' : null;
+  if (!kind) return false;
+  const id = value.slice(kind === 'stage' ? 6 : 5);
+  const queue = game.dailyWorkSequence?.[date]?.[employeeId] || [];
+  if (queue.some(block => block.kind === kind && block.id === id)) return false;
+  const block = { kind, id };
+  const maxHours = employee.temp ? Math.min(getDailyCapacityHours(employee,true),Number(employee.bookedHours)||8) : getDailyCapacityHours(employee,true);
+  const plannedHours = queue.reduce((sum,item)=>sum+assignmentHours(game,employeeId,date,item),0);
+  if (plannedHours + assignmentHours(game,employeeId,date,block) > maxHours + 1e-6) return false;
+  let assigned = false;
+  if (kind === 'stage') {
+    const [orderId,stageIndex] = id.split(':');
+    assigned = assignEmployeeToStage(game,employeeId,orderId,Number(stageIndex),date);
+    if (assigned) assignEmployee(game,employeeId,orderId,date);
+  } else assigned = assignEmployeeToTask(game,employeeId,id,date);
+  return assigned;
 }

@@ -1,0 +1,56 @@
+{
+  "report": "T-0061 V2 aktueller Arbeitsbaum",
+  "generatedAt": "2026-10-30",
+  "headCommit": "194fbaab7069ef59d1c832164a21b06f1cd2102d",
+  "workingTreeSourcesIncluded": true,
+  "profile": "garage",
+  "startDate": "2027-01-01",
+  "endDate": "2028-01-01",
+  "randomness": "none: fixed fixture; no runtime random or wall-clock input in core modules",
+  "annual": {
+    "minimumAvailableLiquidityDate": "2027-12-31",
+    "events": 2011,
+    "months": 12,
+    "unpaidCosts": 0,
+    "endingCash": 1759.26,
+    "cashReconciliationErrors": 0,
+    "won": 63,
+    "delivered": 63,
+    "generated": 129,
+    "gameLost": false,
+    "repeatRunSameHash": true,
+    "eventHash": "15a7c97702f1fccafc128db1d00cb340d5b066604edaec67dea74f9e4079078a",
+    "closed": 59,
+    "minimumAvailableLiquidity": 2892.16
+  },
+  "automatedChecks": {
+    "neutralPractice": true,
+    "allPassed": true,
+    "dailyQuestionLimit": 5,
+    "itemsPerTierPerArea": 20,
+    "javascriptSyntax": true,
+    "learningQuestionCount": 540,
+    "mjsRegressionAndValidatorScripts": 18,
+    "hsqItems": 250,
+    "wbqItems": 200
+  },
+  "package": {
+    "htmlSha256": "0dd34a0b7be3becf8a1ee33c737a01c495fde18bde8675e9f2555c712a1cc8ae",
+    "sourceAndArchiveHashesVerified": true,
+    "reproducibleBuilds": 2,
+    "manifestSha256": "830908f0201ad79e7d2c6e19a8ce629475b64ecd7bf3096dfa885feb29f3050d",
+    "zipSha256": "93a6ff00cf5dac0738bc1e8b2ca6e70a8066b7c05795f11fdabac200358bc27b",
+    "sourceRevision": "main@194fbaab7069ef59d1c832164a21b06f1cd2102d"
+  },
+  "userAcceptance": {
+    "questionCatalog": true,
+    "currentGameVersion": true,
+    "mandatoryLearningEventsBeforeDayAdvance": "VISION OUTSIDE V2",
+    "iphoneAndIpadDeviceEvidenceConfirmed": true
+  },
+  "limitations": [
+    "The tested tree is not committed; all gates are not bound to one commit.",
+    "No independent A03/A08/A09/A12 role report or current release-committee report was produced.",
+    "Current browser UI automation could not attach to file:// under Browser Use URL policy; user device evidence was accepted as requested."
+  ]
+}

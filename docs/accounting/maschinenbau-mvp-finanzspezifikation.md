@@ -198,7 +198,9 @@ A02 übergibt Tatsachen mit stabiler Ereignisreferenz, Auftrag/Gegenpartei/Beleg
 
 A04 benötigt nach Produktentscheidungen fachlich ausdrückbare Informationen für: Eröffnungsliquidität mit Stichtag; Geldbetrag/Währung und Netto-/Brutto-/Steuersemantik; Forderung/Verbindlichkeit mit Ursprung, Gegenpartei, Auftrag/Rechnung, Betrag, Fälligkeit, Restbetrag und Status; Kosten-/Erlöspositionen mit Entstehungs-/Leistungsdatum, Zuordnung, Kategorie und Korrekturbezug; Zahlung mit Datum, Betrag und Zuordnung; Materialzugang/-verbrauch mit Menge, Preis/Bewertungsreferenz, Bestand und Auftrag; Kalkulationsversion getrennt von Istpositionen; daraus ableitbare Liquidität, offene Posten und Auftragsergebnis. Diese Liste definiert weder Entitäten, Tabellen, Aggregate, Buchungssätze noch Persistenzmuster.
 
-## P. Offene Entscheidungen
+## P. Entscheidungsregister und verbleibende offene Punkte
+
+> **Statushinweis (Abgleich 2026-10-30):** Diese Tabelle wurde ursprünglich als offene Entscheidungsvorlage erstellt. Spätere genehmigte Entscheidungen im [Decision Log](../agent-system/decision-log.md) haben einzelne damalige Fragen ersetzt. Die Spalte „User-Entscheidung?“ und frühere `OPEN`-Einträge sind deshalb nur zusammen mit diesem Hinweis zu lesen; bei Abweichung gilt die jüngere genehmigte D-Entscheidung. Produktparameter, die in den Abschnitten B–O bereits ausdrücklich bestätigt sind, gelten nicht erneut als Nutzerfrage. Verbleibende `OPEN`-Einträge unten betreffen nur dort ausdrücklich genannte Details.
 
 | Frage | Vorschlag/Status | Betroffene Rollen | User-Entscheidung? |
 |---|---|---|---|
@@ -237,7 +239,7 @@ A04 benötigt nach Produktentscheidungen fachlich ausdrückbare Informationen f�
 
 **Offen:** Nicht festgelegte Betrags-/Steuerdetails, operative Ereignisreihenfolge, Kosten-/Zuordnungsdaten und die tatsächliche historische Anschaffungskostenprovenienz des Anfangsbestands. Für den V1-Szenariostart sind Zahlungsziele, Kunden-/Lieferantentrigger, Retry-/Mahnfluss, Annuitäten- und SimTAX-Kern, BAB-Sätze, E3 sowie Anfangsbestand und Marktpreis-Basis gemäß referenzierten D-Entscheidungen festgelegt. Teilvorgänge sind für V1 ausgeschlossen.
 
-**User muss entscheiden:** die in Abschnitt P mit „Ja“ markierten Produktfragen, soweit sie für den ersten MVP benötigt werden. Keine Steuer-/Rechtsregel wird vorausgesetzt.
+**Abschlussstand (Abgleich 2026-10-30):** Die früheren Nutzerfragen aus Abschnitt P sind anhand der späteren D-Entscheidungen erneut bewertet. Die dort als entschieden beschriebenen Kernregeln werden nicht erneut zur Entscheidung vorgelegt. Offen bleiben ausschließlich die in den aktuellen Abschnitten B–P konkret als offen bezeichneten Parameter/Abbildungsdetails, insbesondere die allgemeine Netto-/Bruttosemantik für Angebote und Rechnungen, noch nicht festgelegte laufende Kosten und ihre Perioden-/Kostenstellenzuordnung sowie bestimmte Ereignisdetails. Es wird daraus keine neue Steuer- oder Rechtsregel abgeleitet.
 
 **An A02 zurück:** Ereigniszeitpunkte und Belegreihenfolge bei Beschaffung/Eingang/Lieferantenrechnung; Leistungs-/Abnahmeereignis und Rechnungsfähigkeit; Zeitraster, Zahlungsauflösung und operative Abschlussbedingung für vollständige V1-Auftragsabwicklung; Istmengen/-stunden und Zeitbezug. Teilvorgänge sind keine offene V1-Scope-Frage.
 
@@ -325,3 +327,32 @@ A04 benötigt fachlich die Eröffnungsposition 24.000 € mit Stichtag und Quell
 Zeitarbeitskosten werden je Monat als genau ein Agentur-Grundpreis (nur bei mindestens einer Buchung) zuzüglich gebuchter Stunden mal fest vereinbartem Stundenpreis abgerechnet. Jede Buchung referenziert die am Vertragsabschluss vereinbarten Konditionen.
 
 Kauf und Verkauf eines Szenario-Standorts werden ausschließlich über Finance-eigene Funktionen gebucht. Ein Kauf reduziert Bank-Cash und erhöht propertyAssetValue; der Verkauf reduziert den Szenariowert und erhöht Cash. Beide werden einmalig als cashMovements mit Referenz und Datum erfasst. Der Spiel-UI-Code ändert Finanzsalden nicht direkt. Bei Standortwechsel aus Eigentum wird der bisherige angesetzte Wert zum selben Szenariobuchwert verkauft; Abschreibung, Transaktionskosten, Fremdfinanzierung, Marktwertermittlung und steuerliche Wirkung sind nicht modelliert. Miete fällt für gemietete Standorte im Monatsabschluss an. Der angezeigte Eröffnungsbilanzausschnitt bleibt ein Stichtags-Snapshot und ist kein vollständiger dynamischer Abschluss; der aktuelle Immobilien-Szenariowert wird separat angezeigt. Diese Vereinfachung ist keine HGB-Bilanzierung.
+
+## V2-Finanzregeln des Garagenprofils (D-0160)
+
+**Geltungsbereich:** Ausschließlich neu angelegte V2-Garagenprofile und dort neu entstehende Geschäfte. Dieser Abschnitt ändert keine V1-Regel, keinen historischen Legacy-Spielstand und keine Aussage in den davorstehenden V1-Abschnitten. Er dokumentiert die V2-Szenariokonvention aus D-0160; er ist nicht der Nachweis, dass der aktuelle Anwendungscode sie bereits vollständig umsetzt.
+
+### Angebot, Vertrag, Rechnung und Steuerbetrag
+
+Der im Kundenangebot eingegebene und bei Annahme fixierte Preis ist ein **Nettoszenario-Preis**. Für die derzeitige V2-Rechnung wird der Auftragsgesamtpreis als eine SimTAX-Rechnungsposition behandelt. Die bestehende SimTAX von 19 % wird separat nach den geltenden Positions- und Cent-Rundungsregeln ausgewiesen; der **Bruttobetrag ist der Zahlbetrag**. Der Auftragserlös und Deckungsbeitrag bleiben netto; Forderung und Kundenzahlung lauten auf den Bruttobetrag. Falls spätere Rechnungen mehrere eigenständig bepreiste Positionen enthalten, erfolgt die Rundung je Position und anschließende Summierung nach D-0053–55.
+
+Die Einzelpreise im V2-Simulationskatalog für Lieferanten sind Nettoszenario-Preise. Vorsteuer-SimTAX wird ausschließlich für Rechnungsarten ergänzt, die nach dem bereits begrenzten Modell aus D-0113/D-0114 beziehungsweise D-0156 qualifiziert sind.
+
+Diese Preis-/Steuerdarstellung ist eine didaktische Spielannahme. Sie legt keinen realen Steuerstatus fest, insbesondere keine Aussage zur Anwendbarkeit von § 19 UStG, und behauptet keine tatsächliche Steuerrechtskonformität oder vollständige Steuerberechnung. UI und Berichte müssen Netto, SimTAX und Brutto/Zahlbetrag getrennt benennen. Vorhandene Legacy-Spielstände werden nicht stillschweigend als Netto oder Brutto umgedeutet.
+
+### Finanzereignisse in Phase 8
+
+Finanzereignisse werden genau einmal am **wirksamen Simulationstag** in Phase 8 verarbeitet. Bei Wochenendverschiebung ist der wirksame Tag maßgeblich; eine Rückdatierung erfolgt nicht und die Periode richtet sich nach diesem Datum. D-0129 bleibt ausschließlich der V1-Vertrag; die nachstehende Priorität ist die V2-Konvention aus D-0160.
+
+1. Alle fälligen Kundeneingänge werden vollständig und ohne eigenes Liquiditäts-Gate verarbeitet. Eine bestehende gezogene Disposchuld wird je Eingang zuerst bis höchstens zur Eingangshöhe zurückgeführt; nur der verbleibende Betrag erhöht den freien Bankbestand (D-0126).
+2. Danach folgen fällige feste Raten als Vollzahlungsversuche mit Cash-Gate in stabiler Reihenfolge: **Maschinendarlehen → Immobiliendarlehen → Anlagen-/Ausstattungsraten**. Innerhalb einer Kategorie gilt Fälligkeit, danach stabile Vertrags-ID.
+3. Danach folgen sonstige fällige/erneut fällige eigene Betriebsposten in der gespeicherten Spielerreihenfolge; fehlender oder gleicher Rang wird nach Fälligkeit und stabiler Posten-ID aufgelöst.
+4. Danach wird eine fällige SimTAX-Zahlung als eigene, nicht durch den Spieler umsortierbare Position nach der bestehenden SimTAX-Periodenlogik verarbeitet.
+5. Nach allen Zahlungsversuchen folgen Reminder, formelle Mahnung und Statusfortschreibung für weiterhin offene Posten. Vollständig am selben wirksamen Tag bezahlte Posten erhalten an diesem Tag keine neue Erinnerung oder Mahnung.
+6. Der tägliche Dispozins wird nach der bestehenden Regel abgegrenzt; die monatliche Sammelbelastung bleibt gemäß D-0127/D-0129 erhalten.
+
+Es gibt keine Teilzahlung, keinen negativen Bankbestand und keine automatische Dispoziehung aus dieser Konvention. Der manuelle, exakte Abruf nach D-0125 bleibt auf ausdrücklich unterstützte fällige eigene Rechnungen beschränkt; er wird hier nicht auf Immobilien- oder Anlagenraten erweitert. Fehlgeschlagene feste Raten behalten ihre jeweilige bestehende Retryfolge. Es werden keine zusätzlichen Verzugszinsen, Gebühren, Kündigungen, Pfändungen, Verwertungen oder Spielverluste angenommen. Die bestehende Maschinenverwertung nach D-0042/43 bleibt unberührt.
+
+### Implementierungsstatus
+
+D-0160 und dieser Abschnitt beschreiben den **Sollvertrag**. Im Arbeitsbaum vor Umsetzung liegt die Anlagenratenverarbeitung noch vor `processFinancialDay()` und damit vor den Kundeneingängen; außerdem sind Zahlungsversuche und Reminder-Status in vorhandenen Finance-Funktionen teilweise gekoppelt. A02s Implementierung und gezielte Regressionen stehen aus. A03s Code-Fachreview folgt nach A02s Lieferung. Bis zu diesem Review darf dieser Spezifikationstext nicht als Nachweis der aktuellen Laufzeitreihenfolge zitiert werden.

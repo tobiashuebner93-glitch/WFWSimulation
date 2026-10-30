@@ -4,7 +4,29 @@
 
 
 
-Keine aktuell offenen Tickets.
+### T-0062 – Unabhängige Rest-Gates und revisionsgebundene V2-Freigabe
+
+Status: IN_PROGRESS – G01/G02/G03/G04/G05/G06/G07/G08/G09 materiell PASS auf dem Working Tree; G10 technisch durch A10 geprüft, Commitbindung offen. CP-0271 enthält Touch-/Keyboard-Planungsnachweise und eine Matrix von sieben repräsentativen Kernaktionen außerhalb der Planung (14 erfolgreiche Pfade bei 390×844). A05 behob den dabei gefundenen fehlenden Marketingimport und ergänzte eine Regression; 16 Regressionen und Jahressmoke bestehen nach dem Fix. A09 muss G08-Matrix und Committee-Abschluss unabhängig prüfen. Offen bleiben gemeinsamer Sicherungscommit, erneuter A10-Paketabgleich auf dieser Revision, Gate-Recheck und finaler Committee-PASS.
+Master Goal: MG-002
+Second-Level Goals: SLG-002.2 / SLG-002.4 / SLG-002.5
+Koordination: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: Alle V2-Gates mit unabhängigen Rollen prüfen und Nachweise an denselben Commit binden. A02/A03 bestätigen D-0160 und Finanzbefunde; A09 führt die Committee-Neubewertung. CP-0270 enthält den 768-px-CSS-Fix; CP-0271 belegt 16 Regressionen, Jahressmoke, neun Touchbereiche bei 390×844, Touch-Arbeitsgangzuweisung bei 390×844/768×1024, Timeline-Wischpfad bei 768×1024 und responsive Breitenprüfung. A09 bestätigt, dass die Kriterien Touch-Emulation akzeptieren, sofern Touchereignisse ausgelöst werden und die Methode benannt ist. Offen bleiben Commitbindung und Committee-Abschluss. Historische CP-0266 bis CP-0268 bleiben unverändert. Nutzerabnahmen D-0159 nicht erneut erfragen.
+
+Abnahme: G01–G11 für denselben Commit PASS, keine ungelösten blockierenden Konflikte, aktueller Release-Committee-Bericht PASS. Kein Schema-/Architekturentscheid ohne separate Nutzerfreigabe.
+
+### T-0061 – V2-Gates auf aktuellem Arbeitsbaum prüfen
+
+Status: COMPLETED (A01-Selbstprüfung; CP-0265; 2026-10-30)
+Master Goal: MG-002
+Second-Level Goals: SLG-002.2 / SLG-002.4 / SLG-002.5
+Koordination / Ausführung: A01 – MASTER_ORCHESTRATOR
+Priorität: HIGH
+
+Aufgabe: Die nach CP-0264 vorliegenden V2-Änderungen, Nutzerabnahmen und aktuellen Gate-Nachweise prüfen, automatisierte Suite und Jahreslauf wiederholen, Paketprovenienz validieren und offene formale Gates präzisieren. Keine Commit-/Push-Aktion.
+
+Abschluss: 18 Regressionen/Validatoren und JavaScript-Syntaxprüfungen bestanden. Jahres-Smoke 2027–2028 zweimal identisch mit 12 Monatsabschlüssen, mindestens 2.892,16 € verfügbarer Tagesliquidität, 0 € unbezahlten Betriebskosten, 0,00 € Monatsabgleichsabweichung und identischem Ereignis-Hash. Offlinepaket zweimal bytegleich gebaut, Manifest-/ZIP-Prüfungen bestanden; Nutzer bestätigt iPhone-/iPad-Gerätebeleg und Fragenkatalog. T-0062 hält unabhängige Rollenprüfungen und die Bindung aller Gates an einen gemeinsamen Commit offen. Details: CP-0265.
 ## Abgeschlossene Tickets
 
 

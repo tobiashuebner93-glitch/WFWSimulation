@@ -1528,3 +1528,58 @@ Quelle: T-0040-Umsetzung und A03-Review des Code-/Entscheidungsabgleichs
 Bezug: MG-002 / SLG-002.2 / T-0040 / D-0113 / D-0149 / CP-0253 / CP-0260
 
 Für im V2-Katalog gekaufte Betriebsausstattung wird die modellierte SimTAX von 19 % auf den Nettokatalogpreis als separater Vorsteuer-Simulationsbetrag in der jeweiligen Monatsperiode erfasst. Cash bzw. finanzierter Kaufpreis ist brutto; Anlagen-/GWG-Basis und Buchwert bleiben netto. Ein periodenübergreifender SimTAX-Guthabensaldo wird nach der vorhandenen V2-Periodenlogik fortgeschrieben. Dies ist eine ausdrücklich begrenzte, didaktische Szenarioregel. Sie bildet keine vollständige Prüfung von Steuerstatus, ordnungsgemäßer Rechnung, Vorsteuerabzugsberechtigung, Ausschlüssen, Nutzungsanteilen oder tatsächlicher Umsatzsteuer ab und erteilt keine Steuerfreigabe. D-0149 bleibt historisch unverändert; D-0156 präzisiert die spätere V2-Implementierung nur für Inventaranschaffungen. D-0113 bleibt maßgeblich für deren V1-Scope.
+
+## D-0157 – Auftraggeber entscheidet über die Abnahme; Dispo als Bankposition darstellen
+
+Status: APPROVED (ausdrückliche Nutzeranweisung nach Browser-Test; 2026-10-30)
+Quelle: Nutzer-Testfeedback zur Abnahme und Bank-/Dispoanzeige
+Bezug: MG-002 / SLG-002.2 / T-0057 / CP-0261
+
+Die Abnahme einer gelieferten Leistung ist eine Entscheidung des Auftraggebers/Empfängers. Die Auftragnehmer-Oberfläche darf weder eine Abnahme erklären noch eine Zurückweisung im Namen des Kunden auslösen. Der bestehende F3-Prüfzeitraum von fünf Arbeitstagen bleibt bestehen; dessen automatische Folge wird als auftraggeberseitiges Simulationsereignis protokolliert. Eine Kundenablehnung ist ebenfalls als Kundenereignis zu führen. Die automatische F3-Szenarioregel wird dadurch nicht als allgemeine Rechtsfolge dargestellt.
+
+Für die Finanzanzeige ist die Bankposition Bankguthaben minus gezogener Dispo. Ein negativer Betrag wird mit Minuszeichen und roter Hervorhebung angezeigt. Der vereinbarte Disporahmen steht klein direkt unter der Bankposition; genutzter und noch freier Rahmen werden dort ergänzend ausgewiesen. Verfügbare Liquidität einschließlich freier Kreditlinie bleibt als separate Kennzahl erkennbar. Buchungs-/Finanzierungslogik und Ledger werden durch diese Anzeige nicht geändert.
+
+## D-0158 – Zeitarbeitsbuchung bis Rückgabe und mehrere Tagesblöcke
+
+Status: APPROVED (ausdrückliche Nutzeranweisung; 2026-10-30)
+Quelle: Browser-Testfeedback zur Agentur-Personalplanung und Mitarbeiter-Zeitleiste
+Bezug: MG-002 / SLG-002.2 / T-0059 / CP-0263
+
+Nicht gebuchte Mitarbeiterprofile der Zeitarbeitsagenturen werden in der Spieloberfläche verborgen. Angezeigt werden nur gebuchte Kräfte. Eine Buchung beginnt am nächsten Arbeitstag, falls der Buchungstag arbeitsfrei ist, und bleibt bis zur ausdrücklichen Rückgabe über den Knopf am Mitarbeiter aktiv. Die Buchung ist nicht an einen Auftrag gebunden. Das bestehende Agenturmodell berechnet Stunden für aktive Einsatztage und den vereinbarten Grundpreis für aktive Monate.
+
+Die Tagesplanung erlaubt mehr als eine manuelle Tätigkeit pro Mitarbeiter und Arbeitstag. Zusätzliche Tätigkeiten werden in der Reihenfolge der Zuweisung an die Tagessequenz angehängt. Verfügbarkeits-, Qualifikations-, Abhängigkeiten- und Tagesstundenprüfungen gelten weiter; automatische Planung bleibt auf 8 Stunden begrenzt, manuelle Planung auf die bestehende persönliche Obergrenze. Die manuelle Kapazität wird nicht durch parallele Belegung derselben Person vervielfacht.
+
+## D-0159 – Fragenkatalog abgenommen; Pflicht-Lernereignisse außerhalb V2
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-10-30)
+Quelle: Nutzerbestätigung im Gespräch: „Die aktuelle Spielversion funktioniert und ist von mir abgenommen“; „Die Fragen nehme ich hiermit ab“; spätere Lernereignisse sind Teil der größeren Vision, nicht V2.
+Bezug: MG-002 / SLG-002.4 / T-0061 / CP-0265
+
+Der aktuelle Fragenkatalog ist vom Nutzer abgenommen. Die Sammlung bleibt ein fortlaufend gepflegter Bestandteil des Spiels. Später gemeldete Qualitätsmängel werden als normale Inhaltswartung bearbeitet und machen die bestätigte Fragenabnahme nicht rückwirkend ungültig. Eine neue Version des Katalogs kann regulär erneut geprüft und verbessert werden.
+
+Lernfragen, die als verpflichtende Ereignisse erscheinen und beantwortet werden müssen, bevor der Simulationsarbeitstag fortschreitet, gehören zur größeren Spielvision. Sie sind ausdrücklich kein Abnahmekriterium und kein Blocker für V2. Damit wird weder festgelegt, in welche spätere Version diese Funktion fällt, noch wie sie konkret umgesetzt wird.
+
+Die Nutzerbestätigung des Gerätebelegs für das aktuelle iPhone-/iPad-Testpaket ist in CP-0265 festgehalten; sie ist eine Abnahmebeobachtung, keine zusätzliche Produktregel.
+
+## D-0160 – V2-Preissemantik und Phase-8-Finanzreihenfolge
+
+Status: A01-Szenariokonvention unter der ausdrücklichen Nutzerdelegation, nicht eindeutig beantwortete Produktentscheidungen selbst zu treffen; 2026-10-30
+Quelle: Bestehende Nutzerentscheidungen zur Rangfolge der Kundeneingänge (D-0120), zu SimTAX (D-0053–0059/D-0113–0114) und die spätere Delegation: unklare Implementierungsentscheidungen für V1/V2 selbst nach der wahrscheinlichsten, branchenplausiblen Lösung treffen.
+Bezug: MG-002 / SLG-002.2 / T-0062 / CP-0267–0268
+
+Diese Konvention gilt nur für das V2-Garagenprofil und die dort neu entstehenden Geschäfte. Sie ändert keine V1-Regel, keinen historischen Legacy-Spielstand und keine reale Steuer-/Rechtsaussage.
+
+**Betragssemantik:** Der im Angebot eingegebene und nach Annahme vertraglich fixierte Kundenpreis ist ein Nettoszenario-Preis. Die Rechnung weist den Nettopreis und die nach den bestehenden SimTAX-Regeln separat berechnete 19-%-SimTAX aus; der Bruttobetrag ist der Zahlbetrag. Der Einzelpreis im Simulationskatalog für Lieferanten ist ebenfalls ein Nettoszenario-Preis. Eine SimTAX-Vorsteuerkomponente wird nur bei den bereits nach D-0113/D-0114 beziehungsweise D-0156 modellierten qualifizierten Rechnungsarten ergänzt. Die App behauptet damit weder einen bestimmten Steuerstatus (einschließlich § 19 UStG) noch tatsächliche Steuerkonformität; diese Begrenzung bleibt sichtbar.
+
+**Finanzereignisse:** Am wirksamen Simulationstag werden Finanzereignisse genau einmal in Phase 8 gebucht; bei Wochenendverschiebung bestimmt der wirksame Tag die Periode. Die Reihenfolge lautet:
+
+1. Fällige Kundeneingänge ohne eigenes Liquiditäts-Gate; je Eingang wird eine gezogene Disposchuld gemäß D-0126 zuerst bis höchstens zur Höhe des Eingangs zurückgeführt.
+2. Fällige feste Raten mit Vollzahlungs-/Cash-Gate in stabiler Priorität: Maschinendarlehen, Immobiliendarlehen, Anlagen-/Ausstattungsraten. Innerhalb derselben Kategorie gilt Fälligkeit, dann stabile Vertrags-ID.
+3. Sonstige fällige/erneut fällige eigene Betriebsposten in der gespeicherten Spielerreihenfolge; Gleichstände werden nach Fälligkeit und stabiler Posten-ID aufgelöst.
+4. Fällige SimTAX-Zahlungen als eigene, nicht umsortierbare Position nach der bestehenden Periodenlogik.
+5. Erst nachdem alle Zahlungen versucht wurden, folgen Erinnerung, formelle Mahnung und Statusfortschreibung für weiterhin offene Posten. Am selben wirksamen Tag vollständig bezahlte Posten erhalten keine neue Erinnerung/Mahnung.
+6. Der tägliche Dispozins wird nach der bestehenden Zinsregel abgegrenzt; monatliche Belastung bleibt nach D-0127/D-0129.
+
+Kein Teilzahlungsversuch, keine automatische Dispoziehung und keine neue Strafe entstehen aus dieser Konvention. Der manuelle exakte Abruf nach D-0125 bleibt auf ausdrücklich unterstützte fällige eigene Rechnungen beschränkt; er wird nicht auf Immobilien- oder Anlagenraten erweitert. Kreditartspezifische Retry-/Verwertungsfolgen bleiben unverändert; keine Folge wird neu erfunden. Statusverarbeitung ist technisch von Zahlungsversuchen zu trennen, damit die festgelegte Reihenfolge tatsächlich gilt.
+
+D-0129 bleibt der V1-Vertrag; D-0160 ergänzt ausschließlich V2. Diese Szenarioreihenfolge ist keine allgemeine Bank-, Branchen-, Rechts- oder Gesetzesrangfolge.

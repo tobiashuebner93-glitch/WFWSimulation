@@ -34,11 +34,7 @@ Ein mobil nutzbares, browserbasiertes Wirtschaftsspiel entwickeln, in dem Lernen
 V2 definiert das Qualitäts- und Lernkontextfundament. V3–V6 decken die vier WBQ-Fächer ab, V7–V11 je ein HSQ-Handlungsfeld, V12 integrierte Prüfung und Transfer. Fachkarten allein erfüllen kein Fachziel. Vollständige Kriterien und Agentenbeiträge: [v2-v12-goal-map.md](v2-v12-goal-map.md).
 
 ## V2-Qualitätsziel und Abnahmestand
-
-V2 muss eine klare responsive Spieloberfläche, stabile Lernkarten-/Spielkontextverknüpfung, mobile/tastaturbedienbare Inventarsymbole und Mitarbeiterplanung für die nächsten fünf Arbeitstage (rollende 7 Kalendertage, ohne Wochenendspalten) bieten. Lernübungen dürfen im neutralen Übungsmodus den Unternehmensstand nicht verändern. Der logische Kontextvertrag bleibt Vorschlag und begründet keine Architektur- oder Schemafreigabe.
-
-A01–A12 haben den V2-Zielentwurf jeweils in ihren Fachgruppen geprüft. Die Reviewmatrix und konkrete V2-Unterziele stehen in [CP-0227](checkpoints/MCP-2026103001.md#cp-0227). Der vorherige insolvente Jahressmoke ist durch den aktuellen deterministischen Lauf überholt: 2027 läuft bis 2028-01-01 zahlungsfähig, mit 0 € offenen Betriebskosten und ohne Reconciliation-Fehler (CP-0253). T-0047, T-0040 und T-0050 sind mit CP-0257 abgeschlossen. MG-002 bleibt insgesamt IN_PROGRESS; weitere Fach-/Qualitätsarbeit und ein realer iOS-Safari-Test sind keine erledigten Release-Gates.
-
+**Status: IN_PROGRESS (CP-0271-Entwurf).** G01/G02/G04/G05/G06/G07/G09 sind materiell auf dem Working Tree belegt; G10 wurde technisch geprüft. G03/G08 sind nach Touch-/Keyboard-Planungsnachweis und der 14-Pfad-Kernaktionsmatrix PASS auf dem Working Tree. A05 behob den beim G08-Lauf gefundenen fehlenden Marketingimport und ergänzte eine Regression. 16 Regressionen und der 365-Tage-Jahressmoke bestehen nach dem Fix. Offen bleiben Commitbindung von Gates/Paket, A10-Paketabgleich zum Sicherungscommit und finaler A09-Committee-PASS. V2 bleibt bis dahin nicht releasefreigegeben. Details: CP-0271 und T-0062-Berichte.
 ## Status
 
 - SLG-002.1 – IHK-Rahmen/Kompetenzlandkarte: COMPLETED (CP-0202).

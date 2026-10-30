@@ -1,14 +1,17 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { WBQ_ITEMS, WBQ_AREAS } from './learning-wbq.js';
 import { hsqQuestions, areas as HSQ_AREAS } from './learning-hsq.js';
 import { SUPPLEMENTAL_ITEMS } from './learning-supplemental.js';
 import { DAILY_ITEMS } from './learning-daily.js';
 const records = new Map();
 globalThis.localStorage = { getItem: key => records.get(key) ?? null, setItem: (key, value) => records.set(key, String(value)) };
-const { renderDailyQuiz, renderLearningQuiz, handleLearningQuizClick, handleLearningQuizChange, getLearningProgressSnapshot } = await import('./learning-ui.js');
+const { renderDailyQuiz, renderLearningQuiz, renderExamSession, handleExamSessionClick, handleExamSessionChange, getExamSessionSnapshot, getLearningDebriefs, handleLearningQuizClick, handleLearningQuizChange, getLearningProgressSnapshot, focusPracticeCompetence } = await import('./learning-ui.js');
 const core = [...WBQ_ITEMS, ...hsqQuestions];
 const all = [...core, ...SUPPLEMENTAL_ITEMS];
 const areas = [...WBQ_AREAS, ...HSQ_AREAS];
+const stylesheet = readFileSync(new URL('./styles.css', import.meta.url), 'utf8');
+assert.match(stylesheet, /\.exam-session\s+#exam-area\s*\{[^}]*min-width:\s*0[^}]*width:\s*100%[^}]*max-width:\s*100%[^}]*box-sizing:\s*border-box/s, 'Exam-area select must stay within the exam card on narrow screens');
 assert.equal(core.length, 450);
 assert.equal(SUPPLEMENTAL_ITEMS.length, 90);
 assert.equal(all.length, 540);
@@ -75,5 +78,42 @@ const practiceItem=core[2];
 assert.equal(handleLearningQuizClick(eventFor('[data-learning-answer]', {dataset:{learningMode:'practice',learningAnswer:practiceItem.correctOption}}),dailyGame.date,dailyGame),true);
 assert.equal(JSON.stringify(dailyGame),afterDaily,'practice answers must not mutate game state');
 assert.match(renderLearningQuiz(dailyGame.date), /540/);
-console.log('PASS: 540-item shared learning pool; 20 per tier/area; explicit source links; 5-question daily cap; mode-separated effects and review progress');
+const localStorageBeforeExam = new Map(records);
+assert.match(renderExamSession(), /Neun Fragen, eine je Prüfungsbereich/);
+const examEvent = (action, answer) => ({target:{closest:selector=>selector==='[data-exam-action]'&&action?{dataset:{examAction:action}}:selector==='[data-exam-answer]'&&answer?{dataset:{examAnswer:answer}}:null}});
+assert.equal(handleExamSessionClick(examEvent('start')),true);
+let exam = getExamSessionSnapshot();
+assert.equal(exam.items.length,9);
+assert.equal(new Set(exam.items.map(item=>item.areaId)).size,9,'mixed exam covers every area');
+for (const tier of ['basic','applied','transfer']) assert.equal(exam.items.filter(item=>item.difficulty===tier).length,3,`${tier} appears three times`);
+assert.doesNotMatch(renderExamSession(),/<p><b>Lösung:|class="status warn"/,'answers stay hidden before submission');
+for (let i=0;i<exam.items.length;i++) {
+  exam=getExamSessionSnapshot();
+  assert.equal(handleExamSessionClick(examEvent(null,exam.items[exam.position].correctOption)),true);
+  if(i<exam.items.length-1) assert.equal(handleExamSessionClick(examEvent('next')),true);
+}
+assert.equal(handleExamSessionClick(examEvent('submit')),true);
+let examHtml=renderExamSession();
+assert.match(examHtml,/9 von 9 richtig/);
+assert.match(examHtml,/Quelle und Kompetenzbezug/);
+assert.deepEqual(new Map(records),localStorageBeforeExam,'exam round does not touch practice/daily storage');
+assert.equal(JSON.stringify(dailyGame),afterDaily,'exam round does not mutate business or finance state');
+assert.equal(handleExamSessionClick(examEvent('reset')),true);
+const oneArea=areas[0];
+const selectEvent={target:{closest:selector=>selector==='[data-exam-area]'?{value:oneArea.id}:null}};
+assert.equal(handleExamSessionChange(selectEvent),true);
+examHtml=renderExamSession(); assert.match(examHtml,new RegExp(oneArea.id));
+assert.equal(handleExamSessionClick(examEvent('start')),true);
+exam=getExamSessionSnapshot();
+assert.equal(exam.items.length,9); assert.equal(new Set(exam.items.map(item=>item.areaId)).size,1);
+for(const tier of ['basic','applied','transfer']) assert.equal(exam.items.filter(item=>item.difficulty===tier).length,3);
+const debriefs=getLearningDebriefs([
+  {date:'2027-01-01',phase:1,kind:'NEUAUFTRAG',text:'Neue Anfrage'},
+  {date:'2027-01-02',phase:2,kind:'MATERIALZUGANG',text:'Stahl eingetroffen'},
+  {date:'2027-01-03',phase:8,kind:'SIMTAX_ZAHLUNG',text:'Steuer bezahlt'},
+  {date:'2027-01-04',phase:1,kind:'URLAUB',text:'Urlaub geplant'}
+]);
+assert.deepEqual(new Set(debriefs.map(row=>row.key)),new Set(['orders','logistics','finance','people']));
+assert.ok(debriefs.every(row=>row.competenceIds.some(id=>focusPracticeCompetence([id]))),'debrief links resolve to existing learning cards');
+console.log('PASS: 540-item pool; 20 questions per tier/area; five-question daily cap; isolated nine-area exam rounds; neutral event debrief links');
 

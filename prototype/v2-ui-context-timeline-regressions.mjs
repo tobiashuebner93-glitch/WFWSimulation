@@ -1,7 +1,36 @@
 import assert from 'node:assert/strict';
-import { advanceOneDay, assignEmployeeToStage, assignEmployeeToTask, createInitialGame, getDailyCapacityHours, getDailyWorkloadPercent, hasManualDayAssignment } from './engine.js';
+import { readFileSync } from 'node:fs';
+import { activateMarketingCampaign, advanceOneDay, assignEmployeeToStage, assignEmployeeToTask, createInitialGame, getDailyCapacityHours, getDailyWorkloadPercent, hasManualDayAssignment } from './engine.js';
 import { getTimelineBlockReason, getTimelineChoice, getTimelineWorkdays, setTimelineAssignment } from './planning-ui.js';
 import { focusPracticeCompetence } from './learning-ui.js';
+
+const responsiveCss = readFileSync(new URL('./styles.css', import.meta.url), 'utf8');
+const frontendSource = readFileSync(new URL('./app.js', import.meta.url), 'utf8');
+assert.match(frontendSource, /import\s*\{[^}]*\bactivateMarketingCampaign\b[^}]*\}\s*from '\.\/engine\.js'/, 'The network campaign UI handler must import its engine action');
+assert.match(frontendSource, /if\(action==='activate-campaign'\)[^]*?activateMarketingCampaign\(state\.game,campaignId\)/, 'Campaign button handler must call the imported campaign action');
+const campaignGame = createInitialGame();
+assert.equal(activateMarketingCampaign(campaignGame, 'targeted'), true, 'A valid network campaign can be activated');
+assert.equal(campaignGame.network.marketingCampaign?.id, 'targeted', 'Campaign activation is reflected in the isolated game state');
+assert.ok(campaignGame.events.some(event => event.kind === 'MARKETING_AKTIVIERT'), 'Campaign activation records its visible simulation event');
+assert.equal(activateMarketingCampaign(campaignGame, 'trade-fair'), false, 'A second campaign cannot replace a pending campaign');
+assert.match(frontendSource, /function equipmentIcon\([^]*?tabindex="0" role="img" aria-label=/, 'Equipment icon tooltip must be reachable by keyboard and named for assistive technology');
+assert.match(responsiveCss, /\.equipment-icon-wrap:focus-visible\s*\{[^}]*outline:/, 'Keyboard focus on equipment icons must be visible');
+assert.match(frontendSource, /equipment-product-label[^]*?<strong>\$\{escaped\(p\.name\)\}<\/strong>/, 'Equipment catalog cards must show the item name without hover');
+assert.match(frontendSource, /equipment-product-label[^]*?<strong>\$\{escaped\(x\.name\|\|x\.id\|\|'Betriebsmittel'\)\}<\/strong>/, 'Owned inventory cards must show each asset name without hover');
+assert.match(frontendSource, /Funktion: \$\{Object\.entries\(x\.bonus\|\|\{\}\)/, 'Owned inventory cards must show asset function without hover');
+assert.match(frontendSource, /Benötigte Fachskills:/, 'Machine cards must expose their required skills as visible text');
+assert.match(frontendSource, /materialIcon\(key,name\).*?<strong>\$\{name\}<\/strong>/, 'Raw material cards must show material name alongside their icon');
+assert.match(frontendSource, /data-context-key="\$\{escaped\(contextKey\)\}"/, 'Learning links must carry a stable origin-context key');
+assert.match(frontendSource, /contextKey:learningLink\.dataset\.contextKey,scrollY:window\.scrollY/, 'Opening a practice card must retain the originating context and scroll position');
+assert.match(frontendSource, /link\.dataset\.contextKey===origin\.contextKey/, 'Returning from a practice card must restore focus to the originating context link');
+assert.match(frontendSource, /window\.scrollTo\(0,origin\.scrollY\|\|0\)/, 'Returning from a practice card must restore the originating scroll position');
+assert.match(responsiveCss, /\.employee-timeline-card\s*\{[^}]*min-width:\s*0[^}]*max-width:\s*100%/s, 'Planning card must not expand its grid track from intrinsic timeline width');
+assert.match(responsiveCss, /\.employee-timeline\s*\{[^}]*width:\s*100%[^}]*min-width:\s*0[^}]*max-width:\s*100%[^}]*overflow-x:\s*auto[^}]*overflow-y:\s*hidden/s, 'The 768 px tablet timeline must scroll internally instead of widening the document');
+assert.match(responsiveCss, /@media\(min-width:\s*761px\)\s+and\s*\(max-width:\s*900px\)\s*\{html,body\s*\{[^}]*max-width:\s*100%[^}]*overflow-x:\s*clip/s, 'The 768 px tablet document root must clip stray horizontal overflow while preserving nested timeline scrolling');
+assert.match(responsiveCss, /@media\(max-width:\s*760px\)/, 'The phone-specific planning layout must remain available below the tablet breakpoint');
+assert.match(responsiveCss, /\.timeline-row\s*\{[^}]*min-width:\s*0[^}]*grid-template-columns:\s*minmax\(0,1fr\)/s, 'The 390 px phone timeline must retain its stacked mobile layout');
+assert.match(responsiveCss, /\.timeline-heading,\.timeline-row\s*\{[^}]*min-width:\s*850px/s, 'The 1280 px desktop timeline retains all five workday columns');
+assert.match(responsiveCss, /\.app-shell\s*\{[^}]*max-width:\s*1280px/, 'The 1280 px desktop shell remains bounded by the viewport width');
 
 const workdays = getTimelineWorkdays('2019-01-04');
 assert.deepEqual(workdays, ['2019-01-04', '2019-01-07', '2019-01-08', '2019-01-09', '2019-01-10']);
@@ -106,4 +135,5 @@ assert.equal(archived.detailsCompacted,true,'Closed order details are compacted 
 assert.deepEqual(archived.operations,[{name:'Fertigung',skill:'BASIC',totalHours:3}]);
 assert.equal(archived.salesNet,100,'Compaction preserves financial fields');
 
+assert.match(responsiveCss, /\.timeline-cell\s*\{[^}]*position:\s*relative/s, 'Screenreader-only date labels must be anchored inside each timeline cell to avoid tablet page overflow');
 console.log('V2 UI context/timeline regressions: PASS');

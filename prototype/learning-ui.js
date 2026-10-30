@@ -18,6 +18,8 @@ const sessions = {
   practice: { areaId: 'all', position: 0, answered: null, impact: '', selectedId: null },
   daily: { areaId: 'all', position: 0, answered: null, impact: '', selectedId: null, date: null, queue: [] },
 };
+let examSession = null;
+let examRunCount = 0;
 const letters = ['A', 'B', 'C', 'D'];
 const tierNames = { basic: 'Grundwissen', applied: 'Aufbauwissen', transfer: 'Transferwissen' };
 
@@ -222,6 +224,64 @@ export function focusPracticeCompetence(competenceIds=[]){const wanted=new Set(c
 
 export function renderLearningQuiz(simulationDate) { return renderQuiz('practice', simulationDate); }
 export function renderDailyQuiz(simulationDate, game) { return renderQuiz('daily', simulationDate, game); }
+
+function buildExamItems(areaId, seed) {
+  const areas = areaId === 'all' ? [...WBQ_AREAS, ...HSQ_AREAS] : [...WBQ_AREAS, ...HSQ_AREAS].filter(area => area.id === areaId);
+  if (!areas.length) return [];
+  const tiers = ['basic', 'applied', 'transfer'];
+  const selected = areas.flatMap((area, areaIndex) => {
+    const items = examItems.filter(item => item.areaId === area.id);
+    if (areaId === 'all') {
+      const tier = tiers[areaIndex % tiers.length];
+      const candidates = items.filter(item => item.difficulty === tier);
+      return [candidates[hashText(`${seed}:${area.id}:${tier}`) % candidates.length]];
+    }
+    return tiers.flatMap(tier => {
+      const candidates = items.filter(item => item.difficulty === tier);
+      return Array.from({length:3},(_,index)=>candidates[hashText(`${seed}:${area.id}:${tier}:${index}`)%candidates.length]);
+    });
+  });
+  return selected.sort((a,b)=>hashText(`${seed}:${b.id}`)-hashText(`${seed}:${a.id}`));
+}
+
+export function renderExamSession() {
+  const areaOptions = [...WBQ_AREAS, ...HSQ_AREAS].map(area => `<option value="${escapeHtml(area.id)}" ${(examSession?.areaId||examSessionArea)===area.id?'selected':''}>${escapeHtml(area.name||area.title)}</option>`).join('');
+  if (!examSession) return `<section class="card wide exam-session"><div class="section-title"><div><h2>V2-Übungsrunde</h2><p class="muted">Neun Fragen, eine je Prüfungsbereich. Alle drei Schwierigkeitsstufen kommen vor. Antworten werden erst nach Abschluss ausgewertet.</p></div><span class="status">Übungsformat</span></div><label class="field-label" for="exam-area">Umfang</label><select class="field" id="exam-area" data-exam-area><option value="all">Gemischt · alle 9 Bereiche</option>${areaOptions}</select><div class="actions"><button type="button" class="btn btn-primary" data-exam-action="start">Übungsrunde starten</button></div><p class="muted">Kein Zeitlimit und keine Bestehensgrenze. Das ist keine IHK-Prüfungssimulation. Der Unternehmens- und Finanzstand bleibt unberührt.</p></section>`;
+  if (examSession.submitted) {
+    const correct = examSession.items.filter(item=>examSession.answers[item.id]===item.correctOption).length;
+    const byArea = [...new Set(examSession.items.map(item=>item.areaId))].map(areaId=>{const items=examSession.items.filter(item=>item.areaId===areaId);return {area:areaLabels.get(areaId)||areaId,correct:items.filter(item=>examSession.answers[item.id]===item.correctOption).length,total:items.length};});
+    const byTier = tiersOrder.map(tier=>{const items=examSession.items.filter(item=>item.difficulty===tier);return {tier:tierNames[tier],correct:items.filter(item=>examSession.answers[item.id]===item.correctOption).length,total:items.length};}).filter(row=>row.total);
+    const review = examSession.items.map((item,index)=>{const selected=examSession.answers[item.id],right=selected===item.correctOption;return `<article class="exam-review-item"><div class="section-title"><strong>${index+1}. ${escapeHtml(areaLabels.get(item.areaId)||item.areaId)} · ${escapeHtml(tierNames[item.difficulty]||'')}</strong><span class="status ${right?'done':'warn'}">${right?'Richtig':'Noch üben'}</span></div><h3>${escapeHtml(item.question)}</h3><p><b>Deine Antwort:</b> ${escapeHtml(item.options['ABCD'.indexOf(selected)]||'—')}</p>${!right?`<p><b>Lösung:</b> ${escapeHtml(item.options['ABCD'.indexOf(item.correctOption)])}</p>`:''}<p>${escapeHtml(item.explanation)}</p><p><b>Fallwirkung:</b> ${escapeHtml(item.companyEffect)}</p><details class="learning-source"><summary>Quelle und Kompetenzbezug</summary><p>${sourceMarkup(item)}</p><p>Kompetenz-ID: <code>${escapeHtml(item.competenceId)}</code></p></details></article>`;}).join('');
+    return `<section class="card wide exam-session"><div class="section-title"><div><h2>Rückmeldung zur Übungsrunde</h2><p class="muted">${correct} von ${examSession.items.length} richtig · keine Bestehensgrenze oder IHK-Note</p></div><span class="status">Abgeschlossen</span></div><div class="learning-stats">${byArea.map(row=>`<span>${escapeHtml(row.area)}: ${row.correct}/${row.total}</span>`).join('')}</div><div class="learning-stats">${byTier.map(row=>`<span>${escapeHtml(row.tier)}: ${row.correct}/${row.total}</span>`).join('')}</div><div class="exam-review-list">${review}</div><button type="button" class="btn btn-secondary" data-exam-action="reset">Neue Übungsrunde</button></section>`;
+  }
+  const item=examSession.items[examSession.position],answer=examSession.answers[item.id]||'';
+  const options=item.options.map((option,index)=>{const letter=letters[index];return `<button type="button" class="learning-option${answer===letter?' is-selected':''}" data-exam-answer="${letter}" aria-pressed="${answer===letter}"><span class="learning-letter">${letter}</span><span>${escapeHtml(option)}</span></button>`;}).join('');
+  const answered=Object.keys(examSession.answers).length;
+  return `<section class="card wide exam-session"><div class="section-title"><div><h2>V2-Übungsrunde · ${examSession.position+1} / ${examSession.items.length}</h2><p class="muted">${escapeHtml(areaLabels.get(item.areaId)||item.areaId)} · ${escapeHtml(tierNames[item.difficulty]||'')}</p></div><span class="status">${answered}/${examSession.items.length} beantwortet</span></div><div class="learning-scenario"><p>${escapeHtml(item.scenario)}</p><h3>${escapeHtml(item.question)}</h3></div><div class="learning-options" role="group" aria-label="Antwortmöglichkeiten">${options}</div><div class="learning-actions"><button type="button" class="btn btn-secondary" data-exam-action="previous" ${examSession.position===0?'disabled':''}>← Zurück</button><button type="button" class="btn btn-secondary" data-exam-action="next" ${examSession.position===examSession.items.length-1?'disabled':''}>Weiter →</button><button type="button" class="btn btn-primary" data-exam-action="submit" ${answered!==examSession.items.length?'disabled':''}>Runde auswerten</button></div><p class="muted">Bis zur Auswertung bleiben Lösung und Feedback verborgen. Deine Auswahl verändert keinen Unternehmens- oder Finanzwert.</p></section>`;
+}
+
+const tiersOrder=['basic','applied','transfer'];
+export function handleExamSessionClick(event) {
+  const button=event.target.closest('[data-exam-action]');
+  if(button){const action=button.dataset.examAction;if(action==='start'){const areaId=examSessionArea||'all';examRunCount++;const items=buildExamItems(areaId,`${Date.now()}:${examRunCount}`);if(items.length!==9)return true;examSession={areaId,items,answers:{},position:0,submitted:false};}else if(action==='previous'&&examSession&&!examSession.submitted)examSession.position=Math.max(0,examSession.position-1);else if(action==='next'&&examSession&&!examSession.submitted)examSession.position=Math.min(examSession.items.length-1,examSession.position+1);else if(action==='submit'&&examSession&&!examSession.submitted&&Object.keys(examSession.answers).length===examSession.items.length)examSession.submitted=true;else if(action==='reset')examSession=null;return true;}
+  const choice=event.target.closest('[data-exam-answer]');if(choice&&examSession&&!examSession.submitted){examSession.answers[examSession.items[examSession.position].id]=choice.dataset.examAnswer;return true;}
+  return false;
+}
+
+export function handleExamSessionChange(event){const select=event.target.closest('[data-exam-area]');if(!select||examSession)return false;examSessionArea=select.value;return true;}
+let examSessionArea='all';
+export function getExamSessionSnapshot(){return examSession?{areaId:examSession.areaId,position:examSession.position,submitted:examSession.submitted,answers:{...examSession.answers},items:examSession.items.map(item=>({id:item.id,areaId:item.areaId,difficulty:item.difficulty,correctOption:item.correctOption}))}:null;}
+
+export function getLearningDebriefs(events=[]){
+  const rules=[
+    {key:'orders',label:'Markt und Aufträge',match:/ANGEBOT|MARKT|KUNDENANFRAGE|NEUAUFTRAG/,competenceIds:['rt-contract-offer','rw-contribution-margin','wfprv5-4-marketingplanung']},
+    {key:'logistics',label:'Beschaffung und Lager',match:/MATERIAL|BESTELL|LIEFER|BAUMARKT|WAREN/,competenceIds:['wfprv5-3-einkauf-beschaffung','rw-inventory-valuation','vw-make-or-buy']},
+    {key:'finance',label:'Finanzen und Ergebnis',match:/FINANZ|DISPO|KUNDENEINGANG|RECHNUNG|ZAHLUNG|STEUER|SIMTAX/,competenceIds:['rw-balance-sheet','rw-cash-vs-profit','wfprv5-2-investitionsrechnung']},
+    {key:'people',label:'Personal und Führung',match:/PERSONAL|MITARBEITER|WEITERBILDUNG|AUSBILDUNG|URLAUB|KRANK|MOTIVATION/,competenceIds:['wfprv5-1-planung-statistik','wfprv5-5-kommunikation-kooperation','uf-planning']},
+  ];
+  const latest=new Map();for(const event of [...events].reverse()){const rule=rules.find(item=>item.match.test(event.kind||''));if(rule&&!latest.has(rule.key))latest.set(rule.key,{key:rule.key,label:rule.label,event,competenceIds:rule.competenceIds});}
+  return [...latest.values()].slice(0,4);
+}
 
 export function handleLearningQuizClick(event, simulationDate, game = null) {
   const answerButton = event.target.closest('[data-learning-answer]');

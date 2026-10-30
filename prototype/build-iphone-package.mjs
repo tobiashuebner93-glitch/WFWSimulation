@@ -27,7 +27,7 @@ collect(entry);
 const htmlPath = path.join(root, 'index.html');
 let html = fs.readFileSync(htmlPath, 'utf8');
 const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
-html = html.replace(/\s*<link[^>]+href=["']\.\/styles\.css["'][^>]*>/i, '');
+html = html.replace(/\s*<link[^>]+href=["']\.\/styles\.css(?:\?[^"']*)?["'][^>]*>/i, '');
 html = html.replace(/\s*<script[^>]+src=["']\.\/app\.js["'][^>]*><\/script>/i, '');
 html = html.replace('</head>', `<style>\n${css}\n</style>\n</head>`);
 const encodedSources = JSON.stringify(Object.fromEntries(sources)).replace(/</g, '\\u003c');

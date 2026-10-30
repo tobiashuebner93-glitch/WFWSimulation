@@ -1,0 +1,267 @@
+[
+  {
+    "mode": "touch",
+    "slug": "offer",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "x": 195,
+      "y": 638,
+      "hit": "<button class=\"btn btn-primary btn-small\" data-action=\"accept-offer\" data-order=\"ORD-OFFER-01\">Angebot einreichen</butto"
+    },
+    "observed": {
+      "ok": true,
+      "status": "ANGEBOT_EINGEREICHT",
+      "price": 15000,
+      "text": false
+    },
+    "screenshot": "T-0062-g08-touch-offer.png"
+  },
+  {
+    "mode": "touch",
+    "slug": "finance",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "x": 272,
+      "y": 422,
+      "hit": "<button class=\"btn btn-secondary btn-small\" data-action=\"early-repay\" data-loan-kind=\"machine\">Vorzeitig ablösen · 100,0"
+    },
+    "observed": {
+      "ok": true,
+      "balance": 0,
+      "text": true
+    },
+    "screenshot": "T-0062-g08-touch-finance.png"
+  },
+  {
+    "mode": "touch",
+    "slug": "marketing",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "x": 195,
+      "y": 422,
+      "hit": "<button class=\"btn btn-primary\" data-action=\"activate-campaign\">Kampagne starten</button>"
+    },
+    "observed": {
+      "ok": true,
+      "campaign": "targeted",
+      "text": true
+    },
+    "screenshot": "T-0062-g08-touch-marketing.png"
+  },
+  {
+    "mode": "touch",
+    "slug": "mailbox",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "x": 115,
+      "y": 254,
+      "hit": "<button class=\"message-subject unread\" data-action=\"open-message\" data-message=\"MSG-UNREAD-01\">Isolierter Testbericht</b"
+    },
+    "observed": {
+      "ok": true,
+      "read": true,
+      "detail": true
+    },
+    "screenshot": "T-0062-g08-touch-mailbox.png"
+  },
+  {
+    "mode": "touch",
+    "slug": "site",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "x": 195,
+      "y": 422,
+      "hit": "<button class=\"partner-card site-card\" data-site=\"site-2\"><strong>Sendling · München Südwest</strong><p>78 m² Werkstatt "
+    },
+    "observed": {
+      "ok": true,
+      "selected": "site-2",
+      "visible": true
+    },
+    "screenshot": "T-0062-g08-touch-site.png"
+  },
+  {
+    "mode": "touch",
+    "slug": "procurement",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "x": 195,
+      "y": 422,
+      "hit": "<button class=\"btn btn-primary\" data-action=\"place-material-order\">Bestellen / Einkauf planen</button>"
+    },
+    "observed": {
+      "ok": true,
+      "task": "BAUMARKT_EINKAUF",
+      "hours": 1,
+      "inventory": 0,
+      "toast": true
+    },
+    "screenshot": "T-0062-g08-touch-procurement.png"
+  },
+  {
+    "mode": "touch",
+    "slug": "learning",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "x": 108,
+      "y": 422,
+      "hit": "<button type=\"button\" class=\"btn btn-primary\" data-exam-action=\"start\">Übungsrunde starten</button>"
+    },
+    "observed": {
+      "ok": true,
+      "answered": "1/9 beantwortet",
+      "selected": "A"
+    },
+    "screenshot": "T-0062-g08-touch-learning.png"
+  },
+  {
+    "mode": "keyboard",
+    "slug": "offer",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "keyboard": "Tab+Enter",
+      "tabs": 23
+    },
+    "observed": {
+      "ok": true,
+      "status": "ANGEBOT_EINGEREICHT",
+      "price": 15000,
+      "text": false
+    },
+    "screenshot": "T-0062-g08-keyboard-offer.png"
+  },
+  {
+    "mode": "keyboard",
+    "slug": "finance",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "keyboard": "Tab+Enter",
+      "tabs": 14
+    },
+    "observed": {
+      "ok": true,
+      "balance": 0,
+      "text": true
+    },
+    "screenshot": "T-0062-g08-keyboard-finance.png"
+  },
+  {
+    "mode": "keyboard",
+    "slug": "marketing",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "keyboard": "Tab+Enter",
+      "tabs": 12
+    },
+    "observed": {
+      "ok": true,
+      "campaign": "targeted",
+      "text": true
+    },
+    "screenshot": "T-0062-g08-keyboard-marketing.png"
+  },
+  {
+    "mode": "keyboard",
+    "slug": "mailbox",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "keyboard": "Tab+Enter",
+      "tabs": 9
+    },
+    "observed": {
+      "ok": true,
+      "read": true,
+      "detail": true
+    },
+    "screenshot": "T-0062-g08-keyboard-mailbox.png"
+  },
+  {
+    "mode": "keyboard",
+    "slug": "site",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "keyboard": "Tab+Enter",
+      "tabs": 30
+    },
+    "observed": {
+      "ok": true,
+      "selected": "site-2",
+      "visible": true
+    },
+    "screenshot": "T-0062-g08-keyboard-site.png"
+  },
+  {
+    "mode": "keyboard",
+    "slug": "procurement",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "keyboard": "Tab+Enter",
+      "tabs": 11
+    },
+    "observed": {
+      "ok": true,
+      "task": "BAUMARKT_EINKAUF",
+      "hours": 1,
+      "inventory": 0,
+      "toast": true
+    },
+    "screenshot": "T-0062-g08-keyboard-procurement.png"
+  },
+  {
+    "mode": "keyboard",
+    "slug": "learning",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "keyboard": "Tab+Enter",
+      "tabs": 10
+    },
+    "observed": {
+      "ok": true,
+      "answered": "1/9 beantwortet",
+      "selected": "A"
+    },
+    "screenshot": "T-0062-g08-keyboard-learning.png"
+  }
+]
