@@ -1,3 +1,7 @@
+## Aktueller Arbeitsstand nach Commit-Recheck (CP-0254; 2026-10-30)
+
+Commit `9cfb50b721b54dd97b1eeeb9706c3fa7e7d42cb8` und Tree `08aa2f8fed57d8855f469019966b3e8b92c5ea51` bestehen den erneuten Jahressmoke und alle 15 Regressionen. T-0048 ist abgeschlossen. T-0047, T-0040 und T-0050 bleiben wegen klar benannter Nacharbeit offen; diese Punkte blockieren den Sicherungs-Push nicht. Der manuelle Nutzertest ist nach Nutzeranweisung kein Push-Blocker; keine V2-Releasefreigabe. Details: [CP-0254](checkpoints/CP-0254.md).
+
 # Aktueller Arbeitsstand nach Ticketprüfung (CP-0253; 2026-10-30)
 
 T-0048 ist nach dem reproduzierbaren 365-Tage-Lauf abgeschlossen. Der Jahres-Smoke endet am 2028-01-01 mit 12 Monatsabschlüssen, 63 Lieferungen, 59 bezahlten Aufträgen, 1.239,16 € Bankbestand, 0 € offenen Betriebskosten und ohne Abstimmungsdifferenz. Der vorherige Insolvenzlauf ist durch die aktuelle Engine-/Harness-Version überholt; Quellen und Kennzahlen stehen in [CP-0253](checkpoints/CP-0253.md).
