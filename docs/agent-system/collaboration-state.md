@@ -7,6 +7,10 @@ A01 prüfte sieben Kernaktionen je Touchereignis und Tastatur (14/14 PASS) in ei
 
 Quellcommit `3ce96b2` und Builderfix `7a89210` sichern die geprüften Produktquellen. A01 wiederholte 16 Regressionen und den 365-Tage-Smoke auf dem Quellstand; A09 bestätigt G03/G08 mit 14 Touch-/Keyboardpfaden, A10 G10 mit zwölf passenden Quellenhashes und `workingTreeSourcesIncluded=false`. Die Artefakte sind neu gebaut und unabhängig geprüft. A09 hält das Committee bis zum Artefaktcommit und abschließenden Hash-/Commit-Recheck BLOCKED. Noch kein Push. CP-0272 dokumentiert die commitbezogene Review/Retro und die behobene Builder-Provenienzlücke.
 
+## T-0062 Releasefreigabe (CP-0273; 2026-10-30)
+
+A09 erteilte nach dem Artefaktcommit `d18ec35` Committee PASS; der Parent `7a89210` ist die geprüfte Quellrevision. T-0060 ist erfüllt, G01–G11 sind gebunden, T-0062 ist COMPLETED. Paket und Reports sind im Releasecommit enthalten. Branch `main` liegt drei Commits vor `origin/main`; Push und anschließende Push-Retro stehen aus.
+
 ## T-0062 Touch-Gate-Nachweis (CP-0271; 2026-10-30)
 
 A01 führte in einem isolierten Edge-Profil Touchereignisse über Input.dispatchTouchEvent aus. Bei 390×844 wurden alle neun Bereiche per Touch erreicht; ORD-001 wurde durch Antippen der Person und des ersten Arbeitsgangs gespeichert zugewiesen. Bei 768×1024 gelang dieselbe Zuweisung; Wischen verschob die interne Personal-Timeline von scrollLeft=0 auf 193 (850 px Inhalt, 657 px Scrollport). Bei 1280×800 öffnete ein Touch den Inventarbereich. Die drei Viewports hatten keine Dokumentüberbreite. Screenshots und Testpfad stehen in CP-0271 und im A01-Follow-up-Bericht. A09 bestätigt, dass die Kriterien Touch-Emulation akzeptieren; physische Hardware wird nicht ausdrücklich verlangt. Damit sind G03/G08 materiell auf dem Working Tree belegt; die gemeinsame Commitbindung aller Gates und des Pakets bleibt der einzige Releaseblocker. Keine Produktänderung, kein Commit/Push.

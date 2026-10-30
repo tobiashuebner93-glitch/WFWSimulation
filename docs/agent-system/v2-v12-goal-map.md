@@ -22,7 +22,9 @@ Ein mobil nutzbares, browserbasiertes Wirtschaftsspiel entwickeln, in dem Lernen
 
 ## V2 – Spiel- und Lernfundament (Qualitätsziel)
 
-**Aktueller T-0062-Nachtrag (2026-10-30):** Die G03/G08-Prüfung und alle 16 Regressionen/Jahressmoke beziehen sich auf Quellcommit `7a892102e90fe98716db2c2d59c21fb59489dbf7`. A10 hat das daraus gebaute Paket mit `workingTreeSourcesIncluded=false` und passenden Quell-/Artefakthashes bestätigt. Das Artefakt ist noch nicht committet; A09-Finalurteil steht danach aus. Keine V2-Freigabe vor diesem Committee-PASS.
+**Zwischenstand vor Artefaktfreigabe (2026-10-30; durch CP-0273 überholt):** Die G03/G08-Prüfung und alle 16 Regressionen/Jahressmoke bezogen sich auf Quellcommit `7a892102e90fe98716db2c2d59c21fb59489dbf7`. A10 bestätigte zunächst das daraus gebaute Paket; Artefaktcommit und A09-Endurteil standen zu diesem Zeitpunkt noch aus.
+
+**Abnahme T-0062 (2026-10-30):** A09 erteilte Committee PASS für Releasecommit `d18ec35` (Quellcommit `7a89210`); Paket und Manifest sind darin gesichert. G01–G11 sind für diese gebundene Releaseidentität bestanden. T-0062 COMPLETED; Push ausstehend. Details: CP-0273 und `T-0062-A09-final-release-committee-pass.md`.
 
 **Versionsziel:** Das existierende Unternehmensspiel erhält eine konsistente Bedienstruktur und einen belastbaren Kompetenzkontext. Mitarbeitende lassen sich für jeden der nächsten fünf sichtbaren Arbeitstage (rollendes 7-Kalendertage-Fenster, nur Montag bis Freitag) planen. Wochenenden werden nicht als Spalten angeboten. Automatik bleibt Standard; manuelle Tageszuweisung berücksichtigt Verfügbarkeit, Qualifikation und Reihenfolge. Inventar wird durch verständliche, kategorisierte Symbole dargestellt; Name und Fähigkeiten sind per Hover, Fokus und Touch zugänglich. Lernkarten lassen sich aus Aufträgen, Personal, Finanzen, Markt und Logistik passend öffnen und führen in den Ursprungskontext zurück. Lernantworten im Übungsmodus verändern nicht den Spielstand. V2 besteht erst, wenn Szenarioläufe reproduzierbar und alle untenstehenden V2-Gates bestanden sind.
 

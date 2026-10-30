@@ -34,7 +34,7 @@ Ein mobil nutzbares, browserbasiertes Wirtschaftsspiel entwickeln, in dem Lernen
 V2 definiert das Qualitäts- und Lernkontextfundament. V3–V6 decken die vier WBQ-Fächer ab, V7–V11 je ein HSQ-Handlungsfeld, V12 integrierte Prüfung und Transfer. Fachkarten allein erfüllen kein Fachziel. Vollständige Kriterien und Agentenbeiträge: [v2-v12-goal-map.md](v2-v12-goal-map.md).
 
 ## V2-Qualitätsziel und Abnahmestand
-**Status: IN_PROGRESS (CP-0272-Entwurf).** Produktquellen sind mit `3ce96b2` und der korrigierte Paketbuilder mit `7a89210` gesichert. Auf `7a89210` bestehen alle 16 Regressionen sowie der 365-Tage-Jahressmoke. A09 bestätigt G03/G08 auf diesem Quellstand; A10 bestätigt G10 einschließlich zwölf Quellenhashes und des Manifestflags `workingTreeSourcesIncluded=false`. Das Offlinepaket ist bytegenau geprüft, aber sein Artefaktcommit und A09s unmittelbares finales Committee-Recheck stehen noch aus. V2 bleibt bis dahin nicht releasefreigegeben. Details: CP-0272 und T-0062-Berichte.
+**Status: ABGENOMMEN / RELEASE-COMMITTEE-PASS (CP-0273-Entwurf).** G01–G11 sind für Releasecommit `d18ec35` mit Quellcommit `7a89210` und den darin enthaltenen Paketartefakten belegt. 16 Regressionen, 365-Tage-Jahressmoke, A09-Review und A10-Paketprüfung bestanden. T-0062 ist COMPLETED; Push steht noch aus. Details: CP-0273 und finaler A09-Committee-Bericht.
 ## Status
 
 - SLG-002.1 – IHK-Rahmen/Kompetenzlandkarte: COMPLETED (CP-0202).

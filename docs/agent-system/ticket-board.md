@@ -6,7 +6,7 @@
 
 ### T-0062 – Unabhängige Rest-Gates und revisionsgebundene V2-Freigabe
 
-Status: IN_PROGRESS – Quellstand in `3ce96b2` und Builderkorrektur in `7a89210` committet. Auf `7a89210` bestehen 16 Regressionen und der Jahressmoke; A09 bestätigt G03/G08 (14 Touch-/Keyboardpfade), A10 bestätigt G10 und alle Quell-/Artefakthashes. Der Paketbuilder setzt `workingTreeSourcesIncluded=false`, wenn die zwölf Runtimequellen dem Commit entsprechen. Offen: Paketartefaktcommit und danach A09s finales Committee-Recheck; Push erst nach PASS.
+Status: COMPLETED (A09 Release Committee PASS; CP-0273; 2026-10-30). Releasecommit `d18ec35` enthält Paket und Nachweise, Parent/Quellcommit ist `7a89210`; Manifest- und Artefakthashes sind geprüft. G01–G11 sind für den Release gebunden und ohne blockierenden Konflikt. Push steht noch aus.
 Master Goal: MG-002
 Second-Level Goals: SLG-002.2 / SLG-002.4 / SLG-002.5
 Koordination: A01 – MASTER_ORCHESTRATOR
@@ -14,7 +14,7 @@ Priorität: HIGH
 
 Aufgabe: Alle V2-Gates mit unabhängigen Rollen prüfen und Nachweise an denselben Release-Quellcommit und dieselbe Artefaktidentität binden. A02/A03 bestätigen D-0160 und Finanzbefunde; A09 führt die Committee-Neubewertung. CP-0270 enthält den 768-px-CSS-Fix; CP-0271 belegt Touch-/Keyboardplanung und responsive Breiten; CP-0272 dokumentiert Quell-/Paketbindung und Commit-Retrospektiven. A09 bestätigt, dass die Kriterien Touch-Emulation akzeptieren, sofern Touchereignisse ausgelöst werden und die Methode benannt ist. Offen ist nur das Artefaktcommit mit anschließendem A09-Finalreview. Historische CP-0266 bis CP-0268 bleiben unverändert. Nutzerabnahmen D-0159 nicht erneut erfragen.
 
-Abnahme: G01–G11 für denselben Commit PASS, keine ungelösten blockierenden Konflikte, aktueller Release-Committee-Bericht PASS. Kein Schema-/Architekturentscheid ohne separate Nutzerfreigabe.
+Abnahme: G01–G11 für die gebundene Quell-/Artefaktrevision PASS, keine ungelösten blockierenden Konflikte, aktueller Release-Committee-Bericht PASS. Kein Schema-/Architekturentscheid ohne separate Nutzerfreigabe.
 
 ### T-0061 – V2-Gates auf aktuellem Arbeitsbaum prüfen
 
