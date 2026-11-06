@@ -1,0 +1,50 @@
+name: Publish mobile game test
+
+on:
+  push:
+    branches:
+      - main
+      - artifact/t0084-mobile-package
+    paths:
+      - prototype/v3-mobile-package/werkstatt-v3-iphone-ipad.zip
+      - .github/workflows/publish-mobile-test.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages-mobile-test
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out test branch
+        uses: actions/checkout@v4
+
+      - name: Prepare standalone game page
+        shell: bash
+        run: |
+          mkdir -p package site
+          unzip -q prototype/v3-mobile-package/werkstatt-v3-iphone-ipad.zip -d package
+          cp package/werkstatt-v3-iphone-ipad.html site/index.html
+          touch site/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+      - name: Deploy test page
+        id: deployment
+        uses: actions/deploy-pages@v4
