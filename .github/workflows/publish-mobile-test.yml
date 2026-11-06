@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - artifact/t0084-mobile-package
     paths:
       - prototype/v3-mobile-package/werkstatt-v3-iphone-ipad.zip
       - .github/workflows/publish-mobile-test.yml
@@ -21,13 +20,16 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check out test branch
+      - name: Check out current test version
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Prepare standalone game page
         shell: bash
