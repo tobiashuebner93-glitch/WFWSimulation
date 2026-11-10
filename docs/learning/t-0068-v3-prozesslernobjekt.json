@@ -1,0 +1,171 @@
+{
+  "objectId": "V3-LO-0068-ORDER-CYCLE-01",
+  "objectVersion": 1,
+  "status": "content_ready_runtime_integration_pending",
+  "title": "Kundenanfrage bis Zahlung: den Auftragskreislauf steuern",
+  "language": "de-DE",
+  "subject": "Volks- und Betriebswirtschaft",
+  "type": "guided_process_practice",
+  "mode": "neutral_practice",
+  "directCompetency": {
+    "goalId": "V3-06",
+    "competencyId": "vw-value-chain",
+    "learningOutcome": "Die Lernende ordnet Marktanfrage, kalkuliertes Angebot, Kundenentscheidung, Vertrag, Leistung, Abnahme, Rechnung und Zahlung als getrennte, nachvollziehbare Prozesszustände ein und erkennt unzulässige Übergänge."
+  },
+  "relatedCompetencies": [
+    { "goalId": "V3-07", "competencyId": "rw-contribution-margin", "relation": "offer_calculation" },
+    { "goalId": "V3-08", "competencyId": "vw-market-demand", "relation": "offer_and_customer_decision" },
+    { "goalId": "V3-11", "competencyId": "vw-value-chain", "relation": "learning_integration" }
+  ],
+  "prerequisites": [
+    "A market inquiry exists and its status, requirements, offer deadline, size class, and customer segment are available read-only.",
+    "Any offer calculation uses explicit, same-period inputs and the active A03 calculation contract; missing inputs remain missing.",
+    "The learner is told that the activity is practice and is not submitting a real offer or changing a live order."
+  ],
+  "processInputs": [
+    "inquiryId",
+    "inquiryStatus",
+    "offerDeadline",
+    "requirements",
+    "offerId",
+    "calculationSnapshotRef",
+    "decisionId",
+    "contractPriceSnapshotRef",
+    "workPlanRef",
+    "deliveryRef",
+    "customerAcceptanceRef",
+    "invoiceRef",
+    "customerPaymentRef"
+  ],
+  "steps": [
+    {
+      "stepId": "identify_inquiry",
+      "reads": ["inquiryId", "inquiryStatus", "offerDeadline", "requirements"],
+      "prompt": "Welche Angaben müssen vor einer Angebotsentscheidung geprüft werden?",
+      "successCriteria": ["The inquiry is still open and within its deadline.", "Required capabilities, size, and customer context are distinguished from guaranteed demand."],
+      "feedback": "Eine Anfrage ist weder ein Auftrag noch sicherer Umsatz. Abgelaufene oder nicht angenommene Anfragen werden nicht zur Arbeitsplanung freigegeben."
+    },
+    {
+      "stepId": "calculate_offer",
+      "reads": ["inquiryId", "calculationSnapshotRef"],
+      "prompt": "Welche Annahmen sind für die Kalkulation zu bestätigen, und welche Ergebnisgrößen bleiben getrennt?",
+      "successCriteria": ["At least quantity/material, time/performance, and price/cost-rate assumptions are explicit or confirmed.", "Revenue, direct costs, contribution margin, and allocated overhead are not conflated."],
+      "feedback": "Eine Kalkulation ist eine Vorschau. Sie erzeugt für sich allein weder Erlös, Forderung noch Zahlung."
+    },
+    {
+      "stepId": "submit_offer",
+      "reads": ["offerId", "calculationSnapshotRef"],
+      "prompt": "Was wird bei Einreichung festgehalten, und wann wird der Angebotspreis unveränderlich?",
+      "successCriteria": ["The offer references its submitted calculation snapshot.", "The offered price may be revised before submission; after customer acceptance the contract price is fixed."],
+      "feedback": "Nach Abgabe gilt der eingereichte Angebotsstand. Nach Annahme ist der vereinbarte Vertragspreis nicht mehr editierbar."
+    },
+    {
+      "stepId": "resolve_customer_decision",
+      "reads": ["decisionId", "inquiryStatus"],
+      "prompt": "Welcher Folgepfad ist für Annahme, Ablehnung oder Fristablauf zulässig?",
+      "successCriteria": ["Only an accepted offer may proceed to a contract/order.", "Declined and expired offers terminate without work assignment or financial posting."],
+      "feedback": "Annahme, Ablehnung und Ablauf sind unterschiedliche Ergebnisse; nur die Annahme öffnet den vertraglichen Arbeitsablauf."
+    },
+    {
+      "stepId": "plan_work",
+      "reads": ["workPlanRef", "requirements"],
+      "prompt": "Welche Qualifikationen und Kapazitäten müssen vor dem Start abgeglichen werden?",
+      "successCriteria": ["The plan respects required skills, equipment, precedence, and available capacity.", "No resource is assigned twice to overlapping work."],
+      "feedback": "Positive Kalkulation oder Kundenannahme ersetzt weder die Fertigungsqualifikation noch verfügbare Zeit und Ausstattung."
+    },
+    {
+      "stepId": "record_delivery",
+      "reads": ["deliveryRef", "workPlanRef"],
+      "prompt": "Welcher Nachweis trennt abgeschlossene Fertigung von Lieferung und Kundenabnahme?",
+      "successCriteria": ["The completed work and delivery are distinct recorded stages.", "The contractor does not record acceptance on behalf of the customer."],
+      "feedback": "Lieferung, Abnahme, Rechnung und Zahlung sind getrennte Ereignisse. Die Abnahmeentscheidung gehört dem Auftraggeber beziehungsweise Empfänger."
+    },
+    {
+      "stepId": "customer_acceptance",
+      "reads": ["customerAcceptanceRef", "deliveryRef"],
+      "prompt": "Wer entscheidet über die Abnahme, und wie wird eine Ablehnung behandelt?",
+      "successCriteria": ["Acceptance or rejection is attributed to the customer/recipient or an explicitly modeled customer-side event.", "A rejection remains a customer event and does not masquerade as acceptance."],
+      "feedback": "Die Auftragnehmerseite darf keine Abnahme im Namen des Auftraggebers erklären. Die automatische F3-Szenarioregel ist keine allgemeine Rechtsfolge."
+    },
+    {
+      "stepId": "separate_invoice_and_payment",
+      "reads": ["invoiceRef", "customerPaymentRef"],
+      "prompt": "Welche Belege zeigen Rechnung, Forderung und tatsächlichen Zahlungseingang getrennt?",
+      "successCriteria": ["Invoice/receivable and cash receipt are represented as distinct A03-governed events.", "The learner does not treat invoicing as payment or invent a ledger event."],
+      "feedback": "Die Lernansicht erklärt nur den Ablauf. Finanzielle Wirkung entsteht ausschließlich über dafür freigegebene A03-Ereignisse."
+    }
+  ],
+  "branches": [
+    {
+      "branchId": "accepted_offer",
+      "when": "customer decision is accepted",
+      "nextSteps": ["plan_work", "record_delivery", "customer_acceptance", "separate_invoice_and_payment"]
+    }
+  ],
+  "endingBranches": [
+    {
+      "branchId": "declined_offer",
+      "when": {
+        "inquiryStatus": "resolved",
+        "outcome": "not_won"
+      },
+      "sourceFields": ["inquiryStatus", "outcome"],
+      "terminal": true,
+      "nextSteps": [],
+      "terminalFeedback": "Die Kundenentscheidung hat den Auftrag nicht an dieses Unternehmen vergeben. Der Anfragepfad endet; daraus werden weder Arbeitsplanung noch Rechnung oder Zahlung abgeleitet.",
+      "companyStateMutation": false,
+      "financialMutation": false
+    },
+    {
+      "branchId": "expired_inquiry",
+      "when": {
+        "inquiryStatus": "expired"
+      },
+      "sourceFields": ["inquiryStatus"],
+      "terminal": true,
+      "nextSteps": [],
+      "terminalFeedback": "Die Anfragefrist ist abgelaufen. Der Anfragepfad endet; daraus werden weder Auftrag noch Arbeitsplanung, Rechnung oder Zahlung abgeleitet.",
+      "companyStateMutation": false,
+      "financialMutation": false
+    }
+  ],
+  "assessment": {
+    "measurement": "For an accepted offer, check all eight applicable steps. For a declined or expired inquiry, check correct recognition of exactly one matching endingBranch. Report applicable step/branch results and any critical transition error.",
+    "passRule": "All applicable accepted-path steps meet their criteria, or one matching endingBranch is correctly recognized; there is no critical transition error.",
+    "criticalTransitionErrors": [
+      "create or plan an order from a declined/expired inquiry",
+      "change the accepted contract price",
+      "record customer acceptance from the contractor's actor identity",
+      "treat an invoice as a cash receipt",
+      "create a company, cash, receivable, payable, inventory, or ledger mutation from neutral practice"
+    ],
+    "feedbackStyle": "Explain which precondition or state distinction was missed and refer to the relevant process step; do not infer real-world legal advice or empirical market effects."
+  },
+  "stateSafety": {
+    "readsCompanyState": true,
+    "mayWriteCompanyState": false,
+    "mayWriteCashOrLedger": false,
+    "mayWriteReceivablesOrInventory": false,
+    "mayChangeOfferOrContract": false,
+    "learningProgressScope": "separate learning/session state only",
+    "dashboardQuestionEffects": "not part of this object; if a linked dashboard question is separately presented, D-0147 rules apply",
+    "dailyBlocking": false
+  },
+  "sourceRefs": [
+    "docs/agent-system/v2-v12-goal-map.md#v3-06-angebots-und-auftragskreislauf",
+    "docs/simulation/a02-t0065-v3-marktmodell-arbeitsrahmen.md",
+    "docs/simulation/a02-v3-t0063-t0065-t0066-integrationsvertrag.md",
+    "docs/accounting/a03-t0067-v3-kalkulations-bab-vertrag.md",
+    "docs/agent-system/decision-log.md#d-0147",
+    "docs/agent-system/decision-log.md#d-0157",
+    "docs/agent-system/decision-log.md#d-0159",
+    "docs/agent-system/decision-log.md#d-0162"
+  ],
+  "integrationContract": {
+    "status": "proposed_consumer_contract_not_schema_or_architecture_approval",
+    "runtimeOwner": "A05 – FRONTEND",
+    "domainOwners": ["A02 – SIMULATION", "A03 – ACCOUNTING_FINANCE"],
+    "consumerRule": "Render this object as an optional read-only guided practice using only existing V3 state and explicit references. Do not synthesize missing transitions, call write APIs, or claim unimplemented steps. Gate each step on the matching available state reference; show unavailable steps as unavailable until the owning runtime provides them.",
+    "requiredReview": ["A02 process-state review", "A03 finance-boundary review", "A09 nonmutation and completeness QA"]
+  }
+}

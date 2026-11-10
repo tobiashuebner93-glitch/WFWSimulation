@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c3b">
+  <title>V3 · Kalkulation &amp; Grund-BAB</title>
+  <link rel="stylesheet" href="./formation.css">
+  <link rel="stylesheet" href="./finance.css">
+  <script type="module" src="./finance.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="Zur Gründungsübersicht">WERKSTATT <span>V3</span></a>
+    <p>Rechenlabor · Kalkulation · Grund-BAB</p>
+    <a class="top-link" href="./index.html">Zur Gründung</a>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">V3 · Rechnungswesen &amp; Controlling</p>
+      <h1>Kalkulation und Grund-BAB</h1>
+      <p>Gib eigene oder synthetische Szenariowerte ein. Dieses Rechenlabor zeigt Plan- und Verteilungssichten, erzeugt aber keine Steuerwerte, Buchungen, Forderungen oder Zahlungen.</p>
+    </section>
+
+    <section class="panel notice-panel">
+      <strong>Keine vorgegebenen Spielwerte</strong>
+      <p>Alle Beträge, Perioden, Kostenstellen und Schlüssel sind Eingaben. Leere Felder bleiben unvollständig. Planwerte, gespeicherte Angebots-Snapshots, manuell eingegebene Istwerte und Stichtagsbestände bleiben getrennte Sichten.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="calc-title">
+      <div class="panel-heading"><div><p class="eyebrow">Offener Entwurf</p><h2 id="calc-title">Angebots-/Produktkalkulation</h2></div><span id="calc-status" class="tag pending">Noch nicht berechnet</span></div>
+      <form id="calculation-form">
+        <div class="form-grid">
+          <label>Nettoplanpreis R<input name="netPrice" inputmode="decimal" required placeholder="Betrag in €"></label>
+          <label>Manuell bestätigter BAB-Anteil<input name="babAllocated" inputmode="decimal" required placeholder="Betrag in €"></label>
+        </div>
+        <div class="subpanel">
+          <div class="panel-heading"><div><h3>Direkte Einzelkosten</h3><p class="muted">Variabel/nicht variabel wird je Position ausdrücklich gewählt. Arbeits- und Maschinenkosten werden nur anhand der Eingabe klassifiziert.</p></div><button id="add-cost" class="secondary" type="button">Position hinzufügen</button></div>
+          <div id="cost-rows" class="table-list"></div>
+        </div>
+        <button class="primary" type="submit">Kalkulation berechnen</button>
+      </form>
+      <div id="estimate-output" class="result-grid" aria-live="polite" hidden></div>
+    </section>
+
+    <section class="panel" aria-labelledby="bab-title">
+      <div class="panel-heading"><div><p class="eyebrow">Dynamische Eingabe</p><h2 id="bab-title">BAB-Pools und Verteilung</h2></div><button id="add-pool" class="secondary" type="button">Pool hinzufügen</button></div>
+      <p class="muted">Jeder Pool enthält eine eingegebene Quellkostensumme, Periode, Basis, Schlüssel und Empfänger. Die A03-Funktion führt die Centverteilung aus und gleicht sie gegen den Poolbetrag ab.</p>
+      <div id="bab-pools" class="pool-list"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="period-title">
+      <div class="panel-heading"><div><p class="eyebrow">Getrennte Kennzahlensichten</p><h2 id="period-title">Plan, Ist und Stichtag</h2></div></div>
+      <p class="muted">Diese Tabelle aggregiert ausschließlich deine manuellen Szenarioangaben über die A03-Periodenfunktion. Sie liest keine Spiel-/Ledgerdaten und schreibt keine Werte dorthin.</p>
+      <div class="subpanel">
+        <div class="panel-heading"><div><h3>Operative Flusswerte</h3><p class="muted">Plan und Ist werden getrennt in Kalendermonaten und Jahren angezeigt.</p></div><button id="add-flow" class="secondary" type="button">Flusswert hinzufügen</button></div>
+        <div id="flow-rows" class="table-list"></div>
+      </div>
+      <div class="subpanel">
+        <div class="panel-heading"><div><h3>Bestände am Stichtag</h3><p class="muted">Bestände werden als Datumsschnappschüsse angezeigt und nicht über Monate summiert.</p></div><button id="add-stock" class="secondary" type="button">Stichtag hinzufügen</button></div>
+        <div id="stock-rows" class="table-list"></div>
+      </div>
+      <button id="aggregate-periods" class="primary" type="button">Periodensichten aktualisieren</button>
+      <div id="period-output" class="period-output" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="snapshot-title">
+      <div class="panel-heading"><div><p class="eyebrow">Angebotsversionierung</p><h2 id="snapshot-title">Snapshot und Annahme</h2></div><span id="offer-status" class="tag pending">Kein Snapshot</span></div>
+      <p class="muted">Ein Snapshot hält den berechneten Nettoplanpreis und den A03-Kalkulationsstand unverändert fest. Nach Annahme bleiben Vertragspreis und Snapshot gesperrt. Vor Annahme kann der offene Entwurf neu berechnet werden; bereits gespeicherte Snapshots ändern sich dabei nicht.</p>
+      <form id="snapshot-form" class="form-grid">
+        <label>Angebots-ID<input name="offerId" required autocomplete="off" placeholder="eigene ID"></label>
+        <label>Einreichungsdatum<input name="submittedAt" type="date" required></label>
+        <label>Kostenversion<input name="costVersion" required autocomplete="off" placeholder="eigene Versions-ID"></label>
+        <label>BAB-Version<input name="babVersion" required autocomplete="off" placeholder="eigene Versions-ID"></label>
+        <button class="primary wide" type="submit">Snapshot speichern</button>
+      </form>
+      <div id="snapshot-list" class="snapshot-list"></div>
+      <form id="accept-form" class="form-grid" hidden>
+        <label>Zu akzeptierender Snapshot<select name="snapshotId" required></select></label>
+        <label>Annahmedatum<input name="acceptedAt" type="date" required></label>
+        <button class="primary wide" type="submit">Annahme dokumentieren</button>
+      </form>
+      <div id="accepted-output" class="accepted-box" hidden></div>
+    </section>
+    <p id="finance-status" class="live-status" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

@@ -1,7 +1,10 @@
 # Agentenstruktur – WFWSimulation
 
-Stand: 2026-10-29
+Stand: 2026-11-01
 Status: ACTIVE / Governance-Baseline
+## Effiziente Übergaben und Preflight
+
+A01 führt je Arbeitspaket einen kurzen Preflight-Digest mit CP, aktiven Tickets, Entscheidungen, Branch/HEAD, Status-/Diff-Summary und Prüfsummen der Control-Plane-Dokumente. Agenten verifizieren den Digest; unveränderte Volltexte werden nicht bei jedem Agentenwechsel erneut wiederholt. Geänderte Prüfsummen, Entscheidungen, Goals/Tickets oder Abhängigkeiten lösen ein vollständiges Re-Read der betroffenen Stellen aus. Ticket- und Fachdokumente werden immer im benötigten Umfang gelesen. A01 vergibt abgegrenzte Pakete an jeweils einen schreibenden Owner; parallele Arbeit ist auf unabhängige Read-only-Reviews oder disjunkte Pfade beschränkt. Agentenberichte an A01 nennen knapp Delta, Akzeptanzkriterien mit Belegen, Tests, Grenzen/Blocker und nächsten Adressaten; fehlende Nachweise bleiben ausdrücklich offen.
 
 | ID | Name | Fachverantwortung |
 |---|---|---|
@@ -69,6 +72,18 @@ Fachübergreifende Ereignis-/Finanzverträge, Lerninhalts-Gates, Smoke-Nachweise
 A09 verantwortet automatisierte Qualitätssicherung, Regressionen, Testabdeckung und Release-Gates. A12 verantwortet explorative visuelle und funktionale Browserprüfung sowie reproduzierbare Übergaben an den Nutzer. A12 darf isolierte Testspielstände und QA-Artefakte erstellen, aber keinen Produktcode, Simulations-/Finanzregeln, dauerhafte Nutzerspielstände oder Releases ändern. Verbindliche Rechte stehen im [Rollenprofil A12](a12-browser-playtest.md).
 
 
+
+## Korpus-, Rollen- und Freigabenachweise
+
+Korpusreview beginnt mit versioniertem Quellenmanifest: Auswahlregel, Dateitypen, Ausschlüsse, Nenner, Einzelpfad, SHA-256 und Disposition je Quelle. Lesbarkeit, Inhaltsabdeckung, Kompetenzmapping und Rechteprüfung bleiben unabhängige Gates. Korpusänderungen erhalten eine neue Manifestversion.
+
+CP/MCP führen getrennte Felder für Autor, Mitwirkende, Fachreview und unabhängige QA; fehlende Prüfungen werden ausdrücklich benannt. A01-Selbstreview zählt nicht als unabhängige QA.
+
+Für jedes Deliverable weist A01 die relevanten Ebenen Domain/Eventvertrag, Runtime/API, Schema/Persistenz, produktive Finanzmutation und Release getrennt aus, jeweils mit Status, D-ID oder `NEIN/PROPOSED`, autorisierender Rolle und Beleg. Eine Prüfung oder Umsetzung ersetzt keine fehlende Freigabe; Dokumentation gewährt keine Autorität.
 ## Review-, Retro- und Analysefrequenz
 
 Gebündelte CP-Review, Retro und Analyse erfolgen nach jedem 250. CP (CP-0250, CP-0500, CP-0750 usw.), nicht nach jedem einzelnen CP oder Arbeitsauftrag. Zusätzlich wird nach jedem erfolgreichen Commit und jedem erfolgreichen Push geprüft. CP-Nummern werden nie zurückgesetzt. Spätere Nutzeranweisungen haben Vorrang vor älteren CP-/MCP-Texten; bestätigte CPs/MCPs werden nicht rückwirkend geändert.
+
+## Versionsübergreifendes Rechtsaktualitäts-Gate
+
+Für rechtlich relevante Entscheidungen gilt D-0161 und das [Rechtsrahmenregister](../legal/legal-framework-register.md): aktuelle Rechtslage unabhängig vom Simulationsjahr; Registerprüfung vor Abschluss jedes V; Auswirkungen vor Release in allen betroffenen Stellen beheben. Zuständigkeiten: A08 Quellen/Änderungsimpact, A01 Register und Koordination, fachliche Rollen Änderungen, A09 Vollständigkeits-/Regressiongate.

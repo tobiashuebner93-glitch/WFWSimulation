@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const html = await readFile(new URL('./run.html', import.meta.url), 'utf8');
+const js = await readFile(new URL('./run.js', import.meta.url), 'utf8');
+const css = await readFile(new URL('./run.css', import.meta.url), 'utf8');
+assert.match(html, /Vorschlag für den Testlauf/);
+assert.match(html, /04\.01\.2027 bis 29\.01\.2027/);
+assert.match(html, /name="confirmSyntheticAssumptions" required/);
+assert.match(js, /Anfangsressourcen · Vorschlag/);
+assert.match(js, /id="apply-resource-proposal"/);
+assert.ok(js.includes('skills&quot;:[&quot;turning'));
+assert.match(js, /name="confirmResourceProposal" required/);
+assert.match(js, /Vorschlag eingesetzt\. Bitte prüfe und bestätige/);
+assert.match(js, /name !== 'confirmSyntheticAssumptions'.*checked = false/);
+assert.match(js, /name !== 'confirmResourceProposal'.*checked = false/);
+assert.match(js, /systemseitig anhand des gewählten Szenarios vorgegeben oder durch einen geführten/);
+assert.match(css, /\.proposal-card/);
+assert.match(css, /\.proposal-confirm input\[type=checkbox\]/);
+console.log('A05 start proposal UI regressions: PASS (scenario and resource suggestions, explicit confirmation, edit invalidation, mobile styles, future setup guidance)');
+

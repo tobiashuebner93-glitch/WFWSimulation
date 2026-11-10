@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
+import { readV3RunModuleGraph } from './a05-v3-run-module-graph-cache.mjs';
+
+const base = new URL('./', import.meta.url);
+const html = await readFile(new URL('run.html', base), 'utf8');
+const js = await readFile(new URL('run.js', base), 'utf8');
+const css = await readFile(new URL('run.css', base), 'utf8');
+const jsBytes = await readFile(new URL('run.js', base));
+const cssBytes = await readFile(new URL('run.css', base));
+const jsHash = createHash('sha256').update(jsBytes).digest('hex');
+const cssHash = createHash('sha256').update(cssBytes).digest('hex');
+const graph = await readV3RunModuleGraph();
+
+assert.match(js, /name="sensitivityMode"/, 'offer UI exposes the explicit sensitivity mode');
+assert.match(js, /value="unadjusted" selected/, 'unadjusted is the visible default');
+assert.match(js, /value="apply_l4_plan_indices"/, 'player can explicitly opt in');
+assert.match(js, /category\\":\\"material\\"|category":"material"/, 'opt-in JSON example classifies the cost');
+assert.match(js, /basePeriod\\":\\"2027-01\\"|basePeriod":"2027-01"/, 'opt-in JSON example names January 2027 basis');
+assert.match(js, /Material und Logistik verwenden gemeinsam denselben ProcurementPlanIndex/);
+assert.match(js, /direkte Arbeit den WagePlanIndex/);
+assert.match(js, /BusinessInputCostIndex wird nicht zusätzlich/);
+assert.match(js, /keine Istkosten, Prognose oder Änderung des eingegebenen Netto-Angebotspreises R/);
+assert.match(js, /Fehlen Indexe oder eindeutige Nachweise, bleibt die Kalkulation ausstehend/);
+assert.match(js, /submitRunOffer\(run,inquiry,values\)/, 'FormData selection is forwarded to the existing runtime API');
+assert.match(html, new RegExp(`run\\.js\\?v=sha256-${jsHash}&graph=${graph.graphToken}`), 'entry token binds to run.js and the complete static graph');
+assert.match(html, new RegExp(`run\\.css\\?v=sha256-${cssHash}`), 'entry token binds to exact run.css bytes');
+assert.match(html, new RegExp(`build-${jsHash}-${cssHash}-${graph.graphHash}`), 'logo navigation uses the current complete build token');
+assert.match(css, /\.offer-form/);
+console.log(`A05 T-0063 offer sensitivity UI regressions PASS (run.js sha256-${jsHash})`);

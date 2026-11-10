@@ -1583,3 +1583,315 @@ Diese Konvention gilt nur für das V2-Garagenprofil und die dort neu entstehende
 Kein Teilzahlungsversuch, keine automatische Dispoziehung und keine neue Strafe entstehen aus dieser Konvention. Der manuelle exakte Abruf nach D-0125 bleibt auf ausdrücklich unterstützte fällige eigene Rechnungen beschränkt; er wird nicht auf Immobilien- oder Anlagenraten erweitert. Kreditartspezifische Retry-/Verwertungsfolgen bleiben unverändert; keine Folge wird neu erfunden. Statusverarbeitung ist technisch von Zahlungsversuchen zu trennen, damit die festgelegte Reihenfolge tatsächlich gilt.
 
 D-0129 bleibt der V1-Vertrag; D-0160 ergänzt ausschließlich V2. Diese Szenarioreihenfolge ist keine allgemeine Bank-, Branchen-, Rechts- oder Gesetzesrangfolge.
+
+## D-0161 – Aktuelle Rechtslage und versionsübergreifendes Rechtsrahmenregister
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-10-31)
+Quelle: Nutzeranweisung im Gespräch; Rechtsrahmenregister [docs/legal/legal-framework-register.md](../legal/legal-framework-register.md)
+
+Für rechtlich relevante Spielregeln und Produktentscheidungen gilt jeweils die aktuelle Rechtslage zum dokumentierten Prüf- bzw. Release-Stichtag, unabhängig vom simulierten Start-/Wirtschaftsjahr des Profils. Historische Szenarien übernehmen kein historisches Recht, außer ein ausdrücklich als historischer Rechtsfall gekennzeichnetes Lern-/Spielereignis dokumentiert den damaligen Rechtsstand.
+
+Alle bisherigen und zukünftigen rechtlich relevanten Entscheidungen werden zentral im Rechtsrahmenregister mit D-ID/Ticket, aktueller Primärquelle, Rechtsstand, Prüfdatum, Geltungsbereich, Spielregel/Abweichung und Impactpfad geführt. Vor Abschluss jeder Version ist das gesamte Register auf Aktualität zu prüfen. Bei Rechtsänderungen werden vor Release alle betroffenen Spezifikationen, Decision-Log-Stellen, Simulation/Accounting/UI, Lerninhalte, Tests und Releasebelege aktualisiert; A08 dokumentiert Quellen und Auswirkungen, die Fachrollen setzen Updates um, A09 prüft das Gate. Nutzer- oder Agentenentscheidungen überschreiben geltendes Recht nicht. Vereinfachungen werden als Spielregeln gekennzeichnet und nicht als Rechtskonformität ausgegeben.
+## D-0162 – V3-Kalkulationsbasis, BAB-Rundung und Kennzahlenperiode
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung aller sechs Vorschläge; 2026-10-31)
+Quelle: Nutzerantwort auf die sechs nummerierten Entscheidungspunkte in [A01-Entscheidungsübersicht T-0067](a01-t0067-v3-entscheidungsuebersicht.md): „1. ja 2. ja 3. ja 4. ja 5. ja 6. ja“
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0063 / T-0065 / T-0066 / T-0067 / CP-0277–CP-0278
+
+Für V3 gilt:
+
+1. `R` in Angebots- und Produktkalkulation ist der Nettoplanpreis. Eine SimTAX-Komponente wird nicht in `R` einbezogen. D-0160 bleibt auf V2 beschränkt; diese Entscheidung erweitert weder V1 noch V2 und trifft keine Steuer-/Rechnungsentscheidung für andere Versionen.
+2. DB I zieht ausschließlich ausdrücklich als variabel klassifizierte Einzelkosten ab. Direkte Arbeits- und Maschinenkosten werden getrennt ausgewiesen. Zusätzlich wird das Ergebnis nach direkten Einzelkosten angezeigt. Nicht als variabel klassifizierte direkte Kosten werden nicht stillschweigend in DB I abgezogen.
+3. BAB-Rechnungen behalten intern ihre Dezimalpräzision. Veröffentlichte Währungswerte werden centgenau dargestellt; erforderliche Restcent werden nach dem Verfahren der größten ungerundeten Restfraktion verteilt. Bei gleichem Rest entscheidet die stabile Kostenstellen-ID aufsteigend. Verteilungssummen müssen auf die Ausgangskosten abstimmen.
+4. Bei Einreichung eines Angebots werden die verwendete Kosten- und BAB-Version als Kalkulationssnapshot festgehalten. Nicht angenommene Entwürfe dürfen bei geänderten Sätzen neu berechnet werden. Nach Annahme bleiben der Vertragspreis und der zugehörige Snapshot unveränderlich; Plan-Ist-Abweichungen werden separat ausgewiesen. Dies genehmigt kein Schema und keine Architektur.
+5. Ein Gesamt-DB-I von −0,01 € bis einschließlich +0,01 € gilt als „centnah“. Betrag und Vorzeichen bleiben sichtbar. Außerhalb dieses Intervalls wird aus dieser Entscheidung keine weitere prozentuale Warnschwelle abgeleitet.
+6. Operative Angebots-, Kosten- und Ergebniskennzahlen werden Kalendermonaten zugeordnet. Jahreswerte bilden Summe bzw. Abschluss der zwölf Kalendermonate. Cash und offene Posten werden zusätzlich als Stichtagswerte ausgewiesen. Makroperioden bleiben durch diese Regel unverändert.
+
+Die Entscheidung betrifft ausschließlich die dokumentierte V3-Kalkulations- und Kennzahlensicht.
+ Sie erzeugt keine Buchungen oder Finanzwerte, setzt keine konkreten Kosten-/Marktparameter fest und ist keine Schema-, Architektur-, Steuer- oder Rechtsfreigabe.
+
+## D-0163 – V3-MRO, Rechtsformumfang und Zusammenschlüsse
+
+Status: APPROVED (ausdrückliche Nutzerantwort auf drei gebündelte A01-Fragen; 2026-10-31)
+Quelle: Nutzerantwort: „1. ja, 2. gmbh & Co. KG soll noch in V3 spielbar sein. AG, eG und GmbH aA sollen in die Zielliste als noch zuzuordnen aufgenommen und zur Entscheidung vor Releas V3 markiert werden. 3. ja“
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0063 / T-0064 / V3-15 / V3-20 / V3-21 / D-0100–D-0102 / D-0161
+
+1. **MRO-Zukunftspfad:** D-0102s inflationsorientierter simulierter MRO-Zukunftspfad gilt auch für V3, wenn keine realen EZB-Daten für den betreffenden Zeitraum vorliegen. Die konkrete Szenarioformel, Verzögerung und Unsicherheit sind von A02/A08 als Modellparameter transparent festzulegen. Ein MRO-Indikator löst keinen automatischen Reset bestehender Kreditverträge aus. Bestehende V1-/V2-Verträge und V2-Scope D-0160 bleiben unverändert.
+2. **V3 spielbare Rechtsformen:** Der Umfang wird um die **GmbH & Co. KG** erweitert; sie muss als spielbarer V3-Fall berücksichtigt und quellengeprüft werden.
+3. **Weitere Rechtsformkandidaten:** **AG, eG und „GmbH aA“** werden in der Zielliste als noch zuzuordnende Kandidaten geführt. Ihre Aufnahme in den V3-Spielumfang ist vor dem V3-Release ausdrücklich zu entscheiden; diese Entscheidung ist nicht vorweggenommen. Die Schreibweise „GmbH aA“ ist vor einer rechtlichen Zuordnung zu klären, da die amtlichen Rechtsformbezeichnungen unter anderem „GmbH“, „AG“ und „Kommanditgesellschaft auf Aktien (KGaA)“ unterscheiden. A08 soll die gemeinte Form mit A01 klären und keine neue Rechtsformbezeichnung erfinden.
+4. **Unternehmenszusammenschlüsse:** V3 umfasst spielbare Kooperationsfälle (mindestens gemeinsamer Einkauf/Arbeitsgemeinschaft) und Konzentrationsfälle (mindestens Anteilserwerb/Unternehmenskauf). Gesetzliche Verschmelzungen nach UmwG werden nicht in diesen V3-Spielumfang aufgenommen und bleiben spätere Folgearbeit.
+5. D-0161 gilt unverändert: Es ist der aktuelle Rechtsstand zum Prüf-/Releasezeitpunkt anzuwenden, nicht automatisch der historische Rechtsstand des Spieljahres.
+
+Die konkreten Übergangs- und Rechtsformfolgen müssen vor V3-Release quellengeprüft sein. Diese Entscheidung genehmigt keine pauschale Rechtskonformität, keine Steuer-/Rechtsberatung und keine Architektur- oder Schemaänderung.
+## D-0164 – Klarstellung „GmbH aA“ als GmbH & Co. KGaA
+
+Status: APPROVED (ausdrückliche Nutzerklarstellung; 2026-10-31)
+Quelle: Nutzerantwort auf die A01-Rückfrage: „Ja, GmbH & Co. KGaA“
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0064 / V3-20 / D-0163
+
+Die in D-0163 zunächst wörtlich als „GmbH aA“ erfasste noch zuzuordnende Rechtsform meint **GmbH & Co. KGaA**. Sie wird in der V3-Zielliste unter dieser Bezeichnung als zusätzlicher Kandidat geführt. Wie bei AG und eG ist vor V3-Release ausdrücklich zu entscheiden, ob sie in den V3-Spielumfang aufgenommen wird. Die Klarstellung erweitert nicht die bereits bestätigte V3-Spielbarkeit der GmbH & Co. KG. A08 prüft die konkrete gesellschaftsrechtliche Ausgestaltung und Primärquellen; keine Rechts-/Steuerfreigabe wird durch die Zielaufnahme vorweggenommen.
+## D-0165 – V3 vorläufige Steuerkomponente und einheitliches Zahlungsziel
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-10-31)
+Quelle: Nutzerantwort auf die A01-Einzelfragen zu V3-Rechnungs-/Steuer- und Fälligkeitsregeln: „1. 19% bis V5 2. 14 tage für alle, bis Rechnungsstellung separat betrachtet wird.“
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0069 / D-0013–D-0020 / D-0157 / D-0161–D-0162
+
+1. Für die V3-Simulation wird bis zur erneuten Prüfung im Rahmen von V5 eine Steuerkomponente von 19 % auf steuerpflichtige Umsätze als vorläufige Szenarioregel verwendet. Sie bleibt getrennt vom Nettoplanpreis `R` nach D-0162 und ist in Angebot, Rechnung, Forderung und Zahlung nur dann auszuweisen bzw. zu berücksichtigen, wenn der Umsatz im Szenario steuerpflichtig ist. Das ist keine Behauptung, dass jeder Betrieb oder Umsatz zwingend 19 % unterliegt; Rechtsform, Kleinunternehmerregelung, Steuerbefreiungen und abweichende Steuersätze sind durch diese Zwischenregel nicht modelliert und vor V5 gesondert zu prüfen.
+2. Bis die Rechnungsstellung separat fachlich ausgearbeitet ist, gilt für alle V3-Kunden- und Lieferantenposten ein einheitliches Zahlungsziel von 14 Kalendertagen. Die bisher dokumentierten Fälligkeitsanker, Ankertagszählung und Wochenendverschiebung werden dadurch nicht verändert. Die Regel entscheidet weder, wann eine Leistung abrechenbar ist, noch wann eine Rechnung auszustellen ist; Rechnungsausstellung, Bemessungsgrundlage, Steuerstatus und konkrete Fälligkeit bleiben als getrennte Ereignisse sichtbar.
+3. Diese V3-Zwischenregeln ersetzen für V3 abweichende 30-Tage-Standardziele, soweit sie auf Kunden- oder Lieferantenposten angewandt würden. Sie ändern V1/V2 nicht und genehmigen keine Schema-/Architekturänderung. A03 muss die Finance-Brücke so begrenzen, dass keine steuerliche oder fälligkeitsspezifische Buchung ohne ausdrücklich vorliegende Rechnungs-, Status- und Datumsdaten entsteht.
+
+Rechtsbezug: UStG § 12 (Regelsteuersatz für steuerpflichtige Umsätze) und § 19 (Kleinunternehmerregelung); siehe amtliche Primärtexte im Rechtsrahmenregister. Die 19-%-V3-Szenarioregel bleibt ausdrücklich vereinfacht.
+## D-0166 – Vereinfachte V3-Rechnung aus abgeschlossenem Auftrag
+
+Status: APPROVED (A01-Szenarioannahme gemäß Nutzerauftrag, bei fehlender Festlegung die wahrscheinlichste spielbare Lösung zu wählen; 2026-10-31)
+Quelle: Ableitung aus D-0162 (`R` als Nettoplanpreis; SimTAX außerhalb von `R`), D-0157 (Kunden-/Empfängerentscheidung), D-0165 (19-%-V3-Szenarioregel und 14 Kalendertage), A02-T-0069-Evidenz-Handoff und A08-Rechtsreview.
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0069 / D-0013–D-0017 / D-0112 / D-0157 / D-0162 / D-0165
+
+Für den einfachen V3-Szenariopfad gilt bis zur separaten Rechnungsmodellierung:
+
+1. Ein Auftrag wird erst abrechenbar, wenn die Fertigungs-/Lieferleistung im Run belegt und die positive Kunden- bzw. bevollmächtigte Empfängerentscheidung nach D-0157 vorliegt. Verkäufer oder Auftragnehmer dürfen die Kundenentscheidung nicht auslösen.
+2. Nach dieser positiven Entscheidung wird eine einzelne vereinfachte Rechnungsposition über den unveränderten, angenommenen Nettoplanpreis `R` erzeugt. Der Nettopreis wird nicht neu berechnet oder geändert. Für diesen V3-Standardmodus gilt diese Position als steuerpflichtig und erhält die 19-%-Szenariokomponente nach D-0165; Steuerbefreiungen, ermäßigte/0-%-Umsätze und §19-Kleinunternehmerstatus sind nicht modelliert und dürfen nicht als geltendes Recht für jeden Betrieb dargestellt werden.
+3. Das Rechnungsdatum ist das Datum des belegten positiven Kundenentscheids. Die Kundenfälligkeit wird anhand des späteren Datums aus belegter Leistung und Rechnungsdatum bestimmt; Ankertagszählung und Wochenendverschiebung folgen D-0013–D-0017. Damit beträgt das V3-Zahlungsziel 14 Kalendertage unter D-0165. Diese Ereignisfolge ist eine vereinfachte Produktregel und keine allgemeine handels-/steuerrechtliche Aussage über Abnahme, Rechnungslegung oder Umsatzrealisierung.
+4. Rechnung, Steuerkomponente, Bruttoforderung, Zahlungseingang und Cash bleiben separate Finanzereignisse. Diese Entscheidung allein erzeugt keine Buchung. Supplier-Invoice-/Payment-Verarbeitung folgt den bestehenden Lieferantenankern; die Rate für Supplier-Payables bleibt 14 Kalendertage gemäß D-0165.
+
+D-0112 gilt weiterhin ausdrücklich nur für V1; D-0166 definiert den eng begrenzten V3-Pfad neu. V1/V2 werden nicht geändert. Keine Schema-/Architekturfreigabe.
+## D-0167 – Leistungsdatum für V3-Szenario-Rechnungen
+
+Status: APPROVED (A01-Szenariokonvention nach A02-Cross-Review; 2026-10-31)
+Quelle: A02-Choreografie trennt `performanceDate`, `deliveryDate` und `acceptanceDate`; A02-Belegprojektion liefert für jeden abgeschlossenen Arbeitsgang ein datiertes Abschlussereignis. A02-Cross-Review CP-0318-Vorbereitung stellte fest, dass D-0166 das konkrete Leistungsdatum nicht auswies.
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0069 / D-0013–D-0017 / D-0157 / D-0165–D-0166
+
+Für den begrenzten V3-Szenario-Rechnungspfad gilt als Leistungsdatum das Datum des zuletzt abgeschlossenen, im Vertragssnapshot geforderten Fertigungsarbeitsgangs. Das Lieferdatum und das Datum der positiven Kunden-/bevollmächtigten Empfängerentscheidung bleiben separate Ereignisdaten und werden nicht als Leistungsdatum umetikettiert. Das Rechnungsdatum bleibt nach D-0166 das Datum der positiven Kundenentscheidung. Der Kunden-Fälligkeitsanker ist das spätere Datum aus dem belegten letzten Arbeitsgangabschluss und dem Rechnungsdatum; 14 Kalendertage, Ankertagszählung und Wochenendverschiebung folgen D-0013–D-0017 und D-0165.
+
+Dies ist eine eng begrenzte Spiel-/KLR-Periodisierung. Sie behauptet keine allgemeine gesetzliche Definition des Leistungszeitpunkts, ändert keine Vertrags-/Abnahmeregel und erzeugt allein keine Buchung. Fehlt ein belegtes Abschlussdatum für einen vertraglich geforderten Arbeitsgang, bleibt die Rechnung `pending/non-posting`.
+## D-0168 – V3-Basisregel für tatsächliche Kundenzahlung
+
+Status: APPROVED (A01-Szenariokonvention im Rahmen des Nutzerauftrags, offene Entscheidungen selbst mit der wahrscheinlichsten spielbaren Lösung zu schließen; 2026-10-31)
+Quelle: D-0110 (vom Nutzer bestätigter vollständiger Kundeneingang am Fälligkeitstag ohne eigenes Cash-Gate, bisher ausdrücklich V1), D-0120 (Kundeneingang vor eigenen Zahlungsversuchen desselben Tages), Nutzerbestätigung D-0165 (14 Kalendertage für alle V3-Kunden-/Lieferantenposten), V3-06 (End-to-End-Auftrag einschließlich Zahlung).
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0069 / D-0110 / D-0120 / D-0165–D-0167
+
+Als einfacher V3-Basisfall wird eine offene D-0166-Szenario-Rechnung am vertraglichen Fälligkeitstag vollständig bezahlt. Der Kundeneingang wird ohne Gate durch den eigenen Bankbestand erfasst, erhöht Bank/Cash und vermindert die Bruttoforderung; er erzeugt keinen zweiten Erlös. Bereits gezogene eigene Liquiditätslinien werden nach den dafür einschlägigen Nutzerregeln behandelt. Bei zeitgleichen Vorgängen ist der Kundeneingang vor eigenen Zahlungsversuchen desselben wirksamen Tages verfügbar.
+
+Bis zu einem ausdrücklich modellierten Verspätungs-/Ausfallereignis wird keine Zahlungsmoralwahrscheinlichkeit, Teilzahlung, Mahnung oder Kundenausfall erfunden. Rechnungen mit Fälligkeit nach dem Simulationsende bleiben offen; Zahlung wird weder vor Fälligkeit noch rückwirkend bei Run-Restore gebucht. Ereignis-ID und Quellenreferenz müssen stabil/replay-sicher sein. Dies ist eine vereinfachte V3-Spielkonvention, keine reale Zahlungsgarantie, kein Branchenmittel und keine Rechtsfolge. V1/V2 bleiben unverändert; D-0168 erweitert D-0110 ausschließlich für den D-0166-V3-Basisfall.
+
+## D-0169 – Synthetischer V3-Nachfragekanal aus Makroaktivität
+
+Status: A01-Szenariokonvention nach ausdrücklicher Nutzervorgabe, offene V3-Entscheidungen eigenständig spielbar zu schließen; 2026-10-31
+Quelle: Nutzerauftrag zur fortgesetzten eigenständigen V3-Bearbeitung; A08-Makroquellen-/Eignungsreview und A02-T-0063-Simulationsvertrag; A11-Reassessment CP-0338. Öffentliche Quellen liefern aggregierte Reihen, keine Münchner Einzelgebotsdaten oder firmenspezifischen Nachfrageelastizitäten.
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0063 / T-0065 / T-0069 / D-0161–D-0168
+
+Für den gemeinsamen V3-Szenariolauf gilt als ausdrücklich **synthetische, nicht empirisch kalibrierte Spielannahme** ein begrenzter Nachfragekanal:
+
+1. `demandIndex = 100 + activityGapPct`.
+2. `demandFactor = clamp(demandIndex / 100, 0.90, 1.10)`.
+3. Die Basis beträgt fünf synthetische Marktanfragen je Simulationswoche. Die erwartete Wochenmenge ist `5 × demandFactor`; der ganzzahlige Wert wird seed-stabil durch floor plus Bernoulli-Ziehung des Restes bestimmt.
+4. Neutrale Aktivitätslücke oder fehlende Markt-Exposition führt zu Faktor 1.0 und damit zum unveränderten Basispfad. Dieselbe Run-ID/Seed/Modellversion und dieselben Inputs müssen dieselbe Anfragefolge erzeugen.
+5. `activityGapPct`, Faktor, angewandte Kappung und erzeugte Anfragen bleiben im Makro-/Markttrace mit Szenario- und Modellversion sichtbar. Der Wert von fünf Anfragen, die 1:1-Übertragung und die ±10-%-Kappung sind reine V3-Szenarioparameter; sie sind weder Branchenwerte noch Rechts-, Wirtschaftsprognose oder empirische Kalibrierung.
+6. Der Nachfragekanal verändert keine individuellen Angebotspreise, Vertragspreise, Kosten, Kapazitäten, Buchungen, Steuern, Forderungen, Verbindlichkeiten oder Cash. Eine Makroänderung selbst erzeugt stets 0,00 € Finanzwirkung. Jede spätere monetäre Wirkung bedarf eines getrennten, autorisierten Vertrags-/Leistungs-/Finanzereignisses gemäß A03.
+
+Die Konvention gilt nur in V3 und nur nach bestandenen A02-Regressionen sowie fachlichem A03-Nichtbuchungsreview und unabhängiger A09-Prüfung. V1/V2, reale Marktbehauptungen und öffentliche Datenquellen bleiben unverändert. Es wird keine Architektur- oder Schemafreigabe erteilt.
+## D-0170 – FIFO-Spielbewertung eigener Fertigwaren (V3)
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung der A03-Empfehlung; 2026-11-01)
+Quelle: A03-Empfehlung in der T-0066-Entscheidungsvorlage; Nutzerantwort „Ich folge der Empfehlung von A03“.
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0066 / D-0162 / D-0170
+
+Für den nichtbuchenden V3-Spiel-KLR-Pfad eigener Fertigprodukte gilt FIFO je Produkt/SKU: die zuerst hergestellten, belegten Fertigwarenlose werden zuerst versandt und bewertet. Sortierung erfolgt nach Produktionsdatum, dann stabiler Losfolge und Los-ID. Teilentnahmen verteilen den verbleibenden Loswert centgenau; Rundungsreste verbleiben im Los und werden bei seiner letzten Entnahme vollständig aufgelöst.
+
+Ein bewertetes Los verlangt explizite Quellenreferenzen für Materialkosten, direkte Fertigungsarbeit, Maschinenleistung und Fertigungsgemeinkosten sowie die abgeschlossenen Produktionszuweisungen und die Produktionsmenge. Entwicklungsaufwand wird nicht in den Fertigwarenwert eingerechnet. Fehlen belegte Werte oder decken bewertete FIFO-Lose die Versandmenge nicht, bleibt COGS `pending`; der physische Versand wird dadurch nicht verhindert. Der Versandwertabgang und COGS müssen mengen- und centgenau übereinstimmen.
+
+Diese V3-Konvention erzeugt keine Erlös-, Steuer-, Cash- oder Hauptbuchbuchung und ist keine Freigabe einer handelsrechtlichen Bilanzbewertung. HGB §255 nennt Material-/Fertigungskosten und angemessene Fertigungsgemeinkosten als Herstellungskostenbestandteile; §256 erlaubt FIFO/LIFO für gleichartige Vorräte unter GoB-Voraussetzungen, ordnet FIFO aber nicht allgemein an. Die Umsetzung ersetzt keine Prüfung der Anwendbarkeit im konkreten Unternehmen. V1/V2 bleiben unverändert.
+
+Amtliche Quellen: https://www.gesetze-im-internet.de/hgb/__255.html und https://www.gesetze-im-internet.de/hgb/__256.html.
+
+## D-0171 – Governance-Nachweise aus CP-0500
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung, 2026-11-05)
+Quelle: Nutzerantwort auf Governance-Vorschläge 1–3 und separate Einfrierungsfrage zu CP-0500/MCP: „1. ja“; zuvor bestätigte Vorschläge 2 und 3 sowie Freeze ebenfalls „ja“.
+Bezug: MG-002 / T-0097–T-0108 / CP-0500 / MCP-2026110401
+
+1. Quellen-/Fragenkorpora erhalten vor Review ein versioniertes Pfadmanifest mit Auswahlregel, Dateitypen, Ausschlüssen, Nenner, SHA-256 und Disposition je Quelle. Lesbarkeit/OCR, Inhaltsabdeckung, Kompetenzmapping und Nutzungsrechte bleiben getrennte Gates. Korpusänderungen erzeugen eine neue Manifestversion.
+2. CP/MCP und Abschlussberichte weisen Autor, Mitwirkende, Fachreview und unabhängige QA getrennt aus. Nicht ausgeführte Prüfungen sind ausdrücklich markiert; A01-Selbstreview gilt nicht als unabhängige QA.
+3. Für jedes Deliverable werden Domain-/Eventvertrag, Runtime/API, Schema/Persistenz, produktive Finanzmutation und Release getrennt mit Status, D-ID oder `NEIN/PROPOSED`, autorisierender Rolle und Beleg erfasst. Ein Review oder eine technische Umsetzung begründet keine fehlende Freigabe; die Dokumentation schafft keine neue Autorität.
+4. CP-0500 und MCP-2026110401 sind nach Abschluss der A02–A12-Schlussreviews und ausdrücklicher Nutzerbestätigung am 2026-11-05 eingefroren. Spätere Änderungen oder Erkenntnisse werden ausschließlich in einem neuen CP dokumentiert; historische Dateien bleiben unverändert.
+
+## D-0172 – Nutzungsfreigabe für bereits extrahierte T-0084-Analyseergebnisse
+
+Status: APPROVED (ausdrückliche Nutzerfreigabe; 2026-11-05)
+Quelle: Nutzeranweisung: „Ich erteile dir die Lizenz für die extrahierten Ergebnisse, da die originalen Dateien bereits gelöscht sind.“
+Bezug: MG-002 / SLG-002.1 / T-0084 / Manifest v1–v3 / CP-0501
+
+Der Nutzer autorisiert die interne Projektnutzung der bereits vorhandenen, nicht wortgetreuen extrahierten Analyseergebnisse aus den T-0084-Berichten: abstrakte Themen-/Kompetenzcluster, Antworttiefenrubrik, Qualitätsbefunde und Kandidaten-Crosswalks. Die Freigabe deckt keine Wiederherstellung, Öffnung, Verbreitung oder weitere Extraktion aus den ursprünglichen Prüfungsdateien ab. Die 129 Originaldatensätze bleiben als gelöscht und für Originaldatei-Projektnutzung nicht freigegeben klassifiziert.
+
+Aus den Analyseergebnissen dürfen eigenständig formulierte Lernmaterialien und Redaktionskriterien abgeleitet werden. Originalfragen, Antworten, Lösungen oder charakteristische Zahlen-/Antwortkombinationen werden nicht übernommen oder rekonstruiert. Die Freigabe begründet keine Aussage über Rechte Dritter an den ursprünglichen Prüfungsdateien und keine Prüfungsgewichtung, Vollabdeckung, Rechtsstand- oder IHK-Kalibrierung.
+
+Für aktuelle Rechtsinhalte sind weiterhin aktuelle amtliche Quellen zu prüfen. Diese Entscheidung ist eine eng begrenzte Nutzerautorisierung für vorhandene abgeleitete Analyseartefakte; sie ändert nicht die Disposition der Originaldateien in den historischen Manifestversionen.
+
+## D-0173 – V3-Lieferantenprofile und getrennte Invoice-/Payment-Evidence
+
+Status: APPROVED (ausdrückliche Nutzerentscheidungen; 2026-11-07)
+Quelle: Nutzerantworten zu A03s T-0077-Entscheidungsvorlage: Option „B – drei Profile“, Übernahme der vorgeschlagenen Testwerte, Rechnungsdatum als Anker für 14 Tage und Bankänderung erst durch ein separates ausgeführtes Zahlungsevent.
+Bezug: MG-002 / T-0069 / T-0077 / D-0128 / D-0165 / D-0166
+
+Für den V3-Beschaffungsszenariopfad werden drei synthetische Lieferantenprofile modelliert. D-0128 dient ausschließlich als ausdrücklich gekennzeichneter Rechenanker für diese Szenarioangebote; die Werte sind keine aktuellen Händlerangebote oder V3-Marktbeobachtungen und ändern die historische D-0128-/V1-Aussage nicht.
+
+- Lokaler Händler: Materialanker B × 1,20; am selben Simulationstag verfügbar, begrenzte Menge, keine Mindestmenge, 0 € Fracht.
+- Onlinehändler: B × 0,95; 5 Kalendertage Lieferzeit, 7,50 € Fracht je Bestellung, keine Mindestmenge. Ein zusätzliches Verzögerungsrisiko wird erst wirksam, wenn seine Höhe als eigener Seed-Parameter festgelegt ist.
+- Großhandel: B × 0,88; 8 Kalendertage Lieferzeit, Mindestmenge 100 kg für Halbzeug bzw. 100 Stück für Normteile, 0 € Fracht.
+
+Eine angenommene Lieferantenofferte friert Preis, Menge/Einheit, Fracht, Liefer- und Zahlungsbedingungen als unveränderliche Vertrags-/Bestellquelle ein. Wareneingang bleibt ein physisches Mengenereignis und erzeugt für sich weder Rechnung noch AP-Saldo oder Cashwirkung. Nach akzeptiertem Wareneingang darf ein separates Rechnungsevidenzereignis mit ausdrücklich gespeichertem Rechnungsbetrag, Währung, Steuerstatus, Rechnungstag und Belegreferenzen erzeugt werden. Es bleibt zunächst nichtbuchend. Das bestätigte Zahlungsziel beträgt 14 Kalendertage; der explizite Rechnungstag ist der Fristanker. Das konkrete Datum muss als Rechnungsdatum im Ereignis stehen; es wird nicht aus bloßem Bestelldatum oder Angebot abgeleitet.
+
+Bank/Cash ändert sich nur durch ein separates, autorisiertes und ausdrücklich ausgeführtes Zahlungsevent mit Rechnung/AP-Referenz, Zahlungstag, Betrag, Währung und Quellenbeleg. Bestellung, Wareneingang und Rechnungsnachweis allein verändern den Bankbestand nicht. Diese Entscheidung genehmigt keine automatische Fälligkeitsexekution, Teilzahlung, neue Kontierung, Steuerbuchung, Schema-/Architekturänderung oder allgemeine Finanzfreigabe. Bestehende Liquiditätsregeln und erforderliche A03-Fachreviews bleiben anwendbar.
+
+Alle Preisaufschläge/-abschläge, Lieferzeiten, Fracht- und Mindestmengen sind synthetische und reproduzierbare V3-Szenarioparameter. Sie sind nicht als Branchenwerte oder Marktpreisbehauptungen auszugeben. V1/V2 bleiben unverändert.
+## D-0174 – Isolierter V3-Lieferanten-OP und Zahlungsausgleich
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-11-07)
+Quelle: Nutzerantwort auf A03-Finanzreview zu D-0173: „Ja – isolierter AP-Subledger“.
+Bezug: MG-002 / T-0069 / T-0077 / D-0165 / D-0173
+
+Als eng begrenzte V3-Finanzbrücke darf eine nach akzeptiertem Wareneingang erzeugte, explizite Lieferantenrechnungsevidenz einen isolierten Kreditoren-OP im Supplier-AP-Subledger erzeugen. Der offene Betrag ist der centgenau gespeicherte Rechnungsbetrag; Lieferant, Rechnung, Bestellung, Bestellzeile und Wareneingang müssen über stabile Referenzen gebunden sein. Das Rechnungsdatum ist nach D-0173 der Anker für 14 Kalendertage.
+
+Nur ein separates, autorisiertes und ausdrücklich ausgeführtes Zahlungsevent darf den Bankbestand mindern. Es muss denselben Kreditoren-OP centgenau reduzieren und Rechnung, Lieferant, Betrag, Währung, Zahlungstag und Quellenreferenz binden. Eine Teilzahlung, automatische Zahlung oder Zahlung ohne ausreichenden verfügbaren Betrag ist durch diese Entscheidung nicht erlaubt; bestehende V3-Liquiditätsregeln gelten. Replay/Dedupe muss idempotent sein; wiederholtes Zahlungsevent darf AP oder Bank nicht erneut verändern.
+
+Diese schmale Subledgerbrücke erzeugt keine Hauptbuch-/GL-, Steuer-, Materialbestands-, Inventarwert-, Aufwand- oder COGS-Buchung und keine umfassende Bilanzfreigabe. Rechnungsnachweis/OP und ausgeführte Zahlung bleiben getrennte Ereignisse. V1/V2 bleiben unverändert. Vor Abschluss des Slices sind A03 Finanzreview sowie A09 Replay-/Restore-/Periodenreview erforderlich.
+## D-0175 – V3-Payroll aus belegter Arbeitsleistung
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-08)
+Quelle: Nutzerantwort auf A01s T-0077-Lösungspakete: „1. ja“.
+Bezug: MG-002 / T-0069 / T-0077 / D-0152 / D-0171
+
+Die V3-Payroll wird aus genehmigten, tatsächlich geleisteten Arbeitszeiten und den jeweiligen Vertrags- und gültigen Rechtsparametern aufgebaut. Bruttoaufwand, Nettoauszahlung, einbehaltene Lohnsteuer, Arbeitnehmer-Sozialbeiträge und Arbeitgeberbeiträge bleiben getrennte Beträge/Verbindlichkeiten. Inhaberentnahmen eines Einzelunternehmens sind keine Payroll und kein Lohnaufwand. Für erforderliche, aber fehlende Vertrags-, Zeit-, Steuer- oder Beitragsdaten werden keine Pauschalwerte erfunden; der betroffene Abrechnungslauf bleibt PENDING. Payroll-Auszahlungen und Abführungen benötigen jeweils eigene autorisierte Zahlungsevents.
+
+## D-0176 – V3-Steuerarten und Abführung getrennt führen
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-08)
+Quelle: Nutzerantwort auf A01s T-0077-Lösungspakete: „2. ja“.
+Bezug: MG-002 / T-0069 / T-0077 / D-0165–D-0168 / D-0171 / D-0173
+
+SimTAX nach D-0165/66 bleibt als ausdrücklich gekennzeichnete Szenariokomponente von realen Steuerarten getrennt. Gesetzliche Steuerarten, Payroll-Abgaben, Erklärungs-/Fälligkeitsperioden und ausgeführte Zahlungen erhalten getrennte Quellen, Events und Salden. Unbekannter Lieferantensteuerstatus erzeugt keinen angenommenen Vorsteuerbetrag; der betroffene Wert bleibt PENDING. Der rechtliche Referenzstand wird vor jedem V-Release anhand aktueller amtlicher Quellen geprüft und mit Quelle, Wirksamkeit und Modellversion geführt. Steuerzahlungen ändern Bank erst durch ein eigenes ausgeführtes Zahlungsevent. Das ist keine pauschale rechtliche Freigabe jeder Steuerbehandlung.
+
+## D-0177 – V3-Dispositionsrahmen und Zinsfluss
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-08)
+Quelle: Nutzerantwort auf A01s T-0077-Lösungspakete: „3. ja“.
+Bezug: MG-002 / T-0069 / T-0077 / D-0123–D-0129 / D-0152 / D-0171
+
+Für V3 werden die bestätigten D-0123–D-0129-Dispoentscheidungen auf das neue Startprofil übertragen: Kreditrahmen 10 % der Bilanzsumme, einmal pro Quartal anhand des Schlussstands des Vorquartals, wirksam ab dem ersten Tag des Folgequartals; für den Start gilt die belegte Eröffnungsbilanz. Draws bleiben manuell, exakt in Höhe eines zulässigen Fehlbetrags und auf den freien Rahmen begrenzt; es gibt keinen automatischen Abruf. Kundeneingänge führen gezogene Disposchuld zuerst zurück, bevor eigene Zahlungen des Tages ausgeführt werden. Dispozins wird täglich auf dem gezogenen Saldo nach Actual/365 berechnet, ohne Tagesrundung, und als Monatsbetrag einmalig auf Cent gerundet belastet. Draw, Rückzahlung und Zinsbelastung sind getrennte Events. Ungenutzter Rahmen ist weder Zahlungsmittel noch Schuld. V3-Startbilanz nach D-0180 beträgt 10.000 €; daher ist der anfängliche Rahmen 1.000 €, sofern keine neuen belegten Eröffnungspositionen hinzukommen. D-0129s übrige V1-Ereignisregeln gelten nur, soweit sie nicht außerhalb dieser Dispo-/Zinsregeln liegen und bereits separat für V3 bestätigt sind.
+
+## D-0178 – COGS bis zur BAB-/Kostenpoollösung PENDING
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-11-08)
+Quelle: Nutzerantwort auf A01s T-0077-Lösungspakete: „4. B“.
+Bezug: MG-002 / T-0069 / T-0077 / T-0067 / D-0170 / D-0171
+
+V3 verwendet bis zur späteren BAB-/Kostenpoollösung keine Ersatz- oder Pauschalverteilung, um WIP, Fertigwarenherstellungskosten oder COGS vollständig zu bewerten. Eigene Fertigwarenversände folgen weiterhin der FIFO-Spielkonvention aus D-0170; ist die notwendige Istkostenbasis mangels BAB/Kostenpoolzuordnung nicht vollständig belegt, bleiben bewertete WIP-/Fertigwarenwerte und COGS PENDING. Der physische Produktions-/Versandfluss kann fortgesetzt und separat ausgewiesen werden, aber er belegt keinen finanziellen Jahresabschluss. Rohmaterialzugänge dürfen nur mit belegten Rechnungsdaten bewertet werden; die bestätigte E3-Methode des gleitenden Durchschnitts bleibt erhalten. Keine Werte werden aus Angebotsplänen als Istkosten abgeleitet.
+
+## D-0179 – Separater V3-Hauptbuch-Postingpfad
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-08)
+Quelle: Nutzerantwort auf A01s T-0077-Lösungspakete: „5. ja“.
+Bezug: MG-002 / T-0069 / T-0077 / D-0171 / D-0173 / D-0174
+
+Ein separates, ausdrücklich autorisiertes GL-Posting darf nach fachlicher Kontierungsfreigabe dieselben D-0174-AP-/Zahlungsreferenzen als Quelldaten spiegeln. D-0174 selbst bleibt unverändert: seine Evidence-Events erzeugen weiterhin nur den isolierten AP-/Bank-Subledger und keine GL-, Steuer-, Bestands-, Aufwands- oder COGS-Zeilen. Ein GL-Mirror ist ein separates, dedupliziertes Postingereignis; er darf AP-/Bank-Cashflow weder erneut operativ ausführen noch doppelt zählen. Für jede Buchung gilt Soll = Haben auf Cent. Kontenrahmen, Eventkontierung, Storno-/Korrekturregeln, Kontrollkonten und Periodenabschluss sind vor Runtime-Buchung durch A03 zu spezifizieren und zu reviewen. Diese Entscheidung genehmigt den Domain-Postingpfad, nicht Schema, Runtime, Migration oder Release.
+
+## D-0180 – Monetärer Eröffnungsstand des V3-Einzelunternehmens
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-08)
+Quelle: Nutzerantwort auf A01s T-0077-Lösungspakete: „6. ja“.
+Bezug: MG-002 / T-0069 / T-0077 / D-0152 / D-0171
+
+Die 10.000 € Startbank des V3-Einzelunternehmens werden als Inhabereinlage/Eigenkapital der Szenarioeröffnung belegt. Die Grundwerkbank und Handwerkzeuge bleiben bis zu einer gesondert belegten Wertfeststellung außerhalb der monetären Eröffnungsbilanz; sie bleiben als physische Startausstattung im Spiel vorhanden. Nach D-0152 bestehen bei Runstart ansonsten keine Forderungen, Vorräte, Verbindlichkeiten, Darlehen, Maschinen oder Aufträge. Damit ist die monetäre Szenarioeröffnungsbilanz 10.000 € Bank = 10.000 € Eigenkapital. Sie ist eine transparente Spielannahme und keine Bewertung real vorhandener Vermögensgegenstände oder Steuer-/Bilanzberatung.
+
+## D-0181 – Kein auswählbarer 2019-Start in V3
+
+Status: APPROVED (ausdrückliche Nutzerentscheidung; 2026-11-08)
+Quelle: Nutzeranweisung „Lösche den 2019 Start als Option.“
+Bezug: MG-002 / SLG-002.2 / T-0119 / D-0152
+
+Für das aktuelle V3-Spiel ist ausschließlich das bestätigte Startprofil mit operativem Simulationsbeginn am 04.01.2027 und finanzieller Eröffnung zum 01.01.2027 auswählbar. Ein 2019-Startprofil wird im V3-Startdialog und in der Run-API nicht angeboten oder angenommen. D-0152 bleibt als historische Entscheidung erhalten; diese Entscheidung ändert weder V1/V2 noch archivierte Läufe und Reports.
+
+## D-0182 – Runtime/API-Implementierung von T-0119
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung „t-0119 ja“; 2026-11-08)
+Quelle: Nutzerantwort auf A01s Freigabefrage zu T-0119
+Bezug: MG-002 / SLG-002.2 / SLG-002.5 / T-0116 / T-0119 / T-0077 / T-0069 / D-0174–D-0180 / D-0181
+
+A01 darf den durch T-0119 abgegrenzten V3-Runtime-/API-Slice und die zugehörige lokale Run-Save-/Restore-Versionierung umsetzen. D-0174 bleibt operative AP-/Bankquelle; der D-0179-Hauptbuchpfad bleibt ein separates, dedupliziertes Journalmirror. Nur durch bestehende D-IDs und A03s Vertragsbericht explizit belegte Beträge, Daten und Kontierungsregeln dürfen verarbeitet werden. Fehlende Payroll-, Steuer-, Zins-, Kreditrahmen-Fortschreibungs-, Materialwert-, WIP-, Fertigwaren- und COGS-Quellen müssen als PENDING erhalten bleiben. Diese Freigabe ändert keine fachliche Regel und genehmigt weder Datenbankschema/Migration noch produktive Buchungen, allgemeine Rechts-/Steuerfreigabe oder V3-Release.
+
+## D-0183 – V3-Unterweisung und besondere Beauftragung für Arbeitsmittel
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-09)
+Quelle: Nutzerantwort auf A01-Vorschlag zu T-0114: „1. ja“.
+Bezug: MG-002 / SLG-002.2 / T-0114 / T-0119 / ArbSchG § 12 / BetrSichV § 12 / TRBS 1116
+
+Im V3-Spiel ist die simulationsinterne Unterweisung ein hartes Gate vor der ersten Nutzung des jeweiligen Arbeitsmittels durch die jeweilige Person. Sie wird mindestens jährlich sowie nach relevanten sicherheitsbezogenen Änderungen wieder fällig. Bei Arbeitsmitteln mit besonderen Gefährdungen ist zusätzlich eine dokumentierte, auf Arbeitsmittel und Tätigkeit begrenzte Beauftragung erforderlich. Das Gate gilt auch für Leiharbeitskräfte. Unterweisung, berufliche Qualifikation und besondere Beauftragung bleiben getrennte Voraussetzungen.
+
+Für die Simulation werden folgende ausdrücklich synthetische Arbeitsplanwerte verwendet: 1,0 geplante Arbeitsstunde für die Ersteinweisung je Person und Arbeitsmittelrevision; 0,5 geplante Arbeitsstunde für eine jährliche oder anlassbezogene Wiederholung. Diese Dauern sind Spielparameter und keine gesetzlich vorgeschriebenen Mindestzeiten. In-Game-Nachweise ersetzen keine reale Gefährdungsbeurteilung, Unterweisung, Befähigung oder Beauftragung. Rechtsstand ist vor jedem V-Release gemäß D-0161 erneut zu prüfen.
+
+## D-0184 – V3-Kundengegenangebot mit einer Verhandlungsrunde
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-09)
+Quelle: Nutzerantwort auf A01-Vorschlag zu T-0115: „2. ja“.
+Bezug: MG-002 / SLG-002.2 / T-0115 / BGB §§ 145–150
+
+Die kundenseitige Preisverhandlung in V3 verwendet genau eine Gegenangebotsrunde. Dies ist eine synthetische und reproduzierbare Spielannahme, kein Marktpreis- oder Branchenwert. Für Referenzpreis `R` in Cent und das bereits vorhandene Segmentgewicht `w` im Intervall 0 bis 1 gelten centgenau:
+
+- Annahmegrenze `A = round(R × (1 + (1 − w) × 0,10))`.
+- Gegenangebotsgrenze `M = round(R × (1 + (1 − w) × 0,25))`.
+- Bei Spielerpreis `P ≤ A` folgt die bestehende 1–3-Kalendertage-Entscheidung.
+- Bei `A < P ≤ M` legt der Kunde genau ein Gegenangebot zum Preis `A` vor. Die Spielerfrist beträgt 3 Kalendertage. Eine spätere Antwort nach Fristablauf erzeugt keinen Vertrag.
+- Bei `P > M` lehnt der Kunde ab. Nach fristgerechter Spielerrevision wird eine Annahme bei `P2 ≤ A` oder Ablehnung bei `P2 > A` innerhalb der bestehenden 1–3-Kalendertage-Taktung entschieden; es gibt keine zweite Gegenrunde.
+
+Jede Gegenofferte ist ein neues Angebot. Nur die Annahme unveränderter Vertragsbedingungen schließt den Auftrag; bis dahin entstehen kein Auftrag und keine Finanzbuchung. Mit Annahme werden Preis und Leistungsumfang als unveränderlicher Vertragssnapshot gespeichert. Konkurrenzgebote und deren Einzelpreise werden nicht offengelegt. Die Spielregel ist vor V-Releases auf Aktualität und Rechtswirkung gemäß D-0161 zu prüfen.
+## D-0185 – Sofortige Annahme des exakten Kundengegenpreises
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-09; „Ja“ zu A01s Ja/Nein/Gegenvorschlag-Frage)
+Bezug: MG-002 / SLG-002.2 / T-0115 / D-0184 / BGB §§ 145–150
+
+Diese spätere Entscheidung präzisiert und ersetzt D-0184 ausschließlich für den Fall, dass der Spieler ein vom Kunden abgegebenes Gegenangebot zum exakt gleichen Preis und mit unveränderten Vertragsbedingungen fristgerecht annimmt: Der Vertrag kommt unmittelbar mit Eingang dieser Spielerannahme zustande; eine weitere Kundenentscheidung oder 1–3-tägige Verzögerung entfällt.
+
+Ein Spielerpreis unterhalb des Kunden-Gegenpreises ist keine Annahme dieses Gegenangebots, sondern ein neues Spielerangebot. Dafür bleibt die bestehende Kundenentscheidung innerhalb von 1–3 Kalendertagen bestehen. Ein Preis oberhalb des Kunden-Gegenpreises wird abgelehnt. Einmalige Gegenrunde, Drei-Kalendertage-Frist, unveränderte übrige Vertragsbedingungen, Preis-/Leistungssnapshot bei Annahme und das Verbot von Auftrag/Finanzwirkung vor Vertragsschluss bleiben gemäß D-0184 bestehen.
+
+## D-0186 – Begrenzung des T-0069-V3-Mindestgates auf implementierten Finanzumfang
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung; 2026-11-09)
+Quelle: Nutzerantwort auf A01s T-0069-Gatefrage: „1.“ (V3-Gate auf umgesetzten Umfang begrenzen)
+Bezug: MG-002 / SLG-002.2 / T-0069 / T-0074 / T-0077 / T-0080 / D-0178 / CP-0555
+
+Für die V3-Mindestabnahme von T-0069 müssen sämtliche im geprüften V3-Build tatsächlich implementierten und im Jahreslauf ausgelösten Finanzflüsse quellengebunden, periodenrichtig und centgenau abgestimmt werden. Nicht implementierte oder durch eine bestätigte Entscheidung vertagte Bereiche dürfen weder durch Nullwerte noch durch angenommene Werte ersetzt werden; sie bleiben im Lauf und Abschlussbericht ausdrücklich PENDING und außerhalb des V3-Gateumfangs. Insbesondere bleiben monetäre WIP-/Fertigwarenbewertung und COGS gemäß D-0178 bis zur BAB-/Kostenpoollösung PENDING. Payroll, gesetzliche Steuerabführung, Finanzierung/Dispo, Zinsen und vollständiger GL-/Jahresabschluss zählen nur dann zum aktiven Gateumfang, wenn sie im geprüften V3-Build tatsächlich implementiert und im Lauf ausgelöst sind; andernfalls sind sie als ausstehender Umfang sichtbar zu führen.
+
+Ein PASS belegt weder vollständige Finanzbuchhaltung noch Jahresgewinn, Solvenz oder einen vollständigen Jahresabschluss. Wirtschaftliche Aussagen sind auf die nachweislich abgestimmten Flüsse zu begrenzen. Für G3/T-0074 und G7/T-0077 muss A03 den konkreten implementierten Ereignisumfang feststellen und fachlich abgleichen; A09 prüft unabhängig Abdeckung, Reproduzierbarkeit und Statuskennzeichnung. Die bestehende Gate-Matrix ist auf abweichende/veraltete G-Nummer-Bezeichnungen zu prüfen. Diese Entscheidung ändert keine fachlichen Buchungsregeln, Runtime-, Schema- oder Releasefreigabe.
+
+## D-0187 – Synthetischer, nichtbuchender Wirtschaftlichkeitstest für T-0074/G3
+
+Status: APPROVED (ausdrückliche Nutzerbestätigung „Ja“ zu A01s Vorschlag; 2026-11-09)
+Quelle: Nutzerfreigabe für den ausdrücklich synthetischen G3-Testfall.
+Bezug: MG-002 / SLG-002.2 / T-0069 / T-0074 / D-0162 / D-0178 / D-0186
+
+Für den isolierten T-0074-Testlauf gelten folgende synthetische Annahmen:
+
+- variable operative Szenariokosten: 35 % des je Kalendermonat belegten Netto-Umsatzes; Rundung pro Monat auf Cent;
+- fixe operative Szenariokosten: 1.200,00 € je Monat;
+- Privatentnahme: 1.800,00 € je Monat, separat von den operativen Kosten.
+
+Der Netto-Umsatz wird ausschließlich aus den im Lauf quellengebunden abgestimmten `recognizedRevenueCents` übernommen. Das Ergebnis dieser Rechnung ist eine nichtbuchende Szenarioauswertung für T-0074, kein Istkosten-, Marktpreis-, Steuer-, Solvenz- oder Jahresabschlussnachweis. Die Privatentnahme ist keine Betriebsausgabe. Ein nach Privatentnahme ausgewiesener Szenarioüberschuss ist kein Bankbestand und keine Liquiditätsprognose.
+
+Die Annahmen verändern keinen Runtime-Finanzzustand und erzeugen keine Cash-, Bank-, Forderungs-, Verbindlichkeits-, Steuer-, Bestands-, WIP-, Fertigwaren-, COGS-, BAB- oder Ledgerwirkung. D-0178 und D-0186 bleiben unverändert. `positive_operating_result` bzw. `negative_operating_result` bezeichnen ausschließlich das Vorzeichen des synthetischen Szenario-Betriebsergebnisses; sie bedeuten nicht rechtliche oder betriebswirtschaftliche Feststellung von Tragfähigkeit, Insolvenz oder Solvenz. G3 bleibt reviewpflichtig.
+
+
+Review-Nachtrag D-0187 (2026-11-09): Das Szenario weist zusätzlich break_even aus, wenn das Betriebsergebnis exakt 0 Cent beträgt. Dieser Status wurde nach A03-/A09-Review ergänzt; keine Änderung an den Annahmen oder Nichtbuchungsgrenzen.
+
+## D-0188 – V3-Release ohne erneuten Zwölfmonats-Smoke
+
+Status: APPROVED – ausdrücklicher Nutzerauftrag vom 10.11.2026.
+Quelle: „Auf ein 12 Monats Smoke verzichte ich aktuell … Nach Commit und Push der V3 Version müssen wir uns dem Performanceproblem widmen.“
+Bezug: V3-12 / T-0069 / T-0074 / T-0080 / D-0186 / D-0187.
+
+Der erneute vollständige 12-Monats-Smoke blockiert den aktuellen V3-Release nicht. Der Prüfschritt wird als WAIVED (vom Nutzer erlassen), niemals als ausgeführt/PASS dokumentiert. Historische Jahres- und partielle Laufnachweise bleiben mit ihren Grenzen erhalten. Kurze gezielte Regressionen, Browser-/Mobilprüfung, Rechtsaktualitätsprüfung und sonstige Mindestziele bleiben erforderlich. D-0186/D-0187 sowie sämtliche Finanz-/COGS-/BAB-/GL-Grenzen bleiben maßgeblich. Weitere Performancearbeit wird als T-0127 nach Commit und Push der validierten V3 fortgesetzt. Andere Produkt-/Releaseentscheidungen sind hierdurch nicht beantwortet.
+
+## D-0189 – Zusätzliche Rechtsformen in V6
+
+Status: APPROVED – ausdrückliche Nutzerantwort „Ja – V6 zuordnen“ am 10.11.2026.
+Bezug: D-0163/D-0164, V3-20, V6 Unternehmensführung.
+
+AG, eG, KGaA und GmbH & Co. KGaA werden V6 Unternehmensführung zugeordnet. Die GmbH & Co. KG bleibt im spielbaren V3-Scope. Die frühere Pflicht, diese Versionszuordnung vor V3-Release zu entscheiden, ist damit erfüllt; es wird keine Umsetzung der zusätzlichen Rechtsformen in V3 behauptet. V6 erfordert ihre quellengeprüfte und spielbare Ausgestaltung einschließlich Haftung, Geschäftsführung, Vertretung und Kapitalanforderungen.

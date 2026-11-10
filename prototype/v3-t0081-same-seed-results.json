@@ -1,0 +1,110 @@
+{
+  "ticket": "T-0081 / T-0063 G2",
+  "runner": "prototype/v3-year-smoke.mjs",
+  "seed": "T-0069-seed-1",
+  "startDate": "2027-01-04",
+  "endDate": "2027-12-31",
+  "status": "PASS",
+  "profiles": [
+    {
+      "profile": "UPSWING",
+      "status": "PASS",
+      "baseline": {
+        "stateHash": "029231d56d01316232d568644e4118fb91df0579556721f439eccdccee2d8d09",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "25b5c7eecb5cf257770d163a47edf0454c42d9bb65967e5350f99fea1d11f7e3",
+        "monthlyCount": 12,
+        "monthlyLogHash": "e75b8fbb7a97cd0b952284e9fbb10722b3913ce0c947eb1275f5cabec89c8a78",
+        "wallMs": 239460.676
+      },
+      "replay": {
+        "stateHash": "029231d56d01316232d568644e4118fb91df0579556721f439eccdccee2d8d09",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "25b5c7eecb5cf257770d163a47edf0454c42d9bb65967e5350f99fea1d11f7e3",
+        "monthlyCount": 12,
+        "monthlyLogHash": "e75b8fbb7a97cd0b952284e9fbb10722b3913ce0c947eb1275f5cabec89c8a78",
+        "wallMs": 222434.997
+      },
+      "identicalState": true,
+      "identicalDailyEventLog": true,
+      "identicalMonthlyLog": true
+    },
+    {
+      "profile": "BOOM",
+      "status": "PASS",
+      "baseline": {
+        "stateHash": "1c41f00ad68576df683f76c0a1c05ee83e0000f2ab16d87ebb11255639a93f59",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "a6acc400979a83535fcaf7c184b4371220b3bdcba0c10b70f6354b31d873631f",
+        "monthlyCount": 12,
+        "monthlyLogHash": "00a960ca4b13ddc0ed497217d6c540dbbcf4b22533bd35be18526c679c1caa08",
+        "wallMs": 204645.904
+      },
+      "replay": {
+        "stateHash": "1c41f00ad68576df683f76c0a1c05ee83e0000f2ab16d87ebb11255639a93f59",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "a6acc400979a83535fcaf7c184b4371220b3bdcba0c10b70f6354b31d873631f",
+        "monthlyCount": 12,
+        "monthlyLogHash": "00a960ca4b13ddc0ed497217d6c540dbbcf4b22533bd35be18526c679c1caa08",
+        "wallMs": 202226.196
+      },
+      "identicalState": true,
+      "identicalDailyEventLog": true,
+      "identicalMonthlyLog": true
+    },
+    {
+      "profile": "DOWNTURN",
+      "status": "PASS",
+      "baseline": {
+        "stateHash": "0c2bba46387e09f56cebc2b66d2ef91a55ef8e97c388833071030245326afb2a",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "ba2f78b28498b27726188b6d5f1d7687c01cc16ca12894d17ffbc1faa61003c3",
+        "monthlyCount": 12,
+        "monthlyLogHash": "b0fa9626d8d60bdffc13c5893e7524385766f79b907e28be3360a86f0b05383e",
+        "wallMs": 202021.998
+      },
+      "replay": {
+        "stateHash": "0c2bba46387e09f56cebc2b66d2ef91a55ef8e97c388833071030245326afb2a",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "ba2f78b28498b27726188b6d5f1d7687c01cc16ca12894d17ffbc1faa61003c3",
+        "monthlyCount": 12,
+        "monthlyLogHash": "b0fa9626d8d60bdffc13c5893e7524385766f79b907e28be3360a86f0b05383e",
+        "wallMs": 202688.254
+      },
+      "identicalState": true,
+      "identicalDailyEventLog": true,
+      "identicalMonthlyLog": true
+    },
+    {
+      "profile": "LOW",
+      "status": "PASS",
+      "baseline": {
+        "stateHash": "496d27003dcc8b26569a7c311c0a7d219b5ddeaa2008a36372836b4aab494fce",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "90338e97a8800264f574cac498e769c6301c5535b771d795cb78bb1baf810b57",
+        "monthlyCount": 12,
+        "monthlyLogHash": "c46fce6ecb7b8a102ca40ac040e23d1dbe15acaa27f5365edcb6a22334ab28b9",
+        "wallMs": 222088.076
+      },
+      "replay": {
+        "stateHash": "496d27003dcc8b26569a7c311c0a7d219b5ddeaa2008a36372836b4aab494fce",
+        "eventCount": 1409,
+        "dailyCount": 362,
+        "dailyEventHash": "90338e97a8800264f574cac498e769c6301c5535b771d795cb78bb1baf810b57",
+        "monthlyCount": 12,
+        "monthlyLogHash": "c46fce6ecb7b8a102ca40ac040e23d1dbe15acaa27f5365edcb6a22334ab28b9",
+        "wallMs": 197546.876
+      },
+      "identicalState": true,
+      "identicalDailyEventLog": true,
+      "identicalMonthlyLog": true
+    }
+  ]
+}

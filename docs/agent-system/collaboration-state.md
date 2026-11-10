@@ -1,3 +1,78 @@
+## MG-002 / T-0112 – automatischer Management-Arbeitsplan (Fortschreibung CP-0508)
+
+- Das bestätigte kommerzielle Angebot (Leistung, Menge/Einheit, Qualitätsziel, Abnahmekriterium, Liefertermin) bleibt als unveränderlicher Quell-Snapshot erhalten und ist vom Finanzsnapshot getrennt.
+- Neue Aufträge mit angenommenen Bedingungen benötigen keine technische Operations-JSON-Eingabe mehr. Der Generator ordnet jede angefragte Fähigkeit einem verfügbaren Kompetenz-/Maschinenprofil, qualifiziertem Personal, Material und einem Arbeitstag zu. Ein Kapazitätspunkt wird vorläufig als eine modellierte Arbeitsstunde behandelt; Rezepturverbrauch folgt der ersten passenden Archetyp-Rezeptur je Angebotsmengeneinheit; Fertigwarenlager wird mit einer Lagereinheit je Angebotsmengeneinheit geprüft. Diese drei Regeln sind gekennzeichnete V3-Szenarioannahmen, keine gemessenen Betriebswerte.
+- Der generierte Plan läuft durch `planV3RunWorkOrder` und damit durch dieselbe Produktionsvalidierung wie der explizite Planpfad. Nicht erfüllbare Voraussetzungen lehnen den Plan ohne Teiländerung ab. Ein sichtbarer lokaler Browserpfad (schmale Ansicht) besteht: Anfrage, Managementangebot, unveränderte Kundenannahme und automatisch erzeugter Plan mit einer Drehmaschinenfachkraft. Mit einem nicht passenden Metallbauer-Startprofil wurde die fehlende Drehkompetenz korrekt fail-closed gemeldet. Dabei wurde der Postfach-Renderfehler `practice is not defined` gefunden und behoben.
+- Fünf gezielte Suiten bestanden. `git status`/`git diff --check` konnten nach den Änderungen nicht ausgeführt werden: Git meldet im Checkout „fatal: this operation must be run in a work tree“. Eine gezielte Nachprüfung ohne Git ergab für alle sieben von mir bearbeiteten Dateien keine nachgestellten Leerzeichen. Geänderte Dateien wurden zusätzlich auf nachgestellte Leerzeichen geprüft. Es wurde nicht committet oder gepusht.
+- **T-0112 bleibt IN_PROGRESS:** Offene Gegenangebots-/Angebotsversionslogik, Teamprognose für Dauer/Qualität sowie unabhängige A03-/A05-/A08-/A09-Reviews. Die Vertragsart bleibt `scenario-contract-classification-pending`; keine Rechts-, Finanzbuchungs-, Schema-, Architektur- oder Releasefreigabe.
+- Die durchgeführte Arbeit ist in CP-0508 dokumentiert. CP-0500/MCP und CP-0501–CP-0507 blieben unverändert.
+## MG-002 / T-0112 und T-0113 – Management-UX und aktuelle Testveröffentlichung (2026-11-06; Fortschreibung CP-0506)
+
+**Nutzerziel:** Technische Arbeitsplan-/Produktionsdaten sollen intern erzeugt und im Spiel auf Managemententscheidungen reduziert werden. Angebote umfassen Leistungsumfang, Menge/Einheit, Qualität/Abnahme, Preis und Termin; Änderungen vor Annahme werden als neue Angebotsfassung verhandelt. Nach Annahme ist der Snapshot fest, Änderungen benötigen einen beidseitigen Nachtrag. Produktentwicklung erfolgt als delegierter Konzeptauftrag mit Zielpreis, Kundennutzen und Qualitätsziel. Produktverbesserungen bleiben V7-Folgeumfang.
+
+- **T-0112 bleibt IN_PROGRESS.** Der A01-Preflight identifiziert vor UI-Kosmetik eine Datenflusslücke: das aktuelle Spielerangebot bindet keine Menge/Einheit/Leistungskriterien; nach angenommener Anfrage entstehen ein Work Order mit Referenzen, aber ohne die verhandelten Bedingungen. Die Planform verlangt derzeit manuell Vertragsparteien/-referenzen und Operations-JSON. Ein bloßes Verstecken dieser Felder könnte keine valide Vertrags-/Planbasis herstellen. Die nächste Implementierung muss in dieser Reihenfolge gehen: (1) Management-Scope und Mengen-/Einheit-/Qualitäts-/Terminangaben an Angebot und unveränderlichen Angebots-Snapshot binden; (2) geänderte Kundenannahme als Gegenangebot und Spieleränderung als neue Angebotsfassung abbilden, bestätigte Vertragsbedingungen nach Annahme sperren; (3) daraus Vertrags-Snapshot und deterministischen Ressourcen-/Skills-/Material-/Vorgängerplan erzeugen; (4) technische Details hinter optionaler Transparenz verbergen; (5) Produktkonzept mit Zielgruppe/Nutzen, Preis- und Qualitätsziel und persistenter, vom Team erzeugter Vorschau ergänzen. T-0065/T-0066-Snapshot- und Simulationsbelege bleiben zu erhalten. A03-Finanzgrenze, A08-Rechtsabgrenzung und A09 unabhängige Gates sind erforderliche Reviews; A01 ersetzt diese nicht.
+- **T-0112-Teilfortschritt:** Produktidee nimmt jetzt Teammitglied, Kundennutzen, Zielpreis und Qualitätsziel als managementtaugliches Briefing an. Das Briefing wird mit dem Produkt gespeichert, auf der Produktkarte angezeigt und an das `product_idea_created`-Ereignis gebunden. Vorhandene Produktarchetypen liefern Profil, Material und Fähigkeitssperre; es gibt weiterhin keine abgeleitete Mitarbeitervorschau für Dauer/erreichbare Qualität. Technische Schritt-/Zuweisungs-JSON und Angebots-/Vertragslücke sind daher noch offen. Die gezielte Suite `node prototype/v3/a05-t0066-product-ui-regressions.mjs` besteht (inklusive Briefing-Rendering, Event-/Produktdatenabgleich und Tamper-Rejection). Kein sichtbarer Browser-Smoke oder Mobiltest.
+- **T-0113 bleibt IN_PROGRESS wegen Repository-Einstellung.** Der Commit `fdc4960d4bf92fb13f6802e8d0738eb3d9110097` wurde in GitHub Desktop als gepusht bestätigt; `artifact/t0084-mobile-package` wurde remote entfernt. Read-only Actions-Abfrage ergab Workflowlauf `42263855130`, `failure` bei `actions/configure-pages@v5`; die Fehlermeldung besagt, dass GitHub Pages für das Repository nicht aktiviert/konfiguriert ist. Upload und Deploy wurden übersprungen. Einmalige Einstellung in Repository Settings → Pages → Build and deployment → Source „GitHub Actions“ fehlt. Kein funktionierender öffentlicher Testlink wird behauptet. Nach Einstellung muss der Workflow erneut erfolgreich laufen, danach Browser-/Mobilpfad prüfen.
+- **Commit-/Arbeitsbaumgrenze:** 723 bereits vorhandene lokale Änderungen sind aus `stash@{0}` mit Index wiederhergestellt; der Stash bleibt erhalten. Sie sind nicht durch diesen Abgleich entstanden und wurden weder selektiv entfernt noch committed. Der lokale Remote-Tracking-Ref ist gegenüber dem bestätigten GitHub-Desktop-Push veraltet; kein Fetch, Push oder Commit wurde hier ausgeführt.
+- Die bisherige BGB-Quellenabgrenzung in T-0112 bleibt vorläufig; Vertragstyp und aktuelle Rechtsfolgen benötigen A08-Review vor Release. Keine neue Rechts-, Produkt-, Schema-, Architektur- oder Releaseentscheidung.
+
+## CP-0506 – aktueller Arbeitsübergang
+
+Der vollständige Eintrag zu Bestandsaufnahme, T-0112-Lückenanalyse, Pages-Workflowfehler und Retro steht in `checkpoints/CP-0506.md`. CP-0500/MCP und CP-0501–CP-0505 bleiben unverändert.
+## CP-0504 – nächste Checkpoint-Koordination
+
+Lokaler Arbeitsstand ergänzt Ziele, Tickets, Managementfluss-Spezifikation und Pages-Workflow. Keine Tests oder Browserprüfungen ausgeführt. Die Änderungspakete sind noch nicht committet/ausgeliefert. CP-0500/MCP, CP-0501 bis CP-0503 bleiben unverändert.
+
+## MG-002 / CP-0503 – V3-Tickets 0063/0065/0066/0067/0069 (2026-11-06)
+
+**A01-Statusabgleich:** T-0063 ist durch A09-PASS für T-0073/T-0081–0083 bereits COMPLETED (CP-0501); hier keine Wiedereröffnung. T-0065/0066/0067/0069 bleiben IN_PROGRESS. Der Ticketboard-Eintrag zu T-0065 wurde präzisiert: A03s isolierter D-0162-Finanzschnittstellenreview ist PASS, aber A09 verlangt weiterhin den separaten Angebotsflussabgleich positiver, centnaher und negativer DB-I-Fälle. Ein Finanz-PASS für die Schnittstelle ersetzt diesen offenen Gatebeleg nicht.
+
+- **T-0065:** Die A02-Same-Seed-Paare und 3×20-Arbeitstage-/Replaybelege sind im jüngsten Koordinationsnachtrag als vorhanden dokumentiert; A09 bestätigte G6 sowie G3/G4/G5/G9 im Engine-Scope. Offen bleiben der gesonderte A09-Gateabschluss für den korrigierten Stand, A03-Vektorreview der drei DB-I-Fälle, der Engine-/UI-Ablehnungsversuch nach Zuschlag sowie sichtbarer Browser-/Integrations-Smoke und Jahresintegration.
+- **T-0066:** G8-Kostenzeilenprovenienz ist implementiert und der frühere UI-NONPASS wurde laut CP-0500/0502 durch A09-Re-Review geschlossen. Der aktuelle Gateabschluss bleibt offen bis A03 die neuen Einheiten/Quellen-/Rundungsbelege fachlich bestätigt und A01 einen sichtbaren Browser-Smoke vorlegt. Kein Ist-COGS-/Postingbeleg wird behauptet.
+- **T-0067:** A09 bestätigt G1–G5 nur im ausdrücklich nichtbuchenden Planumfang; G6 bleibt PARTIAL bis T-0066 G8-Finanzreview und sichtbarer Browser-Smoke. Kein BAB-/Istkosten-/COGS-/Buchungsabschluss wird behauptet.
+- **T-0069:** G6/G8/G9 sind abgeschlossen. G3 (T-0074), G5 (T-0075), G7 (T-0077) und G10 (T-0080) bleiben offen: insbesondere Jahresintegration/Reconciliation, supplier AP/Payroll/Steuer/Schulden/COGS-Ledgerbeleg sowie A09-Review des Browser-Smokes. T-0075s synthetischer 12-Monats-Order-/Produktlauf ist nicht mit Finance-Reconciliation gleichzusetzen.
+
+**Bearbeitungsgrenze dieses Laufs:** Relevante Reviews, Reports, Ticketboard und aktuelle Quellpfade wurden statisch abgeglichen. Es wurden keine Regressionen, Smoke- oder Browsertests ausgeführt. Ein Versuch, automatisierte Regressionen für diesen Auftrag auszuführen, wurde von der automatischen Prüfsteuerung abgelehnt; die Testausführung wurde daher beendet und nicht umgangen. Keine Produktentscheidung, Code-, Schema- oder Architekturänderung. CP-0500/MCP-2026110401 und CP-0501/CP-0502 bleiben unverändert.
+
+**Nächste konkrete Übergaben:** A03 prüft T-0065-DB-I-Angebotsvektoren und T-0066-G8-Kostenbelege; A05/A09 prüfen den Preisfreeze-Ablehnungsfall in UI/Engine; A01 benötigt für T-0065/66/67 sichtbare Browserbelege. Für T-0069 sind die bestehenden T-0074/75/77/80-Gates gemäß ihrer Zuständigkeiten weiterzuführen. Diese Einträge sind Koordinationsaufträge, keine Behauptung, dass Agentenläufe bereits ausgeführt wurden.
+
+## MG-002 / CP-0502 – T-0111 Angebots-/Produktformulare und Metallkompetenz
+
+A01 implementierte den nutzerfreundlichen Eingabeslice. Angebotskosten-/BAB-IDs und JSON-Belege werden aus Preis, Kostenprofil und Periode abgeleitet. Produktideen kommen aus Archetypen und prüfen Berufs-Skills, Mindeststufe, Geräte und Zusatznachweise. Startpfad wählt zehn repräsentative Metallberufe und Geselle+Wirtschaftsfachwirt oder Meister; die Fachwirt-Grundfähigkeiten sind der V6/V10-Zielkarte zugeordnet. Amtliche Quellen und Grenzen stehen in docs/simulation/v3-berufsprofile-kompetenzmodell.md.
+
+T-0111 bleibt IN_PROGRESS: Es fehlt noch eine spielbare Erwerbskette für zusätzliche Skills, Zertifikate und Maschinen; außerdem A03/A09-Review und visueller Browser-Smoke. Keine Schema-/Architektur-/Releasefreigabe, keine Testsuite ausgeführt, kein Commit/Push.
+
+## MG-002 / CP-0500 – 250-CP-Review/Retro und MCP-Abgleich
+
+### A01-Nachtrag T-0066 G8, 2026-11-05
+
+A02 lieferte die Kostenquellen-/Rundungsevidenzbindung und strukturierte Produktkosten-UI. A09 fand und ließ einen UI-NONPASS korrigieren: leere oder nicht belegte Kostenlisten sowie 0,00 € dürfen keine Nullkostenkalkulation erzeugen; die Centausgabe muss als Vorschau erkennbar sein. Korrektur durch A02 PASS in den gezielten Lifecycle-, Orchestrator- und A05-UI-Regressionen sowie unabhängigem A09-Re-Review. T-0066 G8 bleibt offen für A03-Finanzreview und visuellen Browser-Smoke. `CP-0500.md` und `MCP-2026110401.md` bleiben eingefroren. Kein Commit/Push.
+
+CP-0251–CP-0500 sind als 250 fortlaufende Dateien inventarisiert. CP-0500-Inventar `checkpoints/CP-0500-inventory.csv` führt Titel, explizite Agent-/Ticketfelder und SHA-256; CP-0500-Backup außerhalb des Repositorys: `C:\Users\Tobia\Documents\GitHub\WFWSimulation-CP0500-backup-20261104`, inkl. tracked patch und 712/712 verifizierter Kopien untracked files. MCP-2026103001 bleibt erhalten.
+
+A02–A12 haben ihre fachlichen Reviews ihrer CPs und eine individuelle Vollprüfung des `MCP-2026110401`-Entwurfs an A01 zurückgegeben. Die korrigierte Gesamtfassung erhielt von A02–A12 jeweils final PASS. A10 prüfte ergänzend 260/260 Kandidaten-Hashes; Klassifikation 122 KEEP / 138 NEEDS OWNER REVIEW, keine sichere Löschung. Nutzerbestätigung vom 2026-11-05: Vorschläge 1–3 angenommen und CP-0500/MCP eingefroren; D-0171. Die vollständige Chronologie/Retro ist im MCP nach Agent sortiert; A01-Selbstprüfung wird nicht als unabhängige Freigabe gezählt.
+
+Außerhalb des Checkpoint-Ordners sind 260 Auditdateikandidaten mit Auswahlregel, SHA-256, Gitstatus und Klassifikation im `cp-0500-audit-candidate-inventory.csv` erfasst: 122 KEEP wegen expliziter CP/MCP/Decision-Log-Referenz, 138 NEEDS OWNER REVIEW. Keine sichere Redundanz belegt; keine Datei wurde gelöscht. Governance-Regeln 1–3 aus D-0171 wurden übernommen. Der Arbeitsbaum bleibt lokal; kein Commit/Push.
+
+Offen bleiben T-0084-Rechte-/Itemabdeckung und nicht abgeschlossene V3-Elterngates (siehe MCP). Governance-Vorschläge 1–3 und Freeze wurden am 2026-11-05 bestätigt (D-0171); CP-0500/MCP-2026110401 sind eingefroren. T-0084 und V3-Elterngates bleiben offen; spätere Änderungen werden in einem neuen CP dokumentiert.
+
+### A01-Nachtrag T-0084 Quellenbereinigung (2026-11-05)
+
+Die bestehende nicht-verbatim Analyse wurde als begrenzte historische Antworttiefen-/Themenanalyse bewertet, nicht als Vollabdeckung oder Wiederverwendungsrecht. Da Manifest v2 alle 129 Prüfungsdateien mit `NO_PROJECT_REUSE_LICENSE_PROVIDED`/`DO_NOT_USE_IN_PRODUCT` klassifiziert, hat A01 die beiden ungetrackten Verzeichnisse `docs/qa/HQ` und `docs/qa/WQ` nach 129/129 Pfadabgleich gelöscht. Manifest v2 und historische Berichte bleiben unverändert; Manifest v3 führt nur Pfad-/Hash-/Purge-Metadaten weiter. T-0084 bleibt für neue Quellinhaltsauswertung blockiert; öffentliche/freigegebene Rahmenquellen und eigenständige Lerninhalte bleiben zulässig. Siehe den A01-Bereinigungsbericht. CP-0500/MCP-2026110401 blieben unverändert.
+## MG-002 / CP-0499 – T-0092 manifest-disposition correction
+
+A09 T-0094 found the three candidate clusters plausible, but the 49-record denominator is 47 PDFs + 2 DOCX and the A07 report omitted five records (three already-mapped HQ task files and both DOCX). Nonmanifest low-text items also need a separate list. T-0094 closes NONPASS. A07 returned T-0095 with 49 unique numbered manifest dispositions, explicit roles for the five omitted records, and a separate nonmanifest list. T-0096 is assigned to A09 for final review. T-0092/T-0095/T-0096 sind nach Berichtskonsolidierung PASS im begrenzten Umfang abgeschlossen. T-0084 bleibt IN_PROGRESS wegen der weiteren 80 Inhaltsquellen, itemweisen Lernkartenabdeckung und Rechteprüfung. CP-0499 hält die Korrekturrunde fest; CP-0500 wird nach Abschluss dieses Arbeitsschritts ausgelöst.
+## MG-002 / CP-0498 – T-0092 scope correction and final gate
+
+A07 completed a full reproducible pass over the 49-PDF manifest: three additional HQ source-family candidates are available; the remaining seven planned additions were previously mapped, duplicate/annex families or unreadable in the current checkout. A01 adjusted T-0092’s operational acceptance: ten remains the target, while completion requires exhaustive disposition of the full manifest and every genuinely additional candidate; unsuitable sources must remain excluded. T-0084 stays IN_PROGRESS because the overall 80-source content gap and legal/rights evidence remain. A09 performs T-0094 independent review before T-0092 can close. See CP-0498.
+## MG-002 / CP-0497 – T-0084 follow-up round
+
+A06 returned T-0091 (10-source low-text sample). A07 returned T-0092 PARTIAL/NONPASS with three HQ family candidates and manifest/text-layer conflicts. T-0093 is completed: T-0091 bounded PASS after count correction; T-0092 remains PARTIAL/NONPASS with only three of ten planned additional sources evidenced. Parent T-0084 remains IN_PROGRESS. No product questions/code may be changed; original exam text is not to be copied. Predecessor CP-0496 records T-0088–0090 bounded PASS and the remaining 80-source/item/right gaps. Ticket assignments and evidence limits are in CP-0497.
+## MG-002 / CP-0496 – Status T-0084-Prüfrunde (2026-11-04)
+
+T-0088 ist mit einer begrenzten visuellen Stichprobe von 10 PDFs abgeschlossen; keine OCR oder Vollabdeckung. T-0089: A07 hat 11 Antwortlängenkandidaten geprüft. wbq-rt-005 zeigt einen deutlichen Längencue. Von zehn HSQ-Items sind neun deutlich und eines schwach cue-anfällig; bei allen ist die korrekte Option die längste und Distraktoren sind teils unplausibel. Keine Frage wurde geändert. A09 bestätigte Runtime-IDs und die Duplikatbeobachtung; der unabhängige Endreview der neuen T-0089-Einzelfallurteile steht noch aus. T-0090 und T-0089 sind PASS im begrenzten Scope. T-0084 bleibt IN_PROGRESS/NONPASS wegen 80 Inhaltsquellen, fehlender itemweiser Abnahme und offener vollständiger Rechteprüfung. Siehe CP-0496 und die Berichte `docs/learning/a06-t0088-low-text-visual-sample.md`, `docs/learning/a07-t0089-length-cue-review.md` und `docs/learning/a09-t0090-gate-review.md`.
+
+**Wiederherstellungshinweis:** Während der A01-Dokumentationsfortschreibung am 2026-11-04 wurde die lokale Arbeitskopie dieser Datei versehentlich auf 0 Bytes gekürzt. Es wurde nach keiner lokalen Sicherung oder einem wiederherstellbaren Git-Artefakt gesucht, das den nicht committeten Inhalt enthielt; die Datei wurde deshalb aus dem letzten Git-Stand wiederhergestellt. Dieser aktive Statusblock wurde anhand der fortbestehenden Checkpoints, Ticketliste und Agentenberichte neu aufgebaut. Die vorherigen, nicht committeten Textänderungen dieser Datei waren nicht wiederherstellbar; alle übrigen Arbeitsbaumänderungen wurden erhalten.
 ## T-0062 G08-Kernaktionsmatrix und A05-Fix (CP-0271-Entwurf; 2026-10-30)
 
 A01 prüfte sieben Kernaktionen je Touchereignis und Tastatur (14/14 PASS) in einem isolierten Edge-Profil bei 390×844: Angebotseinreichung; vorzeitige Darlehensablösung; Marketingaktivierung; Nachricht öffnen; Standortauswahl; Baumarkteinkauf als Arbeitsblock; Prüfungsantwort vormerken. Der erste Marketinglauf fand einen echten Integrationsfehler: `activateMarketingCampaign` wurde in app.js nicht importiert. A05 bestätigte und behob den fehlenden Import und ergänzte die Handler-/Engine-Regression. Nach dem Fix sind alle 16 bestehenden Regressionen und der 365-Tage-Smoke PASS; Kennzahlen und Nachweise stehen im A01-Matrixbericht und CP-0271. Diese Änderung enthält keine neue Produktregel. G03/G08 sind materiell PASS auf dem Working Tree. A09-Neubewertung und Bindung von Tests/Paket an denselben Commit bleiben offen; keine Releasefreigabe.
@@ -1067,3 +1142,527 @@ Ab jetzt werden gebündelte Review, Retro und Analyse nur nach jedem 250. CP dur
 ## Pre-Commit Cross-Agent-Review (T-0056/CP-0260 Entwurf; 2026-10-30)
 
 A02–A12 haben die Änderungen jeweils in ihrem Rollenbereich geprüft; A01 integrierte die Befunde. A02 fand Queue-Rollbackfehler, der mit Regression behoben wurde. A03 fand die Inkonsistenz zwischen D-0149 und der V2-Inventar-Vorsteuerlogik; D-0156 löst sie begrenzt für V2-Kataloganlagen. A10 fand fehlendes SHA-256-Manifest und iPad-Anleitung; Builder/ZIP/README wurden aktualisiert. Zielreviews: A02 PASS, A03 PASS, A04 PASS, A05 PASS, A06 PASS, A07 PASS, A08 PASS mit Verifikationsgrenze, A09 PASS, A10 PASS, A11 PASS, A12 keine echten Geräte geprüft. Die 15 Regressionen liefen erneut erfolgreich. Der Paketmanifest-Test bestätigte die Prüfsummen und Manifest-ZIP-Mitgliedschaft. Keine Schema-/Architekturfreigabe; kein Commit/Push bislang.
+
+## Aktueller MG-002-Arbeitsstand und Zuweisungen (CP-0501 Entwurf; 2026-11-05)
+
+A01 hat T-0063 nach A09-PASS für T-0081/T-0073 geschlossen. Offene V3-Arbeit liegt bei T-0065/0066/0067/0069 und T-0084. A02 bearbeitet T-0075 und T-0078 sequentiell; T-0077 benötigt A02-Ereignisbelege und A03-Finanzbehandlung; T-0074 wartet auf 0075–0077. T-0080 benötigt noch echten Browser-/Viewport-Smoke und unabhängigen A09-Reconciliation-Review. T-0084 bleibt wegen Rechte-, Lesbarkeits- und itemweiser Abdeckung offen; A08 hält alle 129 Quelldateien weiterhin auf UNKNOWN / DO NOT USE IN PRODUCT.
+
+Neue Zuweisungen:
+- T-0109 / SLG-002.4: A07 federführend, A06 Kompetenzreview, A05 UI, A09 unabhängige QA. Erster Slice ist eine optionale Übung „Anfrage prüfen“ an einer offenen Anfrage aus internem, freigegebenem Prozessmaterial. Lernereignis ändert den Unternehmenszustand nicht.
+- T-0110 / SLG-002.5: A11 federführend; A04, A02, A03, A09 und A10 liefern klar abgegrenzte Rollenbeiträge. Ergebnis ist eine Ereignis-/Daten-/Finanz-/Replay-Grenzkarte. Keine Architektur-/Schema-/Persistenzfreigabe.
+
+Alle Berichte und Rückfragen gehen an A01. Der Arbeitsbaum ist bereits lokal verändert; keine Änderungen wurden verworfen. CP-0500 und MCP-2026110401 sind eingefroren.
+
+## MG-002 Statuskorrektur nach Lizenzklärung und Agentenreviews (2026-11-05; CP-0501 Entwurf)
+
+- **T-0084:** Nutzer bestätigt, dass keine Lizenz vorliegt. A10 Manifest v2/A09 Integritätsreview PASS im engen Dispositionsscope; alle 129 Prüfungsquellen NO_PROJECT_REUSE_LICENSE_PROVIDED / DO_NOT_USE_IN_PRODUCT. Inhalts-/Lesbarkeitsauswertung wird eingestellt und das Ticket ist BLOCKED bis zu neuer Lizenz/Belegen. Keine Prüfungsinhalte werden weiter geöffnet oder extrahiert. Unabhängige Inhalte aus geeigneten offiziellen Rahmen-/Rechtsquellen und interne Prozessaufgaben bleiben zulässig.
+- **T-0065:** A02-/A05-Markt- und Shared-Run-Teil implementiert; optionale Preisgewichtung, neutraler Default, unveränderlicher Profil-/Runbezug und keine Offenlegung einzelner Konkurrenzgebote. Tests PASS; A09-Review offen.
+- **T-0078:** A02 entdeckte und korrigierte die durch T-0065 eingeführte JSON-Restore-Abweichung (legacy `priceScore: undefined` wurde gehasht, aber bei JSON-Save ausgelassen). Fokusregressionen PASS; Post-Fix DOWNTURN/LOW-Recovery reruns durch A02, danach A09 unabhängig.
+- **T-0080:** A05 UI-Smoke bei 390×844/768×1024 PASS, 8/8 Navigationen sichtbar, keine Überbreite; A09-Finanz-/Reconciliation-Review offen.
+- **T-0109:** A07 Slice + A09 Codeprüfung PASS, A05 wrong-answer/return Browser-Slice PASS. Tatsächlicher Klick-/localStorage-Replaybeleg bleibt offen. Ein stale UI-Textassertion-Test wurde korrigiert und besteht.
+- **T-0110:** A11 Matrix/Scope 30 rows PASS; A03 Finance, A02 Simulation, A04 Data-Boundary reviews im jeweiligen Scope PASS. A10 Delivery/Evidence review steht aus; T-0109 Klick/Reload bleibt explizit offen. Keine Architektur-/Schema-/Persistenz-/Releasefreigabe.
+- **T-0066/67/69/74/75/77:** bleiben offen nach der Ticketübersicht; T-0077 fehlen belastbare Supplier-AP/Payment-Events, T-0075 integrierter 12M product/order Save/Restore-Flow.
+
+CP-0500/MCP-2026110401 bleiben eingefroren. Eine gezielte Nachprüfung ohne Git ergab für alle sieben von mir bearbeiteten Dateien keine nachgestellten Leerzeichen. Geänderte Dateien wurden zusätzlich auf nachgestellte Leerzeichen geprüft. Es wurde nicht committet oder gepusht.
+
+## A01-Fortschreibung nach fokussierten Regressionen (2026-11-05; CP-0501 Entwurf)
+
+- T-0065: A01 wiederholte Markt-, Orchestrator-, A05-Markt-UI- und Shared-Run-Profilregressionen; alle bestanden. A09-Gesamtreview steht aus.
+- T-0066/67: Produktlebenszyklus-, Produkt-UI- und BAB-/Finance-UI-Regressionen bestanden. Beide Tickets bleiben offen, bis die jeweiligen Minimalgates, Reviews und Integrationsnachweise vollständig sind.
+- T-0078: Der Report `docs/simulation/a02-t0078-restore-hash-reconciliation-2026-11-05.md` dokumentiert die Ursache und Korrektur. DOWNTURN wurde von A09 unabhängig bestätigt; LOW-A02-Paar besteht in-memory, A09 unabhängige Wiederholung noch aktiv. Gespeicherte Baseline-JSONs bleiben unverändert, bis A09 LOW bestätigt; alte DOWNTURN/LOW-Hashes sind stale. Noch keine JSON-Aktualisierung.
+- T-0084: Keine Lizenz ist bestätigt. Inhaltsprüfung der 129 HQ/WQ-Dateien bleibt BLOCKED; A10/A09 Manifest v2 dokumentiert `DO NOT USE IN PRODUCT`. Offene öffentliche/selbst entwickelte Lerninhalte können weiterlaufen.
+- T-0109/T-0110: A01 hat die vorhandene T-0109-Regression erneut ausgeführt: PASS. UI-Klick-/localStorage-/Reloadbeleg fehlt, weil die Browserautomation vor einer Aktion wegen nicht sicher ermittelbarer URL gestoppt hat. A11-Evidenzmanifest steht; A09-Matrix-/Scopeprüfung PASS. Für die geänderte Matrixfassung bleiben A04-Rereview und A10-Lieferreview offen. Keine Architektur-/Schema-/Persistenz-/Releasefreigabe.
+
+Der Arbeitsbaum hat weiterhin 581 Statuszeilen bei Branch `main`, HEAD `8b72b7e35fd7bbd8d967655d0a97e0a01b93266`; lokale Änderungen blieben erhalten. CP-0500/MCP-2026110401 unverändert; kein Commit/Push.
+
+**Nachtrag T-0078:** A09 hat LOW unabhängig geprüft und das aktualisierte JSON-Fixture mit A02/A09-Recoverybelegen abgeglichen. T-0078/T-0069 G8 ist final COMPLETED/PASS für alle vier Profile. Nur DOWNTURN-/LOW-Hashfelder wurden aktualisiert; T-0069 bleibt wegen anderer offener Gates IN_PROGRESS. A02 ergänzt den Reconciliationbericht noch um den Refresh-Nachweis.
+
+**Nachtrag T-0065/66 (A01, 2026-11-05):** A09s T-0065-Bericht dokumentiert Teil-PASS und die noch fehlenden isolierten Kontrollpaare/3×20-Tages-Traces; A02 bearbeitet diese Folgearbeit. A02 bestätigt den bestehenden T-0066 Mixed-Run mit zwei Eigenprodukten und Kundenauftrag samt Ressourcen, DB-I-Fällen, Käuferannahme, Versand, Restore und Nichtbuchung; der sichtbare Browser-Smoke bleibt offen. A01 präzisiert T-0066 gegenüber T-0067: Direktkosten-/DB-I-Sale-Snapshots sind BAB-unabhängig; separater T-0067-Plan-BAB ist nur Plan, kein Ist-COGS. A09-Re-Review der Kriterienklarstellung ist angefragt.
+
+**T-0066/67 Gate-Reviews (2026-11-05):** A09 bewertet T-0066 G1–G7/G9/G10 PASS im geprüften Umfang; G8 NONPASS wegen fehlender Einheiten, `sourceRef` und Rundungspolitik/-ergebnis in Kostenzeilen-Snapshots. T-0067 G1–G4 PASS, G5 bleibt ohne Istbuchung/COGS-Claim, G6 PARTIAL wegen derselben T-0066 G8-Integration und fehlendem sichtbaren Browser-Smoke. A02 ist zuständig für T-0065, danach T-0066 G8; A03-Fachreview, A05/A09 Re-Reviews und A01 Browser-Smoke bleiben benannte Abhängigkeiten.
+
+A09-Bericht T-0067 liegt unter `docs/test-reports/a09-t0067-independent-focused-review-2026-11-05.md` (SHA-256 `0440CA4E68A2214A160812911204A06D36E5A59B3968CC315F856C8F1BDC9C92`). Gates 1–5 PASS im ausdrücklich nichtbuchenden Planumfang; Gate 6 PARTIAL und T-0067 bleibt offen.
+
+**T-0065 A09-Nachtrag:** Die Same-Seed-Korrektur der vier Kontrollpaare wurde unabhängig bestätigt; G6 PASS. G3/G4/G5/G9 PASS im A02-Engine-Scope und Tracefingerprints unverändert. T-0065 bleibt offen für A05 UI, A03 DB-I-Fachreview und A01 sichtbaren Integrations-Smoke. A02 arbeitet jetzt T-0066 G8-Snapshotprovenienz; die A03-Fachprüfung bleibt bis zur verfügbaren Rolle pending.
+
+
+## T-0075 annual shared-flow evidence (2026-11-05; CP-0501 draft)
+
+A01 added `prototype/v3-t0075-annual-order-product-flow-smoke.mjs`. The 12-month synthetic engine run passed for customer orders and own products in a shared run, including worker/machine contention and exact-state midyear JSON restore/resume. A09 independent review and annual finance reconciliation remain open. This fixture does not calculate BAB, COGS, tax, cash, AP/AR or ledger. See `docs/simulation/a01-t0075-annual-order-product-flow-review-2026-11-05.md`.
+
+
+## T-0065–T-0067 focused regression recheck (2026-11-05; CP-0501 draft)
+
+Current market, product lifecycle, FIFO costing, shared-run/orchestrator, T-0066 UI and T-0067 UI regression scripts all pass. The first T-0067 command used a nonexistent filename; the actual regression file was located and passed. No product change was made in this check. A09 re-reviews and required visible browser evidence are still pending for the relevant open tickets.
+
+
+## T-0065 accepted-offer UI freeze regression (2026-11-05; CP-0501 draft)
+
+A01 added an assertion isolating the accepted inquiry card: the fixed contract price remains visible, and no offer form, editable `netPrice` field or submit control is rendered. The T-0065 UI regression and scoped `git diff --check` pass. A09 review and a visible browser smoke remain pending; this does not close T-0065.
+
+
+## T-0084 – Nutzerfreigabe für vorhandene Extraktanalysen (2026-11-05; D-0172; CP-0501 Entwurf)
+
+Der Nutzer autorisiert die interne Verwendung der bereits vorhandenen, nicht wortgetreuen A06/A07/A09-Analyseergebnisse. Das ist keine Freigabe für Originalprüfungsdateien; HQ/WQ-Originale bleiben gelöscht und nicht nutzbar. A01 hat eine eigenständige Antworttiefen-/Themen-/Fragenqualitäts-Synthese erstellt und die zuvor reaktivierte Teilaufgabe in den Review überführt. A06 prüft Kompetenzbezug, A08 prüft die Autorisierungsgrenze und A09 prüft Abstraktion/Claimgrenzen. Danach baut A01 das iPhone/iPad-Paket mit Spiel plus mobiler Analyse-Kurzfassung; A10 prüft Integrität und Startgrenze. T-0084 ist bis zu diesen Reviews offen.
+
+**Abschlussnachtrag (2026-11-05):** A06, A08 und A09 erteilten unabhängiges PASS für Synthese, Kompetenzbezug, enge Autorisierungsgrenze und Claimumfang; A10 erteilte PASS für das mobile Offline-Paket. T-0084 ist **COMPLETED im begrenzten D-0172-Scope**. Die Abnahme umfasst ausschließlich bereits vorhandene abstrahierte Ergebnisse und deren interne Synthese/Kurzfassung, nicht den gelöschten HQ/WQ-Korpus, externe Weiterverbreitung, Itemabdeckung oder Prüfungsgewichtung. Das Paket liegt in `prototype/v3-mobile-package/werkstatt-v3-iphone-ipad.zip` (SHA-256 `EC628E12CB2E26CD2A78A1030242D969AD3C7B5AB3B6515750DED950FCE269C3`). CP-0501 bleibt ein Entwurf; CP-0500/MCP-2026110401 bleiben unverändert.
+
+## MG-002 / T-0065–T-0067 – A01-Test- und Reviewstand (CP-0509, 2026-11-06)
+
+- T-0065: Regressionen für Marktpreise/Segmente, 3×20-Tages-Replay, Angebots-UI und geteilte Einladungsprofile bestehen. A03 bestätigt Finanzschnittstelle und +4.000/−2.000-Cent-Angebots-/Annahmeweg. Es fehlen +1/0/−1-Cent-Vektoren im selben Einreichungs-/Zuschlags-/Annahmeweg sowie ein expliziter nachträglicher Engine-Manipulationsversuch. A05/A09 müssen den aktuellen HEAD unabhängig prüfen; deren derzeitige Spiegel erlaubten keine HEAD-Verifikation. Jahresintegration fehlt. Folgearbeit: A02 Vektoren/Engine-Guard-Beleg; A05 UI-Post-Award-Beleg; A09 unabhängiger Re-Review am echten Checkout; A02/A01 Jahresintegration.
+- T-0066: A03s aktueller Fachreview bestätigt G8 (Einheiten, Referenzlabels, Centübertrag und unveränderliche Plan-/Verkaufssnapshots; keine Istkosten-, BAB-, COGS- oder Buchungswirkung). A05-Regression und sichtbarer A01-Smoke eines eigenen Produktbriefings/DB-I-Plans bestehen. Das Produktkonzept bleibt ohne Teamdauer-/Qualitätsprognose richtigerweise nicht produktionsfreigegeben. A09 muss G10 am aktuellen HEAD unabhängig re-reviewen.
+- T-0067: Finanz-/BAB-Regressionen bestanden. Sichtbarer Smoke mit 100,01 € Quellpool und 3 h ergab 33,34 €/h (gerundete Anzeige) und 0,00 € Reconciliation; exakte Quotientenbasis bleibt intern 10001/3. Der frühere A03-Review bestätigt aktuelle G8-Abgrenzung; A09-Re-Review ist noch offen. Keine Istkosten-/Buchungsfreigabe.
+- Alle gezielten Node-Regressionen und der Dreimonats-Order/Product-Smoke liefen mit Exit 0. Der lokale HTTP-Smoke-Server wurde beendet. Git-Status und diff-check scheiterten mit fatal: this operation must be run in a work tree; deshalb sind Arbeitsbaumreinheit und Diff-Check nicht bestätigt. Branch/HEAD ließen sich auslesen: main / fdc4960d4bf92fb13f6802e8d0738eb3d9110097. Kein Commit/Push.
+
+CP-0509 ist neu; frühere CP/MCP wurden nicht verändert.
+## MG-002 / T-0065–T-0067 – Fixpreis, A03-Review und Browserbeleg (CP-0510, 2026-11-06)
+
+- T-0065: A02/Regression: DB-I +1/0/−1 Cent werden aus Preis/Kosten berechnet, bis zu angenommenen Snapshotdatensätzen durchgereicht und mit signiertem Ergebnis sowie inklusive cent-near-Kennzeichen geprüft. Preis-Tamper nach Award wird vom unveränderlichen Submission-Eventvalidator abgewiesen. A03-Fachreview PASS. A05 ergänzt in der integrierten Anfragekarte einen read-only fixierten Nettopreis bei Annahme; die Regression bestätigt fehlende Edit-/Submit-Controls. A01-Browser-Smoke bestätigt Kundenannahme und sichtbare 90,00 € netto. Der run.html Cache-/Modulgraph-Bindungstest besteht. A09 unabhängige Prüfung am aktuellen HEAD fehlt, da der Agent nur einen abweichenden Spiegel erreichen kann. 12-Monatsintegration gehört zum separaten T-0069-Gate.
+- T-0066: A03 aktueller G8/G10-Finanzgrenzenbefund PASS im Plan-/Snapshot-/Deferred-BAB-Umfang; kein Ist-COGS-/Postingnachweis. A05-UI-Regression, A01-Browserkonzept und DB-I-Smoke PASS. A09 muss G10 unabhängig am HEAD prüfen.
+- T-0067: A05-UI-Regression, Finanzarithmetik und dynamische BAB-Reconciliation bestehen. Sichtbarer Smoke: 100,01 € / 3 h = 33,34 €/h gerundeter Satz; Summe stimmt auf 0,00 € ab. A03-Abhängigkeit erfüllt; A09-Re-Review ausstehend, daher G6 PARTIAL.
+- A05 meldete zusätzlich den alten T-0063-Offer-Sensitivity-UI-Test als NONPASS: der Test erwartet alte Felder sensitivityMode/Opt-in-Sensitivität, die der aktuelle geführte Angebotsdialog nicht enthält; A05 änderte diesen Ticketfremdtest nicht. Vor einem breiten Gesamtrelease ist dieser Test vom T-0063-Verantwortlichen einzuordnen.
+- Erfolgreiche gezielte Tests: market simulation, finance calculation, product costing/lifecycle, run orchestrator, A05 T0065/T0066/T0067 UI, module graph cache und T0069-Dreimonatssmoke. Der lokale Server wurde beendet. Git status/diff-check aus A01-Session scheitern weiterhin mit fatal: this operation must be run in a work tree; scoped A05 diff-check der UI-Dateien bestand. Kein Commit/Push.
+
+CP-0510 ist neu; frühere CP/MCP wurden nicht verändert.
+## CP-0511 – Reviewfortschreibung T-0065/66/67 (2026-11-07)
+
+Preflight: main / fdc4960d4bf92fb13f6802e8d0738eb3d9110097. Control-Plane-Hashes verifiziert in CP-0511. Vorbestehende Arbeitskopie unverändert belassen.
+
+- T-0065: A09 bestätigt zehn Minimalgates am aktuellen HEAD; A03 bestätigt die +1/0/−1-Cent-Angebots-, Zuschlags- und Snapshotfälle samt Manipulationsabwehr; A05 bestätigt Read-only-Fixpreis und aktuelle Cachebindung; A01-Browserbeleg aus CP-0510. COMPLETED im Scope ohne Jahresintegration.
+- T-0066: A09 G10 PASS; A03 G8/G10-Finanzgrenze PASS; A05-Regressionen/UI PASS. A09 deckt Mengenreservierung, Dispatch, Restore/Replay und Tamperabwehr ab. COMPLETED im nichtbuchenden Produkt-/Snapshotumfang. A05 führte diesmal keinen separaten schmalen Viewporttest aus.
+- T-0067: A09 G6 PASS; A03 BAB-/Finanzrechenvertrag PASS; A05 UI-Regression und A01 sichtbarer finance.html-Smoke aus CP-0510. COMPLETED im Plan-BAB-Umfang.
+- `git diff --check` PASS (nur CRLF-Hinweise). Branch/HEAD unverändert; 731 Statuszeilen, davon bereits bestehende staged/unstaged/untracked Änderungen. Keine fremden Änderungen verworfen. Kein Commit/Push.
+
+**Weiter offene aktive Tickets laut Ticket Board:** T-0069 (G3/G5/G7/G10; Untertickets T-0074/T-0075/T-0077/T-0080), T-0109 (Browserklick-/Reload-Rundlauf und korrekte Antwort), T-0110 (A10-Nachweise/Appendix und T-0109-Verknüpfung), T-0111 (Qualifikationserwerb, Reviews, Browser-Smoke), T-0112 (Gegenangebot/Revision, Teamprognose, fachliche Reviews), T-0113 (GitHub Pages Repoeinstellung und anschließender Deploy).
+
+T-0063 ist laut aktiver Ticketliste COMPLETED; separat verbleibt ein alter Offer-Sensitivity-Regressions-Test mit Erwartungen an entfernte UI-Felder, der vom T-0063-Owner einzuordnen ist, aber kein hier bestätigter Produktfehler.
+
+Autor: A01 – MASTER_ORCHESTRATOR. Mitwirkende: A03, A05, A09. Ausführung: A01. Fachreview: A03. Unabhängige QA: A09. Browser-/Gerätetest: A01-Beleg CP-0510; A05 weist keinen schmalen Viewport-Lauf in dieser Runde aus. Git-Verifikation: A01, Status/Diff. Keine Architektur-, Schema-, Release- oder produktive Finanzfreigabe erteilt.
+## CP-0512 – Fortschritt T-0069/T-0109 Browserbeleg (2026-11-07)
+
+Preflight: main / fdc4960d4bf92fb13f6802e8d0738eb3d9110097; aktuelle Control-Plane-Digests stehen in CP-0512. Der Ausgangsarbeitsbaum enthielt 732 vorhandene Statuszeilen; keine davon verworfen oder gestaged.
+
+- **T-0075 / T-0069 G5:** Der 362-Tage-Lauf bestand auf Engineebene mit 12/12 Monaten, 12 nichtbuchenden Kundenaufträgen, sechs Produktversänden, Ressourcenengpass, Midyear Restore/Resume, Tampergate und stabiler Statehash. A03-/A09-Review und Jahresfinanzabgleich fehlen; Gate bleibt offen.
+- **T-0077 / T-0069 G7:** Die Ledgerprojektionsregression besteht nur für Performance, D-0166-Rechnung und D-0168-Kundenzahlung. Der aktuelle A03-Gap-Bericht bestätigt fehlende AP-/Lieferantenzahlungen, Payroll, Steuerabführung, eigene Bankzahlungen, Debt/Dispo, bewertete Bestände/COGS und vollständige Hauptbuchkontrolle. Keine fehlenden Beträge ergänzt; offen.
+- **T-0109:** fokussierte Regression PASS. Antwort-/Feedback- und Lernfortschrittscode ist getrennt vom Company Run. Browserklick/Save/Reload und korrekte Antwort bleiben unbewiesen. Der Versuch, einen lokalen HTTP-Smoke für den In-App-Browser bereitzustellen, war wegen Verbindungs-Timeout nicht ausführbar; Server beendet, kein Spieldatenzugriff.
+- **T-0110:** Das Daten-/Änderungsgrenzeninventar bleibt PARTIAL wegen T-0109-Beleg sowie A04/A10-Rollensichten.
+- **T-0074:** bleibt PENDING bis T-0075–0077 die Voraussetzungen erfüllen. **T-0080:** A09-Reconciliationreview sowie A12 unabhängige Browserprüfung ausstehend.
+- T-0111/T-0112 bleiben nach Boardstatus wegen Implementierungs-/Reviewarbeit offen. T-0113 wartet auf einmalige GitHub-Repository-Settings → Pages → GitHub Actions; danach muss der Workflow verifiziert werden.
+
+Ausgeführte Tests: `node prototype/v3-t0075-annual-order-product-flow-smoke.mjs` PASS (Inhalte/hash in Berichtsausgabe); `node prototype/v3/a07-t0109-inquiry-practice-regressions.mjs` PASS; `node prototype/v3-finance-ledger-projection-regressions.mjs` PASS nur im begrenzten Kunden-Scope. `git diff --check` PASS, nur LF/CRLF-Hinweise. Kein Commit/Push.
+
+Autor und Ausführung: A01. Fachreview/Unabhängige QA dieser neuen T-0075-Jahresausgabe: nicht ausgeführt. Browser-/Gerätetest T-0109: nicht bestanden/kein PASS; Tool kann den lokalen Server nicht erreichen. Keine Schema-, Rechts-, Finanzposting- oder Releasefreigabe.
+## CP-0513 – T-0075 Gateabschluss und T-0109/T-0110 Fortschritt (2026-11-07)
+
+T-0075 / T-0069 G5 ist COMPLETED: der 12-Monats-Enginepfad wurde von A01 ausgeführt, A03 bestätigte Finance-/Nichtbuchungsgrenze, A09 führte denselben Harness am HEAD unabhängig aus und bestätigte die operative Akzeptanz. Jahresfinanzreconciliation ist ausdrücklich kein Teil dieses Gates und bleibt T-0077/T-0069 G7.
+
+T-0109 bleibt offen. A05 bestätigte Handler, localStorage-Key, getrennte Lernpersistenz und Wiederanzeige im Code; Regression PASS. Echter Antwortklick und Reload sind nicht belegt. A01-In-App-Browserport 8051 lief in Timeout; A05-Port 8055 war HTTP 200, aber Browserautomation stoppte vor UI-Interaktion wegen unsicher bestimmbarer aktueller Edge-URL. Kein Nutzerlauf geändert.
+
+T-0110 bleibt PARTIAL. A01 erstellte `a01-t0110-delivery-evidence-cp0513.md` mit Hashes und Befehlen und `a01-t0109-inquiry-practice-test-report-cp0513.md` als eigenständigen Testbericht. A04-Review des Daten-/Änderungsgrenzeninventars und A10-Review der Lieferung/Hashmanifest sind angefordert, ausstehend. Kein Schema-/Architektur-/Releaseclaim.
+
+Autor/Ausführung: A01. Fachreview T-0075: A03. Unabhängige QA T-0075: A09. T-0109 UI-review: A05 source/handler review, kein Browserreview. Gitstatus stark vorbelastet; nur Status/Diffprüfung, keine Änderungen anderer Agenten verworfen. Kein Commit/Push.
+## CP-0514 – aktuelle Ticketfortschreibung (2026-11-07)
+
+T-0109 Browserklick-/Reloadgate ist nun durch A01 auf einem isolierten lokalen Test-Origin belegt: richtige und falsche Antwort, Feedback und getrennte Wiederanzeige nach Reload. Das unabhängige A09-Re-Review am aktuellen Stand fehlt noch; daher bleibt das Ticket IN_PROGRESS. T-0111 hat eine sichtbare Spielkompetenz-Weiterbildung mit Voraussetzungen, Teammitgliedwahl, Speicherung im laufenden Szenario und Produktgatewirkung erhalten. Sie beansprucht ausdrücklich keine reale Ausbildung, Zertifizierung, AEVO-/Maschinenberechtigung oder Finanz-/Arbeitszeitwirkung. Regressionen und fokussierter Browser-Smoke PASS; weitere Erwerbspfade und Fachreviews bleiben offen.
+
+T-0110 bleibt bis zu aktuellen A04- und A10-Rollensichten offen. T-0069 bleibt mit G3/T-0074, G7/T-0077 und G10/T-0080 offen. T-0112 bleibt wegen Gegenangebot/Revision, Teamprognose und unabhängigen Fachreviews offen. T-0113 kann lokal vorbereitet werden, aber der GitHub-Pages-Deploy ist blockiert, bis im Repository Settings → Pages → Build and deployment → Source „GitHub Actions“ gesetzt ist; der vorherige Actions-Lauf scheiterte an der fehlenden Pages-Konfiguration. T-0111 bleibt wegen fehlender vollständiger Qualifikations-/Maschinenerwerbskette und Reviews offen.
+
+Einzelheiten, Tests und genaue Grenzen stehen in [CP-0514](checkpoints/CP-0514.md) und [A01-Testbericht](a01-t0109-browser-and-t0111-training-smoke-cp0514.md). Kein Commit/Push; vorbestehende lokale Änderungen blieben erhalten.
+
+### Reviewstand nach Restorefix und Hashbindung (CP-0514)
+
+A04 hat die aktuelle T-0110-Daten-/Event-/Persistenzgrenze mit PASS geprüft; Schemafreigabe bleibt ausgeschlossen. A02 hat die zwei adversarialen T-0111-Restorekorrekturen und normalen Kursfluss mit PASS re-reviewed. A10s erster Re-Review war NONPASS wegen nicht an exakte Browserbytes gebundener Version; CP-0514 und Browserbericht enthalten jetzt Vorfix-Smoke- und Postfix-Quellhashes getrennt. A10-Finalreview ist angefordert. Die alte T-0069-UI-Testannahme, technische RateBasis müsse im Formularquelltext offengelegt sein, wurde mit Assertions auf automatisch erzeugte interne Treiberbasis und geführte UI korrigiert; Testpfade bestehen.
+
+Die aktuelle T-0111-Validierung ist automatisiert geprüft, aber der korrigierte Build wurde nicht nochmals im Browser ausgeführt, weil die Browseroberfläche in dieser Sitzung `browser.user is unavailable` meldete. A09 ist in dieser Sitzung nicht als Reviewagent verfügbar; T-0109 unabhängige QA, T-0112 Fachreviews sowie T-0069 Jahres-/Reconciliationgates bleiben offen. Deshalb ist ein nutzerseitiger Test nicht der einzige verbleibende Schritt und T-0113 wird nicht veröffentlicht.
+
+## Reviewrunde: Ergebnisse nach A02-Fix
+
+A02 re-reviewed die beiden Restorekorrekturen in T-0111 mit PASS; bekannte Grenze sind mögliche Spielstände aus Zwischenversionen ohne die neuen Opening-Credential-Felder. A04 T-0110 PASS für Daten-/Event-/Persistenzgrenzen. A10 T-0110 PASS nach Prüfung der getrennten Vorfix-Browser- und Postfix-Arbeitsbaum-Hashes. A09 war nicht verfügbar; fehlende unabhängige T-0109/T-0111-Abnahme bleibt offen.
+
+Nach der Korrektur bestand der 12-Monats-Shared-Flow erneut (12 Perioden, 12 Kundenaufträge, sechs Produktdispatches, Midyear-Restore/Tamper PASS; Statehash `6464fb7f64ace835e3bb50012702d31e6174ba96187ec860cb9cd30146de4f13`). Das ist keine Finanz-/BAB-/Ledgerreconciliation. T-0069 G3/G7/G10 bleiben offen. T-0112 Commercial Terms Regression PASS, jedoch Fachreviews und weitere Umsetzung offen. Die alte T-0069-UI-Assertion wurde auf die geführte Management-UI aktualisiert; beide Testeinstiege bestehen.
+
+Da noch unabhängige QA, Fachreviews, Produktarbeit und die Pages-Konfiguration offen sind, ist der Nutzertest nicht der einzige Restpunkt. Kein Upload/Push wurde ausgeführt.
+
+## MG-002 / Fortführung CP-0515 – nutzerseitig zurückgestellte Altstand-Kompatibilität und T-0112 UI-Fix
+
+- Nutzer hat festgelegt, dass Kompatibilität alter Spielstände derzeit nicht benötigt wird und bei Bedarf separat als Ziel vorgegeben wird. Dieser Punkt ist als deferred scope zu behandeln, nicht als V3-Blocker.
+- T-0112: historische Aufträge ohne unveränderlichen Vertrags-/Leistungsumfang erhalten keine technische JSON-Planmaske mehr. Die Oberfläche zeigt verständlich, warum kein automatischer Plan erzeugbar ist, und verweist für neue Aufträge auf den geführten Angebotsweg.
+- Lieferkarten lokalisieren kanonische Mengeneinheiten; `pieces` wird als „Stück“ dargestellt.
+- Tests: T-0112 Commercial Terms, zwei T-0069 UI-Suiten, A09-Adversarial UI, Cachegraph und Syntaxcheck PASS. Git diff check PASS mit Zeilenendenhinweisen. Der korrigierte Build wurde nicht im echten Browser-Smoke erneut geprüft.
+- Noch offen: T-0069 G3/G7/G10; T-0109 unabhängiges A09-Review; T-0111 Erwerbskette plus Reviews; T-0112 Angebotsrevision/Gegenangebot, Teamprognose und Fachreviews; T-0113 Pages-Einstellung und Deploy. Daher kein Testupload.
+- Siehe CP-0515 für Preflight-Digest und Grenzen. Keine Architektur-, Schema-, Rechts-, Finanzposting- oder Releasefreigabe.
+CP-0515-Nachtrag: Der 12-Monats-Shared-Flow wurde nach dem UI-Fix erneut ausgeführt und PASS; 12 Perioden, 12 nichtbuchende Kundenaufträge, sechs Eigenproduktversände und Midyear Restore/Tamper PASS. Keine Cash-/BAB-/Ledgerreconciliation.
+## MG-002 / T-0111 Fortschreibung CP-0516 – Spielkompetenzkurse
+
+- Die Weiterbildungskarte bietet nun drei getrennte synthetische Lernpfade: Präzisionsdrehen, Baugruppenmontage und Messen/Prüfen. Die zwei neuen Pfade prüfen `technical_drawing` Stufe 2 und schreiben jeweils genau den Spielskill `mechanical_assembly` bzw. `metrology` auf Stufe 2 fort.
+- UI und Lifecycle binden Abschluss-ID, Person, Kurs und Skill an den Run; die Kurse verändern weder reale Qualifikationen/Prüfungen noch Maschineninventar oder Zugang, Arbeitszeit oder Finanzen. Sie sind als Spielannahmen ausgewiesen.
+- Regressionen: A05 T-0111 UI PASS, Product Lifecycle PASS, T-0112 Commercial Terms PASS, A05 T-0069 UI PASS; Syntaxchecks PASS; Modulgraph-Cache wurde auf `sha256-e612c697c1656d981093b9fccfa30fe981c51c7a022226a44d8c786cbc32968d` aktualisiert.
+- T-0111 bleibt IN_PROGRESS: keine weitergehende Erwerbskette für Berufs-/Maschinenqualifikationen, A03/A08/A09-Reviews oder Browser-Smoke des Fixbuilds. Altstand-Kompatibilität bleibt entsprechend Nutzervorgabe zurückgestellt.
+- CP-0516 enthält Preflight-Digest und Tests. Keine Rechts-, Schema-, Architektur-, Finanzposting- oder Releasefreigabe.
+## MG-002 / T-0112 Fortschreibung CP-0517 – Teamvorschau und Alias-Re-Review
+
+- Offene angenommene Aufträge erhalten vor dem Erstellen des Arbeitsplans eine rein lesende Vorschau aus demselben deterministischen Management-Planer: modellierte Stunden, voraussichtliches Abschlussdatum, ausgewählte Teammitglieder und Qualitätsziel-Skillrichtwert.
+- Transparente V3-Szenarioannahme: Skillrichtwert basic=1, standard=2, premium=3. Die Anzeige bezeichnet dies als synthetischen Richtwert ohne Qualitätsgarantie. Die Vorschau reserviert keine Ressourcen; jede offene Bestellung wird einzeln betrachtet. Der tatsächliche Plan wird beim Erstellen erneut gegen aktuelle Kapazität, Material und Reihenfolge validiert.
+- A02 fand im ersten Review einen mutierbaren Alias im Projection-Return (NONPASS). A01 kapselte den gesamten Rückgabewert mit `structuredClone` und ergänzte Mutationsregressionen für Ressourcen, Vertragsbedingungen und gespeicherten Plan. A02 re-reviewed diesen Fix: PASS; keine weitere Aliasstelle am Projection-Return gefunden.
+- Tests nach Fix: T-0112 Commercial Terms/Forecast PASS; beide T-0069-UI-Suiten PASS; A09-Adversarial-UI PASS; Modulgraphcache PASS; T-0075-Jahreslauf PASS (12 Perioden, 12 nichtbuchende Aufträge, sechs Produktversände, Midyear Restore/Tamper PASS); `git diff --check` PASS mit Zeilenendenhinweisen.
+- T-0112 bleibt offen für Angebotsrevision/Gegenangebot, unabhängige Reviews A03/A05/A08/A09 und einen Browser-Smoke der aktuellen Fassung. A09 ist hier nicht verfügbar. Keine Rechts-, Schema-, Architektur-, Finanzposting- oder Releasefreigabe.
+- A02 hatte zuvor T-0111 CP-0516 Kurs-Slice PASS bestätigt; dieser unabhängige Review wird für T-0111 dokumentiert, Altstand-Kompatibilität bleibt zurückgestellt.
+- Siehe CP-0517. Keine Commit-/Push- oder Pages-Aktion.
+## MG-002 / T-0112 Fortschreibung CP-0518 – Angebotsrevision und Entscheidungsfenster
+
+- Spieler kann ein noch offenes Angebot als neue Fassung ändern. Jede Version erhält ein deterministisches, replay-sicheres Angebotsereignis; eine neue Fassung markiert nur die vorherige noch offene Spielerfassung als `superseded`, erhält alte Snapshots/Terms unverändert und lässt höchstens eine aktive Spielerfassung pro Anfrage zu.
+- Kundenentscheidung wird erst verarbeitet, wenn mindestens ein aktives Angebot fällig ist und alle aktuell aktiven Angebote ihr jeweiliges `decisionAt` erreicht haben. Damit kann eine frühe Konkurrenzfrist keine später eingereichte Spielerrevision vorzeitig aus dem Wettbewerb entfernen. Bei Annahme werden Bedingungen der gewinnenden Offer-ID in den Auftragssnapshot kopiert.
+- Jede neue Fassung startet gemäß bisheriger V3-Szenarioannahme eine neue 1–3-Kalendertage-Frist. Liefertermin einer Revision kann nicht vor dem aktuellen Simulationstag liegen. Formulare zeigen gespeicherte eigene Angebotsfassungen; Konkurrenzpreise bleiben verborgen.
+- A02-Review PASS für die Teamvorschau-/Projection-Isolation und PASS für Angebotsversionierung, Event-/Replaybindung, Entscheidungsfrist und Vertragssnapshot. A02 prüfte die gemeldeten Hashes. Keine Dateien geändert.
+- Tests PASS: T-0112, Marktengine, A05 T-0065 UI, beide T-0069 UI-Suiten, A09-Adversarial-UI, T-0111 Training-/Lifecycle-Suiten, Cachegraph sowie 12-Monats-Smoke. Jahreshash nach geänderter Entscheidungsaggregation: `2f0fc1120c03d478c4fcaf0f24dac46c6a79cde3022b37a2a832cc474dd756d9`; 12 Monate, 12 nichtbuchende Kundenaufträge, 6 Eigenproduktversände, Midyear restore/tamper PASS. Keine Cash-/BAB-/Ledgerreconciliation.
+- T-0112 bleibt offen für unabhängige A03/A05/A08/A09-Reviews und interaktiven Browser-Smoke. T-0069 G3/G7/G10, T-0109 A09-Review, T-0111 breitere Erwerbskette/Reviews und T-0113 Pages-Einstellung/Deploy offen. Keine Releasefreigabe.
+## MG-002 / T-0112 Fortschreibung CP-0519 – Browser-Smoke Angebotsrevision (2026-11-07)
+
+Der aktuelle lokale V3-Build wurde im isolierten Lauf unter `http://127.0.0.1:8061/prototype/v3/run.html` visuell und funktional geprüft. Am 04.01.2027 wurde eine Angebotsfassung abgegeben, am 05.01. eine geänderte Fassung mit neuem Umfang und 940,00 € eingereicht. Die Oberfläche zeigte Version 3, eine erhaltene frühere Fassung und die neue Entscheidung am 07.01.2027; an diesem Tag wurde das Angebot als abgelehnt angezeigt. Der Lauf belegt Bearbeitung, Revision, Fristneustart und späteren Entscheidungsstatus. Eine Annahme, Auftragserzeugung oder Übernahme der Gewinnerbedingungen wurde in diesem Browserlauf nicht gezeigt; dafür bestehen automatisierte Regressionen, aber kein positiver UI-Beleg.
+
+Der Browser-Smoke verwendete ein neues ephemeres Testspiel und veränderte keine Nutzerspielstände. Geladener Cache-/Buildtoken: `d654686f013780561136a5e940d7bf2e008cec70fe0071b7e6c67390a5db4ca1`. Aktuelle SHA-256: `prototype/v3-market-simulation.js` `3F75B924F0363B3A84AC8C64AF50112DD00F9E54AF2A50E89DF699207DED67D4`; `prototype/v3/run.js` `5BB20E2B6DADCCBDA08113B67FD5EEB5131D22ADFC3085C00E42C0582DA962C0`; T-0112-Regression `7BB15FB7CE1D6F86B792115708D97A11AD53704E94023AC619A7AC230BEA1E17`; `run.html` `521BDD04FB1FC2550E87EC0826C4DA06A3158F9449016F9045D299721CED03E5`.
+
+T-0112 bleibt IN_PROGRESS bis zu unabhängigen A03/A05/A08/A09-Reviews. T-0069 G3/T-0074, G7/T-0077 und G10/T-0080 bleiben offen. T-0109 braucht unabhängiges A09-Endreview; T-0110 wird durch dieses Browserergebnis nicht als unabhängig geschlossen. T-0111 benötigt Erwerbskette und Fachreviews; Altstand-Kompatibilität bleibt gemäß Nutzervorgabe deferred. T-0113 erfordert GitHub-Pages-Actions-Einstellung und danach erfolgreichen Deploy.
+
+Preflight-/Bestandsschutz: Branch `main`, HEAD `fdc4960d4bf92fb13f6802e8d0738eb3d9110097`. Vor CP-0519 lagen 745 Statuszeilen vor (723 staged, 12 unstaged, 22 untracked); nichts wurde verworfen, gestasht, committed oder gepusht. `git diff --check` ist sauber, Git meldet nur LF/CRLF-Hinweise. CP-0518 blieb unverändert.
+
+## MG-002 / T-0111 Fortschreibung CP-0520 – Maschinenbedienungskurs und aktueller Browser-Smoke (2026-11-07)
+
+A02 ergänzte den synthetischen Kurs `synthetic-course-machine-operation` (Voraussetzung `turning_manual` Stufe 2 → Spielskill `machine_operation` Stufe 2). Er verleiht keine reale Bedienberechtigung, Maschinenpass oder Maschinenzugang. Die fehlende Maschine bleibt ein eigenes Gate. A01 prüfte das Delta und führte T-0111-UI-/Lifecycle-Regressionen erneut aus; beide PASS, ebenso T-0112-/Markt-/T-0065-/T-0069-UI- und A09-Adversarial-Regressionen sowie Modulgraphcheck.
+
+Der aktuelle Graph-Cache für 28 Module lautet `sha256-c6d8395f50a3512001c687230d0b1840b6185cfc948c582a4454804b204eeabc`. Interaktiver Browser-Smoke am aktuellen Build: Maschinebedienungskurs in der Oberfläche abgeschlossen; Skill wurde angezeigt, Produkt blieb wegen fehlendem Maschinenbedienplatz gesperrt. T-0112: Erstangebot 04.01., Revision 05.01., am 06.01. noch offen, Ablehnung am 07.01. Kein positiver Zuschlag, keine mobile Prüfung.
+
+T-0111 bleibt für breitere Skills-/Maschinenpfade und unabhängige Reviews offen; Altstand-Kompatibilität bleibt nutzerseitig deferred. T-0112 wartet auf A03/A05/A08/A09. T-0069 G3/G7/G10, T-0109/T-0110 A09-Endreviews und T-0113 Pages-Konfiguration/Deploy bleiben offen. Keine Freigabe/Veröffentlichung.
+
+## MG-002 / T-0111 A04-Re-Review – CP-0521 (2026-11-07)
+
+A04 hat den neuen synthetischen Maschinenkurs read-only im Daten-/Event-/Save-Restore-Scope geprüft: PASS. JSON round-trip/restore, Kurskatalog-/Evidenzbindung, idempotentes Replay und Ablehnung von Duplikat-Completion sind nachgewiesen. Spielskill ändert sich; reale Qualifikationen und Equipment nicht. Nach Kurs bleibt das separate Maschinen-Gate erforderlich. A04 führte Lifecycle- und T-0111-UI-Regression erneut aus; beide PASS. Kein DB-/Backend-/Schema-/Architektur-/Rechtsclaim. Nicht geprüft: äußerer Run-Envelope dieses Kursfalls; A03/A05/A08/A09 und mobile Browserprüfung bleiben offen.
+
+T-0111 bleibt IN_PROGRESS. Altstand-Kompatibilität ist vom Nutzer deferred und kein V3-Gate.
+
+## MG-002 / T-0111 Fortsetzung CP-0522 – MAG/Pneumatik-Skillkurse (2026-11-07)
+
+A02 ergänzte zwei synthetische Kurse: MAG-Fügen setzt vorhandene Zeichnungskompetenz voraus; Pneumatik setzt vorhandene Baugruppenmontage voraus. Beide geben ausschließlich Spielskills, nicht reale Qualifikation/Schweißerprüfung/Berechtigung, Maschinenzugang, Kosten oder Stunden. Lifecycle-UI-Regressionen und A04 Daten/Event/Restore-Re-Review PASS. Getrennte Equipmentgates und formales Schweißqualifikationsgate bleiben bestehen. Modulgraphcache PASS; diff-check PASS (Zeilenendenhinweise).
+
+Sieben Archetyp-Skills ohne sicheren erklärten Kursvoraussetzungsweg bleiben offen. T-0111 wartet auf A03/A05/A08/A09, äußeren Run-Save-E2E und aktuellen Browser-/Mobil-Smoke. Kein Commit/Push.
+## CP-0523 / T-0111 – berufliche Kompetenzpfade (2026-11-07)
+
+A02 erweiterte den T-0111-Katalog auf 29 eindeutige synthetische Spielskill-Pfade. Die Coverage-Regression gleicht die Award-Skills dynamisch mit allen Fähigkeiten der zehn Berufsprofile ab, prüft die Zyklenfreiheit und Erreichbarkeit aller Skills ab dem voraussetzungslosen Zeichnungs-Grundkurs. A02/A05/A04/A09 regressions bestätigten Kursausführung, UI-Zustände, Modul- und Outer-Run+Finance-JSON-Restore. Der vollständige Finanzzustand blieb im Save/Restore unverändert. A03/A04/A05/A08/A09 bestanden ihre jeweils begrenzten Fachreviews.
+
+T-0111 bleibt wegen fehlendem interaktivem Browser-/Mobil-Smoke offen. A08 fand zusätzlich: die Kurse ersetzen keine arbeitsmittel-/tätigkeitsbezogene Unterweisung; bestehende Produktarchetypen modellieren diese Pflicht nicht durchgängig. A02 erstellte eine Entscheidungsvorlage für T-0114. T-0114 bleibt `PENDING_USER_DECISION`; Produktregeln werden erst nach Bestätigung festgeschrieben oder implementiert. Die aktuellen lokalen Änderungen wurden weder gestaged noch committet oder gepusht. Details und SHA-256 im [CP-0523](checkpoints/CP-0523.md).
+## CP-0524 / T-0112 – B2B-Werklieferung, D-0157-F3 und Jahreslauf (2026-11-07)
+
+A02 ergänzte die fest gebundene Vertragsklassifikation „Werklieferung beweglicher Metallteile, B2B“ nach §650 Abs.1 BGB und die sichtbare D-0157-F3-Szenariobedingung (fünf Arbeitstage ab Folgetag nach Lieferung). Beide Bedingungen werden mit der angenommenen Angebotsrevision im Vertragssnapshot/Plan gespeichert; fehlende/manipulierte Bedingungen scheitern fail-closed. Verkäufer kann nicht die Kundenabnahme erklären; F3 bleibt eine nichtbuchende Simulation, keine allgemeine Abnahmefiktion. A05 ersetzte sichtbare interne IDs und englischen Jargon durch verständliche deutsche Labels. Alte Monats-/Jahresfixtures wurden nur um den jetzt obligatorischen Vertragssnapshot erweitert.
+
+A03/A04/A05/A08/A09 bestanden ihre jeweiligen, begrenzten Postfix-Reviews. Monatslauf (3 Perioden) und Jahreslauf (12 Perioden mit Midyear-Restore), T-0112-/Orchestrator-/Markt-/Run-/Kurs-/Modulgraph-Regressionen und `git diff --check` PASS. Jahres-Smoke-Aufträge bleiben `accepted_non_posting`; `pendingFinance=true` und BAB ist vertagt, somit kein Finanzjahresabschluss. T-0112 bleibt offen für interaktiven positiven Zuschlag und Browser-/Mobil-Smoke; Kunden-Gegenangebote stehen als T-0115 `PENDING_USER_DECISION` bereit. T-0114 Arbeitsschutz-Unterweisung bleibt ebenfalls `PENDING_USER_DECISION`. Details: [CP-0524](checkpoints/CP-0524.md). Keine Dateien gestaged, committet oder gepusht.
+
+## CP-0525 / T-0077 Lieferanten-AP, A09-Nachreview und aktuelle T-0076-/T-0110-Nachweise (2026-11-07)
+
+Nutzer bestätigte D-0173 (drei synthetische Lieferantenprofile anhand D-0128 als gekennzeichnetem Rechenanker, vorgeschlagene Profile/Werte, Rechnungsdatum als 14-Tage-Anker, Zahlung ausschließlich durch separates ausgeführtes Ereignis) und D-0174 (isolierter AP-Subledger-OP, Vollzahlung reduziert denselben OP und Bank centgenau; kein Auto-/Teil-/ungedecktes Zahlungsevent und keine GL-/Steuer-/Bestands-/Aufwands-/COGS-Buchung). Die Bestätigung ist im Decision Log erfasst; D-0173 bleibt die Profil- und Invoice-Grundlage, D-0174 ergänzt die Gegenbuchung.
+
+A02 implementierte Supplier-Angebots-/Bestellsnapshots und die an Receipt gebundene Rechnungsevidence. A03 ergänzte die isolierte AP-/Bank-Runtime. A01 ergänzte einen Persisted-Event-Fingerprint für AP-/Payment-Ereignisse und Tests gegen manipulierte Zahlungsmetadaten sowie Januar-AP/Februar-Zahlung. A05 integrierte Receipt→AP und den manuellen vollständigen Zahlungsknopf mit Guthabenprüfung und JSON-Save/Restore. A09 gab den T-0077-/T-0070-Slice PASS. Tests: T-0070 UI, T-0111 UI, Finance Runtime, Syntax und `git diff --check` PASS (nur LF/CRLF-Hinweise). Kein echter Browser-/Mobilklicktest.
+
+Der T-0076 aktuelle Jahresmengenlauf besteht mit 12 Perioden, 12 nichtbuchenden Kundenaufträgen, 8 Produktversänden und 12/12 State-/Restorehashgleichheit; State `fa28ab6a…e56d462`, Snapshot `F12B7529…02D60E`. A09 PASS. Das ist Mengen-/Recoverybeleg, keine Finanz-, BAB-, COGS- oder Ledgerreconciliation. Ältere CP-0489-/Berichtshashes bleiben historische Runs; Details im [A01-Nachtrag](a01-t0076-current-run-addendum-cp0525.md).
+
+A10 erstellte das aktuelle T-0110-Manifest mit 15 Arbeitsbaumhashes; A09 bestätigte 15/15 Hashes und Claimgrenzen PASS. Der frühere CP-0524-Hash für `run.js`/`run.html` ist als historisch abgegrenzt. T-0109 aktueller interaktiver Browser-/Reloadbeleg bleibt offen.
+
+T-0077 bleibt IN_PROGRESS: Payroll, Steuer, Debt/Overdraft, Inventarwert/COGS und GL sowie die T-0069-Gesamtreconciliation fehlen. T-0069 G3/G7/G10 bleiben offen. Weitere offene Tickets sind T-0109/T-0111/T-0112 aktuelle Browser-Smokes, T-0113 Pages-Repoeinstellung/Deploy, T-0114 Arbeitsschutzregeln und T-0115 Gegenangebotsregeln (jeweils Nutzerentscheidung gemäß Ticketboard). Es wurden keine Dateien gestaged, committet oder gepusht.
+## CP-0525 Nachtrag / A03 G7-Evidenzmatrix (2026-11-07)
+
+A03 lieferte als nächste nichtbuchende Arbeit eine vorläufige Matrix zu Payroll, Steuerabführung, Debt/Overdraft und Inventory valuation/COGS. Sie trennt Evidenzvertrag, gesperrte Buchungen und nächste Rollen. A03 kennzeichnete sie ausdrücklich als NONPASS für einen verbindlichen Finanzvertrag, weil sein Projektmirror den aktuellen Gap-Refresh und D-0170–D-0174 nicht enthielt; die Matrix ist daher nur ein Analysevorschlag, kein aktueller Fachabgleich oder Buchungsauftrag. A01 validiert jede künftige Produktregel im autoritativen Checkout vor Integration. Keine Dateien außer dieser Koordinationsfortschreibung geändert; kein Commit/Push.
+
+T-0109-Boardzeile wurde nach A09s Review präzisiert: Code-/Traceability-Review ist PASS, aber der Klick-/Reloadbeleg aus CP-0514 gehört ausschließlich zum historischen Build; der aktuelle interaktive Browser-Smoke bleibt offen.
+## A01 – T-0077 / T-0069 nächste Übergabe nach CP-0526
+
+T-0077/AP-Restore: A01 schloss die lokal nachweisbare Quellbindung aus CP-0525 und die Regression gegen gemeinsam veränderte Finance-Beträge. Die T-0077/G7-Gesamtabnahme bleibt offen. Nächster nötiger Schritt: A03 prüft die Runtime-/Quellbindungssemantik im autoritativen Checkout; A09 führt unabhängigen Postfix-Review im selben Checkout aus. Der verfügbare Agentenspiegel kann den autoritativen HEAD nicht lesen und darf nicht als Postfix-PASS gewertet werden.
+
+T-0069: aktuelle 12-Monats-Engine-Smokes für T-0075/T-0076 bestehen, aber `pendingFinance=true`. G3/T-0074 wird erst nach G7/T-0077 mit reconcilierten Finanzdaten bewertet. G10/T-0080 braucht aktuellen unabhängigen Reconciliation- und Browser-/Mobilbeleg. Keine Nutzerentscheidung, keine neue Produktregel und keine Commit-/Push-Aktion in CP-0526.
+
+## A01 – T-0077 / T-0069 Fortschritt nach CP-0527
+
+Die read-only Finanzprojektion gibt jetzt den isolierten D-0174-Supplier-AP-/Bank-Subledgerstand sowie Monatsbewegungen und Monatsendbestände aus und prüft AP-Roll-forward über Monatsgrenzen. Die gebundene Regression deckt Rechnung im Januar und ausdrücklich ausgeführte Vollzahlung im Februar, JSON-Restore, Bankdelta und das Ausbleiben synthetischer GL-Zeilen ab. Finanzruntime- und Ledgerprojektionsregressionen PASS.
+
+Das schließt nur einen belegten Teilfluss. Der alte `v3-year-order-smoke.mjs` scheitert mit seinem historischen, nicht D-0157-konformen Vertragsfixture; ein Modernisierungsversuch endete im rechenintensiven Jahreslauf ohne Ergebnis und wurde verworfen. Aktuelle Jahresbelege bleiben die in CP-0526 dokumentierten T-0075-/T-0076-Smokes; sie haben `pendingFinance=true` und wurden in diesem Auftrag nicht wiederholt.
+
+T-0077/G7 und T-0069 bleiben offen. D-0174 untersagt GL-/Steuer-/Bestands-/Aufwands-/COGS-Buchungen aus der AP-Zahlung. Für Payroll, Steuerabführung, Kredit/Dispo und Geldbewertung fehlen autorisierte fachliche Event-/Gegenkontierungsregeln; sie dürfen weder als Null noch aus Planwerten als Istposten ergänzt werden. A03/A09 Postfixreviews im autoritativen Checkout sowie aktueller vollständiger Jahres-Finanzlauf und danach G3-/G10-Abnahme bleiben nötig.
+
+
+## CP-0528 – T-0077 Finanzlösungen (2026-11-08)
+
+A01 erstellte getrennte Vorschläge zu Payroll, Steuerabführung, Darlehen/Dispo, monetärer Bestandsbewertung/COGS und Hauptbuch/Jahresabgleich. Es erfolgte keine Runtime-, Schema- oder Buchungsmutation. D-0174 bleibt unverändert; V1-Dispoentscheidungen wurden nicht zu V3-Regeln erklärt. A03-Fachreview und A09-QA sind nicht ausgeführt. T-0077/G7 und T-0069 bleiben offen.
+
+Nutzerentscheidungen gebündelt im Finanzlösungsvorschlag: Rechtsstand im Run; Startkapitalquelle und Wert/Behandlung der Startausstattung; Übernahme der Dispoentscheidung für V3 und belegte Ausgangsbasis; Minimal-Istkostenbrücke gegenüber COGS-PENDING bis BAB verfügbar ist; Erweiterung von D-0174 um gesonderte GL-Buchungen gegenüber isoliertem AP-Subledger. Erst nach Bestätigung wird A03 mit den gewählten Domain-/Eventregeln beauftragt.
+
+
+## CP-0529 – bestätigte Finanzleitentscheidungen und T-0116 (2026-11-08)
+
+Der Nutzer bestätigte Payroll, getrennte Steuerarten/Abführung, Übernahme der V1-Dispoentscheidungen in V3, COGS-Variante B, einen getrennten GL-Postingpfad auf D-0174-Referenzen sowie 10.000 € Inhabereinlage bei nichtmonetärer Behandlung der Startausstattung. D-0175 bis D-0180 dokumentieren den Umfang. Für die Eröffnung ergibt sich ein Szenariostart von 10.000 € Bank = 10.000 € Eigenkapital; der anfängliche 10-%-Disporahmen ist 1.000 €, nicht gezogen.
+
+T-0116 ist A03 zugewiesen, um Domain-/Event-/Kontierungsverträge, Quellen, Kontrollkonten, Fälligkeit, Dedupe, Restore/Storno und Gegenproben zu konkretisieren. COGS bleibt gemäß D-0178 bis zur BAB-/Kostenpoollösung PENDING. D-0174 wird nicht geändert; GL-Mirror muss dieselben Bank-/AP-Ereignisse dedupliziert darstellen und darf die Cashmutation nicht erneut ausführen. Keine Runtime-/Schema-/Finanzmutation. T-0077/G7 bleibt offen.
+
+
+## CP-0530 – A03-Finanzvertrag, A01-Review und A09-Gate (2026-11-08)
+
+A03 lieferte in T-0116 einen Domain-/Event-/Postingentwurf für D-0175–D-0180. A01 prüfte ihn gegen Nutzerentscheidungen, D-0174 und den T-0077-Gap-Befund: interne Konsistenz PASS. D-0174 bleibt operative AP-/Bankquelle; GL ist ein dedupliziertes Journalmirror. 10.000 € Bank = 10.000 € Einlage; Startdispo 1.000 € ungezogen. Rohmaterial nur quellengestützt per gleitendem Durchschnitt. WIP/Fertigware/COGS nach D-0178 PENDING bis BAB/Kostenpool.
+
+Die gewählte COGS-Grenze hält T-0077/G7 und T-0069/G3 ausdrücklich NONPASS. A09-unabhängiges Vertragsreview ist als T-0117 beauftragt; danach A02-Quellmapping. Keine Runtime-/Schema-/Buchungsmutation oder Releasefreigabe.
+
+
+## CP-0531 – A09 T-0117 PASS und A02 T-0118 (2026-11-08)
+
+A09 prüfte den A03-T-0116-Finanzvertrag unabhängig und gab PASS für interne Konsistenz. D-0174 bleibt operational unverändert, der GL-Spiegel darf keine zweite Cashmutation ausführen. Payroll, Steuer, 10.000-€-Eröffnung, 1.000-€-Dispo und D-0178-PENDING sind konsistent. T-0117 COMPLETED; Bericht/hash und Prüfgrenzen stehen in CP-0531.
+
+T-0118 ist A02 als read-only Quell-/Periodenmapping zugewiesen: genehmigte Istzeiten, Kunden-/Lieferantensteuerquellen, Bank-/Dispoevents, Materialrechnungen, GL-Dedupe, Run-Monatsperioden und Restore. Keine Code-/Schema-/Buchungsmutation. T-0077/G7 und T-0069/G3 bleiben offen; D-0178 verhindert derzeit den vollständigen COGS-/Jahres-PASS.
+
+
+## CP-0532 – Quellmapping, Finanzruntime-Lücke und T-0119 (2026-11-08)
+
+A02 schloss T-0118 im read-only Umfang ab. Kunden- und Lieferanten-Szenarioflüsse sind datiert und quellgebunden; Payroll-Istzeit, gesetzliche Steuerabführung, Dispoevents, monetäre Materialbewegungen und vollständiges GL fehlen. A01 verifizierte die zwei zentralen Runtime-Lücken direkt: finance state wird nur für das exakte 2027-01-04-Startdatum angelegt; die Opening-Runtime enthält Bank 10.000 €, aber keine bestätigte Einlage-Gegenzeile. Der 2019-Start gemäß D-0152 erhält derzeit keinen Finance-State.
+
+T-0119 steht auf PENDING_USER_DECISION, weil D-0179 ausdrücklich keine Runtime/API-Freigabe erteilt. Bis zur Bestätigung keine Runtime-/Schema-/Finanzänderung. COGS bleibt gemäß D-0178 bewusst PENDING; T-0077/G7 und T-0069/G3 bleiben offen.
+
+## CP-0533 – D-0181/D-0182 und T-0119 Start-/Opening-Slice (2026-11-08)
+
+Der Nutzer hat den auswählbaren 2019-Start für V3 entfernt und T-0119 zur Runtime/API-Umsetzung freigegeben. D-0181 beschränkt ausschließlich das aktuelle V3-Startangebot auf den operativen 04.01.2027-Lauf mit finanzieller Eröffnung zum 01.01.2027; D-0152 bleibt historische Referenz und V1/V2 werden dadurch nicht geändert. D-0182 genehmigt den begrenzten Runtime-/API- und lokalen JSON-Save-/Restore-Slice, aber weder Datenbankschema/Migration, produktive Buchungen noch Release.
+
+Umgesetzt wurden im V3-Lauf:
+- `createRunFromInputs` weist jeden Starttermin außer 04.01.2027 ab; das Eingabefeld ist im Startdialog festgesetzt und erklärt den einzigen aktiven Profilstart.
+- D-0180-Opening verlangt jetzt explizite Bank- und Eigenkapitalwerte im Gleichstand bei null Eröffnungsforderungen. Der Start erzeugt 1.000.000 Cent Bank und 1.000.000 Cent Inhabereinlage.
+- Die read-only Ledgerprojektion ergänzt das ausgeglichene Opening-Paar Bank an Soll / Inhabereinlage an Haben. Es mutiert keinen operativen Finanzzustand.
+- Finanzruntime und lokaler Run-Save tragen Version 2. Frühere Saves ohne den Eröffnungsgegenbeleg werden nicht stillschweigend migriert; Altstand-Kompatibilität bleibt gemäß Nutzervorgabe separat deferred.
+- V3-Run-Modulgraph/Cachetoken wurde nach den Codeänderungen aktualisiert.
+- Das iPhone-/iPad-Offlinepaket unter `prototype/v3-mobile-package/` wurde mit demselben lokalen Arbeitsstand neu erstellt (28 eingebettete Module); kein Gerätetest.
+
+T-0119 bleibt IN_PROGRESS. Nicht implementiert sind Payroll-/Steuerereignisse, Dispo-Draw/Rückführung/Zinsruntime, materialwertige gleitende Durchschnittsschichten, AP-/Bank-Journalmirror für D-0174 und vollständige Perioden-/Jahresreconciliation. Fehlende Vertrags-, Rechts-, Zins-, Steuer- und Bestandswertquellen bleiben PENDING; WIP/Fertigwaren/COGS bleiben aufgrund D-0178 PENDING. T-0077/G7 und T-0069/G3 sind damit nicht PASS.
+
+**Prüfgrenzen:** A01 hat nur Code-/Diff-Selbstprüfung. Automatisierte Regression, Restoretests, unabhängiges A03-/A04-/A09-Review sowie Browser-/Mobil-Smoke sind nicht ausgeführt. Keine Schemaänderung, Commit-, Push- oder Releaseaktion.
+
+
+## CP-0534 – T-0119 Start-Disporahmen
+
+Die Finanzübersicht zeigt den anfänglichen 1.000-€-Disporahmen unter dem Bankbestand als ungezogenes Limit. Es ist kein Guthaben und keine Ziehung. T-0119 bleibt offen für Draw/Repayment, Zins und Quartalsfortschreibung; diese Anzeige begründet keine neue Finanzregel. CP-0534 dokumentiert Scope und Prüfgrenzen.
+
+
+## CP-0535 – T-0119 Payroll-Rechtsquellen
+
+A01 hat amtliche 2027-Payroll-Quellen datiert zusammengefasst. Die vorläufigen SV-Rechengrößen bleiben bis zum Bundesrats-/Verkündungsabschluss PENDING; konkrete Payroll kann ohne Arbeitsverträge, genehmigte Zeit, ELStAM und Versicherungsdaten nicht berechnet werden. A08-Rechtsreview und A03-Fachreview sind nächster Schritt. Keine Runtimeregel ergänzt.
+
+
+## CP-0536 – T-0119 A08-/A03-Reviews und Folgekorrekturen (2026-11-09)
+
+A08-Rechtsreview und A03-Fachreview des T-0119-Payroll-Quellenmappings sind jeweils PASS im abgegrenzten Umfang. MiLoV5-Mindestlohn, Minijob-Grenze, durchschnittlicher GKV-Zusatzbeitrag und getrennte EStG-/SGB-IV-Fälligkeiten sind amtlich belegt; die individuellen Kassenbeiträge bleiben individuell. Die 2027-SV-Rechengrößen sind laut aktueller BMAS-Umsetzungsseite noch nicht verkündet und bleiben `PENDING_LEGISLATIVE_FINALIZATION`. A03 bestätigt, dass ohne Vertrags-/Istzeit-/Steuer-/Versicherungsdaten keine echte Payroll berechnet werden darf.
+
+Folgekorrekturen: Quellenmapping und Rechtsregister erhielten einen datierten Nachtrag mit aktuellem BMAS-Umsetzungslink. Der veraltete Hinweis auf ein aktives 2019-V3-Profil im Kopf des A03-T-0116-Berichts wurde gemäß D-0181 berichtigt; 2019 ist dort nur historische Referenz. Keine Decision-ID geändert oder ergänzt. T-0119 bleibt IN_PROGRESS; keine Rechts-, Runtime-, Schema-, Buchungs- oder Releasefreigabe. Softwaretests und Browserprüfung wurden nicht ausgeführt.
+
+## CP-0537 – Arbeitsstart für offene V3-Finanz- und Jahresgates (2026-11-09)
+
+Bestandsaufnahme: T-0065, T-0066 und T-0067 stehen im Ticketboard auf COMPLETED. Offen sind T-0119 und T-0069; darin sind T-0077/G7 (Finanz-/Ledgerabgleich), T-0074/G3 (Jahreswirtschaftlichkeit) und T-0080/G10 (unabhängige Reconciliation plus aktueller Browser-/Mobilbeleg) die aktiven Gate-Punkte. T-0075/76/78/79 stehen als PASS im Ticketboard, ihre Finanzübergaben bleiben ausdrücklich `pendingFinance=true`.
+
+A01 hat drei disjunkte Arbeitspakete vorbereitet: T-0120 an A03 für ausschließlich belegte Dispo-Hauptsummenereignisse (keine Zinshöhe erfinden, keine Bilanz-/Quartalsneuberechnung ohne belegte Grundlage); T-0121 an A04 als read-only Save-/Restore-Review; T-0122 an A02 als read-only Mapping der Jahresausgaben zu T-0074/T-0077. Danach sind A03-Fachreview und A09/A12-G10-Arbeiten zuzuweisen. D-0178 hält WIP/Fertigwaren/COGS bis zur BAB-/Kostenpoollösung `PENDING`.
+
+## Preflight-Digest CP-0537 (vor Agentenübergaben)
+
+Datum 2026-11-09; MG-002 / SLG-002.2; aktives Zielprofil V3 ab 01.01.2027 (D-0181); Vorgänger CP-0536; HEAD laut `git rev-parse` `fdc4960`; Ticketstand und Diff-Umfang nur eingeschränkt verifizierbar, da Git `status` im angegebenen Pfad mit „this operation must be run in a work tree“ abweist. Keine Dateien verworfen oder gestaged.
+
+Maßgebliche Entscheidungen: D-0175–D-0182, besonders D-0177 Dispo, D-0178 COGS pending, D-0182 Runtime/API. Hashes:
+- AGENTS.md `BD9FCB3DE9082E716E2DB0D5B59F824B43B8E1007FDB2BA759DDC591A83A45F7`
+- agent-structure.md `6AEC63F774DD47A4396249B006F40843A4C65F53484AD5CB0BAD27EE34688182`
+- agent-rights-matrix.md `111373DC950C41DD4191B62A36CACAB730A2E8E34BE757AB55D83D608CC7650A`
+- goals.md `BEED7768B5C2D7F8EF1D8280E389E492E0216012A3401BF03254DE734A35F374`
+- ticket-board.md vor Eintragung der T-0120–22 `2E9059B8AB7D130B1E50CA5D36EBB4ADF028AEFC14CA3379101D8248A2D17B30`
+- collaboration-state.md vor Eintragung `D5D884E110CF51A54654EFB50772EB4EA0DB2D61293F1AB8C0E7EE5B188352AE`
+- decision-log.md `455E5DC7A8B8A232B4C6BEA342D6D27EB950500F027B78FC38B8368D31836A97`
+
+Autor: A01. Mitwirkende: offen. Reviews/Tests/Browser/Git: offen bzw. nicht ausgeführt; siehe spätere CPs.
+
+## CP-0538 – Erste Findings aus T-0120–T-0122 (2026-11-09)
+
+A02-T-0122 ist abgeschlossen: 12-Monats-Auftrags-/Produkt-/Mengenläufe sind belegt, doch die Finanzhandoffs sind `pendingFinance=true`; kein Umsatz-/AR-Settlement, keine bewerteten Herstellkosten/COGS, Payroll-/Steuer-/Dispozins- oder GL-Jahresabstimmung ist nachgewiesen. A02 hat ein reproduzierbares Event-Handoff-Schema an A03 beschrieben; es enthält stabile Quellen-IDs, effective date/Periode, Vertrags-/Auftrags-/Produkt-/Lot-/Lieferungsbezüge, Status/Abnahme, Mengen und Vertragspreis-Snapshot, aber keine von A02 erfundenen Istkosten oder Buchungen.
+
+A04-T-0121 ist als Reviewaufgabe abgeschlossen, Ergebnis NONPASS: Restore validiert die D-0180-Openinginvariante Bank=Eigenkapital nicht erneut, obwohl State-Reconciliation und Save-Versionchecks existieren. T-0123 ist A03 als gezielter Restore-Guard zugewiesen, A09 soll nach Implementierung Manipulation/Replay prüfen.
+
+A03 konnte T-0120 trotz bestätigter Dispo-Regeln nicht sicher implementieren, da Git `status/diff` im verfügbaren Checkout mit „not a work tree“ fehlschlägt. Es erfolgte keine Codeänderung. T-0120 ist BLOCKED; keine lokale Änderung wird riskiert, solange bestehende Arbeitsstände nicht abgrenzbar sind.
+
+T-0069/T-0074/T-0077/T-0080 und T-0119 bleiben offen. T-0065/66/67 bleiben abgeschlossen. Keine neue Produktentscheidung, keine Tests, kein Commit/Push.
+
+## CP-0539 – A09-Gesamtgate und A10/A12 Blocker (2026-11-09)
+
+A09 hat T-0069 G3/G7/G10 im Review NONPASS bewertet. T-0075/76 weisen operative Jahres- und Mengenabläufe nach, aber keine Finanzjahresreconciliation. G3 hat damit keinen belegten tragfähigen oder scheiternden Jahresverlauf. G7 bleibt wegen fehlender Payroll-, Steuer-, Dispo-, Bestandsbewertungs-/COGS- und GL-Jahresintegration offen; D-0178 hält COGS PENDING. G10 benötigt A09-Reconciliation plus A12 Browser-/Mobilnachweis.
+
+A09 meldet zusätzlichen T-0075-Provenienzdrift: der in CP-0513 referenzierte Ausführungshash unterscheidet sich vom aktuellen Skripthash. Der T-0076-Nachtrag CP-0525 bindet seinen aktuellen Mengenlauf/Snapshot dagegen an die dort dokumentierten Hashes. T-0124 wurde A02 zur gezielten read-only Klärung der T-0075-Provenienz zugewiesen, ohne erneuten Testlauf oder Gateclaim.
+
+A12 konnte T-0109/T-0111/T-0112/T-0080 nicht testen: kein Testbrowser oder laufender Build, In-App-Browserinventar leer. Kein Browser/Server wurde gestartet. A10 bestätigte für T-0113 einen Pages-Setupblocker: Repository Settings → Pages → Build and deployment → Source muss `GitHub Actions` sein; Nutzer mit Admin-/Maintainerrechten müssen dies setzen, danach kann der bestehende workflow_dispatch gestartet werden. Kein Remote-write, kein Workflowlauf.
+
+A04-T-0121 Restorereview ist COMPLETED mit NONPASS; T-0123 bleibt als A03-Folgeguard pending. A03s T-0120-Codeänderung bleibt BLOCKED, da Git `status/diff` im Checkout nicht lesbar ist. A01 hat den aktuellen Desktop-Aufruf nur lesend versucht; die Fensterbindung lieferte die ChatGPT-Oberfläche statt GitHub Desktop, daher kein Statusbeleg und keine GitHub-Desktop-Aktion.
+
+Offene Nutzer-/Umgebungsabhängigkeiten: Testbuild/browser bereitstellen (oder Pages-Quelle durch Repository-Admin aktivieren); T-0114 Unterweisungsdauer/Gefährdungsszenario und T-0115 Gegenangebotsregeln bleiben als PENDING_USER_DECISION markiert. Keine Nutzerentscheidung eigenmächtig ergänzt.
+
+## CP-0540 – T-0120/T-0123 Implementation Review und nächste Fixes (2026-11-09)
+
+A03 implementierte in `prototype/v3-finance-runtime.js` und `prototype/v3/run.js` die eng begrenzte Dispo-Hauptsummen-API und den D-0180-Restoreguard. A03-Fachreview und A09-unabhängiger Code-Review bestätigen die Grundpfade (manueller exakt-shortfall Draw, Startlimit aus dem belegten Opening, Kundeneingang-first Rückzahlung, Bank/Hauptsummenprojektion; Restore-Opening exakt D-0180). Keine Tests wurden ausgeführt.
+
+**T-0120 NONPASS:** A03/A09 finden fehlende inverse Reconciliation: für jede Rückzahlung muss genau ein passender Kundeneingang vorliegen; jede berechtigte Kundenzahlung mit offener Schuld muss genau eine quellgebundene Rückzahlung erzeugen; Tamper/Entfernen/Duplizieren müssen fail-closed geprüft werden. Außerdem kann die Sortierung mehrere Same-Day-Draws vor den zugehörigen Supplier Payments verarbeiten, so dass Folgebeträge falsch reconciled werden. Die Zahlungs-UI bietet den manuellen Draw nicht an; ihr Handler übergibt `drawFromDispo` nicht.
+
+**T-0123 PARTIAL:** D-0180-Guard ist durch Codeinspektion statisch PASS, aber Restore-Manipulation-/Replay-Verhalten wurde nicht ausgeführt. T-0123 bleibt offen, bis der Verhaltenstest belegt ist.
+
+Folgepakete: T-0125 an A03 für Rückzahlungsquellenintegrität/Dedupe/Same-Day-Kausalreihenfolge im Finance Runtime; T-0126 an A05 für UI-Auswahl beim unzureichenden Vollzahlungsbestand. Nach A03-Fix ist A09 erneut zu beauftragen; A05 nach T-0125 integriert in `run.js`, danach A03/A09-Fach-/QA-Review. Keine Zinshöhe und keine Quartalsbilanz-/Limitänderung ergänzt.
+
+A02-T-0124 bestätigt T-0075-Hashdrift: CP-0513 verweist auf `2FEA2D86830EDA1FC38DFEEB8B7ACE3D47E04EE7A6EBED6C8C231750B1372579`, aktueller Harness ist `2812A2640589B371DB9CDA7F4026BE2469888F38CFCBE6E35F0BCDB52CA4AA4B`; LF-normalisierter aktueller Hash ist `3A18E3C5DCAE9E906E98ADD7A2FC8685D9ADAC99FD3265EA876E04DB8F9C8B12`. CP-0524 verweist auf neuen Hash/Jahreslauf, bindet ihn jedoch nicht vollständig an den T-0075-Harnesspfad, Kommando und alle Assertions. CP-0513 bleibt unverändert historisch; T-0075 bis zu einem neuen gebundenen Lauf nicht als aktuell bestätigt.
+
+A09 bewertete T-0074/G3 und T-0077/G7 NONPASS; T-0080/G10 wartet auf A12 Browser-/Mobilbeleg, der mangels Testbuild/Testbrowser blockiert ist. A10 diagnostizierte T-0113: Repository-Admin/Maintainer muss unter Settings → Pages → Build and deployment → Source `GitHub Actions` setzen; kein Workflow oder Remote wurde geändert. T-0114/T-0115 bleiben offene Nutzerentscheidungen.
+
+## Preflight-Digest CP-0540 (vor neuen Folgeübergaben)
+
+HEAD `fdc4960`, Branch `main...origin/main`; Git-Status (nur lesend/elevated) 780 Zeilen: 711 gestaged, 39 unstaged, 56 untracked. Finanzruntime und `run.js` haben bereits staged + unstaged Änderungen; nichts wurde entstaged oder verworfen.
+
+- AGENTS.md `BD9FCB3DE9082E716E2DB0D5B59F824B43B8E1007FDB2BA759DDC591A83A45F7`
+- agent-structure.md `6AEC63F774DD47A4396249B006F40843A4C65F53484AD5CB0BAD27EE34688182`
+- agent-rights-matrix.md `111373DC950C41DD4191B62A36CACAB730A2E8E34BE757AB55D83D608CC7650A`
+- goals.md `BEED7768B5C2D7F8EF1D8280E389E492E0216012A3401BF03254DE734A35F374`
+- ticket-board.md `1F09920F0E72AAF12DFA44BA26DD006EF49A14C29FD5CCEDF5834B4F931F2F40`
+- collaboration-state.md `EBC1D5BCD3C1F56D1421A2E547BF73DFA6293CB7797606FD86734B5FEB057BFD`
+- decision-log.md `455E5DC7A8B8A232B4C6BEA342D6D27EB950500F027B78FC38B8368D31836A97`
+
+Autor: A01. Mitwirkende: A02/A03/A04/A09/A10/A12. Tests/Browser/Git write: nicht ausgeführt.
+
+## CP-0541 – Aktive V3-Finanzgates und T-0114/T-0115-Vorschläge (2026-11-09)
+
+A03/A05-Fixes für T-0125/T-0126 sind implementiert; A03-Fachreview und A09 unabhängiger statischer Review sind PASS im begrenzten Scope. Beide Tickets sind abgeschlossen; T-0123 bleibt bis Verhaltenstest offen. T-0120/T-0119 bleiben wegen fehlender Zinssatzquelle und belastbarer Quartalsbilanzbasis offen. A02 erstellte den T-0074/T-0077-Event-Handoff-Pack; A03 bestätigt: operative Jahresdaten enthalten keine vollständigen Finanzjahrespostings. G3/G7 bleiben NONPASS; G10 wartet auf Browser-/Mobilbeleg.
+
+A02 erstellte Vorschläge zu T-0114 (Arbeitsmittel-Unterweisung) und T-0115 (Kundengegenangebot); A08 hat die Rechtsabgrenzung reviewed. Beide bleiben `PENDING_USER_DECISION`; keine Decision-Log- oder Codeänderung vor Antwort. A01 fragt die zwei konkreten Vorschläge als Ja/Nein/Gegenvorschlag ab.
+
+Nächste Übergaben: A03 setzt nach Bestätigung von T-0114/0115 die jeweiligen Finance-/Vertragsgrenzen um; A02/A05/A09 bekommen nach Nutzerantwort getrennte Unteraufträge. Für T-0077 wird A03 nur belegte AP-/Bank-Subledger-Events abgleichen; keine fehlenden Werte aus operativen Mengen herleiten. A12-Browser-Smoke und T-0123-Verhaltenstest bleiben an erreichbaren Testbuild/Browser gebunden. T-0113 wartet auf Admin-/Maintainer-Einstellung GitHub Pages Source=`GitHub Actions`.
+
+Details: [CP-0541](checkpoints/CP-0541.md), [A02-Handoff](../simulation/a02-t0074-t0077-event-handoff-pack-cp0541.md), [A09-Review](../accounting/a09-t0120-t0123-t0125-t0126-review-cp-0541.md).
+## CP-0542 – Nutzerentscheidungen T-0114/T-0115 und Implementierungsstart (2026-11-09)
+
+Der Nutzer hat D-0183 (Arbeitsmittelunterweisung) und D-0184 (einmaliges Kundengegenangebot) ausdrücklich bestätigt. A02 übernimmt die Simulationslogik als schreibender Owner. A05 erhält danach disjunkte UI-Arbeit; A03 prüft den Finanz-/Vertragssnapshot von T-0115; A04 prüft Save/Restore der Unterweisungsnachweise; A08 aktualisiert die Rechtsabgrenzung; A09 prüft die fertigen Slices unabhängig. Rückfragen und Ergebnisse gehen ausschließlich an A01.
+
+Änderungsgrenzen: keine neuen Finanzpostings, keine Offenlegung einzelner Konkurrenzgebote, keine Änderung an V1/V2 oder Datenbankschema. D-0183 trennt Rechtsanforderung von den bestätigten Spielzeitannahmen. D-0184 friert akzeptierte Preis-/Leistungsbedingungen ein und behandelt die Gegenofferte als neues Angebot. CP-0541 bleibt unverändert.
+## CP-0543 – T-0114 Engine-Zwischenstand und Korrekturschleife (2026-11-09)
+
+A02 verifiziert den CP-0542-Preflight und hat Product-Instruction-APIs, Personen-/Arbeitsmittel-/Revision-/Gefahr-Gates und Shared-Run-Event-Crossbinding begonnen. A02s erste Regression/Syntaxprüfung bestand, zeigte im Reviewkontext aber noch nicht die nötige Plan-/Abschlussbarriere für 60/30-Minuten-Unterweisungszeit: der Block darf bei Planung nicht bereits als abgeschlossen gelten. A02 korrigiert auf getrennte Planung mit belegter Kapazität und Abschluss erst am Simulationstag; gezielte Regression ist nach dieser Korrektur erneut auszuführen.
+
+A04 bestätigte read-only, dass der vorhandene JSON-Save genügt und keine Datenbankschemaänderung erforderlich ist; Product-/Market-Modulversionen müssen für neue Stateformen geändert und unbekannte Altstände fail-closed behandelt werden. A05 UI-Mapping ist abgeschlossen; A05 implementiert noch nicht, bis A02 die Plan-/Complete-Schnittstelle stabil meldet. A09 hat den Zwischenbefund NONPASS erkannt und hält unabhängigen PASS bis zum korrigierten Stand zurück.
+
+D-0184 ist bestätigt, aber T-0115 Engine-Code wurde noch nicht begonnen; A02 bearbeitet diesen Slice erst nach T-0114. T-0114/T-0115 bleiben insgesamt IN_PROGRESS. Keine Dateien außerhalb des jeweils beauftragten Pfads zurückgesetzt, kein Staging/Commit/Push.
+
+Details und Preflight: [CP-0543](checkpoints/CP-0543.md), [CP-0542](checkpoints/CP-0542.md). A04-Review und A05-UI-Handoff sind im aktuellen Verlauf an A01 übergeben.
+## CP-0544 – T-0114 A04-Persistenzreview und Korrekturen (2026-11-09)
+
+A02 hat T-0114 Plan-/Abschlusszustände, 60/30-Minuten-Kapazitätsblock, Person/Gerät/Revision/Gefahr-Gate, Shared-Run-Crossbinding und Regression umgesetzt; die gezielte Regression war PASS. A09 statischer Review PASS für den korrigierten Plan/Complete-Slice. A04 fand danach zwei Persistenz-NONPASS, die A02 nun behebt: die bisherige Unterweisung bleibt am Fälligkeitstag noch gültig; die Restorevalidierung bindet besondere Beauftragungen nicht gegen aktuelle Geräte-Safetyrevision und Hazard-Requirement. A02 pausiert T-0115 bis diese Korrektur reviewed ist. A05 ändert noch keine UI-Datei und wartet auf stabile Due-Day-Semantik. A04 führte keinen Save-/Restore-Roundtrip aus.
+
+Nächste Schritte: A02 korrigiert beide Punkte und Regression; A04/A09 re-reviewen, danach A05 implementiert die UI; anschließend A09 UI-QA und A04 Save-/Restore-Verhaltensbeleg. T-0115 bleibt genehmigt, aber noch nicht in Implementierung. D-0183/D-0184 unverändert.
+## CP-0545 – T-0114 historische Belege vs. aktuelle Sicherheitsfreigabe (2026-11-09)
+
+A02s Due-Day- und Plan/Completion-Fixes bestehen nach Agentenbericht gezielte Regression/Syntax. A04 bestätigte statisch strikte Fälligkeit und aktuelle Equipment-/Hazardbindung der Authorization-Evidence. A09 fand dabei einen weiterreichenden Konflikt: die harte Gleichheit jedes historischen Authorization-Records mit aktueller Equipmentrevision/Hazard führt nach legitimer Revision dazu, dass der gesamte Product-State-Validator scheitert; weil Plan-/Status-/Renewal-APIs den Validator aufrufen, kann der Lauf nicht erneuert/repariert werden. A09 bewertet diesen Zustand NONPASS. A04s PASS gilt nur für enge statische Prüfung der aktuellen Bindung und nicht für legitime Revisionsmigration.
+
+A02 erhält Korrektur: Restore/Recordvalidierung soll historische Authorization-Records an ihre eigenen Events, IDs, Person, Gerät, damals gespeicherte Revision/Hazard, Datum und Dedupe binden, ohne sie gegen die aktuelle Geräteconfig abzulehnen. Das Nutzungs-Gate muss separat ausschließlich die aktive Revision/Hazard-Anforderung prüfen. Regression muss einen legitimen Revision/Hazard-Wechsel zeigen: alter Nachweis bleibt historisch validierbar, Nutzung bleibt gesperrt, neue Unterweisung/Beauftragung kann geplant/abgeschlossen werden. Danach A04 und A09 Re-Review. T-0115 bleibt pausiert; A05 hat keine UI-Dateien geändert.
+## CP-0546 – T-0114 Engine PASS; UI und T-0115 starten (2026-11-09)
+
+A02 hat T-0114 Plan/Complete, 60/30-Minuten-Kapazitätsblock, due-day renewal, Event-Crossbinding und historische Revision-/Hazard-Evidence abgeschlossen. Fokussierte Regression/Syntax/scoped diff-check PASS laut A02. A04 und A09 haben das aktuelle Delta unabhängig statisch PASS reviewed. T-0114 bleibt IN_PROGRESS bis A05 Shared-Run UI, Save/Restore-Verhaltensbeleg und Browser-Smoke.
+
+A05 hatte noch keine Zielcodeänderung ausgeführt; es braucht eine autoritative Checkout-Schreibmöglichkeit bzw. einen Patch zur A01-Übernahme. A01 übergibt jetzt den disjunkten UI-Pfad. T-0115 kann parallel als A02-Engine-Slice starten; A02 schreibt nur Market-/Run-Orchestrator-Engine, A05 nur Shared-Run-UI. A03 prüft Vertrags-/Finanzgrenzen nach A02-API-Freeze. Kein Staging/Commit/Push.
+## CP-0547 – T-0114 Shared-Run-UI PASS; Restore-/Browser-Gates offen (2026-11-09)
+
+A05 implementierte die T-0114-UI im autoritativen Checkout auf run.js/run.css: Status je Person/Gerät/Revision, Planen mit 60/30 Minuten, Abschluss am geplanten aktiven Tag und getrennte Hazard-Beauftragung. A05 scoped Syntax/Regression/Diffchecks PASS; A09 statischer UI-Review PASS. UI verändert keine Finance-Daten. A02 Engine-/Domainregression und A04/A09 Engine-/Persistenzreviews PASS.
+
+T-0114 bleibt offen bis echter JSON-Save/Restore-Verhaltensbeleg und Browser-/Geräte-Smoke vorliegen. T-0115 wird von A02 parallel als separate Market-negotiation engine bearbeitet. `run.html` Graphcache ist nach dem A05-Zwischenlauf stale, weil A02 den importierten Market-Engine-Code parallel geändert hat; A05 wartet mit dem endgültigen Refresh bis A02s Import-Freeze. T-0069 UI-Regression scheitert in ihrer bestehenden Fixture wegen Startdatum vor dem nun festgelegten 04.01.2027; das ist außerhalb T-0114/T-0115 und wurde nicht geändert.
+
+Nächste Arbeit: A02 schließt T-0115 API/Expiry/Run-Wrapper/Regression ab; A05 aktualisiert danach run.html offiziell und prüft Cache/UI; A04 erhält den T-0114 Roundtrip-/Tamper-Test; A09 re-reviewed integrierten Cache/UI; A12 Browser-Smoke sobald ein steuerbarer Browser/Testbuild verfügbar ist. Kein Commit/Push.
+## CP-0548 – T-0114 Save/Restore PASS; T-0115 Engine und UI integriert (2026-11-09)
+
+Seit CP-0547: A02 implementierte T-0115 separate `negotiations[]`/Events, API/Run-Wrapper und Response-/Expiry-Zustände gemäß D-0184; A02 fokussierte Regressionen/Syntax/scoped Diffcheck PASS. A04s neue Regression T-0114 Save/Restore besteht: planned/completed/missed und Authorization-Records JSON-roundtrip; Hashgleichheit; nach Revision/Hazardwechsel bleibt Gate zu, neue 60m-Unterweisung/Authorization erst dann ready; erneuter Roundtrip PASS. A05 ergänzte T-0115 UI, aktualisierte nach Engine-Freeze den offiziellen run.html Modulcache und meldet Syntax, Engine-Regressionen, UI-/Cacheassertions und scoped Diffcheck PASS. A09s frühere T-0114-UI-Review bleibt PASS.
+
+Offene Reviews für T-0115: A03 Preis-/Vertragssnapshot-/Financeboundary; A08 Rechts-/BGB-Wording; A09 unabhängige Engine-/UI-/Replay-Review. T-0114 braucht nur noch aktuellen Browser-/Geräte-Smoke. T-0115 braucht nach den Fach-/QA-Reviews ebenfalls Browser-Smoke. Kein Commit/Push.
+
+## CP-0549 – T-0114 Browser-Smoke; T-0115 Vertraulichkeitsfix und Rechtsentscheidung (2026-11-09)
+
+T-0114 Shared-Run-Browser-Smoke bestanden im lokalen Desktopbrowser: bestätigte synthetische Startannahmen/Startressourcen, Start des 04.01.2027-Laufs, Öffnen des Tages, Materialbereich, Erstunterweisung für Spieler + Handwerkzeug/Grundwerkbank mit 60 Minuten planen und am vorgesehenen Tag abschließen. Der UI-Status wechselte nachvollziehbar von „nicht aktuell“/Gate geschlossen zu aktiv bis 04.01.2028. T-0114 bleibt für Geräte-/Mobil-Smoke offen.
+
+T-0115 A03 bestätigte unveränderte kommerzielle Bedingungen im Antwortsnapshot und keine Finance-Mutation vor Annahme. A08, A03 und A09 fanden denselben Rechts-/Vertragskonflikt: exakte Spielerannahme des Kunden-Gegenpreises A mit unveränderten Bedingungen wird derzeit wie ein neues Angebot behandelt und wartet 1–3 Tage. A09 fand außerdem `maximumPriceCents` und weitere interne Verhandlungsfelder in der Player-View. A01 änderte `getV3MarketPlayerView` auf eine explizite Allowlist-Projektion; fokussierte T-0115-Regression, Syntax und scoped `git diff --check` bestanden. A09 re-reviewed das Redaktionsdelta PASS. Keine D-0184-Änderung vorgenommen.
+
+A01 fragte den Nutzer, ob bei exakt gleicher Gegenpreissumme A und unveränderten Bedingungen der Vertrag sofort zustande kommen soll, während ein niedrigerer Spielerpreis eine neue, 1–3 Tage zu prüfende Offerte bleibt. Bis zur Antwort bleibt T-0115 offen; keine Timingänderung oder Decision-Log-Änderung. T-0115 Gegenangebots-Browser-Smoke ist nach Klärung durchzuführen. Lokaler Browser-Smoke-Run war temporär unter `127.0.0.1:8041`; nicht gespeichert, nicht committet oder gepusht. Bestehende Git-Änderungen blieben erhalten.
+
+## CP-0550 – Nutzerentscheidung D-0185: exaktes Kunden-Gegenangebot sofort annehmen (2026-11-09)
+
+Der Nutzer bestätigte A01s Vorschlag mit „Ja“. D-0185 ergänzt D-0184 eng begrenzt: Fristgerechte Annahme exakt zum Gegenpreis A bei unveränderten Bedingungen schließt sofort den Vertrag; ein niedrigerer Spielerpreis ist ein neues Angebot und bleibt 1–3 Kalendertage in Kundenentscheidung; ein höherer Preis wird abgelehnt. Einmalige Runde, Drei-Kalendertage-Frist, unveränderte übrige Vertragsbedingungen, Snapshotbindung und keine Finanzwirkung vor Vertragsschluss bleiben bestehen. D-0184 wurde nicht überschrieben.
+
+A02 erhielt den Auftrag für Engine-/Run-Wrapper-/Regression-Änderungen. Danach folgen A05 UI, A03/A08 fachlich-rechtlicher Re-Review, A09 unabhängige QA und Browser-Smoke. Es gibt keine zusätzliche Nutzerentscheidung. T-0115 bleibt IN_PROGRESS bis diese Prüfschritte bestehen. D-0185 ist im Decision Log ergänzt; lokale Änderungen wurden weder gestaged noch committet oder gepusht.
+
+## CP-0551 – T-0115 Engine gemäß D-0185; A03-Re-Review PASS (2026-11-09)
+
+A02 implementierte exakte Preisannahme `P2=A` als sofortigen Vertragsschluss im Market-Modul und Shared-Run-Wrapper. `P2<A` bleibt eine neue Spielerofferte mit deterministischer 1–3-Tage-Kundenentscheidung; `P2>A` wird sofort abgelehnt. Same-Event-Workorder und genau ein bestehender `pending_non_posting`-Finance-Handoff werden durch Regression und Replay/Dedupe geprüft. Fokussierte T-0115-Regression, Syntax und scoped `git diff --check` PASS laut Ausführung von A02. A03 read-only Re-Review PASS für Vertragssnapshot, Zustandsverläufe, Replay und Financeboundary; A03 führte die Tests nicht selbst aus.
+
+A05 ergänzte die UI-Kennzeichnung (sofortige Annahme vs. verzögerte niedrigere Offerte), den dynamischen Antwortbutton sowie Statusanzeige und aktualisierte den offiziellen run.html-Graphcache. UI-, Engine- und Modulgraph-Regressionen sowie Syntax/scoped Diffcheck PASS laut A05. Danach folgen A08 Legalreview, A09 unabhängige QA und Browser-Smoke. T-0115 bleibt IN_PROGRESS. Die bestehenden breiten Market- und Run-Orchestrator-Suites scheitern weiterhin in fremden Fixtures/Checks (`safe integer cents` / fehlende equipment instruction); A02 änderte diese nicht. Kein Staging, Commit oder Push.
+## CP-0552 – T-0115 Rechts-/QA-/Browser-PASS; Safe-Integer-Regressionskorrektur offen (2026-11-09)
+
+A08 re-reviewed D-0185 und implementierten UI-Wortlaut als rechtlich konsistent: `P2=A` ist exakte fristgerechte Annahme; `P2<A` ist ein neues Angebot; `P2>A` wird abgelehnt. BGB §§145, 148 und 150 sind maßgeblich; synthetische A/M-Preisgrenzen und Spielverzögerungen bleiben klar gekennzeichnet. A09 führte die fokussierten A02-/A05-/Graphcache-Regressionen unabhängig aus; alle PASS. A09 bestätigte Same-Event-Vertrag/Workorder und einzelnen `pending_non_posting`-Handoff, Replay/Dedupe, Snapshotbindung und Allowlist-Vertraulichkeit.
+
+A01 führte einen Desktopbrowser-Smoke durch. Ein synthetisches Angebot wurde im laufenden Shared Run als Gegenangebot beantwortet; nach Klick „Kunden-Gegenangebot annehmen · Vertrag sofort schließen“ zeigte der 04.01.2027-Lauf „Entschieden · Angenommen“, Fixpreis 114,40 €, Entscheidung 04.01.2027 und genau einen angelegten Workorder. UI meldete ausdrücklich „sofort geschlossen“; der Auftrag zeigte weiterhin „Ausstehend · nicht gebucht“. Das bestätigt sichtbare Same-Day-Integration ohne Finanzposting.
+
+Beim Abschlusscheck führte A01 die breite `v3-market-simulation-regressions.mjs` aus. Der bestehende MAX_SAFE_INTEGER-Referenzpreisfall scheiterte, weil T-0115s berechnete Annahme-/Gegenangebotsgrenzen die sichere Ganzzahl-Centgrenze überschreiten. Das ist ein durch T-0115 ausgelöster Randfall und ein echter Blocker. A02 bearbeitet Begrenzung/sichere Klassifizierung und zusätzliche Grenzregression, ohne D-0185 zu ändern. Die breite `v3-run-orchestrator-regressions.mjs` hat separat einen Produktfixturefehler: bestehende Fixture ohne unter T-0114 nun erforderliche Arbeitsmittelunterweisung. T-0115-Same-Day-Integration ist mit Fokusregression belegt; dieser Fixturefehler wird nicht als T-0115-Regression gewertet. T-0115 bleibt offen bis A02-Fix, breiter Marktsuite, A09-Re-Review und erneutem scoped Diffcheck bestehen.
+
+Kein Staging, Commit oder Push. CP-0551 und frühere Checkpoints unverändert.
+## CP-0553 – T-0115 Safe-Integer-Fix und Fußtextkorrektur (2026-11-09)
+
+A02 begrenzte die auf D-0184/D-0185 angewendeten A/M-Schwellen auf sichere ganzzahlige Centwerte und validiert weiterhin `A ≥ R` sowie `M ≥ A`. Grenztests für MAX_SAFE/nahe MAX_SAFE verhindern Überlauf und prüfen Restore/Statevalidierung. Vollständige Marktsuite, fokussierte T-0115-Suite, Syntax und scoped Diffcheck PASS laut A02; A09 führte die komplette Marktsuite und fokussierte Regression unabhängig aus, bestätigte Grenzlogik und PASS.
+
+A05 machte den Negotiation-Fußtext statusabhängig, damit ein nach Annahme angelegter Auftrag nicht gleichzeitig als „noch nicht erzeugt“ beschrieben wird. Nach Annahme bestätigt die UI Vertrag/Auftrag und erklärt, dass Finanzwirkung erst über getrennte Leistungs-/Rechnungsereignisse folgt; vor Annahme bleibt die nichtbuchende Abgrenzung sichtbar. UI-Regression, A02 T-0115 Regression, Graphcache, Syntax und scoped Diffcheck PASS laut A05. Der offizielle 28-Modul-Cache wurde aktualisiert. Diese Footer-Änderung kam nach A09s UI-Review; unabhängige A09-UI-Re-Review und abschließender Browser-Smoke mit aktuellem Graphcache stehen noch aus. T-0115 bleibt IN_PROGRESS.
+
+Die breite `v3-run-orchestrator-regressions.mjs`-Fixture ohne T-0114-Arbeitsmittelunterweisung bleibt separat offen und betrifft nicht den fokussierten T-0115 Browser-/Engine-Flow. Kein Stage/Commit/Push; CP-0552 bleibt unverändert.
+## CP-0554 – T-0115 abgeschlossen (2026-11-09)
+
+Nach CP-0553 bestanden A09s unabhängiges UI-Re-Review und UI-/Graphcache-Regressionen PASS. A01 führte den abschließenden Browser-Smoke mit dem aktualisierten Graphcache durch: im 04.01.2027 Shared Run ein Kunden-Gegenangebot zum sichtbaren Gegenpreis 114,40 € exakt angenommen. Die Anfrage wurde sofort entschieden, der Preis als Vertragspreis fixiert und genau ein Workorder angelegt. Der Finanzstatus blieb „Ausstehend · nicht gebucht“. Der accepted-state-Fußtext sagt nun zutreffend, dass Vertrag/Auftrag geschlossen sind und Finanzwirkungen getrennte Leistungs-/Rechnungsereignisse voraussetzen.
+
+Zusammen mit A02s MAX_SAFE_INTEGER-Fix und voller Market-Suite, A03 Financeboundary-Review, A05 UI-/Graphcache-Regressions, A08 Rechtsreview, A09 unabhängigen Engine-/UI-Reviews und den fokussierten Browserbelegen erfüllt T-0115 seine Abnahmekriterien und ist COMPLETED. Keine Finanzbuchung oder Schemaänderung; kein Commit/Push.
+
+Verbleibend aus dem direkten Paket: T-0114 wartet Geräte-/Mobil-Smoke; T-0069 und weitere V3-Finanzgates bleiben wie in CP-0549 dokumentiert offen. Eine breite Run-Orchestrator-Suite hat weiterhin ein separates Produktfixture ohne nun benötigten T-0114-Unterweisungsnachweis; dieser Fixture-/T-0114-Punkt wurde nicht als T-0115-Abdeckung gezählt.
+
+## CP-0555 – T-0114/T-0069 Fortschritt (2026-11-09)
+
+T-0114 gezielte A02-/A04-Regressionen PASS; Geräte-/Mobil-Smoke scheiterte an `ERR_CONNECTION_TIMED_OUT` vom In-App-Browser auf den lokalen Port 8041 und bleibt offen. T-0069 aktueller T-0075 12-Monats-Run und breite Run-Orchestrator-Suite PASS nach D-0183-Fixture und kanonischem `planFingerprint`-Fix. Der Smoke bleibt `pendingFinance=true`; G3/G7/G10 offen. D-0178 verschiebt COGS bis BAB/Kostenpools. A03-Fachreview und A09-unabhängige QA des aktualisierten Jahres-Smokes sind nicht ausgeführt. CP-0555 hält die Abgrenzung sowie nötige Nutzerentscheidung zur Gategrenze fest; kein Commit/Push.
+
+## T-0069 – Nutzerentscheidung D-0186 (2026-11-09)
+
+V3-Minimalgate begrenzt auf alle im Build tatsächlich implementierten und im Jahreslauf ausgelösten Finanzflüsse; vollständige perioden-/centgenaue Abstimmung ist Pflicht. Nicht vorhandene/vertagte Flüsse bleiben PENDING, nicht Null. D-0178 COGS/WIP/Fertigwarenbewertung bleibt bis BAB/Kostenpool außerhalb des V3-Gates. Kein PASS-Claim für vollständige Finanzbuchhaltung, Jahresgewinn oder Solvenz. Folge: A03 bestimmt/reviewt den implementierten Finanzumfang und Jahresabgleich für T-0074/G3 sowie T-0077/G7; A09 führt unabhängiges Review aus und klärt die Gate-Nummernabweichung zur älteren QA-Matrix. T-0069 bleibt IN_PROGRESS. Details/D-0186 in CP-0556.
+
+T-0114 ist nach responsivem mobile In-App-Smoke des Start-/Tages-/Erstunterweisungs-/Sicherungspfads COMPLETED (Minimalziel 10/10; kein physisches Gerät geprüft). T-0069 bleibt IN_PROGRESS: A03/A09 haben den 12M-Lauf erneut als reine Operations-/Restore-Prüfung ohne Finanzereignisse bewertet; G3/G7 bleiben NONPASS. A02 soll den sicheren Integrationspfad nur mit bestehenden freigegebenen FinanceRuntime-Ereignissen prüfen; D-0186 und D-0178 bleiben Grenze. Die alte A09-QA-Matrix hat eine veraltete G3-Zuordnung und muss versioniert/als Legacy gekennzeichnet werden. CP-0556.
+
+
+## CP-0561 – T-0069 Status (Entwurf, 2026-11-09)
+Nutzerwahl 1 erhält das T-0074/G3-Wirtschaftlichkeitsgate; keine Kostenannahmen sind genehmigt. T-0114 COMPLETED (10/10). T-0077/G7 PASS ist auf den D-0186-Kundenrechnung-/Receipt-/SimTAX-Slice begrenzt. Der sichtbare Small-Auftragspfad bis Kundenzahlung wurde bei ca. 412 px geprüft. T-0069 bleibt IN_PROGRESS: G3 wartet auf freigegebene Kosten-/Ergebnisannahmen; G10 wartet auf A05-UI-Regression mit aktuellem T-0114-Fixture, 390×844-/768×1024-Nachweis und Jahrespfad. Kein Stage/Commit/Push. Details in CP-0561 (ENTWURF).
+
+## CP-0562 – T-0074 D-0187 Testannahmen und Ergebnis (Entwurf, 2026-11-09)
+Nutzer bestätigte das vorgeschlagene nichtbuchende Testpaket: 35 % variable Monatskosten, 1.200,00 € fixe Monatskosten und 1.800,00 € monatliche Privatentnahme. D-0187 wurde ergänzt; keine Runtime-/Ledger-/Cash-/Bestandsänderung. Der abgestimmte Kunden-Netto-Umsatz im aktuellen Jahreslauf beträgt 960,00 €; der Overlay weist −13.776,00 € synthetisches Betriebsergebnis und separat 21.600,00 € Privatentnahmen aus. Dies ist kein Liquiditäts-, Solvenz- oder Istkostenclaim. T-0074 bleibt IN_PROGRESS bis positiver Jahresvergleich und A03/A09 Review; T-0069/G10 wartet auf Jahresbrowser-/Viewportbelege. T-0114 COMPLETED. Details: CP-0562 und `docs/simulation/a01-t0074-d0187-synthetic-economic-scenario.md`. Kein Commit/Push.
+
+
+**CP-0562 Review-Nachtrag:** A03 Fachreview im Modell-/Finanzabgrenzungsumfang PASS; A09 unabhängige Szenario-QA und Re-Review PASS. A09 bat um explizite Break-even-Kategorie; D-0187/CP-0562 enthalten sie. Positiver vollständiger Jahresfall fehlt; A01 wiederholt den 12M-Smoke nach der letzten Korrektur, danach ist A09 um diesen erneuten Jahreslaufreview zu bitten. T-0074 und T-0069 bleiben offen.
+
+**A09-Jahreslauf-Re-Review CP-0562:** PASS nach der letzten Korrektur; 12 Monate und D-0186-Financevektoren stimmen. Der Jahresfall bleibt negativ; T-0074 wartet auf positiven vollständigen Jahresvergleich. Kein vollständiger Accounting-/Solvenzclaim.
+
+## CP-0562 – Positivjahreslauf (2026-11-09)
+
+A01 setzte die Nutzerbestätigung (60 Kundenaufträge/Monat zu 80,00 € netto) als separaten T-0074-Harness um. Der Lauf belegt Januar–Juni mit je 60 Aufträgen und 480.000 ct Umsatz, kumuliert 1.152.000 ct synthetisches Betriebsergebnis und 72.000 ct nach separater Entnahme. Er wurde im Juli nach rund 32 Minuten bei etwa 3,7 GB RAM kontrolliert abgebrochen; kein vollständiger Jahresbeleg, daher T-0074/T-0069 IN_PROGRESS. Indexbasierte Validatoroptimierungen sowie Markt-, Run-, Szenario-, A05- und negativer T-0075-12M-Smoke PASS. A03-/A09-Review des positiven Jahresfalls steht aus. Nächste Arbeit: A02/A09 gezielte Profilierung weiterer Hotspots; danach erneut vollständiger Lauf; A03/A09 Reviews erst auf abgeschlossenem Ausgang.
+
+## Fortschreibung CP-0563 (2026-11-09)
+
+A01 führte den D-0187-Positivjahreslauf bis zum Ende aller zwölf Monatsreconciliations aus. Der Harness stoppte danach an einer falschen Erwartung von 12 eindeutigen Zahlungseingängen; der Istlauf hatte 692 eindeutige Zahlungseingänge und offene Dezemberforderungen. Die Eindeutigkeitsassertion wurde auf `receivedCustomerPaymentIds.length` umgestellt. Da der vollständige Lauf nach dieser Korrektur noch nicht wiederholt wurde, sind T-0074/G3 und T-0069 nicht abgeschlossen. Gezielt bestandene Schnelltests: Market, Run-Orchestrator, A05-UI, D-0187-Szenarioformel, Syntax und scoped diff-check. Laufzeit-/RAMprofil siehe CP-0563. Kein Commit/Push.
+
+## Fortschreibung CP-0564 (2026-11-09)
+
+A01 prüfte CPU-/RAM-Kosten des positiven T-0074-Laufs. Ein korrigierter Lauf bestand acht Monate; bei rund 3.733 Sekunden CPU und 5,5 GB Working Set wurde er für diese Hotspotanalyse kontrolliert gestoppt. Hauptursache: vollständige `structuredClone`-Kopien und Run-/Market-/Product-Vollvalidierungen an vielen einzelnen Mutationen, mit verbleibenden verschachtelten Event-/Belegsuchläufen. Niedrigrisikooption ist Einmalindexierung innerhalb jedes Validators; Regelabdeckung und Historien bleiben erhalten. Spätere Transaktionsbündelung erfordert stärkere Replay-/Tamper-Tests und Reviews. T-0074/G3 und T-0069 bleiben offen; kein vollständiger Re-Run, kein Commit/Push.
+
+## Fortschreibung CP-0565 (2026-11-09)
+
+Produktvalidatoren verwenden jetzt Einmalindizes für die wiederholt gesuchten Event-/Assignment-/Produktbelege. Vollständige Regeln und Historien bleiben aktiv. Market-/Run-/Szenario-Regressionen und der negative 12M-Smoke PASS; das alte Produktlebenszyklusfixture scheitert unverändert vor dem Validator wegen fehlender verpflichtender Maschinenunterweisung. Positiver T-0074-Lauf besteht Jan–Jun und wurde als begrenzte Messung beendet. Kein direkter gleichlanger Vorher/Nachhervergleich; keine Prozentverbesserung behauptet. Der volle Jahresvektor fehlt, T-0074/T-0069 IN_PROGRESS. Details CP-0565.
+
+**CP-0565 Prüfhinweis:** T-0078-Smoke startet nicht in den Recoveryteil, da am ersten Tag keine Anfrage im Fixture offen ist; NONPASS separat, nicht als Performance-Regression interpretiert.
+
+## V3-Releasevalidierung 10.11.2026 / CP-0566
+
+A01 koordiniert D-0188 (aktueller 12M-Smoke WAIVED), restliche Mindestgates, A03-Anzeigefix für negative Bank bei genutztem Dispo, A09-Fixturekorrekturen, A08-Rechtsquellenrefresh und A10 aktuellen Graph/Mobilpaketbau. A01 prüfte echten Browserpfad 390×844/768×1024: 100€ netto +19€ SimTAX, Rechnung14Jan, fällig27Jan, Eingang119€, Bank10119€, Forderung0. JSON-Export erfolgreich; physische iOS-Geräte heute nicht geprüft. V3-10 wird als T-0128 vor Release geschlossen, Performance ist T-0127 nach Push. Rechtsformzuordnung noch zur Nutzerentscheidung vorgelegt. Kein Releaseabschluss/Push behauptet, solange diese Gates offen sind.
+
+**D-0189 bestätigt:** Zusätzliche Rechtsformen V6. A03/A09/A10 konnten letzte Folgeaufträge wegen Nutzungslimit nicht abschließen. A01 übernimmt; bisherige tatsächliche Reviews bleiben mit ihrem Scope erhalten, neue Selbstausführung wird nicht als unabhängige QA ausgegeben.
+
+**Abschluss CP-0566:** D-0189 bestätigt, V3-10 final A11 PASS, finale Kurztests und Lern-Reopen im Browser PASS. V3-Minimum mit D-0188 Jahres-Smoke-Ausnahme releasebereit; Paket final neu gebaut. T-0113 Hosting404 separat offen, T-0127 beginnt nach Git-Release. Bericht test-reports/a01-v3-release-validation-cp0566.md; tatsächliche Commit/Push-Verifikation folgt.

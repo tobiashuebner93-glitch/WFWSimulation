@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c3b">
+  <title>V3 · Markt &amp; Angebote</title>
+  <link rel="stylesheet" href="./market.css">
+  <script type="module" src="./market.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./index.html" aria-label="Zur V3-Übersicht">WERKSTATT <span>V3</span></a><p>Postfach · Markt · Angebote</p><nav class="links" aria-label="V3-Fachbereiche"><a href="./finance.html">Kalkulation &amp; BAB</a><a href="./macro.html">Volkswirtschaft</a></nav></header>
+  <main>
+    <section class="intro"><p class="eyebrow">V3 · Kundengewinnung</p><h1>Marktpostfach</h1><p>Prüfe Kundenanfragen, kalkuliere ein eigenes Nettoangebot und verfolge die verzögerte Entscheidung. Einzelgebote von Wettbewerbern werden nicht angezeigt.</p></section>
+    <section class="panel setup"><div class="panel-heading"><div><p class="eyebrow">Reproduzierbarer Testlauf</p><h2>Szenario</h2></div><span id="run-status" class="tag pending">Noch nicht geladen</span></div><p class="fixture-note"><strong>Synthetisches Test-Fixture:</strong> Profil, Nachfragevorlagen, Wettbewerbsparameter und Preisinputs entsprechen den dokumentierten A02-Regressionen. Sie sind keine Marktpreise oder Produktdefaults.</p><div class="toolbar"><button class="primary" id="load-fixture" type="button">Wettbewerbs-Fixture laden</button><button class="secondary" id="load-expiry-fixture" type="button">Ablauf-Fixture laden</button><button class="secondary" id="next-day" type="button" disabled>Nächsten Simulationstag öffnen</button><span id="date-label" class="date-label">Kein Tag geöffnet</span></div><p class="hint">Anfragen erscheinen über Arbeitstage verteilt. Der Tag kann nach Spieleraktionen geschlossen werden; dann werden Fristabläufe verarbeitet.</p></section>
+    <div class="layout">
+      <section class="panel" aria-labelledby="inbox-title"><div class="panel-heading"><div><p class="eyebrow">Kundenpost</p><h2 id="inbox-title">Anfragen &amp; Angebote</h2></div><span id="inbox-count" class="tag">0</span></div><div id="inbox" class="inbox empty">Lade das synthetische Test-Postfach.</div></section>
+      <aside class="panel report" aria-labelledby="report-title"><div class="panel-heading"><div><p class="eyebrow">Monatsübersicht</p><h2 id="report-title">Konkurrenzpreise</h2></div></div><p id="report-period" class="hint">Noch keine Berichtsperiode</p><div id="competitor-report" class="report-list"><p class="muted">Es werden nur anonymisierte Mittelwerte und Stichprobenzahlen aus der A02-Projektion gezeigt.</p></div><p class="privacy">Keine Wettbewerberidentitäten, Einzelangebote oder individuellen Gebotspreise.</p></aside>
+    </div>
+    <div id="learning-practice"><section class="panel learning-panel" aria-labelledby="learning-title"><div class="panel-heading"><div><p class="eyebrow">V3-06 · optionale Prozessübung</p><h2 id="learning-title">Kundenanfrage bis Zahlung: den Auftragskreislauf steuern</h2></div><span class="tag neutral">Nur lesend · keine Spielwirkung</span></div><p class="hint">Lade ein Szenario, damit vorhandene Referenzen angezeigt werden. Noch nicht verbundene Schritte bleiben ausdrücklich gesperrt.</p></section></div>
+    <p id="live-status" class="live-status" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

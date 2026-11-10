@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c3b">
+  <title>V3 · Gründung und Rechtsträger</title>
+  <link rel="stylesheet" href="./formation.css">
+  <script type="module" src="./formation.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#start" aria-label="V3-Gründungsübersicht">WERKSTATT <span>V3</span></a>
+    <p>Gründung · Rechtsformen · Zusammenschlüsse</p>
+    <nav class="v3-links" aria-label="V3-Fachbereiche"><a class="top-link" href="./finance.html">Kalkulation &amp; BAB</a><a class="top-link" href="./macro.html">Volkswirtschaft</a><a class="top-link" href="./market.html">Postfach &amp; Markt</a></nav>
+  </header>
+  <main id="start">
+    <section class="intro">
+      <p class="eyebrow">V3 · Unternehmensgründung</p>
+      <h1>Vom Vorhaben zum Betrieb</h1>
+      <p>Erfasse belegte Annahmen, prüfe die Tragfähigkeit und bilde Rechtsträger sowie Kooperationen getrennt ab. Die Anzeigen sind Lern- und Simulationsstatus, keine Rechtsberatung.</p>
+    </section>
+
+    <section class="panel setup" aria-labelledby="setup-title">
+      <div class="panel-heading"><div><p class="eyebrow">Szenario</p><h2 id="setup-title">Ausgangsdaten festlegen</h2></div><span id="setup-status" class="tag pending">Eingaben erforderlich</span></div>
+      <form id="setup-form" class="form-grid">
+        <label>Szenario-ID<input name="scenarioId" required autocomplete="off" placeholder="eigene ID"></label>
+        <label>Startdatum<input name="startDate" type="date" required></label>
+        <label>Gründer-ID<input name="founderPersonId" required autocomplete="off" placeholder="Personenreferenz"></label>
+        <label>Ausgangs-Rechtsträger-ID<input name="initialEntityId" required autocomplete="off" placeholder="Rechtsträgerreferenz"></label>
+        <label class="wide">Quelle für Ausgangs-Rechtsträger<input name="initialEntitySourceRef" required autocomplete="off" placeholder="Quelle / Szenariobeleg"></label>
+        <button class="primary wide" type="submit">Szenario laden</button>
+      </form>
+    </section>
+
+    <div id="workspace" hidden>
+      <section class="panel date-panel"><label>Wirksamkeitsdatum für neue Ereignisse<input id="event-date" type="date" required></label></section>
+      <nav class="tabs" aria-label="V3-Bereiche">
+        <button type="button" class="tab active" data-view="founding">Gründung</button>
+        <button type="button" class="tab" data-view="entities">Rechtsträger</button>
+        <button type="button" class="tab" data-view="deals">Kooperationen & Erwerb</button>
+      </nav>
+      <section id="view-founding" class="view">
+        <div class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">Gründungsablauf</p><h2 id="stage-title">Idee</h2></div><span id="stage-badge" class="tag">Idee</span></div>
+          <p id="stage-description" class="muted"></p>
+          <form id="stage-form" class="form-grid">
+            <label>Nachweis-/Quellenreferenz<input name="stageEvidenceRef" required autocomplete="off" placeholder="Dokument oder Quelle"></label>
+            <button class="primary" type="submit">Nächsten Abschnitt dokumentieren</button>
+          </form>
+        </div>
+        <div class="panel" id="viability-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">Entscheidung anhand deiner Angaben</p><h2>Tragfähigkeit</h2></div><span id="viability-result" class="tag">Noch nicht bewertet</span></div>
+          <p class="muted">Bewerte jeden Bereich ausdrücklich und verknüpfe ihn mit einem Beleg. Unvollständige Bereiche bleiben offen; es wird kein Zahlenwert oder Rechtsurteil ergänzt.</p>
+          <form id="viability-form" class="form-grid">
+            <div id="viability-inputs" class="input-list wide"></div>
+            <label>Deine Bewertung<select name="result" required><option value="">Bitte auswählen</option><option value="viable">Tragfähig</option><option value="not_viable">Nicht tragfähig</option></select></label>
+            <label>Bewertungs-ID<input name="assessmentId" required autocomplete="off"></label>
+            <label class="wide">Beleg für die Gesamtbewertung<input name="sourceRef" required autocomplete="off"></label>
+            <button class="primary wide" type="submit">Bewertung speichern</button>
+          </form>
+        </div>
+        <div class="panel" id="form-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">Bestätigter V3-Umfang</p><h2>Rechtsform wählen</h2></div></div>
+          <form id="form-select-form">
+            <fieldset class="choice-grid">
+              <legend>Wähle einen unterstützten Gründungspfad</legend>
+              <label class="choice"><input type="radio" name="legalForm" value="einzelunternehmen" required><span><strong>Einzelunternehmen</strong><small>Ein Rechtsträger; Status folgt dem dokumentierten Szenario.</small></span></label>
+              <label class="choice"><input type="radio" name="legalForm" value="gmbh_co_kg"><span><strong>GmbH &amp; Co. KG</strong><small>GmbH und KG werden als getrennte Rechtsträger geführt.</small></span></label>
+            </fieldset>
+            <div id="entity-id-fields" class="form-grid" hidden>
+              <label>GmbH-Rechtsträger-ID<input name="gmbhEntityId" autocomplete="off"></label>
+              <label>KG-Rechtsträger-ID<input name="kgEntityId" autocomplete="off"></label>
+              <label>Inhaber-/Kontrollgrundlage der GmbH<input name="gmbhOwnershipBasis" required autocomplete="off" placeholder="explizite Referenz"></label>
+              <label>Inhaber-/Kontrollgrundlage der KG<input name="kgOwnershipBasis" required autocomplete="off" placeholder="explizite Referenz"></label>
+              <label>Kommanditist-ID der KG<input name="kgLimitedPartnerId" required autocomplete="off" placeholder="Personen- oder Rechtsträger-ID"></label>
+              <label>Beleg der Kommanditistenrolle<input name="kgPartnerRef" required autocomplete="off" placeholder="Quellen-/Vertragsreferenz"></label>
+            </div>
+            <label class="block-label">Beleg der Rechtsformwahl<input name="selectionRef" required autocomplete="off"></label>
+            <button class="primary" type="submit">Rechtsform dokumentieren</button>
+          </form>
+          <div class="candidate-list" aria-label="Noch nicht freigeschaltete Kandidaten">
+            <span class="candidate">AG · nicht freigeschaltet</span><span class="candidate">eG · nicht freigeschaltet</span><span class="candidate">GmbH &amp; Co. KGaA · nicht freigeschaltet</span>
+          </div>
+        </div>
+        <div class="panel" id="formation-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">Belegte Statusereignisse</p><h2>Vorbereitung &amp; Register</h2></div></div>
+          <p class="muted">Statusbelege werden je Rechtsträger erfasst. Die Anzeige dokumentiert Szenariozustände und behauptet keine externe Registerabfrage.</p>
+          <form id="prepare-form" class="form-grid"><label>Vorbereitungsbeleg<input name="preparationRef" required autocomplete="off"></label><button class="primary" type="submit">Vorbereitung dokumentieren</button></form>
+          <div id="register-controls" class="register-list"></div>
+          <details class="subpanel" id="prereg-panel" hidden>
+            <summary>Option: KG-Tätigkeit vor Registereintragung</summary>
+            <p class="muted">Nur fortfahren, wenn alle Beteiligten zugestimmt haben und die konkrete HGB-Prüfung belegt ist. Dies ist keine Rechtsfreigabe durch die Oberfläche.</p>
+            <form id="prereg-form" class="form-grid">
+              <label>KG-Rechtsträger-ID<input name="kgEntityId" required></label>
+              <label>Gesellschafter-IDs (laut KG-Vertrag, Reihenfolge fest)<input name="partnerEntityIds" required readonly></label>
+              <label class="wide">Zustimmungsbelege in derselben Reihenfolge<input name="partnerConsentRefs" required></label>
+              <label>§123/§161/§107 Prüfstatus<select name="reviewStatus" required><option value="">Auswählen</option><option value="cleared">Geklärt und belegt</option><option value="needs_review">Weitere Prüfung nötig</option></select></label>
+              <label>Quellenreferenz der Prüfung<input name="reviewSourceRef" required></label>
+              <button class="primary wide" type="submit">Zustimmungs-/Prüfereignis dokumentieren</button>
+            </form>
+          </details>
+        </div>
+        <div class="panel" id="readiness-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">Betriebsaufnahme</p><h2>Bereitschaft dokumentieren</h2></div></div>
+          <p class="muted">Alle Punkte benötigen explizite Nachweise. Die UI prüft nur das Vorhandensein der angegebenen Status-/Quellenreferenzen.</p>
+          <form id="readiness-form" class="form-grid"><div id="readiness-inputs" class="input-list wide"></div><button class="primary wide" type="submit">Betriebsbereitschaft beurteilen</button></form>
+          <form id="operations-form" class="form-grid" hidden><label>Belegreferenz für die Betriebsaufnahme<input name="sourceRef" required autocomplete="off"></label><button class="primary" type="submit">Betrieb aufnehmen</button></form>
+        </div>
+      </section>
+      <section id="view-entities" class="view" hidden>
+        <div class="panel"><div class="panel-heading"><div><p class="eyebrow">Identitäten bleiben getrennt</p><h2>Rechtsträgerstatus</h2></div></div><div id="entity-list" class="entity-list"></div></div>
+      </section>
+      <section id="view-deals" class="view" hidden>
+        <div class="panel"><div class="panel-heading"><div><p class="eyebrow">Getrennte Abläufe</p><h2>Kooperation eröffnen</h2></div></div>
+          <form id="cooperation-open" class="form-grid"><label>Art<select name="cooperationType"><option value="joint_procurement">Gemeinsame Beschaffung</option><option value="arbeitsgemeinschaft">Arbeitsgemeinschaft</option></select></label><label>Kooperations-ID<input name="cooperationId" required></label><label>Rechtsträger-IDs, kommasepariert<input name="participantEntityIds" required></label><label>Zweckbeleg<input name="purposeRef" required></label><label class="wide">Vertrags-/Bedingungsbeleg<input name="termsRef" required></label><button class="primary wide" type="submit">Kooperation vorschlagen</button></form>
+        </div>
+        <div class="panel"><div class="panel-heading"><div><p class="eyebrow">Getrennte Abläufe</p><h2>Unternehmenserwerb eröffnen</h2></div></div>
+          <form id="deal-open" class="form-grid"><label>Art<select name="dealType"><option value="share">Anteilserwerb (Share Deal)</option><option value="asset">Asset-/Betriebskauf</option></select></label><label>Transaktions-ID<input name="dealId" required></label><label>Käufer-Rechtsträger-ID<input name="buyerEntityId" required></label><label>Ziel-Rechtsträger-ID<input name="targetEntityId" required></label><label class="wide">Vertrags-/Bedingungsbeleg<input name="termsRef" required></label><label class="wide">Anteile oder übertragene Gegenstände als JSON<input name="itemsJson" required placeholder="Explizite IDs und Quellenreferenzen"></label><button class="primary wide" type="submit">Transaktion zur Prüfung eröffnen</button></form>
+        </div>
+        <div class="panel"><div class="panel-heading"><div><p class="eyebrow">Offene Abläufe</p><h2>Prüfen und abschließen</h2></div></div><div id="deal-list"></div></div>
+      </section>
+      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Nachvollziehbarkeit</p><h2>Ereignisprotokoll</h2></div><span id="model-validity" class="tag">Status unbekannt</span></div><ol id="event-list" class="event-list"></ol></section>
+      <section class="panel finance-panel"><div class="panel-heading"><div><p class="eyebrow">Keine Buchung durch Statuswechsel</p><h2>A03-Finanzübergaben</h2></div></div><p class="muted">Nur explizite, belegte Finanzereignisse werden an A03 übergeben. Dieser Bildschirm berechnet oder bucht keine Beträge.</p><div id="finance-list"></div></section>
+      <p id="live-status" class="live-status" role="status" aria-live="polite"></p>
+    </div>
+  </main>
+</body>
+</html>
+
+
+
+

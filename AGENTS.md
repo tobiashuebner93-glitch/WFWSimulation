@@ -2,21 +2,20 @@
 
 ## Verbindlicher Preflight
 
-Jeder Agent und der Master Orchestrator müssen VOR jeder Bearbeitung:
+Jeder Agent und der Master Orchestrator führen VOR jeder Bearbeitung einen kompakten, aktuellen Preflight durch:
 
-1. dieses Dokument lesen,
-2. `docs/agent-system/agent-structure.md` und `docs/agent-system/agent-rights-matrix.md` lesen,
-3. `docs/agent-system/goals.md` lesen,
-4. `docs/agent-system/ticket-board.md` lesen und nur Tickets des aktuellen Master-/Second-Level-Goals berücksichtigen,
-5. `docs/agent-system/collaboration-state.md` lesen,
-6. Start-/Zielprofil, maßgebliche spätere Entscheidungs-IDs und den Vorgänger-Checkpoint bestimmen und im Arbeitsauftrag/Checkpoint ausweisen,
-7. relevante Architektur-/Fachdokumente prüfen,
-8. Repository-Stand und Änderungen anderer Agenten prüfen,
-9. offene Entscheidungen und Blocker prüfen,
-10. Kommunikationsrouting beachten: jede Antwort an A01 adressieren; Rückfragen aus Fachagenten an den Nutzer über A01 bündeln; Antworten ohne Rückfragen in den nächsten nötigen Auftrag mit benanntem Adressaten überführen.
+1. A01 erstellt für das aktive Ticketpaket einen **Preflight-Digest** im Arbeitsauftrag oder im aktuellen CP. Er nennt: Datum, Goal/Ticket, Agent/Adressat, Start-/Zielprofil, Vorgänger-CP, maßgebliche Entscheidungs-IDs, Abhängigkeiten/offene Entscheidungen, Branch/HEAD, Status- und Diff-Zusammenfassung, betroffene Pfade sowie SHA-256 der folgenden Control-Plane-Dateien: `AGENTS.md`, Agentenstruktur, Rechtematrix, `goals.md`, `ticket-board.md`, `collaboration-state.md` und `decision-log.md`.
+2. Der Agent verifiziert die Digest-Hashes und prüft Status/Diff vor jeder Bearbeitung oder Übernahme. Sind Digest und Ticketkontext aktuell, darf er die letzte gelesene, unveränderte Control-Plane-Zusammenfassung verwenden; die unveränderten Volltexte müssen nicht bei jedem Agentenwechsel erneut ausgegeben oder vollständig in den Kontext kopiert werden.
+3. Fehlt der Digest, weicht ein Hash ab oder haben sich Goal, Ticket, Profil, Entscheidung, Vorgänger-CP oder Abhängigkeiten geändert, liest der Agent die betroffenen Control-Plane-Abschnitte vollständig neu. Die aktuelle Ticketbeschreibung, alle seit dem letzten Digest geänderten Quellen, fachlich relevanten Dokumente und alle konflikt-/blockerrelevanten Stellen sind immer direkt zu lesen. Bei Unsicherheit gilt Vollprüfung.
+4. Nur Tickets des aktuellen Master-/Second-Level-Goals gehören zum aktiven Kontext. Abgeschlossene Goals/Tickets bleiben historisch.
+5. Start-/Zielprofil, relevante Entscheidungen und Vorgänger-CP sind im Auftrag/Checkpoint auszuweisen; Repository-Stand, Änderungen anderer Agenten, offene Entscheidungen und Blocker sind zu prüfen.
+6. Jede Agentenantwort wird an A01 adressiert. Fachagenten richten Rückfragen ausschließlich an A01; A01 bündelt sie für den Nutzer. Antworten ohne Rückfragen werden in einen konkret adressierten Folgeauftrag überführt oder als Abschluss dokumentiert.
 
 Abgeschlossene Second-Level-Goals und deren Tickets bleiben historisch erhalten, gehören aber NICHT zum aktiven Arbeitskontext.
 
+## Übergaben und kompakte Berichte
+
+A01 vergibt je Übergabe ein klar begrenztes Arbeitspaket mit genau einem verantwortlichen Agenten, Akzeptanzkriterien, Änderungsgrenzen und erwarteten Belegen. Unabhängige Read-only-Reviews dürfen parallel laufen. Schreibaufträge mit überlappenden Dateien werden seriell ausgeführt oder erhalten ausdrücklich getrennte Pfade. Der Agent meldet nur Delta und benötigte Belege; keine großen Quelldateien, Logs oder unveränderte Vorgeschichte kopieren. Das Kurzformat umfasst: Status/Adressat/Goal/Ticket, geänderte Pfade, Kriterien PASS/NONPASS mit Test-/Fundstellen, nicht geprüfter Umfang, Blocker/Rückfragen sowie nächsten Adressaten. Ausführungs-, Fachreview-, unabhängige QA-, Browser-/Geräte- und Git-Nachweise bleiben klar getrennt; fehlende Prüfung wird ausdrücklich als nicht ausgeführt markiert.
 ## Dokumentationspflicht
 
 Maximal 3 eigenständige Agentenarbeiten dürfen ohne Checkpoint erfolgen.
@@ -30,6 +29,16 @@ Review-, Retro- und Analysefrequenz: Eine gebündelte Checkpoint-Review/Retro wi
 Der Master Orchestrator unterliegt denselben Regeln wie alle anderen Agenten.
 Abgeschlossene Checkpoints (CP) und Mastercheckpoints (MCP) sind unveränderliche Historie, sobald die zugehörige Analyse abgeschlossen und vom Nutzer bestätigt ist. Danach dürfen sie weder inhaltlich noch redaktionell verändert, ergänzt, umsortiert oder gelöscht werden; das gilt auch für Tippfehler, Links und nachträgliche Registereinträge. Entwürfe bleiben bis zu diesem Zeitpunkt ausdrücklich als ENTWURF gekennzeichnet. Korrekturen, Ergänzungen oder spätere Erkenntnisse werden in einem neuen, fortlaufend nummerierten CP dokumentiert und auf den betroffenen Vorgänger zurückgeführt. Eine spätere Gesamtsynthese erhält eine neue MCP-ID und verweist auf ältere MCPs, ohne sie zu ändern oder zu ersetzen.
 
+
+## Reproduzierbare Korpusprüfungen
+
+Vor jeder Inhaltsprüfung eines Quellen- oder Fragenkorpus wird ein versioniertes Manifest mit Auswahlregel, Dateitypen, Ausschlüssen, eindeutigem Nenner, Pfad und SHA-256 jeder Quelle sowie Einzeldisposition erstellt. Lesbarkeit/OCR, Fragen- bzw. Inhaltsabdeckung, Kompetenzzuordnung und Nutzungsrechte sind getrennte Prüfgates; ein positives Ergebnis in einem Gate gilt nicht als Nachweis für ein anderes. Änderungen am Korpus erzeugen eine neue Manifestversion statt die frühere Prüfgrundlage zu überschreiben.
+
+## Rollen- und Autorisierungsnachweis je Deliverable
+
+Jeder neue CP/MCP und jeder Abschlussbericht nennt getrennt **Autor**, **Mitwirkende**, **Fachreview**, **unabhängige QA** und **nicht ausgeführte Prüfungen**. Unzutreffende oder nicht ausgeführte Rollen werden ausdrücklich so gekennzeichnet; A01-Selbstreview ist keine unabhängige QA.
+
+Für jedes Deliverable werden die einschlägigen Autorisierungsebenen getrennt festgehalten: Domain-/Eventvertrag, Runtime/API, Persistenz/Schema, produktive Finanzmutation und Release. Je Ebene stehen Status, einschlägige D-ID bzw. `NEIN`/`PROPOSED`, entscheidungsbefugte Rolle und Nachweis. `N/A` ist zu verwenden, wenn eine Ebene für das Deliverable nicht zutrifft. Ein Review-PASS, Ticketabschluss oder technische Umsetzung erteilt keine fehlende Freigabe. Diese Felder protokollieren bestehende Befugnisse und schaffen keine neue Autorität.
 ## GitHub-Connector und Schreibzugriffe
 
 Der GitHub-Connector ist für dieses Projekt ausschließlich READ-ONLY. Über ihn dürfen keine create-, update-, delete-, branch-, PR-, commit- oder sonstigen Schreiboperationen ausgeführt oder versucht werden.
@@ -50,6 +59,8 @@ DURCHGEFÜHRTE ARBEIT:
 DATEIEN:
 ENTSCHEIDUNGEN:
 TESTS:
+AUTOR:
+MITWIRKENDE:
 AUSGEFÜHRT VON:
 FACHREVIEW:
 UNABHÄNGIGE QA:

@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A05 T-0064 V3 Smoke</title><pre id="out">Running…</pre><script type="module">
+import { createV3FormationState, applyV3FormationEvent, validateV3FormationState } from '../v3-company-formation.js';
+const out=document.querySelector('#out'); const assert=(ok,msg)=>{if(!ok)throw new Error(msg)}; let seq=0;
+const base=()=>createV3FormationState({scenarioId:'smoke',startDate:'2026-10-31',founderPersonId:'founder-1',initialEntityId:'sole-1',initialEntitySourceRef:'fixture:founder'});
+const send=(state,type,extra={})=>{const id=`smoke-${++seq}`;const result=applyV3FormationEvent(state,{eventId:id,type,effectiveDate:'2026-10-31',sourceRef:`fixture:${id}`,...extra});assert(result.ok,`${type} rejected: ${result.error?.code}`);return result;};
+try{
+ let s=base(); const original=JSON.stringify(s); const blocked=applyV3FormationEvent(s,{eventId:'bad',type:'SELECT_FORM',effectiveDate:'2026-10-31',sourceRef:'test',legalForm:'ag',selectionRef:'test'}); assert(!blocked.ok,'candidate AG must be blocked'); assert(JSON.stringify(s)===original,'failed event mutated input state');
+ for(const [fromStage,toStage] of [['idea','market_check'],['market_check','offer_defined'],['offer_defined','resources_and_capital_plan']]) s=send(s,'ADVANCE_FOUNDING_STAGE',{fromStage,toStage,stageEvidenceRef:'fixture:stage'}).state;
+ const assessmentInputs=Object.fromEntries(['market','offer','capacity','costs','financing','requirements'].map(key=>[key,{status:'complete',sourceRef:`fixture:${key}`} ])); s=send(s,'ASSESS_VIABILITY',{assessmentId:'assess-1',result:'viable',assessmentInputs}).state;
+ s=send(s,'SELECT_FORM',{legalForm:'gmbh_co_kg',selectionRef:'fixture:selection',entityIds:{gmbhEntityId:'gmbh-1',kgEntityId:'kg-1'},ownershipRefs:[{entityId:'gmbh-1',holderId:'founder-1',shareOrControlBasis:'founder control',sourceRef:'fixture:owner-gmbh'},{entityId:'kg-1',holderId:'founder-1',shareOrControlBasis:'founder limited partner',sourceRef:'fixture:owner-kg'}],partnerRefs:[{kgEntityId:'kg-1',partnerId:'gmbh-1',role:'komplementaer',sourceRef:'fixture:partner-gmbh'},{kgEntityId:'kg-1',partnerId:'founder-1',role:'kommanditist',sourceRef:'fixture:partner-founder'}]}).state;
+ assert(s.entities.filter(e=>['gmbh','kg'].includes(e.entityType)).length===2,'GmbH and KG must be separate entities');
+ s=send(s,'PREPARE_FORMATION',{preparationRef:'fixture:prep',entityIds:['gmbh-1','kg-1']}).state;
+ s=send(s,'SET_REGISTER_STATUS',{entityId:'gmbh-1',status:'filing_pending',registerEvidenceRef:'fixture:gmbh-file'}).state;
+ s=send(s,'SET_REGISTER_STATUS',{entityId:'gmbh-1',status:'registered',registerEvidenceRef:'fixture:gmbh-register'}).state;
+ s=send(s,'AUTHORIZE_KG_PREREGISTRATION_ACTIVITY',{kgEntityId:'kg-1',partnerIds:['gmbh-1','founder-1'],partnerConsentRefs:['fixture:consent-gmbh','fixture:consent-founder'],section123Review:{status:'cleared',sourceRef:'fixture:hgb-review'}}).state;
+ assert(s.kg===undefined,'state should not introduce uncontracted top-level data');
+ const coop=send(s,'OPEN_COOPERATION',{cooperationId:'coop-1',cooperationType:'joint_procurement',participantEntityIds:['sole-1','kg-1'],purposeRef:'fixture:purpose',termsRef:'fixture:terms'}); s=coop.state;
+ s=send(s,'ASSESS_COOPERATION',{cooperationId:'coop-1',legalFormReview:{status:'cleared',sourceRef:'fixture:legal'},competitionReview:{status:'not_applicable',sourceRef:'fixture:competition'}}).state;
+ s=send(s,'CLOSE_COOPERATION',{cooperationId:'coop-1',closureRef:'fixture:close'}).state;
+ assert((s.financeHandoffs||[]).every(h=>h.ledgerMutation===false&&h.cashMutation===false),'handoff must not book');
+ const deal=send(s,'OPEN_ASSET_DEAL',{dealId:'asset-1',buyerEntityId:'sole-1',targetEntityId:'kg-1',termsRef:'fixture:terms-asset',assetTransferRefs:[{assetId:'tool-1',sourceRef:'fixture:asset'}]}); s=deal.state;
+ s=send(s,'REVIEW_DEAL',{dealId:'asset-1',legalReview:{status:'cleared',sourceRef:'fixture:legal-deal'},competitionReview:{status:'not_applicable',sourceRef:'fixture:competition-deal'},businessTransferReview:{status:'needs_review',sourceRef:'fixture:613a'},section25Review:{status:'needs_review',sourceRef:'fixture:25'},employeeTransferReviews:[]}).state;
+ assert(s.deals.find(d=>d.dealId==='asset-1').status==='review_pending','open legal case must keep asset deal pending');
+ const validation=validateV3FormationState(s);assert(validation.valid,`state invalid: ${validation.errors.join(',')}`);
+ out.textContent='PASS: candidate gate, event non-mutation, explicit viability, separate GmbH/KG, registration, KG consent/review, cooperation, pending legal transfer review, and no-booking finance handoffs.';
+}catch(error){out.textContent=`FAIL: ${error.stack||error}`;throw error;}
+</script>

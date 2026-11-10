@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c3b">
+  <title>V3 · Gemeinsamer Simulationslauf</title>
+  <link rel="stylesheet" href="./run.css?v=sha256-9d24bcf8f6d2015c273fb9e9a0eb42c8a547ce6f44e98704feda23fffc06d5e5">
+  <!-- v=sha256-... is the SHA-256 of run.js; the entry-cache regression enforces the binding. -->
+  <script type="importmap" id="v3-run-module-graph">
+{
+  "imports": {
+    "../economics.js": "../economics.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../engine.js": "../engine.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../equipment.js": "../equipment.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-business-cost-plan-index.js": "../v3-business-cost-plan-index.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-company-formation.js": "../v3-company-formation.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-cost-plan-scenario-fixture.js": "../v3-cost-plan-scenario-fixture.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-destatis-import-price-reference.js": "../v3-destatis-import-price-reference.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-event-catalog.js": "../v3-event-catalog.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-finance-runtime.js": "../v3-finance-runtime.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-financial-calculation.js": "../v3-financial-calculation.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-financing-reference.js": "../v3-financing-reference.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-learning-run-adapter.js": "../v3-learning-run-adapter.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-learning-runtime.js": "../v3-learning-runtime.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-macro-demand-channel.js": "../v3-macro-demand-channel.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-macro-policy-impact.js": "../v3-macro-policy-impact.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-macro-simulation.js": "../v3-macro-simulation.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-macro-trade-impact.js": "../v3-macro-trade-impact.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-management-order-planner.js": "../v3-management-order-planner.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-management-strategy.js": "../v3-management-strategy.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-market-simulation.js": "../v3-market-simulation.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-occupational-competencies.js": "../v3-occupational-competencies.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-offer-plan-sensitivity.js": "../v3-offer-plan-sensitivity.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-price-index.js": "../v3-price-index.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-product-costing.js": "../v3-product-costing.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-product-lifecycle.js": "../v3-product-lifecycle.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-run-macro-fixture.js": "../v3-run-macro-fixture.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "../v3-run-orchestrator.js": "../v3-run-orchestrator.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "./inquiry-practice.js": "./inquiry-practice.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1",
+    "./run.js": "./run.js?graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1"
+  }
+}
+</script>
+  <script type="module" src="./run.js?v=sha256-fd71e1fe1f1653064efa6aabf967cff1d1ab3918f8abea8cbe6fc25c0a567680&graph=sha256-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./run.html?v=build-fd71e1fe1f1653064efa6aabf967cff1d1ab3918f8abea8cbe6fc25c0a567680-9d24bcf8f6d2015c273fb9e9a0eb42c8a547ce6f44e98704feda23fffc06d5e5-0ce0993b08bf371c383f8073ed3ffb5c48d8c9d85fab05aac62f4d42feb3bdf1" aria-label="V3-Laufübersicht">WERKSTATT <span>V3</span></a>
+    <p>Gemeinsamer Simulationslauf</p>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">V3 · gemeinsamer Lauf</p>
+      <h1>Unternehmen im Tageslauf</h1>
+      <p>Marktpostfach, Tagesereignisse, angenommene Aufträge und Finanzübergaben stammen aus demselben Run-Zustand. Der Lauf ist lokal im aktuellen Browser-Tab und wird beim Neuladen nicht gespeichert.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="setup-title">
+      <div class="panel-heading"><div><p class="eyebrow">Synthetische Testannahmen</p><h2 id="setup-title">Lauf starten</h2></div><span id="run-status" class="tag pending">Nicht gestartet</span></div>
+      <p class="notice">Die Marktprofile, Wettbewerbswerte und Anfragen sind ein synthetisches Test-Fixture. Sie stellen keine beobachteten Marktpreise oder echte Marktprognose dar.</p>
+      <form id="start-form" class="form-grid">
+        <details class="wide advanced-assumptions"><summary>Erweiterte Testannahmen (optional)</summary><div class="form-grid"><label>Synthetische FX-Angebotsplan-Fixture<select name="fxOfferPlanFixtureId"><option value="NEUTRAL" selected>Neutral · keine FX-Planvorschau</option><option value="V3-T0070-FX-OFFER-SENSITIVITY-5PCT-LAG1">Synthetische Lern-Fixture · USD-Importplan, 1 Monat Lag</option></select></label>
+        <p class="field-note wide" id="fx-offer-plan-fixture-help" aria-live="polite">Neutral ist vorausgewählt. Die optionale FX-Planvorschau ist eine synthetische, nichtbuchende Planannahme. Bei Auswahl muss der Lauf am 04.01.2027 starten und bis mindestens 01.03.2027 reichen. Änderungen sind nur vor dem Start möglich.</p>
+        <input type="hidden" name="scenarioId" value="V3-RUN-SYNTH-01">
+        <input type="hidden" name="seed" value="seed-v3-001">
+        <label>L4-Kostenplan-Profil<select name="costPlanFixtureId"><option value="NEUTRAL" selected>Neutral · keine zusätzlichen Kostenplanimpulse</option><option value="V3-PLAN-INDEX-SYNTH-EQUAL-1">Synthetische Lern-Fixture · Kostenplanindex</option></select></label><label>L2-Auslandsnachfrage<select name="foreignDemandFixtureId"><option value="NEUTRAL" selected>Neutral · keine Nachfrageverschiebung</option><option value="V3-L2-EXPORT-SHIFT-5PP-LAG1">Synthetische Lern-Fixture · Exportsegmentmix +5 Prozentpunkte</option></select></label><label>Einfuhrpreisreferenz<select name="importPriceBenchmarkId" aria-describedby="import-price-reference-help"><option value="NEUTRAL" selected>Neutral · keine Referenz ausgewählt</option><option value="DESTATIS-61411-0010-2026-09-VINTAGE-2026-11-01">Destatis · September 2026 · beobachtete Referenz</option></select></label><label>Synthetischer Makropfad<select name="macroPath"><option value="UPSWING">Aufschwung</option><option value="BOOM">Hochkonjunktur</option><option value="DOWNTURN">Abschwung</option><option value="LOW">Tiefphase</option></select></label>
+        <label>Kundeneinladungen (synthetisches Profil)<select name="marketInvitationProfileId"><option value="NEUTRAL" selected>Neutral · Preisgewichtung aus</option><option value="V3-T0065-PRICE-WEIGHTED-INVITATIONS-1">Preis, Ruf, Kapazität und Segmentpassung</option></select></label><p class="field-note wide" id="market-invitation-profile-help">Optionaler synthetischer Testparameter. Im Preisprofil nutzt die Einladungsschwelle 0,77; den Kundenreferenzpreis als neutrale Spielerschätzung und synthetische Größenpreise der Wettbewerber. Das ist eine Spielannahme, keine Marktprognose. Einzelgebote bleiben verborgen; während des Laufs erscheint nur der anonymisierte Monatsmittelbericht.</p>
+        </div></details><label>Startdatum · festes V3-Startprofil<input name="startDate" type="date" value="2027-01-04" min="2027-01-04" max="2027-01-04" readonly required><span class="field-note">V3 startet derzeit ausschließlich mit dem bestätigten Profil 2027. Ein 2019-Start wird nicht angeboten.</span></label>
+        <label>Enddatum<input name="endDate" type="date" value="2027-01-29" required></label><p class="field-note wide" id="cost-plan-fixture-help" aria-live="polite">Neutral ist vorausgewählt. Die optionale Kostenplan-Fixture ist synthetisches Lernmaterial, keine beobachtete Marktinformation. Basis Januar 2027; ein Monat Verzögerung, wirksam ab Februar 2027. Sie erfordert Start im Januar 2027 und Enddatum mindestens 01.02.2027. Die Datumsfelder werden nicht automatisch geändert.</p><p class="field-note wide" id="foreign-demand-fixture-help" aria-live="polite">Neutral ist vorausgewählt. Die Exportnachfrage-Fixture ist ein synthetischer Testfall: Januarannahme, +5 Prozentpunkte Exportanteil in vorhandenen Segmenten ab Februar 2027. Die wöchentliche Gesamtzahl der Anfragen bleibt unverändert; es entstehen keine zusätzlichen Aufträge oder Finanzwirkungen. Erfordert Start 04.01.2027 und Enddatum mindestens 01.02.2027. Datumsfelder werden nicht automatisch geändert.</p>
+        <p class="field-note wide" id="import-price-reference-help" aria-live="polite">Neutral ist vorausgewählt. Die optionale Referenz zeigt einen historischen Destatis-Index snapshotbasiert und ohne automatische Kosten-, Preis-, Angebots- oder Finanzwirkung.</p>
+        <section class="proposal-card wide" aria-label="Vorgeschlagene synthetische Testannahmen"><h3>Vorschlag für den Testlauf</h3><p><strong>Basislauf:</strong> 04.01.2027 bis 29.01.2027, Aufschwung, neutraler Kosten- und Außenwirtschaftspfad, keine optionale Einfuhrpreiswirkung. Der Seed macht denselben Testlauf reproduzierbar. Alle Markt- und Wettbewerbswerte bleiben synthetische Testdaten.</p><label class="proposal-confirm"><input type="checkbox" name="confirmSyntheticAssumptions" required><span>Ich bestätige die ausgewählten synthetischen Testannahmen und starte diesen Testlauf.</span></label></section>        <button class="primary wide" type="submit">Synthetischen Lauf starten</button>
+      </form>
+      <p class="field-note">Datumsspanne und Seed werden für diesen Lauf übernommen. Tagesweise gibt es keine automatische Jahresvoraus-Simulation.</p>
+    </section>
+
+    <section id="run-workspace" hidden>
+      <section class="panel run-panel" aria-labelledby="day-title">
+        <div class="panel-heading"><div><p class="eyebrow">Shared Run</p><h2 id="day-title">Simulationstag</h2></div><span id="run-date" class="tag">—</span></div>
+        <div class="run-meta" id="run-meta"></div>
+        <div class="save-controls" aria-label="Run sichern und laden"><button class="secondary" id="save-run" type="button">Run sichern</button><button class="secondary" id="load-run" type="button">Run laden</button><input id="load-run-file" type="file" accept="application/json,.json" hidden></div>
+        <button class="primary" id="advance-day" type="button">Nächsten Simulationstag öffnen</button>
+        <p class="field-note">Der Lauf führt genau einen Kalendertag aus. Der Tagesablauf ist zweiphasig: Tag öffnen, Angebote und Arbeitsschritte bearbeiten, Tag abschließen.</p>
+      </section>
+
+      <section class="panel offer-gate" aria-labelledby="offer-gate-title">
+        <div class="panel-heading"><div><p class="eyebrow">Angebotsbearbeitung</p><h2 id="offer-gate-title">Angebote und Tagesaktionen</h2></div><span class="tag pending">Nur bei geöffnetem Tag</span></div>
+        <p>Öffne den Simulationstag, prüfe die Anfragen und gib bei Bedarf ein Angebot mit deiner ausdrücklich eingegebenen Kalkulation ab. Danach schließt du den Tag. Kundenzusage, Fertigstellung, Lieferung, Abnahme und Buchung bleiben getrennte Schritte. Die Testkalkulation bucht nichts.</p>
+      </section>
+
+      <div id="learning-section"></div>
+
+      <section class="panel" aria-labelledby="macro-title">
+        <div class="panel-heading"><div><p class="eyebrow">Volkswirtschaft · Monatsstand</p><h2 id="macro-title">Konjunktur und Spielpreisindex</h2></div><span class="tag pending">Synthetisches Testprofil</span></div>
+        <div id="macro-summary" class="stack"></div>
+      </section>
+
+      <div class="grid">
+        <section class="panel" aria-labelledby="inbox-title">
+          <div class="panel-heading"><div><p class="eyebrow">Kundenpostfach</p><h2 id="inbox-title">Anfragen</h2></div><span id="inbox-count" class="tag">0</span></div>
+          <div id="inbox" class="stack empty">Noch keine Anfrage eingegangen.</div>
+        </section>
+        <section class="panel" aria-labelledby="work-title">
+          <div class="panel-heading"><div><p class="eyebrow">Auftragsbestand</p><h2 id="work-title">Angenommene Aufträge</h2></div><span id="work-count" class="tag">0</span></div>
+          <div id="work-orders" class="stack empty">Noch kein Auftrag angenommen.</div>
+        </section>
+      </div>
+
+      <div class="grid">
+        <section class="panel" aria-labelledby="finance-title">
+          <div class="panel-heading"><div><p class="eyebrow">A03 Finanzhandoff</p><h2 id="finance-title">Finanzstatus</h2></div><span id="finance-count" class="tag pending">0 offen</span></div>
+          <p class="field-note">Kundenzusage, Leistung, Lieferung, Kundenentscheidung, Szenario-Rechnung und tatsächliche Zahlung bleiben getrennte Vorgänge. Die Anzeige ist eine vereinfachte Spiel-KLR, kein HGB-Abschluss und keine vollständige externe Rechnung. Im V3-Basisfall werden Kundenrechnungen am Fälligkeitstag vollständig bezahlt; Verspätungen und Ausfälle sind nicht simuliert.</p>
+          <div id="finance-summary"></div>
+          <h3>Szenario-Rechnungen</h3>
+          <div id="scenario-invoices" class="stack empty"><p class="empty">Noch keine Szenario-Rechnung.</p></div>
+          <h3>Offene Lieferantenposten</h3>
+          <p class="field-note">Lieferantenrechnungen werden nach dem Wareneingang als offene Posten erfasst. Jede Zahlung erfolgt nur nach manuellem Klick als vollständige EUR-Zahlung bei ausreichendem Bankguthaben.</p>
+          <div id="supplier-ap" class="stack empty"><p class="empty">Noch kein offener Lieferantenposten.</p></div>
+          <h3>Zahlungseingänge</h3>
+          <div id="customer-receipts" class="stack empty"><p class="empty">Noch keine Zahlungseingänge.</p></div>
+          <div id="finance-handoffs" class="stack empty">Keine Finanzübergabe vorhanden.</div>
+        </section>
+        <section class="panel" aria-labelledby="competitor-title">
+          <div class="panel-heading"><div><p class="eyebrow">Synthetischer Monatsbericht</p><h2 id="competitor-title">Wettbewerbswerte</h2></div></div>
+          <div id="competitor-report" class="stack empty">Noch kein Monatsbericht.</div>
+          <p class="field-note">Angezeigt werden nur aggregierte Mittelwerte. Einzelgebote und Wettbewerberpreise bleiben verborgen. Unter n ≥ 3 wird kein Mittelwert angezeigt.</p>
+        </section>
+      </div>
+
+      <section class="panel" aria-labelledby="events-title">
+        <div class="panel-heading"><div><p class="eyebrow">Run-Protokoll</p><h2 id="events-title">Aktuelle Ereignisse</h2></div><span id="event-count" class="tag">0</span></div>
+        <ol id="event-log" class="event-list empty"><li>Noch keine Tage ausgeführt.</li></ol>
+      </section>
+    </section>
+    <p id="live-status" class="live-status" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

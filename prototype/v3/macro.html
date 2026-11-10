@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c3b">
+  <title>V3 · Volkswirtschaft</title>
+  <link rel="stylesheet" href="./macro.css">
+  <script type="module" src="./macro.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="Zur V3-Übersicht">WERKSTATT <span>V3</span></a>
+    <p>Volkswirtschaft · Makro-Szenario</p>
+    <a class="top-link" href="./finance.html">Kalkulation &amp; BAB</a>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">V3 · Makroökonomie</p>
+      <h1>Konjunktur und Wirtschaftspolitik</h1>
+      <p>Monatliche Makro-Snapshots aus der isolierten V3-Simulation. Die Demo nutzt ausschließlich synthetische, unkalibrierte Fixturewerte. Sie sind keine Marktbeobachtungen oder Prognosen.</p>
+    </section>
+
+    <section class="panel controls" aria-labelledby="run-title">
+      <div class="panel-heading"><div><p class="eyebrow">Reproduzierbarer Szenariolauf</p><h2 id="run-title">Demo ausführen</h2></div><span id="run-status" class="tag pending">Noch nicht geladen</span></div>
+      <p class="notice"><strong>Fixture, kein Produktdefault:</strong> Werte und Parameter stammen aus den dokumentierten Runtime-Regressionsfällen. Lauf-ID, Modellparameter und Quellenreferenzen bleiben am Snapshot sichtbar.</p>
+      <div class="control-grid">
+        <label>Zeitraum<select id="period-select" disabled><option>Demo ausführen</option></select></label>
+        <label>Neue Kreditkondition<select id="quote-mode"><option value="none">Keine Anfrage</option><option value="indicative">Indikative Anfrage (Fixture)</option><option value="expired">Abgelaufene Anfrage (Fixture)</option></select></label>
+        <button id="run-demo" class="primary" type="button">Synthetische 14-Monats-Demo laden</button>
+      </div>
+      <p class="hint">Die Kreditkondition wird nur als unverbindliche Anzeige ausgegeben. Es entsteht weder ein Vertrag noch ein Finanz-, Cash- oder Ledger-Effekt. Beobachtete EZB-/Destatiswerte sind in dieser Demo nicht enthalten.</p>
+    </section>
+
+    <section id="empty-state" class="panel empty" aria-live="polite">Führe die gekennzeichnete Demo aus, um einen Makro-Snapshot anzuzeigen.</section>
+    <div id="snapshot" hidden aria-live="polite"></div>
+    <p id="live-status" class="live-status" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

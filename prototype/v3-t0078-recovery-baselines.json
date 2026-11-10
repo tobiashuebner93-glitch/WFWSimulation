@@ -1,0 +1,33 @@
+{
+  "fixture": "T-0078-BASELINE-1",
+  "profiles": {
+    "UPSWING": {
+      "seed": "T-0078-recovery-seed-1",
+      "stateHash": "bdb8c1b38eb9ea3ffeb20fc3a94954a731766f9ae384e0960ebc20dd5dc00c4b",
+      "wallMs": 246913.755,
+      "days": 362,
+      "events": 1415
+    },
+    "BOOM": {
+      "seed": "T-0078-recovery-seed-1",
+      "stateHash": "e0425e059e1b6324a01cfc98ab4a56161fd521cbdb1536dd83780da0b6e3a869",
+      "wallMs": 243186.343,
+      "days": 362,
+      "events": 1415
+    },
+    "DOWNTURN": {
+      "seed": "T-0078-recovery-seed-1",
+      "stateHash": "bca994ee4ca9647129e3b22faea9cc2c119f5995b25911ae9b73ec02cbb99a4c",
+      "wallMs": 227515.576,
+      "days": 362,
+      "events": 1415
+    },
+    "LOW": {
+      "seed": "T-0078-recovery-seed-1",
+      "stateHash": "124a145459de2556393c811db6138c1df8cc87c1d43df3e1ab774f9bb86191f9",
+      "wallMs": 288277.83,
+      "days": 362,
+      "events": 1415
+    }
+  }
+}

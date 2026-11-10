@@ -1,0 +1,164 @@
+import assert from 'node:assert/strict';
+import { renderOwnProducts, calculateV3ProductSaleOfferPreview, parseV3ProductJsonInput, buildV3ProductCostLines, readV3ProductCostLines } from './run.js';
+import { createV3ProductState, createV3Product, defineV3ProductSteps, estimateV3Product, estimateV3ProductWithBab, planV3ProductStep, completeV3ProductStep, recordV3ProductLotCost, getV3ProductCostSourceRefs, validateV3ProductWorkdayAssignments, cancelV3ProductStep, submitV3ProductSaleOffer, decideV3ProductSaleOffer, dispatchV3ProductSale } from '../v3-product-lifecycle.js';
+import { createDocumentedMarketFixture, advanceMarketDate } from './market.js';
+import { getV3MarketPlayerView } from '../v3-market-simulation.js';
+import { planV3EquipmentInstruction, recordV3EquipmentInstruction, advanceV3ProductDate } from '../v3-product-lifecycle.js';
+
+const syntheticCostLines = lines => lines.map(line => ({ ...line, unit: 'EUR', sourceRef: `synthetic:a05-product-ui:${line.id}`, roundingPolicy: 'already_integer_cents_no_rounding', roundingResultCents: line.amountCents }));
+
+let product = createV3ProductState({
+  runId: 'ui-product-run', currentDate: '2027-01-01',
+  people: [{ id: 'P1', hoursPerDay: 8, skills: ['turning', 'manual_fabrication'] }],
+  equipment: [{ id: 'M1', hoursPerDay: 8, capabilities: ['turning', 'bench-tools'] }],
+  materials: [{ id: 'steel', quantity: 10 }], finishedGoodsCapacity: 10, finishedGoodsUsed: 0, commitments: [],
+});
+const initialInstructionId = 'ui-product-instruction-P1-M1';
+product = planV3EquipmentInstruction(product, { instructionId: initialInstructionId, personId: 'P1', equipmentId: 'M1', plannedDate: '2027-01-01', sourceRef: `instruction:${initialInstructionId}` });
+product = recordV3EquipmentInstruction(product, { instructionId: initialInstructionId });
+product = advanceV3ProductDate(product, '2027-01-04');
+product = createV3Product(product, { productId: 'PROD-PLUS', name: 'Positives Produkt', targetSegment: 'small', marketCapabilities: ['turning'], unitStorage: 1, recipe: [] });
+product = createV3Product(product, { productId: 'PROD-MINUS', name: 'Unwirtschaftliches Produkt', targetSegment: 'medium', marketCapabilities: ['turning'], unitStorage: 1, recipe: [] });
+for (const productId of ['PROD-PLUS', 'PROD-MINUS']) {
+  product = defineV3ProductSteps(product, productId, [{ stepId: 'make', kind: 'production', hours: 2, requiredSkills: ['turning'], requiredEquipment: ['turning'], predecessors: [] }]);
+}
+const planOptions = productId => ({ directCosts: syntheticCostLines([{ id: 'steel', amountCents: productId === 'PROD-PLUS' ? 5000 : 11000, variable: true }]), costVersion: 'COST-1' });
+product = estimateV3Product(product, 'PROD-PLUS', { ...planOptions('PROD-PLUS'), netPriceCents: 10000 });
+product = estimateV3Product(product, 'PROD-MINUS', { ...planOptions('PROD-MINUS'), netPriceCents: 10000 });
+
+const market = createDocumentedMarketFixture().state;
+const planned = renderOwnProducts(product, market, false);
+assert.match(planned, /Positives Produkt/);
+assert.match(planned, /Unwirtschaftliches Produkt/);
+assert.match(planned, /DB I 50,00 €/);
+assert.match(planned, /DB I −10,00 €/);
+assert.match(planned, /Planrechnung \(nicht Ist, Planpreis/);
+assert.match(planned, /keine Buchung oder automatische Kundenannahme/i);
+assert.match(planned, /button class="primary wide" type="submit" disabled/);
+
+const available = renderOwnProducts(product, market, true);
+assert.match(available, /product-create-form/);
+assert.match(available, /product-cost-form/);
+assert.match(available, /product-step-plan-form/);
+assert.doesNotMatch(available, /BAB-Quellkostenpools|Produkt-Treiber je Kostenstelle/);
+assert.doesNotMatch(available, /BAB-Anteil in Cent/);
+assert.match(available, /DB-I-Plan kalkulieren \(Vollkosten\/BAB später\)/);
+assert.doesNotMatch(available, /<button[^>]*disabled/);
+let incompleteProduct = planV3ProductStep(product, { productId: 'PROD-MINUS', stepId: 'make', date: '2027-01-04', personId: 'P1', equipmentId: 'M1', outputQuantity: 0, materialQuantities: {} });
+const incompleteUi = renderOwnProducts(incompleteProduct, market, true);
+assert.match(incompleteUi, /Noch keine Dauer erfasst: Schritt nicht abgeschlossen/);
+assert.match(incompleteUi, new RegExp(`geplante Zeit ${product.assignments[0]?.hours ?? incompleteProduct.assignments[0].hours} h`));
+assert.doesNotMatch(incompleteUi, /Modellierte Simulationsdauer|simulated_actual|\d+ min/, 'an incomplete step displays no simulated actual duration');
+incompleteProduct = cancelV3ProductStep(incompleteProduct, incompleteProduct.assignments[0].assignmentId);
+const cancelledUi = renderOwnProducts(incompleteProduct, market, true);
+assert.match(cancelledUi, /Keine Dauer erfasst: Schritt abgebrochen/);
+assert.doesNotMatch(cancelledUi, /Modellierte Simulationsdauer|simulated_actual|\d+ min/, 'a cancelled step displays no simulated actual duration');
+let saleReady = structuredClone(product);
+saleReady = planV3ProductStep(saleReady, { productId: 'PROD-PLUS', stepId: 'make', date: '2027-01-04', personId: 'P1', equipmentId: 'M1', outputQuantity: 5, materialQuantities: { steel: 5 } });
+saleReady = completeV3ProductStep(saleReady, saleReady.assignments[0].assignmentId);
+const completedUi = renderOwnProducts(saleReady, market, true);
+assert.match(completedUi, /Modellierte Simulationsdauer/);
+assert.doesNotMatch(completedUi, /product-actual-cost-form/, 'V3 does not expose a premature full COGS valuation form before the later BAB basis exists');
+assert.match(completedUi, /Fertigwarenwert und vollständiges COGS bleiben in V3 ausstehend/);
+assert.ok(completedUi.includes(`${saleReady.assignments[0].timeEvidence.minutes} min`));
+assert.match(completedUi, /Quelle \/ Zuweisung[\s\S]*?ui-product-run:assignment:1/);
+assert.match(completedUi, /Datum \/ Periode[\s\S]*?2027-01-04 · 2027-01/);
+assert.match(completedUi, /Kosten[\s\S]*?Ausstehend/);
+assert.match(completedUi, /Modellierte Spieldauer; keine extern gemessene Echtzeit/);
+assert.ok(completedUi.includes(`geplante Zeit ${saleReady.assignments[0].hours} h`));
+assert.doesNotMatch(completedUi, /Ergebnis nach BAB|BAB-Quellkostenpools|Produkt-Treiber je Kostenstelle/);
+const saleMarket = createDocumentedMarketFixture(); let saleView = getV3MarketPlayerView(saleMarket.state);
+for (let tries = 0; tries < 8 && !saleView.inquiries.some(row => row.status === 'open'); tries += 1) { advanceMarketDate(saleMarket); saleView = getV3MarketPlayerView(saleMarket.state); }
+const matchingInquiry = saleView.inquiries.find(row => row.status === 'open' && row.segmentId === saleReady.products[0].targetSegment && row.requiredCapacity <= saleReady.products[0].outputQuantity && row.requiredCapabilities.every(skill => saleReady.products[0].marketCapabilities.includes(skill)));
+assert.ok(matchingInquiry, 'market fixture provides an open product buyer opportunity');
+const saleUi = renderOwnProducts(saleReady, saleMarket.state, true);
+assert.match(saleUi, /product-sale-form/);
+assert.match(saleUi, /buyerPartyId/);
+assert.match(saleUi, /Netto-Angebotspreis in €/);
+assert.match(saleUi, /Die Käuferannahme reserviert die angebotene Menge/);
+assert.match(saleUi, /Planrechnung \(nicht Ist, Planpreis 100,00 €/);
+assert.match(saleUi, /Vollkosten\/BAB ausstehend/);
+assert.match(saleUi, /data-product-sale-estimate/);
+const saleFormMarkup = saleUi.match(/<form class="form-grid product-sale-form">([\s\S]*?)<\/form>/)?.[1] ?? '';
+for (const field of ['quantity', 'netPrice', 'decisionDate']) assert.match(saleFormMarkup, new RegExp(`name="${field}"[^>]*required`), `${field} must be browser-required before an offer is sent`);
+const costFormMarkup = available.match(/<form class="form-grid product-cost-form">([\s\S]*?)<\/form>/)?.[1] ?? '';
+for (const field of ['productId', 'netPrice', 'costVersion', 'costLineId', 'costLineAmountEuro', 'costLineVariable', 'costLineSourceRef']) assert.match(costFormMarkup, new RegExp(`name="${field}"[^>]*required`), `${field} must be browser-required before a product plan can be calculated`);
+assert.match(costFormMarkup, /Währungseinheit: EUR/);
+assert.match(costFormMarkup, /Mindestens eine belegte Kostenposition.*erforderlich/);
+assert.match(costFormMarkup, /ohne direkte Kosten wird in dieser V3-Oberfläche nicht freigegeben/);
+assert.match(costFormMarkup, /bereits ganzzahlige Cent, keine weitere Rundung/);
+assert.match(costFormMarkup, /Cent-Übertrag \(Vorschau\)/);
+assert.doesNotMatch(costFormMarkup, /Gespeichertes Ergebnis/);
+assert.match(costFormMarkup, /data-rounding-result/);
+assert.match(costFormMarkup, /sourceRef|Quellreferenz/);
+assert.match(costFormMarkup, /synthetic:.*keinen geprüften externen Beleg/);
+assert.match(costFormMarkup, /product-cost-line-add/);
+assert.match(costFormMarkup, /product-cost-line-remove/);
+assert.doesNotMatch(costFormMarkup, /directCostsJson|Direkte Kosten als JSON/);
+assert.doesNotMatch(costFormMarkup, /babVersion|sourcePoolsJson|offerDriversJson|period/);
+assert.deepEqual(buildV3ProductCostLines([{ id: 'material-1', amountEuro: '12,34', variable: 'true', sourceRef: 'synthetic:quote:material-1' }]), [{ id: 'material-1', amountCents: 1234, variable: true, unit: 'EUR', sourceRef: 'synthetic:quote:material-1', roundingPolicy: 'already_integer_cents_no_rounding', roundingResultCents: 1234 }]);
+const formValues = { costLineId: 'material-2', costLineAmountEuro: '7,05', costLineVariable: 'false', costLineSourceRef: 'fixture:invoice:2' };
+const fakeCostForm = { querySelectorAll: () => [{ querySelector: selector => ({ value: formValues[selector.match(/name="([^"]+)/)?.[1]] }) }] };
+assert.equal(readV3ProductCostLines(fakeCostForm)[0].roundingResultCents, 705, 'form adapter stores the exact visible cent result');
+assert.throws(() => buildV3ProductCostLines([]), /Mindestens eine belegte direkte Kostenposition ist erforderlich/,
+  'removing the last row cannot submit a silent zero-cost estimate');
+assert.throws(() => buildV3ProductCostLines([{ id: '', amountEuro: '', variable: 'true', sourceRef: '' }]), /Mindestens eine belegte direkte Kostenposition ist erforderlich/,
+  'an untouched empty form row is rejected');
+assert.throws(() => buildV3ProductCostLines([{ id: 'zero', amountEuro: '0,00', variable: 'false', sourceRef: 'synthetic:zero' }]), /Betrag muss größer als 0,00/,
+  'an explicit zero amount is not treated as an ordinary sourced cost line');
+assert.throws(() => buildV3ProductCostLines([{ id: 'material-1', amountEuro: '12,34', variable: 'true', sourceRef: '' }]), /Quellreferenz fehlt/);
+assert.throws(() => buildV3ProductCostLines([{ id: 'a', amountEuro: '1,00', variable: 'true', sourceRef: 'same' }, { id: 'b', amountEuro: '2,00', variable: 'false', sourceRef: 'same' }]), /Quellreferenz same ist doppelt/);
+assert.throws(() => buildV3ProductCostLines([{ id: 'material-1', amountEuro: '12,345', variable: 'true', sourceRef: 'source-1' }]), /Betrag bitte als nichtnegative Eurozahl mit höchstens zwei Nachkommastellen/);
+const preview = calculateV3ProductSaleOfferPreview(saleReady, 'PROD-PLUS', '125,00');
+assert.equal(preview.netPriceCents, 12500);
+assert.equal(preview.calculation.dbICents, 7500, 'offer DB I preview must use the actual entered offer price');
+assert.equal(preview.calculation.resultAfterBabCents, undefined, 'V3 offer preview does not infer a result after BAB');
+assert.throws(() => calculateV3ProductSaleOfferPreview(saleReady, 'PROD-PLUS', ''), /Betrag bitte/);
+assert.throws(() => calculateV3ProductSaleOfferPreview(saleReady, 'PROD-PLUS', '125,000'), /Betrag bitte/);
+assert.throws(() => parseV3ProductJsonInput('', 'Direkte Kosten'), /darf nicht leer sein/);
+assert.throws(() => parseV3ProductJsonInput('[{', 'Direkte Kosten'), /gültiges JSON/);
+assert.deepEqual(parseV3ProductJsonInput('[1]', 'Direkte Kosten'), [1]);
+const offerInput = { saleId: 'ui-sale-snapshot', productId: 'PROD-PLUS', sellerPartyId: 'player-firm', buyerPartyId: matchingInquiry.customerId, inquiryId: matchingInquiry.inquiryId, quantity: 1, offerDate: '2027-01-04', decisionDate: '2027-01-05', netPriceCents: preview.netPriceCents, offerSnapshotId: 'ui-plan-snapshot' };
+const savedOffer = submitV3ProductSaleOffer(saleReady, offerInput);
+assert.equal(savedOffer.productSales[0].offerSnapshot.calculation.dbICents, 7500);
+const revisedPlan = estimateV3Product(savedOffer, 'PROD-PLUS', { netPriceCents: 20000, directCosts: syntheticCostLines([{ id: 'steel', amountCents: 5000, variable: true }]), costVersion: 'COST-2' });
+const replayedOffer = submitV3ProductSaleOffer(revisedPlan, offerInput);
+assert.equal(replayedOffer.productSales[0].offerSnapshot.offerPriceCents, 12500, 'exact offer replay keeps its submitted price snapshot after a plan revision');
+assert.equal(replayedOffer.productSales[0].offerSnapshot.calculation.dbICents, 7500, 'exact offer replay keeps its submitted-price calculation');
+const refreshedOfferUi = renderOwnProducts(JSON.parse(JSON.stringify(replayedOffer)), saleMarket.state, true);
+assert.match(refreshedOfferUi, /Planrechnung \(nicht Ist, Planpreis 200,00 €\).*DB I 150,00 €/);
+assert.match(refreshedOfferUi, /Angebotsrechnung \(Snapshot, Plan – nicht Ist\): Preis 125,00 € · Planpreis damals 100,00 €; DB I 75,00 €; Ergebnis nach direkten Kosten 75,00 €; Vollkosten\/BAB ausstehend/);
+let acceptedProduct = structuredClone(replayedOffer);
+acceptedProduct.currentDate = '2027-01-05';
+acceptedProduct = decideV3ProductSaleOffer(acceptedProduct, { saleId: 'ui-sale-snapshot', buyerPartyId: matchingInquiry.customerId, decisionDate: '2027-01-05', accepted: true, decisionRef: 'ui-buyer-acceptance' });
+const acceptedUi = renderOwnProducts(acceptedProduct, saleMarket.state, true);
+assert.match(acceptedUi, /Angenommen · reserviert · noch nicht versandt/);
+assert.match(acceptedUi, /Fertigwaren verfügbar: 4 Stück · reserviert: 1 · physisch vorhanden: 5/);
+assert.match(acceptedUi, /class="secondary product-sale-dispatch"[^>]*>Versand erfassen/);
+assert.doesNotMatch(acceptedUi, /bucht bei Annahme/);
+let dispatchedProduct = dispatchV3ProductSale(acceptedProduct, { saleId: 'ui-sale-snapshot', dispatchId: 'ui-dispatch-1', date: '2027-01-05', sourceRef: 'ui-dispatch-source-1' });
+const dispatchedUi = renderOwnProducts(dispatchedProduct, saleMarket.state, true);
+assert.match(dispatchedUi, /Angenommen · versandt am 2027-01-05/);
+assert.doesNotMatch(dispatchedUi, /product-sale-dispatch/);
+assert.match(dispatchedUi, /Fertigwaren verfügbar: 4 Stück · reserviert: 0 · physisch vorhanden: 4/);
+assert.equal(dispatchedProduct.productSales[0].cogsStatus, 'pending_deferred_bab', 'dispatch keeps full COGS deferred');
+assert.equal(dispatchedProduct.productSales[0].cogsCents, undefined, 'dispatch does not infer COGS from a test fixture');
+const soldOut = structuredClone(saleReady); soldOut.products[0].outputQuantity = 0; soldOut.finishedGoodsUsed = 0;
+const soldOutUi = renderOwnProducts(soldOut, saleMarket.state, true);
+assert.match(soldOutUi, /Fertigwaren verfügbar: 0 Stück/);
+assert.match(soldOutUi, /Keine passende offene Anfrage/);
+assert.doesNotMatch(soldOutUi, /product-sale-form/);
+const briefState = createV3Product(product, { productId: 'PROD-BRIEF', name: 'Managementkonzept', targetSegment: 'small', marketCapabilities: ['turning'], unitStorage: 1, recipe: [{ materialId: 'steel', quantityPerUnit: 0.5 }], managementBrief: { assignedPersonId: 'P1', customerBenefit: 'Verringert Montagezeit beim Kunden', targetPriceCents: 12500, qualityTarget: 'premium', targetSegment: 'small' } });
+assert.equal(briefState.products.at(-1).managementBrief.targetPriceCents, 12500);
+assert.deepEqual(briefState.events.at(-1).managementBrief, briefState.products.at(-1).managementBrief, 'management goals are source-event bound');
+assert.equal(validateV3ProductWorkdayAssignments(briefState), true);
+const briefUi = renderOwnProducts(briefState, market, true);
+for (const field of ['assignedPersonId', 'customerBenefit', 'targetPrice', 'qualityTarget']) assert.match(briefUi, new RegExp(`name=\"${field}\"`), `${field} is a management-level input`);
+assert.match(briefUi, /Management-Briefing/);
+assert.match(briefUi, /Verringert Montagezeit beim Kunden/);
+assert.match(briefUi, /Zielpreis netto: 125,00 €/);
+assert.match(briefUi, /Noch keine Teamprognose zu Dauer und erreichbarer Qualität/);
+const tamperedBrief = structuredClone(briefState);
+tamperedBrief.products.at(-1).managementBrief.targetPriceCents = 1;
+assert.throws(() => validateV3ProductWorkdayAssignments(tamperedBrief), /management brief does not match its source event/);
+console.log('A05 T-0066 product UI regressions: PASS (offer snapshot, reserved stock, explicit product dispatch, plan/actual labels)');

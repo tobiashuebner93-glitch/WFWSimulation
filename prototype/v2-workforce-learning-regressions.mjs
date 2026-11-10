@@ -2,6 +2,7 @@ import {createLegacyBusinessTestGame as createInitialGame, createLegacyBusinessT
 import assert from 'node:assert/strict';
 import {  negotiateTemporaryAgency, bookTemporaryWorker, getSpaceUse, relocateFacility, TEMP_AGENCIES, getEmployeeWorkEfficiency } from './engine.js';
 import { DAILY_ITEMS } from './learning-daily.js';
+import { EQUIPMENT_CATALOG, equipmentEffects } from './equipment.js';
 
 const game = createInitialGame();
 assert.equal(TEMP_AGENCIES.length, 3);
@@ -16,6 +17,18 @@ for (const agency of TEMP_AGENCIES) {
 assert.ok(game.employees.every(e => Object.keys(e.maxPotential).every(k => e.maxPotential[k] >= e.competencies[k])));
 assert.equal(game.employees[0].qualifications.machines.includes('CNC-01'), true);
 assert.ok(getEmployeeWorkEfficiency({...game.employees[0], competencies:{fach:90,methoden:90,sozial:90,individual:90}, morale:90}) > getEmployeeWorkEfficiency({...game.employees[0], competencies:{fach:50,methoden:50,sozial:50,individual:50}, morale:50}));
+const efficiencyBaseline = { ...game.employees[0], competencies: { fach: 70, methoden: 70, sozial: 70, individual: 70 }, morale: 70, motivation: 70, productivityBonus: 0 };
+const skillOnlyHigher = { ...efficiencyBaseline, competencies: { ...efficiencyBaseline.competencies, fach: 80 } };
+const motivationOnlyHigher = { ...efficiencyBaseline, morale: 80, motivation: 80 };
+assert.ok(getEmployeeWorkEfficiency(skillOnlyHigher) > getEmployeeWorkEfficiency(efficiencyBaseline), 'holding motivation constant, higher Fachkompetenz improves V2 work efficiency');
+assert.ok(getEmployeeWorkEfficiency(motivationOnlyHigher) > getEmployeeWorkEfficiency(efficiencyBaseline), 'holding all competencies constant, higher motivation improves V2 work efficiency');
+const bareEquipmentEffect = equipmentEffects({ assets: [], equipmentLeases: [] }).production;
+const workbenchVariant = EQUIPMENT_CATALOG.find(item => item.id === 'workbench-1');
+assert.ok(workbenchVariant, 'approved V2 equipment catalogue provides a real production workbench variant');
+const equippedProduction = equipmentEffects({ assets: [{ ...workbenchVariant, condition: 100 }], equipmentLeases: [] }).production;
+const wornProduction = equipmentEffects({ assets: [{ ...workbenchVariant, condition: 50 }], equipmentLeases: [] }).production;
+assert.ok(equippedProduction > bareEquipmentEffect, 'holding worker and assignment constant, production equipment bonus improves V2 output factor');
+assert.ok(wornProduction < equippedProduction, 'lower equipment condition reduces its V2 production effect');
 
 const booked = createInitialGame();
 booked.date = '2027-01-04';

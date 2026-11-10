@@ -1,0 +1,2669 @@
+{
+  "fixtureId": "T0076-G6-ANNUAL-QUANTITY-1",
+  "runId": "T0076-G6-ANNUAL-QUANTITY-1",
+  "seed": "fixed-annual-quantity-reconciliation",
+  "startDate": "2027-01-04",
+  "endDate": "2027-12-31",
+  "status": "PASS",
+  "snapshots": [
+    {
+      "period": "2027-01",
+      "throughDate": "2027-01-31",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 100,
+          "receipts": 5,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 103,
+          "plannedReservation": 0,
+          "available": 103,
+          "receiptMovementIds": [
+            {
+              "movementId": "T0076-G6-ANNUAL-QUANTITY-1|material-receipt|T0076-MAT-SHIPMENT-1",
+              "sourceRef": "fixture:D-0173:t0076:steel-order",
+              "date": "2027-01-06",
+              "period": "2027-01",
+              "quantity": 5,
+              "quantityBefore": 99,
+              "quantityAfter": 104
+            }
+          ]
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 0,
+        "capacityClose": 1,
+        "capacity": 30,
+        "occupiedCapacity": 1,
+        "freePhysicalCapacity": 29,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 29
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A1",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:1",
+          "date": "2027-01-04",
+          "period": "2027-01",
+          "productId": "standard-part-2027-01",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-01",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 0,
+          "stockAfter": 1,
+          "availableCapacityBefore": 30,
+          "availableCapacityAfter": 29
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0",
+          "date": "2027-01-07",
+          "period": "2027-01",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 1,
+          "stockAfter": 2,
+          "availableCapacityBefore": 29,
+          "availableCapacityAfter": 28
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-01",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-01",
+          "date": "2027-01-07",
+          "period": "2027-01",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 2,
+          "stockAfter": 1,
+          "availableCapacityBefore": 28,
+          "availableCapacityAfter": 29
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-return|T0076-CUSTOMER-RETURN-1",
+          "kind": "customer_rejected_goods_returned",
+          "sourceRef": "fixture:t0076:customer-return",
+          "date": "2027-01-08",
+          "period": "2027-01",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 1,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 1,
+          "stockAfter": 2,
+          "availableCapacityBefore": 29,
+          "availableCapacityAfter": 28
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-01",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-01",
+          "date": "2027-01-08",
+          "period": "2027-01",
+          "productId": "standard-part-2027-01",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-01",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 2,
+          "stockAfter": 2,
+          "availableCapacityBefore": 28,
+          "availableCapacityAfter": 28
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-01",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-01",
+          "date": "2027-01-08",
+          "period": "2027-01",
+          "productId": "standard-part-2027-01",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-01",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 2,
+          "stockAfter": 1,
+          "availableCapacityBefore": 28,
+          "availableCapacityAfter": 29
+        }
+      ],
+      "stateHash": "77ab7ba9dffeaaf41ebdbcb0f852f35b11a1efc1c7832c471fc98d36bc55bcc3",
+      "eventHash": "8b72bccc8fdc932e76fc3374115daf063af89797db39d8701e622f1de29826c8",
+      "restoreHash": "77ab7ba9dffeaaf41ebdbcb0f852f35b11a1efc1c7832c471fc98d36bc55bcc3"
+    },
+    {
+      "period": "2027-02",
+      "throughDate": "2027-02-28",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 103,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 101,
+          "plannedReservation": 0,
+          "available": 101,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 1,
+        "capacityClose": 2,
+        "capacity": 30,
+        "occupiedCapacity": 2,
+        "freePhysicalCapacity": 28,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 28
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A3",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:3",
+          "date": "2027-02-01",
+          "period": "2027-02",
+          "productId": "standard-part-2027-02",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-02",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 1,
+          "stockAfter": 2,
+          "availableCapacityBefore": 29,
+          "availableCapacityAfter": 28
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0",
+          "date": "2027-02-03",
+          "period": "2027-02",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 2,
+          "stockAfter": 3,
+          "availableCapacityBefore": 28,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-02",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-02",
+          "date": "2027-02-03",
+          "period": "2027-02",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 3,
+          "stockAfter": 2,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 28
+        }
+      ],
+      "stateHash": "d57d091adf6ff8c70d0e517303652bc45232e9c48f5b12124959fa47429bcad8",
+      "eventHash": "0c8cff55b3794bb20b6cc3a4dbe7ea7de29de89b21f281dcb901549e97a940b1",
+      "restoreHash": "d57d091adf6ff8c70d0e517303652bc45232e9c48f5b12124959fa47429bcad8"
+    },
+    {
+      "period": "2027-03",
+      "throughDate": "2027-03-31",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 101,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 99,
+          "plannedReservation": 0,
+          "available": 99,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 2,
+        "capacityClose": 2,
+        "capacity": 30,
+        "occupiedCapacity": 2,
+        "freePhysicalCapacity": 28,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 28
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A4",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:4",
+          "date": "2027-03-01",
+          "period": "2027-03",
+          "productId": "standard-part-2027-03",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-03",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 2,
+          "stockAfter": 3,
+          "availableCapacityBefore": 28,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0",
+          "date": "2027-03-03",
+          "period": "2027-03",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 3,
+          "stockAfter": 4,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-03",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-03",
+          "date": "2027-03-03",
+          "period": "2027-03",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 4,
+          "stockAfter": 3,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-03",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-03",
+          "date": "2027-03-05",
+          "period": "2027-03",
+          "productId": "standard-part-2027-03",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-03",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 3,
+          "stockAfter": 3,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-03",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-03",
+          "date": "2027-03-05",
+          "period": "2027-03",
+          "productId": "standard-part-2027-03",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-03",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 3,
+          "stockAfter": 2,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 28
+        }
+      ],
+      "stateHash": "db68673d2505b1d07c95b6e3955893ea1b47821ecf8c2b07c91ef49b6e6cfce7",
+      "eventHash": "99efa8c700b2282b4403b9e76188db0783bc96f5d57507956cf4fe722459a092",
+      "restoreHash": "db68673d2505b1d07c95b6e3955893ea1b47821ecf8c2b07c91ef49b6e6cfce7"
+    },
+    {
+      "period": "2027-04",
+      "throughDate": "2027-04-30",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 99,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 97,
+          "plannedReservation": 0,
+          "available": 97,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 2,
+        "capacityClose": 2,
+        "capacity": 30,
+        "occupiedCapacity": 2,
+        "freePhysicalCapacity": 28,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 28
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A5",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:5",
+          "date": "2027-04-05",
+          "period": "2027-04",
+          "productId": "standard-part-2027-04",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-04",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 2,
+          "stockAfter": 3,
+          "availableCapacityBefore": 28,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0",
+          "date": "2027-04-07",
+          "period": "2027-04",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 3,
+          "stockAfter": 4,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-04",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-04",
+          "date": "2027-04-07",
+          "period": "2027-04",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 4,
+          "stockAfter": 3,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-04",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-04",
+          "date": "2027-04-09",
+          "period": "2027-04",
+          "productId": "standard-part-2027-04",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-04",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 3,
+          "stockAfter": 3,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-04",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-04",
+          "date": "2027-04-09",
+          "period": "2027-04",
+          "productId": "standard-part-2027-04",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-04",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 3,
+          "stockAfter": 2,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 28
+        }
+      ],
+      "stateHash": "31304e188e2d31b20c37403e9ca53bb5b07d867ae3d0a0d2da60a9350e098e6d",
+      "eventHash": "cdf0681aa9c584f536c2021a9554b40af7e60ee90653b0b527f699a0153c902e",
+      "restoreHash": "31304e188e2d31b20c37403e9ca53bb5b07d867ae3d0a0d2da60a9350e098e6d"
+    },
+    {
+      "period": "2027-05",
+      "throughDate": "2027-05-31",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 97,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 95,
+          "plannedReservation": 0,
+          "available": 95,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 2,
+        "capacityClose": 3,
+        "capacity": 30,
+        "occupiedCapacity": 3,
+        "freePhysicalCapacity": 27,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 27
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A6",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:6",
+          "date": "2027-05-03",
+          "period": "2027-05",
+          "productId": "standard-part-2027-05",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-05",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 2,
+          "stockAfter": 3,
+          "availableCapacityBefore": 28,
+          "availableCapacityAfter": 27
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0",
+          "date": "2027-05-05",
+          "period": "2027-05",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 3,
+          "stockAfter": 4,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-05",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-05",
+          "date": "2027-05-05",
+          "period": "2027-05",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 4,
+          "stockAfter": 3,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 27
+        }
+      ],
+      "stateHash": "03ed7ea9525f4d298ee1efb5cc798a39b35aeeee8a717c0acb7d0d36d2509efb",
+      "eventHash": "23c23716b1365deec94b912805ef6871e5d4508b9d441007ca57560b0d919f46",
+      "restoreHash": "03ed7ea9525f4d298ee1efb5cc798a39b35aeeee8a717c0acb7d0d36d2509efb"
+    },
+    {
+      "period": "2027-06",
+      "throughDate": "2027-06-30",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 95,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 93,
+          "plannedReservation": 0,
+          "available": 93,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-06||LOT|PRODUCT|standard-part-2027-06": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 3,
+        "capacityClose": 3,
+        "capacity": 30,
+        "occupiedCapacity": 3,
+        "freePhysicalCapacity": 27,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 27
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A7",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:7",
+          "date": "2027-06-07",
+          "period": "2027-06",
+          "productId": "standard-part-2027-06",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-06",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 3,
+          "stockAfter": 4,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0",
+          "date": "2027-06-10",
+          "period": "2027-06",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 4,
+          "stockAfter": 5,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-06",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-06",
+          "date": "2027-06-10",
+          "period": "2027-06",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 5,
+          "stockAfter": 4,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-06",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-06",
+          "date": "2027-06-11",
+          "period": "2027-06",
+          "productId": "standard-part-2027-06",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-06",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 4,
+          "stockAfter": 4,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-06",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-06",
+          "date": "2027-06-11",
+          "period": "2027-06",
+          "productId": "standard-part-2027-06",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-06",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 4,
+          "stockAfter": 3,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 27
+        }
+      ],
+      "stateHash": "f0b0fbd3f5ac3b9b3b08e10047b8f842c5a062b5748dcf2db9dce2d35fd032b1",
+      "eventHash": "09a7a69d84e07ae507701a4138d253f96dbdaa864418d943e213f2022e9e64e0",
+      "restoreHash": "f0b0fbd3f5ac3b9b3b08e10047b8f842c5a062b5748dcf2db9dce2d35fd032b1"
+    },
+    {
+      "period": "2027-07",
+      "throughDate": "2027-07-31",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 93,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 91,
+          "plannedReservation": 0,
+          "available": 91,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-06||LOT|PRODUCT|standard-part-2027-06": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-07||LOT|PRODUCT|standard-part-2027-07": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 3,
+        "capacityClose": 3,
+        "capacity": 30,
+        "occupiedCapacity": 3,
+        "freePhysicalCapacity": 27,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 27
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A8",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:8",
+          "date": "2027-07-05",
+          "period": "2027-07",
+          "productId": "standard-part-2027-07",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-07",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 3,
+          "stockAfter": 4,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0",
+          "date": "2027-07-07",
+          "period": "2027-07",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 4,
+          "stockAfter": 5,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-07",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-07",
+          "date": "2027-07-07",
+          "period": "2027-07",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 5,
+          "stockAfter": 4,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-07",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-07",
+          "date": "2027-07-09",
+          "period": "2027-07",
+          "productId": "standard-part-2027-07",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-07",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 4,
+          "stockAfter": 4,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-07",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-07",
+          "date": "2027-07-09",
+          "period": "2027-07",
+          "productId": "standard-part-2027-07",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-07",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 4,
+          "stockAfter": 3,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 27
+        }
+      ],
+      "stateHash": "0db4d917ad1e1fc2774e0964980f39c69e7d120c78367e350e25a35569d4fbfa",
+      "eventHash": "20cc328d5940a48fea5ff250c4aa52294325c6468a40dd106f7d84da47cd43a4",
+      "restoreHash": "0db4d917ad1e1fc2774e0964980f39c69e7d120c78367e350e25a35569d4fbfa"
+    },
+    {
+      "period": "2027-08",
+      "throughDate": "2027-08-31",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 91,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 89,
+          "plannedReservation": 0,
+          "available": 89,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-06||LOT|PRODUCT|standard-part-2027-06": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-07||LOT|PRODUCT|standard-part-2027-07": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-08||LOT|PRODUCT|standard-part-2027-08": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 3,
+        "capacityClose": 4,
+        "capacity": 30,
+        "occupiedCapacity": 4,
+        "freePhysicalCapacity": 26,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 26
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A9",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:9",
+          "date": "2027-08-02",
+          "period": "2027-08",
+          "productId": "standard-part-2027-08",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-08",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 3,
+          "stockAfter": 4,
+          "availableCapacityBefore": 27,
+          "availableCapacityAfter": 26
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0",
+          "date": "2027-08-05",
+          "period": "2027-08",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 4,
+          "stockAfter": 5,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-08",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-08",
+          "date": "2027-08-05",
+          "period": "2027-08",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 5,
+          "stockAfter": 4,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 26
+        }
+      ],
+      "stateHash": "9dcf850676c6ba8ad12ae04f65e8739e351149794b10773d318af7bca461c08f",
+      "eventHash": "4bd78b26decf4f127f29aeff093f1ec86044a61395926d7145315a6cce133bbc",
+      "restoreHash": "9dcf850676c6ba8ad12ae04f65e8739e351149794b10773d318af7bca461c08f"
+    },
+    {
+      "period": "2027-09",
+      "throughDate": "2027-09-30",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 89,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 87,
+          "plannedReservation": 0,
+          "available": 87,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-09-06%257Ccustomer-order-2027-09%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-09-06%25257Ccustomer-order-2027-09%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-06||LOT|PRODUCT|standard-part-2027-06": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-07||LOT|PRODUCT|standard-part-2027-07": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-08||LOT|PRODUCT|standard-part-2027-08": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-09||LOT|PRODUCT|standard-part-2027-09": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 4,
+        "capacityClose": 4,
+        "capacity": 30,
+        "occupiedCapacity": 4,
+        "freePhysicalCapacity": 26,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 26
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A10",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:10",
+          "date": "2027-09-06",
+          "period": "2027-09",
+          "productId": "standard-part-2027-09",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-09",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 4,
+          "stockAfter": 5,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-09-06%25257Ccustomer-order-2027-09%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-09-06%257Ccustomer-order-2027-09%257C0",
+          "date": "2027-09-08",
+          "period": "2027-09",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-09-06%257Ccustomer-order-2027-09%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-09-06%25257Ccustomer-order-2027-09%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 5,
+          "stockAfter": 6,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 24
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-09",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-09",
+          "date": "2027-09-08",
+          "period": "2027-09",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-09-06%257Ccustomer-order-2027-09%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-09-06%25257Ccustomer-order-2027-09%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 6,
+          "stockAfter": 5,
+          "availableCapacityBefore": 24,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-09",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-09",
+          "date": "2027-09-09",
+          "period": "2027-09",
+          "productId": "standard-part-2027-09",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-09",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 5,
+          "stockAfter": 5,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-09",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-09",
+          "date": "2027-09-09",
+          "period": "2027-09",
+          "productId": "standard-part-2027-09",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-09",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 5,
+          "stockAfter": 4,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 26
+        }
+      ],
+      "stateHash": "6aab396b335b4767bc85f4fb9f49bec62f969286e278c20674038f3673a47f33",
+      "eventHash": "a8d7eb2753693024aa8a43f74ba4c29ab9424562293ecefaa834c31381e181bc",
+      "restoreHash": "6aab396b335b4767bc85f4fb9f49bec62f969286e278c20674038f3673a47f33"
+    },
+    {
+      "period": "2027-10",
+      "throughDate": "2027-10-31",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 87,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 85,
+          "plannedReservation": 0,
+          "available": 85,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-09-06%257Ccustomer-order-2027-09%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-09-06%25257Ccustomer-order-2027-09%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-10-04%257Ccustomer-order-2027-10%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-10-04%25257Ccustomer-order-2027-10%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-06||LOT|PRODUCT|standard-part-2027-06": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-07||LOT|PRODUCT|standard-part-2027-07": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-08||LOT|PRODUCT|standard-part-2027-08": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-09||LOT|PRODUCT|standard-part-2027-09": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-10||LOT|PRODUCT|standard-part-2027-10": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 4,
+        "capacityClose": 4,
+        "capacity": 30,
+        "occupiedCapacity": 4,
+        "freePhysicalCapacity": 26,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 26
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A11",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:11",
+          "date": "2027-10-04",
+          "period": "2027-10",
+          "productId": "standard-part-2027-10",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-10",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 4,
+          "stockAfter": 5,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-10-04%25257Ccustomer-order-2027-10%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-10-04%257Ccustomer-order-2027-10%257C0",
+          "date": "2027-10-07",
+          "period": "2027-10",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-10-04%257Ccustomer-order-2027-10%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-10-04%25257Ccustomer-order-2027-10%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 5,
+          "stockAfter": 6,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 24
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-10",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-10",
+          "date": "2027-10-07",
+          "period": "2027-10",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-10-04%257Ccustomer-order-2027-10%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-10-04%25257Ccustomer-order-2027-10%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 6,
+          "stockAfter": 5,
+          "availableCapacityBefore": 24,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-10",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-10",
+          "date": "2027-10-08",
+          "period": "2027-10",
+          "productId": "standard-part-2027-10",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-10",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 5,
+          "stockAfter": 5,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-10",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-10",
+          "date": "2027-10-08",
+          "period": "2027-10",
+          "productId": "standard-part-2027-10",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-10",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 5,
+          "stockAfter": 4,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 26
+        }
+      ],
+      "stateHash": "a63b89a7b7877166e23ec0ced568fb3c34af006467f249590bbaf7f439376b70",
+      "eventHash": "ebe3b1d20aac02bf5f1a630caaee25dff3ac22d467e5ce191f9bce19b26d2a93",
+      "restoreHash": "a63b89a7b7877166e23ec0ced568fb3c34af006467f249590bbaf7f439376b70"
+    },
+    {
+      "period": "2027-11",
+      "throughDate": "2027-11-30",
+      "inTransitShipments": [],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 85,
+          "receipts": 0,
+          "inTransitQuantity": 0,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 83,
+          "plannedReservation": 0,
+          "available": 83,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-09-06%257Ccustomer-order-2027-09%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-09-06%25257Ccustomer-order-2027-09%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-10-04%257Ccustomer-order-2027-10%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-10-04%25257Ccustomer-order-2027-10%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-11-01%257Ccustomer-order-2027-11%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-11-01%25257Ccustomer-order-2027-11%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-06||LOT|PRODUCT|standard-part-2027-06": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-07||LOT|PRODUCT|standard-part-2027-07": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-08||LOT|PRODUCT|standard-part-2027-08": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-09||LOT|PRODUCT|standard-part-2027-09": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-10||LOT|PRODUCT|standard-part-2027-10": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-11||LOT|PRODUCT|standard-part-2027-11": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 4,
+        "capacityClose": 5,
+        "capacity": 30,
+        "occupiedCapacity": 5,
+        "freePhysicalCapacity": 25,
+        "plannedOutputCapacity": 0,
+        "freeAfterPlans": 25
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A12",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:12",
+          "date": "2027-11-01",
+          "period": "2027-11",
+          "productId": "standard-part-2027-11",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-11",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 4,
+          "stockAfter": 5,
+          "availableCapacityBefore": 26,
+          "availableCapacityAfter": 25
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-11-01%25257Ccustomer-order-2027-11%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-11-01%257Ccustomer-order-2027-11%257C0",
+          "date": "2027-11-03",
+          "period": "2027-11",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-11-01%257Ccustomer-order-2027-11%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-11-01%25257Ccustomer-order-2027-11%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 5,
+          "stockAfter": 6,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 24
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-11",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-11",
+          "date": "2027-11-03",
+          "period": "2027-11",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-11-01%257Ccustomer-order-2027-11%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-11-01%25257Ccustomer-order-2027-11%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 6,
+          "stockAfter": 5,
+          "availableCapacityBefore": 24,
+          "availableCapacityAfter": 25
+        }
+      ],
+      "stateHash": "11f8e3edd5a8f3cff12c5d82b28089c86e365a86ddfb70ff617790e6d038b62e",
+      "eventHash": "07d0019f47518c9b57d874295260b021ae15c7a9d86df6df48687c77afd1ba74",
+      "restoreHash": "11f8e3edd5a8f3cff12c5d82b28089c86e365a86ddfb70ff617790e6d038b62e"
+    },
+    {
+      "period": "2027-12",
+      "throughDate": "2027-12-31",
+      "inTransitShipments": [
+        {
+          "orderId": "T0076-MAT-ORDER-TRANSIT",
+          "shipmentId": "T0076-MAT-SHIPMENT-TRANSIT",
+          "materialId": "steel",
+          "quantity": 4,
+          "etaDate": "2028-01-04",
+          "sourceRef": "fixture:D-0173:t0076:steel-transit-order"
+        }
+      ],
+      "materials": [
+        {
+          "id": "steel",
+          "unit": "units",
+          "opening": 83,
+          "receipts": 0,
+          "inTransitQuantity": 4,
+          "completedConsumption": 2,
+          "explicitAdjustments": 0,
+          "close": 81,
+          "plannedReservation": 1,
+          "available": 80,
+          "receiptMovementIds": []
+        }
+      ],
+      "lots": {
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-01-04%257Ccustomer-order-2027-01%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-01-04%25257Ccustomer-order-2027-01%25257C0": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 1
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-02-01%257Ccustomer-order-2027-02%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-02-01%25257Ccustomer-order-2027-02%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-03-01%257Ccustomer-order-2027-03%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-03-01%25257Ccustomer-order-2027-03%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-04-05%257Ccustomer-order-2027-04%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-04-05%25257Ccustomer-order-2027-04%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-05-03%257Ccustomer-order-2027-05%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-05-03%25257Ccustomer-order-2027-05%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-06-07%257Ccustomer-order-2027-06%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-06-07%25257Ccustomer-order-2027-06%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-07-05%257Ccustomer-order-2027-07%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-07-05%25257Ccustomer-order-2027-07%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-08-02%257Ccustomer-order-2027-08%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-08-02%25257Ccustomer-order-2027-08%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-09-06%257Ccustomer-order-2027-09%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-09-06%25257Ccustomer-order-2027-09%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-10-04%257Ccustomer-order-2027-10%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-10-04%25257Ccustomer-order-2027-10%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-11-01%257Ccustomer-order-2027-11%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-11-01%25257Ccustomer-order-2027-11%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "|WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-12-06%257Ccustomer-order-2027-12%257C0|LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-12-06%25257Ccustomer-order-2027-12%25257C0": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-01||LOT|PRODUCT|standard-part-2027-01": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-02||LOT|PRODUCT|standard-part-2027-02": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-03||LOT|PRODUCT|standard-part-2027-03": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-04||LOT|PRODUCT|standard-part-2027-04": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-05||LOT|PRODUCT|standard-part-2027-05": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-06||LOT|PRODUCT|standard-part-2027-06": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-07||LOT|PRODUCT|standard-part-2027-07": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-08||LOT|PRODUCT|standard-part-2027-08": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-09||LOT|PRODUCT|standard-part-2027-09": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-10||LOT|PRODUCT|standard-part-2027-10": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-11||LOT|PRODUCT|standard-part-2027-11": {
+          "unit": "pieces",
+          "physical": 1,
+          "reserved": 0,
+          "quarantined": 0
+        },
+        "standard-part-2027-12||LOT|PRODUCT|standard-part-2027-12": {
+          "unit": "pieces",
+          "physical": 0,
+          "reserved": 0,
+          "quarantined": 0
+        }
+      },
+      "finishedGoods": {
+        "capacityOpening": 5,
+        "capacityClose": 5,
+        "capacity": 30,
+        "occupiedCapacity": 5,
+        "freePhysicalCapacity": 25,
+        "plannedOutputCapacity": 1,
+        "freeAfterPlans": 24
+      },
+      "finishedGoodsMovements": [
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-output|T0076-G6-ANNUAL-QUANTITY-1%3Aassignment%3A13",
+          "kind": "product_output_stocked",
+          "sourceRef": "T0076-G6-ANNUAL-QUANTITY-1:assignment:13",
+          "date": "2027-12-06",
+          "period": "2027-12",
+          "productId": "standard-part-2027-12",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-12",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 1,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 5,
+          "stockAfter": 6,
+          "availableCapacityBefore": 25,
+          "availableCapacityAfter": 24
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-stock|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-12-06%25257Ccustomer-order-2027-12%25257C0",
+          "kind": "customer_output_stocked_reserved",
+          "sourceRef": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-12-06%257Ccustomer-order-2027-12%257C0",
+          "date": "2027-12-08",
+          "period": "2027-12",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-12-06%257Ccustomer-order-2027-12%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-12-06%25257Ccustomer-order-2027-12%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 0,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 1,
+          "stockBefore": 6,
+          "stockAfter": 7,
+          "availableCapacityBefore": 24,
+          "availableCapacityAfter": 23
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|customer-shipment|delivery-2027-12",
+          "kind": "customer_goods_shipped",
+          "sourceRef": "delivery-source-2027-12",
+          "date": "2027-12-08",
+          "period": "2027-12",
+          "productId": null,
+          "workOrderId": "WORK|T0076-G6-ANNUAL-QUANTITY-1|VM%7CV3-MARKET-1%7CT0069-G5-MONTHLY%7CT0076-G6-ANNUAL-QUANTITY-1%7Cfixed-annual-quantity-reconciliation%7Ccustomer_decision%7CINQ%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257C2027-12-06%257Ccustomer-order-2027-12%257C0",
+          "lotId": "LOT|WORK%7CT0076-G6-ANNUAL-QUANTITY-1%7CVM%257CV3-MARKET-1%257CT0069-G5-MONTHLY%257CT0076-G6-ANNUAL-QUANTITY-1%257Cfixed-annual-quantity-reconciliation%257Ccustomer_decision%257CINQ%25257CV3-MARKET-1%25257CT0069-G5-MONTHLY%25257CT0076-G6-ANNUAL-QUANTITY-1%25257Cfixed-annual-quantity-reconciliation%25257C2027-12-06%25257Ccustomer-order-2027-12%25257C0",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 7,
+          "stockAfter": 6,
+          "availableCapacityBefore": 23,
+          "availableCapacityAfter": 24
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-reservation|product-sale-2027-12",
+          "kind": "product_goods_reserved",
+          "sourceRef": "product-sale-2027-12",
+          "date": "2027-12-10",
+          "period": "2027-12",
+          "productId": "standard-part-2027-12",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-12",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 1,
+          "reservedQuantityBefore": 0,
+          "reservedQuantityAfter": 1,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": 0,
+          "stockBefore": 6,
+          "stockAfter": 6,
+          "availableCapacityBefore": 24,
+          "availableCapacityAfter": 24
+        },
+        {
+          "movementId": "T0076-G6-ANNUAL-QUANTITY-1|product-dispatch|dispatch-2027-12",
+          "kind": "product_goods_shipped",
+          "sourceRef": "product-sale-2027-12",
+          "date": "2027-12-10",
+          "period": "2027-12",
+          "productId": "standard-part-2027-12",
+          "workOrderId": null,
+          "lotId": "LOT|PRODUCT|standard-part-2027-12",
+          "quantity": 1,
+          "unit": "pieces",
+          "physicalQuantityBefore": 1,
+          "physicalQuantityAfter": 0,
+          "reservedQuantityBefore": 1,
+          "reservedQuantityAfter": 0,
+          "quarantinedQuantityBefore": 0,
+          "quarantinedQuantityAfter": 0,
+          "availableQuantityAfter": 0,
+          "deltaCapacityUnits": -1,
+          "stockBefore": 6,
+          "stockAfter": 5,
+          "availableCapacityBefore": 24,
+          "availableCapacityAfter": 25
+        }
+      ],
+      "stateHash": "fa28ab6ad84d0dbda9c44d22d2335a327c87334082f776901866fd208e56d462",
+      "eventHash": "5abc7d55f540966e76f5ffdd222a6c1101b92884daa1bdf7c660e3c938e5e019",
+      "restoreHash": "fa28ab6ad84d0dbda9c44d22d2335a327c87334082f776901866fd208e56d462"
+    }
+  ]
+}

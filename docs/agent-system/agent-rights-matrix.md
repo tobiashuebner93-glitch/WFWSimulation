@@ -1,6 +1,6 @@
 # Agentenprofile und Rechte – A01 bis A11
 
-Stand: 2026-10-29
+Stand: 2026-11-01
 Geltung: MG-002 und Folgeaufgaben; AGENTS.md bleibt höherrangige Control-Plane-Regel.
 
 ## Rechtebegriffe
@@ -11,10 +11,18 @@ Geltung: MG-002 und Folgeaufgaben; AGENTS.md bleibt höherrangige Control-Plane-
 - **WRITE:** ausschließlich Dateien im ausdrücklich zugewiesenen Ticketumfang ändern.
 - **APPROVE:** keine Agentenrolle besitzt Nutzer-, Rechts-, Architektur-, Schema-, Release- oder Produktfreigabe. A01 kann Prozess-/Dokumentationsabschlüsse koordinieren, aber keine Fachfreigaben ersetzen.
 
-Jeder Auftrag nennt Adressat, Goal/Ticket, Umfang, erwartetes Ergebnis, Änderungsgrenzen und Review. Fachagenten richten Status und Rückfragen an A01. A01 bündelt nötige Nutzerfragen; Antworten ohne Rückfragen werden in einen konkret adressierten Folgeauftrag überführt oder als Abschluss dokumentiert. Vor jeder Bearbeitung gilt der Preflight aus AGENTS.md.
+Jeder Auftrag nennt Adressat, Goal/Ticket, Umfang, erwartetes Ergebnis, Änderungsgrenzen, Akzeptanzkriterien und Review. Vor jeder Bearbeitung verifiziert der Agent den A01-Preflight-Digest und Repositorystatus gemäß AGENTS.md; unveränderte Volltexte werden nicht unnötig erneut kopiert, betroffene geänderte Quellen werden vollständig nachgelesen. Fachagenten richten Status und Rückfragen an A01. A01 bündelt nötige Nutzerfragen; Antworten ohne Rückfragen werden in einen konkret adressierten Folgeauftrag überführt oder als Abschluss dokumentiert. Je Übergabe gibt es einen verantwortlichen schreibenden Agenten; parallele Schreibarbeit an denselben Pfaden braucht A01-Koordination. Berichte an A01 enthalten kurz Delta, Befunde mit Belegen, Tests, Grenzen/Blocker und nächsten Adressaten.
 
 **Historische Nachweise:** Nach Abschluss der Analyse und Nutzerbestätigung sind CPs und MCPs unveränderlich. WRITE-Rechte gelten dann nicht für diese Dateien, auch nicht für redaktionelle Korrekturen, Ergänzungen oder Löschung. Bis zur Bestätigung wird ein MCP als Entwurf markiert. Nachträge gehören in einen neuen CP; eine neue Gesamtsynthese wird als neue MCP-ID erstellt. Dynamische Statusregister bleiben außerhalb bestätigter Nachweise.
 
+
+## Verbindliche Manifest- und Autorisierungsnachweise
+
+Für Inhalts-/Quellenkorpora muss vor dem Review ein versioniertes Manifest die Auswahlregel, Dateitypen, Ausschlüsse, Nenner, Pfad, SHA-256 und Einzeldisposition enthalten. Lesbarkeit, Inhalts-/Itemabdeckung, Kompetenzmapping und Nutzungsrechte werden getrennt bewertet; eine Korpusänderung erzeugt eine neue Version.
+
+Jeder CP/MCP-Abschluss führt **Autor**, **Mitwirkende**, **Fachreview**, **unabhängige QA** und nicht ausgeführte Prüfungen getrennt. `nicht ausgeführt` ist kein PASS; A01 kann sich nicht selbst unabhängig QA-freigeben.
+
+Jedes Deliverable erhält einen Autorisierungseintrag für die zutreffenden Ebenen: Domain/Eventvertrag, Runtime/API, Schema/Persistenz, produktive Finanzmutation, Release. Pflichtfelder: Ebene, Status (`NOT_REQUESTED`, `PROPOSED`, `APPROVED`, `REJECTED`, `N/A`), einschlägige D-ID oder ausdrückliches `NEIN`, autorisierende Rolle und Beleg. Nur die für diese Ebene befugte Rolle kann eine Freigabe erteilen; eine Genehmigung in einer Ebene gilt nicht für andere Ebenen. Dieses Register beschreibt Autorität und gewährt keine neue.
 ## Rollenprofile
 
 ### A01 – MASTER_ORCHESTRATOR
@@ -131,3 +139,7 @@ A10 dokumentiert beim Offlinepaket Quellrevision und Manifest mit Inhalts-Hashes
 ## Review- und Analyseauslöser
 
 A01 plant die gebündelte Checkpoint-Review/Retro nach jedem 250. CP (CP-0250, CP-0500 usw.). Eine Review/Retro wird außerdem nach jedem erfolgreich erstellten Commit und jedem erfolgreich ausgeführten Push ausgelöst. Zwischen diesen Meilensteinen wird keine Analyse allein nach einem einzelnen CP oder Arbeitsauftrag angefragt. Nummern werden nie zurückgesetzt; spätere Nutzeranweisungen gelten vor älteren CP-/MCP-Texten. Bestätigte Nachweise bleiben unverändert.
+
+## Rechtsaktualität und Versionsfreigabe
+
+Das [Rechtsrahmenregister](../legal/legal-framework-register.md) ist für alle Versionen maßgeblich. **A08** prüft aktuelle Primärquellen, Inkrafttreten/Übergangsrecht und dokumentiert Abweichungen; **A01** pflegt Register, Ticket-Gate und Impactliste; die jeweilige Fachrolle aktualisiert alle betroffenen Regeln und Produktstellen; **A09** prüft vor jedem Versionsabschluss Vollständigkeit, Korrekturen und Regressionen. Jeder Agent muss bei einer fachlichen Änderung einen möglichen Rechtsbezug prüfen und an A01/A08 melden. Die simulierte Jahreszahl begründet keinen historischen Rechtsstand. Kein Agent erteilt Rechtsfreigabe oder ersetzt Rechtsberatung.
