@@ -1666,3 +1666,7 @@ A01 koordiniert D-0188 (aktueller 12M-Smoke WAIVED), restliche Mindestgates, A03
 **D-0189 bestätigt:** Zusätzliche Rechtsformen V6. A03/A09/A10 konnten letzte Folgeaufträge wegen Nutzungslimit nicht abschließen. A01 übernimmt; bisherige tatsächliche Reviews bleiben mit ihrem Scope erhalten, neue Selbstausführung wird nicht als unabhängige QA ausgegeben.
 
 **Abschluss CP-0566:** D-0189 bestätigt, V3-10 final A11 PASS, finale Kurztests und Lern-Reopen im Browser PASS. V3-Minimum mit D-0188 Jahres-Smoke-Ausnahme releasebereit; Paket final neu gebaut. T-0113 Hosting404 separat offen, T-0127 beginnt nach Git-Release. Bericht test-reports/a01-v3-release-validation-cp0566.md; tatsächliche Commit/Push-Verifikation folgt.
+
+## CP-0567 – V3 gesichert (10.11.2026)
+
+Releasecommit1cb7390f3ea737ce8a0905059162121d8cac2469 sichert V3 mit D-0188-Ausnahme; Arbeitsbaum nach Commit sauber. Commitreview/Retro CP-0567 abgeschlossen. Push folgt über GitHub Desktop. T-0127 Performance startet erst nach Remoteverifikation; T-0113 Pages404 bleibt separat offen.
